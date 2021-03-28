@@ -12,14 +12,14 @@
 }
 .hero-image {
   padding-top: 4rem;
-  width: 400px;
+  width: 450px;
   height: 400px;
 }
 .hero-image img {
   transition: 300ms;
 }
 .hero-image img:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 .item {
   width: 100%;
@@ -29,5 +29,5 @@
   height: 100%;
   width: 100%;
   object-fit: contain;
-  border-radius: 10%;
+  border-radius: 5%;
 }
