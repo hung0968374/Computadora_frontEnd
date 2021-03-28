@@ -15,7 +15,7 @@ function App() {
     }
     getAllData();
   }, [count]);
-  console.log(allData);
+  // console.log(allData);
   return (
     <div className="App">
       <Header />
