@@ -1,6 +1,5 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import Auth from "./components/Auth";
 import Header from "./components/Header";
 import Slogan from "./components/Slogan";
 import Posts from "./components/Posts";
@@ -8,13 +7,14 @@ import Footer from "./components/Footer";
 import * as api from "./api";
 function App() {
   const [allData, setAllData] = useState([]);
+  const [count, setCount] = useState(0);
   useEffect(() => {
     async function getAllData() {
-      let { data } = await api.fetchPosts();
+      let { data } = await api.fetchPostsById(count);
       setAllData(data);
     }
     getAllData();
-  }, []);
+  }, [count]);
   console.log(allData);
   return (
     <div className="App">
@@ -22,13 +22,12 @@ function App() {
       <div className="slo_auth_post">
         <div className="slo_auth">
           <Slogan />
-          <Auth />
         </div>
         <div className="posts">
           <Posts />
         </div>
       </div>
-      <Footer />
+      <Footer count={count} setCount={setCount} />
     </div>
   );
 }

@@ -4,6 +4,9 @@
 .App {
   height: 100vh;
   width: 100%;
+  background-color: #a1d2f5;
+  font-family: "Roboto", sans-serif;
+  background-color: #a1d2f5;
 }
 .slo_auth_post {
   display: flex;
@@ -16,4 +19,8 @@
 .posts {
   flex: 1;
   height: 10%;
+}
+.img {
+  width: 100px;
+  height: 100px;
 }

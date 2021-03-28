@@ -1,4 +1,13 @@
 .footer {
-  background-color: rgb(61, 88, 100);
-  height: 10%;
+  height: 8%;
+}
+
+.insta-icon {
+  width: 15%;
+  margin-right: 5%;
+}
+.social-icon {
+  margin-left: 10%;
+  position: absolute;
+  top: 80%;
 }

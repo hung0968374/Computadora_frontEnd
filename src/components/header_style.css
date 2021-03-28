@@ -1,19 +1,51 @@
 .header {
-  height: 10%;
+  height: 12%;
   width: 100%;
-  background-color: red;
   display: flex;
   flex-direction: row;
   align-items: center;
   font-size: 20px;
+  background-color: white;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+.wrapper {
+  width: 90%;
+  margin-left: 10%;
+}
+nav ul {
+  display: flex;
+  width: 100%;
+}
+.nav-container {
+  width: 100%;
+}
+.nav-items {
+  margin-left: 20%;
+  margin-right: 10%;
+}
+nav ul li {
+  margin-left: 12%;
+  font-size: 1.5rem;
+  opacity: 0.7;
 }
 .logo {
-  margin-left: 5%;
-  margin-right: 30%;
+  position: absolute;
+  width: 5%;
 }
-.blog,
-.computer,
-.accessories,
-.search-icon {
-  margin-left: 10%;
+.nav-items {
+  list-style: none;
+}
+.search-btn {
+  padding-top: 0.7%;
+  position: absolute;
+  left: 94.1%;
+  right: 2.64%;
+  top: 2.5%;
+  bottom: 93.26%;
+  width: 2%;
 }

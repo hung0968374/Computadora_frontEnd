@@ -1,4 +1,28 @@
 .posts {
-  background-color: rgb(175, 55, 55);
   height: 100%;
+  margin-top: 2%;
+}
+.image-container {
+  width: 70%;
+  height: 70%;
+  background-color: #8bc5ef;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+}
+.hero-image {
+  padding-top: 4rem;
+  width: 50%;
+  height: 60%;
+}
+.hero-image img {
+  transition: 300ms;
+}
+.hero-image img:hover {
+  transform: rotate(-6deg);
+}
+.img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
