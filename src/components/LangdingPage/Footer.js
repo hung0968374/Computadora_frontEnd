@@ -1,11 +1,15 @@
 import React from "react";
-import "./footer.css";
+import * as styles from "./footer.module.css";
 const Footer = () => {
   return (
-    <div className="footer">
-      <div className="social-icon">
-        <img className="insta-icon" src="/images/insta-icon.svg" alt="" />
-        <img className="name" src="/images/Computadora.svg" alt="" />
+    <div className={styles.footer}>
+      <div className={styles.social_icon}>
+        <img
+          className={styles.insta_icon}
+          src="/images/insta-icon.svg"
+          alt=""
+        />
+        <img className={styles.name} src="/images/Computadora.svg" alt="" />
       </div>
     </div>
   );

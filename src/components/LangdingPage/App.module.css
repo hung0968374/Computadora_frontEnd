@@ -18,7 +18,7 @@
 }
 .posts {
   flex: 1;
-  height: 10%;
+  height: 100%;
 }
 .img {
   width: 100px;

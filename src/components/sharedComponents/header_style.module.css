@@ -5,7 +5,7 @@
   flex-direction: row;
   align-items: center;
   font-size: 20px;
-  background-color: white;
+  background-color: rgb(243 243 243);
 }
 nav {
   display: flex;
@@ -21,10 +21,10 @@ nav ul {
   display: flex;
   width: 100%;
 }
-.nav-container {
+.nav_container {
   width: 100%;
 }
-.nav-items {
+.nav_items {
   margin-left: 20%;
   margin-right: 10%;
 }
@@ -37,10 +37,10 @@ nav ul li {
   position: absolute;
   width: 5%;
 }
-.nav-items {
+.nav_items {
   list-style: none;
 }
-.search-btn {
+.search_btn {
   padding-top: 0.7%;
   position: absolute;
   left: 94.1%;

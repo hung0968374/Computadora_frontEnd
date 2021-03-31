@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./posts.css";
+import * as styles from "./posts.module.css";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.min.css";
 import "owl.carousel/dist/assets/owl.theme.default.min.css";
@@ -14,24 +14,24 @@ function Posts() {
   const [imagesUrl, setImagesUrl] = useState(initialState);
   console.log(imagesUrl);
   return (
-    <div className="posts">
-      <div className="image-container">
-        <div className="hero-image">
+    <div className={styles.post}>
+      <div className={styles.image_container}>
+        <div className={styles.hero_image}>
           <OwlCarousel className="owl-theme" items="1" loop autoplay nav dots>
-            <div className="item">
-              <img src={imagesUrl[0]} alt="" className="imgs" />
+            <div className={styles.item}>
+              <img src={imagesUrl[0]} alt="" className={styles.imgs} />
             </div>
             <div className="item">
-              <img src={imagesUrl[1]} alt="" className="imgs" />
+              <img src={imagesUrl[1]} alt="" className={styles.imgs} />
             </div>
             <div className="item">
-              <img src={imagesUrl[2]} alt="" className="imgs" />
+              <img src={imagesUrl[2]} alt="" className={styles.imgs} />
             </div>
             <div className="item">
-              <img src={imagesUrl[3]} alt="" className="imgs" />
+              <img src={imagesUrl[3]} alt="" className={styles.imgs} />
             </div>
           </OwlCarousel>
-          <div className="photobg"></div>
+          <div className={styles.photobg}></div>
         </div>
       </div>
     </div>

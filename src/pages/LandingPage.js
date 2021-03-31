@@ -1,4 +1,4 @@
-import "../App.css";
+import * as styles from "../components/LangdingPage/App.module.css";
 import React, { useState, useEffect } from "react";
 import Header from "../components/sharedComponents/Header";
 import Slogan from "../components/LangdingPage/Slogan";
@@ -20,13 +20,13 @@ function LandingPage() {
 
   console.log(allData);
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Header />
-      <div className="slo_auth_post">
-        <div className="slo_auth">
+      <div className={styles.slo_auth_post}>
+        <div className={styles.slo_auth}>
           <Slogan />
         </div>
-        <div className="posts">
+        <div className={styles.posts}>
           <Posts />
         </div>
       </div>

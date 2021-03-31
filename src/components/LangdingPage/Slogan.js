@@ -1,20 +1,16 @@
 import React from "react";
-import "./slogan.css";
+import * as styles from "./slogan.module.css";
 const Slogan = () => {
   return (
-    <div className="slogan">
-      <div className="hero-content">
+    <div className={styles.slogan}>
+      <div className={styles.hero_content}>
         <h1>COMPUTADORA</h1>
-        <p className="slog">
+        <p className={styles.slog}>
           Với chúng tôi trải nghiệm của khách hàng là cốt lõi
         </p>
-        <div className="auth">
-          <p className="sign-in" href="/signIN.html">
-            Đăng nhập
-          </p>
-          <p className="sign-up" href="/signUp.html">
-            Đăng ký
-          </p>
+        <div className={styles.auth}>
+          <p className={styles.sign_in}>Đăng nhập</p>
+          <p className={styles.sign_up}>Đăng ký</p>
         </div>
       </div>
     </div>

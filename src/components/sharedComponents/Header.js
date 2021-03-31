@@ -1,24 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./header_style.css";
+import * as styles from "./header_style.module.css";
 const Header = () => {
   const link_style = {
     color: "black",
   };
   return (
-    <div className="header">
-      <div className="nav-container">
-        <div className="wrapper">
+    <div className={styles.header}>
+      <div className={styles.nav_container}>
+        <div className={styles.wrapper}>
           <nav>
-            <div className="logo">
+            <div className={styles.logo}>
               <img src="/images/laptop.svg" alt="" />
             </div>
-            <ul className="nav-items">
+            <ul className={styles.nav_items}>
               <li>
                 <Link to="/pc">PC </Link>
               </li>
 
-              <li className="li_className">
+              <li className={styles.li_className}>
                 <Link to="/laptop">laptop</Link>
               </li>
               <li>
@@ -31,9 +31,9 @@ const Header = () => {
                 <Link to="/blog">Blog </Link>
               </li>
 
-              <li className="nav-btn-container">
+              <li className={styles.nav_btn_container}>
                 <img
-                  className="search-btn"
+                  className={styles.search_btn}
                   src="/images/search-icon.svg"
                   alt=""
                 />

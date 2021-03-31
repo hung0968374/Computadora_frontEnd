@@ -1,8 +1,9 @@
-.posts {
+.post {
   height: 100%;
+  width: 100%;
   margin-top: 2%;
 }
-.image-container {
+.image_container {
   width: 70%;
   height: 70%;
   background-color: #8bc5ef;
@@ -10,15 +11,15 @@
   display: flex;
   justify-content: center;
 }
-.hero-image {
+.hero_image {
   padding-top: 4rem;
   width: 450px;
   height: 400px;
 }
-.hero-image img {
+.hero_image img {
   transition: 300ms;
 }
-.hero-image img:hover {
+.hero_image img:hover {
   transform: scale(1.1);
 }
 .item {
