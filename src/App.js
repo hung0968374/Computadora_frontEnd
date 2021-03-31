@@ -1,34 +1,20 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
-import Header from "./components/Header";
-import Slogan from "./components/Slogan";
-import Posts from "./components/Posts";
-import Footer from "./components/Footer";
-import * as api from "./api";
+import LandingPage from "./pages/LandingPage";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Laptop from "./pages/Laptop";
+import Blog from "./pages/Blog";
+import DetailItem from "./pages/DetailItem";
 function App() {
-  const [allData, setAllData] = useState([]);
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    async function getAllData() {
-      let { data } = await api.fetchPostsById(count);
-      setAllData(data);
-    }
-    getAllData();
-  }, [count]);
-  // console.log(allData);
   return (
-    <div className="App">
-      <Header />
-      <div className="slo_auth_post">
-        <div className="slo_auth">
-          <Slogan />
-        </div>
-        <div className="posts">
-          <Posts />
-        </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact component={LandingPage} />
+          <Route path="/blog" exact component={Blog} />
+          <Route path="/detailItem" exact component={DetailItem} />
+          <Route path="/laptop" exact component={Laptop} />
+        </Switch>
       </div>
-      <Footer count={count} setCount={setCount} />
-    </div>
+    </Router>
   );
 }
 

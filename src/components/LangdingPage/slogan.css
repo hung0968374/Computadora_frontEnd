@@ -19,20 +19,6 @@ p {
   width: 489px;
   margin-bottom: 75px;
 }
-a {
-  color: #ffffff;
-  font-size: 20px;
-
-  background: #05807d;
-  border-radius: 15px;
-  padding: 30px 24px;
-  text-decoration: none;
-  display: inline-block;
-  transition: 300ms;
-}
-a:hover {
-  transform: translateY(-8px);
-}
 .slog {
   font-size: 25px;
 }
