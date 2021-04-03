@@ -31,13 +31,18 @@ const Header = () => {
                 <Link to="/blog">Blog </Link>
               </li>
 
-              <li className={styles.nav_btn_container}>
+              <li>
+                <div className={styles.Account}>
+                  <img src="/images/account-icon.svg" alt="" />
+                </div>
+              </li>
+              <div className={styles.nav_btn_container}>
                 <img
                   className={styles.search_btn}
                   src="/images/search-icon.svg"
                   alt=""
                 />
-              </li>
+              </div>
             </ul>
           </nav>
         </div>

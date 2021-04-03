@@ -29,7 +29,8 @@ nav ul {
   margin-right: 10%;
 }
 nav ul li {
-  margin-left: 12%;
+  margin-top: 2%;
+  margin-left: 11%;
   font-size: 1.5rem;
   opacity: 0.7;
 }
@@ -37,9 +38,11 @@ nav ul li {
   position: absolute;
   width: 5%;
 }
+
 .nav_items {
   list-style: none;
 }
+
 .search_btn {
   padding-top: 0.7%;
   position: absolute;
@@ -48,4 +51,10 @@ nav ul li {
   top: 2.5%;
   bottom: 93.26%;
   width: 2%;
+}
+
+.Account img {
+  width: 28%;
+  position: relative;
+  bottom: 5px;
 }
