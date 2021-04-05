@@ -31,16 +31,32 @@ const Laptop = () => {
           <div className={styles.sort_bar}></div>
           <div className={styles.items}>
             <div className={styles.item}>
-              <div className={styles.item_image}>
-                <img src="/img/laptop-icon.svg" alt="" />
-              </div>
-              <h2>Lenovo Legion Y540</h2>
+              <div className={styles.item_image}></div>
+              {/* <h2>Lenovo Legion Y540</h2>
               <p>
                 Giá từ:
                 <p className={styles.price}>24.499.000 ₫</p>
-              </p>
+              </p> */}
             </div>
-
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
+            <div className={styles.item}></div>
             <div className={styles.item1}>
               <button></button>
               <button>1</button>
@@ -54,7 +70,7 @@ const Laptop = () => {
           </div>
         </div>
       </section>
-      <section className={styles.footer}>
+      <div className={styles.footer}>
         <div className={styles.footer_container}>
           <div className={styles.section}>
             <img className={styles.footer_logo} alt="" />
@@ -95,7 +111,7 @@ const Laptop = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

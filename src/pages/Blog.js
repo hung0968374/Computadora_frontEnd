@@ -1,7 +1,12 @@
 import React from "react";
-import * as blogStyle from "../components/blog/blog.module.css";
+import * as styles from "../components/blog/blog.module.css";
 const Blog = () => {
-  return <div className={blogStyle.blog}>this is blog</div>;
+  return (
+    <div className={styles.blog}>
+      <section>asdsad</section>
+      <section>asdasdas</section>
+    </div>
+  );
 };
 
 export default Blog;

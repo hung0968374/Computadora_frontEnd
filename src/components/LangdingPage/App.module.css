@@ -24,7 +24,7 @@
   width: 100px;
   height: 100px;
 }
-a {
+/* a {
   text-decoration: none;
   color: rgb(0, 0, 0);
   display: inline-block;
@@ -33,4 +33,4 @@ a {
 a:hover {
   transform: scale(1.3);
   opacity: 1;
-}
+} */
