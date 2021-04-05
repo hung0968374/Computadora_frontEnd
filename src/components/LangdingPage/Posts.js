@@ -12,7 +12,6 @@ function Posts() {
     "/images/laptop4.jpg",
   ];
   const [imagesUrl, setImagesUrl] = useState(initialState);
-  console.log(imagesUrl);
   return (
     <div className={styles.post}>
       <div className={styles.image_container}>

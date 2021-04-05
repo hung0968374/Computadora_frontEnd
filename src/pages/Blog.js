@@ -1,12 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import * as styles from "../components/blog/blog.module.css";
+import { countValue } from "../redux/features/counter/counterSlice";
+
 const Blog = () => {
-  return (
-    <div className={styles.blog}>
-      <section>asdsad</section>
-      <section>asdasdas</section>
-    </div>
-  );
+  const value = useSelector(countValue);
+  console.log(value);
+  return <div className={styles.blog}>pussy</div>;
 };
 
 export default Blog;

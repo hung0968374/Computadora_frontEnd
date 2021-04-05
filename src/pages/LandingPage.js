@@ -15,7 +15,24 @@ import {
 function LandingPage() {
   const [allData, setAllData] = useState([]);
   const [changeStt, setChangeStt] = useState(false);
+  const [testCount, setTestCount] = useState(0);
   const value = useSelector(countValue);
+  const pussy = [
+    {
+      data: "data1",
+    },
+    {
+      data: "data1",
+    },
+    {
+      data: "data1",
+    },
+  ];
+  const objPussy = {
+    id: "1",
+    name: "huu hung",
+  };
+  const pussy2 = ["data1", "data2", "data33"];
   const dispatch = useDispatch();
   useEffect(() => {
     async function getAllData() {
@@ -23,13 +40,16 @@ function LandingPage() {
       let data1 = await (await Api.fetchPosts()).data;
       console.log(data1);
       setAllData(data1);
+      dispatch(incrementByAmount(data1));
     }
     getAllData();
   }, [changeStt]);
   const _changeStt = () => {
     setChangeStt(!changeStt);
-    dispatch(incrementByAmount(5));
+    setTestCount(testCount + 1);
   };
+  console.log("test count: " + testCount);
+  console.log("value from redux:");
   console.log(value);
   return (
     <div className={styles.App}>
@@ -42,7 +62,6 @@ function LandingPage() {
           <Posts />
         </div>
       </div>
-      {value}
       <Footer />
     </div>
   );
