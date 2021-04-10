@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as styles from "./signIN.module.css";
+import * as styles from "./PWrecover.module.css";
 
 export default function signIN() {
   return (
@@ -11,7 +11,7 @@ export default function signIN() {
             <Link to="/">Quay lại</Link>
           </div>
           <div className={styles.title}>
-            <h2>Chào mừng bạn quay lại</h2>
+            <h2>Lấy lại mật khẩu</h2>
           </div>
         </div>
 
@@ -26,20 +26,28 @@ export default function signIN() {
               </li>
               <li>
                 <input
+                  minlength="6"
+                  class="password"
+                  type="email"
+                  placeholder="Email"
+                />
+              </li>
+              <li>
+                <input
                   maxlength="12"
                   minlength="6"
                   class="password"
                   type="password"
-                  placeholder="Mật khẩu"
+                  placeholder="Mật khẩu mới"
                 />
               </li>
               <li className={styles.more_func}>
                 <div className={styles.new_acc}>
                   <p>
-                    <Link to="/signUp">Chưa có tài khoản ?</Link>
+                    <Link to="/signIn">Đã có tài khoản?</Link>
                   </p>
                   <p className={styles.forgot_pw}>
-                    <Link to="/PWRecover">Quên mật khẩu</Link>
+                    <Link to="/signUp">Chưa có tài khoản?</Link>
                   </p>
                 </div>
               </li>
@@ -49,7 +57,7 @@ export default function signIN() {
 
         <div className={styles.footer}>
           <div className={styles.confirm}>
-            <Link>Đăng nhập</Link>
+            <Link>Xác nhận</Link>
           </div>
         </div>
       </div>

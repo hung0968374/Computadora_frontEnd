@@ -6,6 +6,7 @@
   align-items: center;
   font-size: 20px;
   background-color: rgb(243 243 243);
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
 }
 nav {
   display: flex;
@@ -58,3 +59,4 @@ nav ul li {
   position: relative;
   bottom: 5px;
 }
+

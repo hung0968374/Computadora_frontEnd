@@ -15,11 +15,15 @@ const Header = () => {
             </div>
             <ul className={styles.nav_items}>
               <li>
-                <Link to="/pc">PC </Link>
+                <Link style={link_style} to="/pc">
+                  PC{" "}
+                </Link>
               </li>
 
               <li className={styles.li_className}>
-                <Link to="/laptop">laptop</Link>
+                <Link style={link_style} to="/laptop">
+                  Laptop
+                </Link>
               </li>
               <li>
                 <Link style={link_style} to="/accessories">
@@ -28,7 +32,9 @@ const Header = () => {
               </li>
 
               <li>
-                <Link to="/blog">Blog </Link>
+                <Link style={link_style} to="/blog">
+                  Blog{" "}
+                </Link>
               </li>
 
               <li>
@@ -36,13 +42,6 @@ const Header = () => {
                   <img src="/images/account-icon.svg" alt="" />
                 </div>
               </li>
-              <div className={styles.nav_btn_container}>
-                <img
-                  className={styles.search_btn}
-                  src="/images/search-icon.svg"
-                  alt=""
-                />
-              </div>
             </ul>
           </nav>
         </div>

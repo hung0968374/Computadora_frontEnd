@@ -20,8 +20,8 @@ const Slogan = () => {
           </p>
 
           <p className={styles.sign_up}>
-            <Link style={link_style1} to="/signIn">
-              Đăng ký{" "}
+            <Link style={link_style1} to="/signUp">
+              Đăng ký
             </Link>
           </p>
         </div>
