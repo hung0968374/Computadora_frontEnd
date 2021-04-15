@@ -14,16 +14,13 @@
 .header {
   display: flex;
   margin-top: 3%;
-}
-
-.back_button {
-  margin-left: 4%;
+  justify-content: center;
+  text-align: center;
 }
 
 .title {
-  margin-left: 22%;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 24px;
 }
 .wrapper {
   width: 60%;
@@ -112,4 +109,8 @@ p {
 
 .confirm:hover {
   transform: translateY(-8px);
+}
+
+.confirmLink{
+  color: #faf3f3;
 }

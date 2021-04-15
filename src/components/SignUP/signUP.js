@@ -7,9 +7,6 @@ export default function signIN() {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <div className={styles.back_button}>
-            <Link to="/">Quay lại</Link>
-          </div>
           <div className={styles.title}>
             <h2>Đăng ký tài khoản mới</h2>
           </div>
@@ -58,7 +55,7 @@ export default function signIN() {
 
         <div className={styles.footer}>
           <div className={styles.confirm}>
-            <Link>Đăng ký</Link>
+            <Link className={styles.confirmLink} >Đăng ký</Link>
           </div>
         </div>
       </div>

@@ -13,16 +13,16 @@ export default function board() {
           <div className={styles.feature_content}>
             <ul>
               <li>
-                <Link> Computadora-công nghệ rộng mở</Link>
+                <Link className={styles.event}> Computadora-công nghệ rộng mở</Link>
               </li>
               <li>
-                <Link> Phụ kiện giảm giá sốc!</Link>
+                <Link className={styles.event}> Phụ kiện giảm giá sốc!</Link>
               </li>
               <li>
-                <Link> Dịch vụ bảo hành tận nhà cùng LG</Link>
+                <Link className={styles.event}> Dịch vụ bảo hành tận nhà cùng LG</Link>
               </li>
               <li>
-                <Link> "Khai Xuân Thần Tốc" cùng MSI </Link>
+                <Link className={styles.event}> "Khai Xuân Thần Tốc" cùng MSI </Link>
               </li>
             </ul>
           </div>

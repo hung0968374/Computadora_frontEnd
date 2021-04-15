@@ -6,6 +6,7 @@ import DetailItem from "./pages/DetailItem";
 import signIN from "./components/SignIN/signIN";
 import signUP from "./components/SignUP/signUP";
 import PWRecover from "./components/PWRecover/PWRecover";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signIn" exact component={signIN} />
           <Route path="/signUP" exact component={signUP} />
           <Route path="/PWRecover" exact component={PWRecover} />
+          <Route path="/productDetail" exact component={ProductDetail} />
         </Switch>
       </div>
     </Router>

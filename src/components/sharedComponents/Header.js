@@ -39,7 +39,18 @@ const Header = () => {
 
               <li>
                 <div className={styles.Account}>
-                  <img src="/images/account-icon.svg" alt="" />
+                  <div className={styles.Acc_Image}>
+                    <img src="/images/account-icon.svg" alt="" />{" "}
+                  </div>
+
+                  <div className={styles.dropdown_content}>
+                    <Link to="/signIn">
+                      <p>Đăng nhập</p>
+                    </Link>
+                    <Link to="/signUP">
+                      <p>Đăng ký</p>
+                    </Link>
+                  </div>
                 </div>
               </li>
             </ul>
