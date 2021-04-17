@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as styles from "./PWrecover.module.css";
 
-export default function signIN() {
+export default function PWRecover() {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -61,3 +61,4 @@ export default function signIN() {
     </div>
   );
 }
+
