@@ -5,7 +5,7 @@ import Blog from "./pages/Blog";
 import DetailItem from "./pages/DetailItem";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import SignIn from "./components/SignIN/SignIn";
+import SignIn from "./components/SignIN/SignIN";
 import signUP from "./components/SignUP/signUP";
 import PWRecover from "./components/PWRecover/PWRecover";
 function App() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as styles from "./signIN.module.css";
-function signIN() {
+export default function signIN() {
   return (
     <div>
       <div className={styles.container}>
@@ -58,5 +58,3 @@ function signIN() {
     </div>
   );
 }
-
-export default signIN;

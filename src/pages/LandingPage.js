@@ -35,6 +35,8 @@ function LandingPage() {
   console.log("test count: " + testCount);
   console.log("value from redux:");
   console.log(value);
+
+  
   return (
     <div className={styles.App}>
       <Header />
