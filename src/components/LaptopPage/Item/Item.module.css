@@ -1,0 +1,51 @@
+.item h2 {
+  font-size: 20px;
+}
+
+.item {
+  width: 24.8%;
+  height: 25%;
+  border: 0.000001px solid rgba(212, 205, 205, 0.712);
+  cursor: pointer;
+  background-color: white;
+}
+
+.items p {
+  margin-left: 6%;
+}
+.items h2 {
+  margin-left: 3%;
+}
+
+.item:hover {
+  transform: scale(1.25);
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.4);
+  opacity: 100%;
+}
+
+.item_image {
+  height: 80%;
+  width: 80%;
+  display: block;
+  text-align: center;
+  margin-left: 1.5rem;
+}
+h2 {
+  margin-bottom: 0.5rem;
+}
+p {
+  display: inline;
+  opacity: 80%;
+}
+.price {
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+img {
+  width: 200%;
+  height: 200%;
+  object-fit: contain;
+  padding-top: 2rem;
+}

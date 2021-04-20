@@ -30,7 +30,7 @@ nav ul {
   margin-right: 10%;
 }
 nav ul li {
-  margin-top: 2%;
+  margin-top: 3rem;
   margin-left: 11%;
   font-size: 1.5rem;
   opacity: 0.7;
@@ -38,6 +38,10 @@ nav ul li {
 .logo {
   position: absolute;
   width: 5%;
+}
+
+.logo img {
+  padding-bottom: 2rem;
 }
 
 .nav_items {
@@ -63,7 +67,7 @@ nav ul li {
 .Account img {
   width: 100%;
   position: relative;
-  bottom: 5px;
+  bottom: 2.2rem;
 }
 .Acc_Image {
   width: 28%;
