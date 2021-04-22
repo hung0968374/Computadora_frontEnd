@@ -5,7 +5,6 @@ import Blog from "./pages/Blog";
 import DetailItem from "./pages/DetailItem";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-
 import signUP from "./components/SignUP/signUP";
 import PWRecover from "./components/PWRecover/PWRecover";
 import signIN from "./components/SignIN/signIN";
@@ -18,7 +17,7 @@ function App() {
             <Route path="/laptop" exact component={Laptop} />
             <Route path="/" exact component={LandingPage} />
             <Route path="/blog" exact component={Blog} />
-            <Route path="/detailItem" exact component={DetailItem} />
+            <Route path="/laptop/:id" exact component={DetailItem} />
             <Route path="/signIn" exact component={signIN} />
             <Route path="/signUP" exact component={signUP} />
             <Route path="/PWRecover" exact component={PWRecover} />

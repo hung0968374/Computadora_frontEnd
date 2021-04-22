@@ -1,0 +1,253 @@
+.container {
+  width: 94rem;
+  height: 150vh;
+  margin: auto;
+}
+
+/* wrapper */
+.wrapper {
+  width: 80%;
+  margin: auto;
+  height: 70vh;
+  display: flex;
+}
+
+.product_img {
+  display: flex;
+  flex: 4;
+  text-align: center;
+  justify-content: center;
+}
+
+.info_product li {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.boldText {
+  font-weight: bold;
+}
+
+.product_img img {
+  position: sticky;
+  width: 100%;
+  padding: 0;
+}
+
+.product_details {
+  display: flex;
+  flex: 6;
+  flex-direction: column;
+  height: 100%;
+}
+
+.info {
+  width: 100%;
+  height: 80%;
+
+  display: flex;
+}
+
+.info_product {
+  height: 100%;
+  display: flex;
+  flex: 6;
+}
+
+.guarantee {
+  height: 100%;
+  display: flex;
+  flex: 4;
+}
+
+.box {
+  width: 17rem;
+  height: 8rem;
+  border: 0.5px solid #cabebe;
+  margin-top: 4rem;
+  padding-left: 1rem;
+  margin-left: 3rem;
+}
+
+.box h3 {
+  margin-top: 10px;
+}
+
+.box li {
+  font-size: 20px;
+}
+li {
+  list-style: none;
+}
+h1 {
+  margin-top: 5rem;
+  font-size: 36px;
+}
+
+.box li {
+  font-size: 18px;
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
+.info_product p {
+  font-size: 16px;
+}
+
+/* end wrapper */
+
+/* .admin_comments */
+
+.admin_comments {
+  height: 50vh;
+  width: 60%;
+  margin: auto;
+}
+
+.admin_comments h2 {
+  margin-top: 2rem;
+  font-size: 35px;
+}
+.first_comment {
+  margin-top: 2rem;
+}
+.first_comment h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+h6 {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* .guess_comments */
+
+.guess_comments {
+  height: 60vh;
+  width: 60%;
+  margin: auto;
+}
+
+.guess_comments h2 {
+  margin-top: 2rem;
+  font-size: 35px;
+}
+
+input {
+  width: 100%;
+  height: 15vh;
+  border: none;
+  background-color: #dcdcdc;
+}
+
+input:focus {
+  opacity: 0.7;
+}
+
+button {
+  margin-top: 1rem;
+  width: 4rem;
+  height: 2rem;
+  border-radius: 15px;
+}
+
+/* .contact_us */
+.contact_us {
+  margin-top: 2rem;
+  background-color: #fbfbfb;
+  height: 10rem;
+  width: 94rem;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 12px 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.contact_us img {
+  width: 20%;
+  height: 30%;
+}
+
+.telephone {
+  margin-left: 9rem;
+  padding-top: 0.7rem;
+}
+
+.telephone p {
+  opacity: 0.5;
+}
+
+.telephone h2 {
+  margin-top: 0.5rem;
+}
+
+.priceAndBuy {
+  margin-left: 22rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.priceAndBuy p {
+  font-size: 28px;
+  width: 14rem;
+  color: rgb(223, 33, 33);
+  padding-top: 1.3rem;
+  font-weight: bold;
+}
+
+.priceAndBuy img {
+  padding-top: 13px;
+}
+
+.priceAndBuy button {
+  width: 17rem;
+  height: 3rem;
+  background-color: #06c1d4;
+  margin-top: 10px;
+  margin-left: 15px;
+  color: white;
+  font-size: 20px;
+  border-radius: 30px;
+}
+
+.livechat {
+  margin-left: 18rem;
+}
+
+.livechat img {
+  width: 110%;
+  height: 30%;
+  padding-top: 10px;
+}
+
+/* .block */
+
+.block {
+  width: 80%;
+  height: 1px;
+  background-color: #dcdcdc;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+/* .guess_comments */
+
+.guess_comments h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.guess_comments input {
+  border-radius: 10px;
+  transition: 300ms;
+}
+
+.guess_comments input:focus {
+  border: 0.2px solid #11dbef;
+}
+
+.guess_comments button {
+  margin-left: 52rem;
+}
