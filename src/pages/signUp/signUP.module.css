@@ -53,12 +53,15 @@
 .logo img {
   width: 70%;
   height: 100%;
+  padding: 0rem;
 }
 
 .input_container ul li {
   list-style: none;
 }
-
+.ulStyle {
+  margin-top: -20px;
+}
 li input {
   height: 4rem;
   width: 70%;
@@ -105,12 +108,14 @@ p {
   justify-items: center;
   display: inline-block;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .confirm:hover {
   transform: translateY(-8px);
 }
 
-.confirmLink{
+.confirmLink {
   color: #faf3f3;
+  cursor: pointer;
 }

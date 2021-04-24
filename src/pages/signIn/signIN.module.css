@@ -53,6 +53,7 @@
 .logo img {
   width: 70%;
   height: 100%;
+  padding-top: 0rem;
 }
 
 .input_container ul li {
