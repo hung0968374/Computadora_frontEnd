@@ -22,11 +22,15 @@ export default function DetailItem({ match }) {
   console.log(match);
   return (
     <div>
-      <Header />
+      <Header/> 
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.product_img}>
-            <img src={BaseUrl + SpecificItemById.imageLink} alt="" />
+            <img
+              className={styles.imgThumbnail}
+              src={BaseUrl + SpecificItemById.imageLink}
+              alt=""
+            />
           </div>
           <div className={styles.product_details}>
             <h1>{SpecificItemById.name} </h1>
@@ -73,7 +77,8 @@ export default function DetailItem({ match }) {
                   <h3>Bảo hành </h3>
                   <ul>
                     <li>
-                      Bảo hành chính hãng tại nhà 12 tháng (Hotline: 096.484.9119)
+                      Bảo hành chính hãng tại nhà 12 tháng (Hotline:
+                      096.484.9119)
                     </li>
                     <li>Đổi mới trong 15 ngày đầu tiên</li>
                   </ul>
@@ -128,7 +133,14 @@ export default function DetailItem({ match }) {
           <div className={styles.guess_comments}>
             <h2>Bình luận</h2>
             <h3>Bình luận của bạn</h3>
-            <input type="text" placeholder="Mời bạn để lại bình luận" />
+            <textarea
+              className={styles.textArea}
+              name=""
+              id=""
+              cols="150"
+              rows="10"
+              placeholder="Để lại bình luận của bạn"
+            ></textarea>
             <button>Gửi</button>
           </div>
         </div>
