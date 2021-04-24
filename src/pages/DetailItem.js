@@ -15,14 +15,12 @@ export default function DetailItem({ match }) {
     const { data } = dataFromSpecificId;
     setSpecificItemById(data);
   }, []);
-
   const BaseUrl = "https://res.cloudinary.com/dsykf3mo9/image/upload/";
-
   console.log("data", SpecificItemById);
   console.log(match);
   return (
     <div>
-      <Header/> 
+      <Header />
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.product_img}>

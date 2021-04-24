@@ -111,6 +111,7 @@ p {
   transform: translateY(-8px);
 }
 
-.confirmLink{
+.confirmLink {
   color: #faf3f3;
+  cursor: pointer;
 }

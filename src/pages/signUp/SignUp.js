@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as styles from "./signUP.module.css";
 
-export default function signUP() {
+export default function SignUP() {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -55,12 +55,10 @@ export default function signUP() {
 
         <div className={styles.footer}>
           <div className={styles.confirm}>
-            <Link className={styles.confirmLink} >Đăng ký</Link>
+            <Link className={styles.confirmLink}>Đăng ký</Link>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-

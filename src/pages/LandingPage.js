@@ -15,34 +15,28 @@ import { getData } from "../redux/features/post/postSlice";
 function LandingPage() {
   const [allData, setAllData] = useState([]);
   const [changeStt, setChangeStt] = useState(false);
-  const [testCount, setTestCount] = useState(0);
-  const value = useSelector(countValue);
   const dispatch = useDispatch();
   useEffect(() => {
-    async function getAllData() {
-      let data1 = await (await Api.fetchPosts()).data;
-      console.log(data1);
-      setAllData(data1);
-      dispatch(incrementByAmount(data1));
-      dispatch(getData(data1));
-    }
-    getAllData();
-  }, [changeStt]);
-  const _changeStt = () => {
-    setChangeStt(!changeStt);
-    setTestCount(testCount + 1);
-  };
-  console.log("test count: " + testCount);
-  console.log("value from redux:");
-  console.log(value);
+    // async function getAllData() {
+    //   let data1 = await (await Api.fetchPosts()).data;
+    //   console.log(data1);
+    //   setAllData(data1);
+    //   dispatch(incrementByAmount(data1));
+    //   dispatch(getData(data1));
+    // }
+    // getAllData();
+    console.log(localStorage);
+    console.log(localStorage.getItem("token"));
+    let user_deserialized = JSON.parse(localStorage.getItem("userInfo"));
+    console.log("deseri", user_deserialized);
+  }, []);
 
-  
   return (
     <div className={styles.App}>
       <Header />
       <div className={styles.slo_auth_post}>
         <div className={styles.slo_auth}>
-          <Slogan changeStt={_changeStt} />
+          <Slogan />
         </div>
         <div className={styles.posts}>
           <Posts />
