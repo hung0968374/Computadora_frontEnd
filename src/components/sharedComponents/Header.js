@@ -1,17 +1,22 @@
-import React, { useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import * as styles from "./header_style.module.css";
 const Header = () => {
-  const link_style = {
-    color: "black",
-  };
+  ///////////state
+  const location = useLocation();
   const history = useHistory();
-  const token = localStorage.getItem("token");
-  console.log("token from common header", token);
+  const [token, setToken] = useState("");
+  const [userInfo, setUserInfo] = useState({});
+  ///function
   const _logOut = () => {
     localStorage.clear();
     history.push("/");
   };
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
+  }, [location]);
+  console.log("uesr", userInfo);
   return (
     <div className={styles.header}>
       <div className={styles.content_wrapper}>
@@ -41,7 +46,7 @@ const Header = () => {
         <div className={styles.userImg}>
           {token ? (
             <img
-              src="https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"
+              src={userInfo.imageUrl}
               alt=""
               className={styles.userImgStyle}
             />
@@ -53,13 +58,15 @@ const Header = () => {
             />
           )}
         </div>
-        <div className={styles.userOption} id="nav">
-          <div className={styles.userOptionContentWrapper}>
-            <div className={styles.logOut} onClick={_logOut}>
-              Đăng xuất
+        {token?.length > 0 ? (
+          <div className={styles.userOption} id="nav">
+            <div className={styles.userOptionContentWrapper}>
+              <div className={styles.logOut} onClick={_logOut}>
+                Đăng xuất
+              </div>
             </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );

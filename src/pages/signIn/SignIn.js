@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as styles from "./signIN.module.css";
+import { GoogleLogin } from "react-google-login";
 export default function SignIN() {
+  ////////state
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -10,21 +12,39 @@ export default function SignIN() {
     username,
     password,
   };
-  const _handlingUserLoggin = () => {
-    axios
-      .post("http://localhost:5000/api/auth/login", sendObjToServer)
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem("token", res.data.accessToken);
-        let object_serialized = JSON.stringify(res.data.user);
-        console.log("serialized", object_serialized);
-        localStorage.setItem("userInfo", object_serialized);
-        history.push("/");
-      })
-      .catch((error) => {
-        const res = error.response.data;
-        alert(res.message);
-      });
+  ///////function
+  const _handlingUserLoggin = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        sendObjToServer
+      );
+      console.log("response received from server", res);
+      localStorage.setItem("token", res.data.accessToken);
+      let object_serialized = JSON.stringify(res.data.user);
+      console.log("serialized", object_serialized);
+      localStorage.setItem("userInfo", object_serialized);
+      history.push("/");
+    } catch (error) {
+      const res = error.response.data;
+      alert(res.message);
+    }
+  };
+
+  const _onSuccess = async (res) => {
+    const userInfo = res?.profileObj;
+    const token = res?.tokenId;
+    localStorage.setItem("token", token);
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    history.push("/");
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const _onFailure = (error) => {
+    console.log(error);
+    console.log("Google sign in was unsuccessful. Try again later");
   };
   return (
     <div>
@@ -80,6 +100,14 @@ export default function SignIN() {
                 Đăng nhập
               </div>
             </div>
+            <GoogleLogin
+              className={styles.logginWithGoogle}
+              clientId="244922534941-5gvl9rd0log4olllbi3pbsc9jepudgcr.apps.googleusercontent.com"
+              buttonText=" Đăng nhập bằng tài khoản google"
+              onSuccess={_onSuccess}
+              onFailure={_onFailure}
+              cookiePolicy={"single_host_origin"}
+            />
           </div>
         </div>
       </div>

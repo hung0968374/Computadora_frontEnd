@@ -86,33 +86,43 @@ p {
 }
 
 .footer {
-  margin-top: 5%;
+  margin-top: 2%;
   display: flex;
   justify-content: center;
   text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .confirm {
   padding-top: 2%;
-  text-align: center;
   background-color: #05807d;
-  width: 60%;
+  width: 30%;
   height: 3rem;
   border-radius: 15px;
   text-decoration: none;
   display: inline-block;
   transition: 300ms;
-  text-align: center;
   justify-items: center;
-  display: inline-block;
   font-size: 20px;
 }
 
 .confirm:hover {
-  transform: translateY(-8px);
+  background-color: #075250;
 }
 
 .confirmLink {
   color: #faf3f3;
   cursor: pointer;
+}
+.logginWithGoogle {
+  width: 30%;
+  height: 4rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-size: 18px;
 }

@@ -38,12 +38,12 @@ export default function SignUP() {
     var passAndConfirmPassAreTheSame = form.password.localeCompare(
       form.confirmPassword
     );
-    if (passAndConfirmPassAreTheSame != 0) {
+    if (passAndConfirmPassAreTheSame !== 0) {
       msg.push("mat khau va xac nhan mat khau khong trung khop");
     }
-    if (msg.length != 0) {
+    if (msg.length !== 0) {
       alert(msg);
-    } else if (msg.length == 0) {
+    } else if (msg.length === 0) {
       axios
         .post("http://localhost:5000/api/auth/register/verifyAccount", form)
         .then((res) => {

@@ -6,17 +6,16 @@ import Posts from "../components/LangdingPage/Posts";
 import Footer from "../components/LangdingPage/Footer";
 import * as Api from "../api";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  countValue,
-  incrementByAmount,
-} from "../redux/features/counter/counterSlice";
-import { getData } from "../redux/features/post/postSlice";
+import { useLocation } from "react-router";
 
 function LandingPage() {
+  const location = useLocation();
   const [allData, setAllData] = useState([]);
+  const [screenIsLoading, setScreenIsLoading] = useState(true);
   const [changeStt, setChangeStt] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
+    setScreenIsLoading(true);
     // async function getAllData() {
     //   let data1 = await (await Api.fetchPosts()).data;
     //   console.log(data1);
@@ -25,24 +24,30 @@ function LandingPage() {
     //   dispatch(getData(data1));
     // }
     // getAllData();
-    console.log(localStorage);
-    console.log(localStorage.getItem("token"));
     let user_deserialized = JSON.parse(localStorage.getItem("userInfo"));
-    console.log("deseri", user_deserialized);
-  }, []);
+    setTimeout(() => {
+      setScreenIsLoading(false);
+    }, 1000);
+  }, [location]);
 
   return (
     <div className={styles.App}>
-      <Header />
-      <div className={styles.slo_auth_post}>
-        <div className={styles.slo_auth}>
-          <Slogan />
+      {!screenIsLoading ? (
+        <div>
+          <Header />
+          <div className={styles.slo_auth_post}>
+            <div className={styles.slo_auth}>
+              <Slogan />
+            </div>
+            <div className={styles.posts}>
+              <Posts />
+            </div>
+          </div>
+          <Footer />
         </div>
-        <div className={styles.posts}>
-          <Posts />
-        </div>
-      </div>
-      <Footer />
+      ) : (
+        <div>screen loading</div>
+      )}
     </div>
   );
 }
