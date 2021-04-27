@@ -1,12 +1,13 @@
 .slogan {
-  height: 50%;
-  margin-left: 22%;
-  margin-top: 18%;
+  flex: 1;
 }
-
+.styleTheSlogan {
+  margin-top: 15%;
+  margin-left: 20%;
+}
 h1 {
   font-weight: bold;
-  font-size: 35px;
+  font-size: 2rem;
   line-height: 30px;
   color: #000000;
   margin-bottom: 45px;
@@ -14,33 +15,31 @@ h1 {
 p {
   font-weight: normal;
   font-size: 25px;
-
   color: #000000;
   width: 489px;
   margin-bottom: 75px;
 }
 .slog {
-  font-size: 25px;
+  font-size: 1.7rem;
 }
 .auth {
   display: flex;
-  flex-direction: row;
+  margin-left: 20%;
 }
 .sign_in,
 .sign_up {
-  width: 18%;
+  width: 25%;
+  height: 10vh;
   color: #ffffff;
-  text-align: center;
-  justify-items: center;
-  display: inline-block;
   font-size: 20px;
   background: #05807d;
   border-radius: 15px;
-  padding: 30px;
-  text-decoration: none;
-  display: inline-block;
   transition: 300ms;
-  margin-top: 15%;
+  margin-top: 25%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .sign_up {
   margin-left: 10%;

@@ -1,5 +1,5 @@
 .footer {
-  height: 8%;
+  height: 21%;
 }
 
 .insta_icon {
@@ -8,6 +8,5 @@
 }
 .social_icon {
   margin-left: 10%;
-  position: absolute;
-  top: 80%;
+  width: 25%;
 }

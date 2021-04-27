@@ -1,36 +1,44 @@
-import React, { useState } from "react";
-import * as styles from "./posts.module.css";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.min.css";
-import "owl.carousel/dist/assets/owl.theme.default.min.css";
+import React, { useEffect, useState } from "react";
+import "./posts.css";
 
 function Posts() {
   const initialState = [
-    "/images/laptop1.jpg",
-    "/images/laptop2.jpg",
-    "/images/laptop3.jpg",
-    "/images/laptop4.jpg",
+    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-AME.jpg",
+    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-26A.jpg",
+    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-T7m.jpg",
+    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-co7.jpg",
+    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-1QT.jpg",
+    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-Edl.jpg",
   ];
-  const [imagesUrl, setImagesUrl] = useState(initialState);
+  const [imagesUrls, setImagesUrls] = useState(initialState);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  useEffect(() => {}, []);
+
   return (
-    <div className={styles.post}>
-      <div className={styles.image_container}>
-        <div className={styles.hero_image}>
-          <OwlCarousel className="owl-theme" items="1" loop autoplay nav dots>
-            <div className={styles.item}>
-              <img src={imagesUrl[0]} alt="" className={styles.imgs} />
-            </div>
-            <div className="item">
-              <img src={imagesUrl[1]} alt="" className={styles.imgs} />
-            </div>
-            <div className="item">
-              <img src={imagesUrl[2]} alt="" className={styles.imgs} />
-            </div>
-            <div className="item">
-              <img src={imagesUrl[3]} alt="" className={styles.imgs} />
-            </div>
-          </OwlCarousel>
-          <div className={styles.photobg}></div>
+    <div className="posts_post">
+      <div className="posts_image_container">
+        <div className="posts_imgSliderArea">
+          <img
+            src={imagesUrls[selectedIndex]}
+            className="posts_displayImg"
+            key={imagesUrls[selectedIndex]}
+          />
+        </div>
+        <div className="posts_dotArea">
+          {imagesUrls.map((img, index) => {
+            return (
+              <div
+                className={`posts_dots ${
+                  selectedIndex === index ? "posts_selectedDot" : null
+                }`}
+                onClick={() => {
+                  setSelectedIndex(index);
+                }}
+              >
+                ⬤
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

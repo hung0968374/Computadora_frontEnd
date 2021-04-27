@@ -1,0 +1,25 @@
+.container {
+  width: 50vw;
+  height: 80vh;
+  background-color: yellowgreen;
+}
+.text_warp {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  height: 50%;
+  align-items: center;
+}
+.imgSelected {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+.text {
+  margin: 5px;
+  color: white;
+  cursor: pointer;
+}
+.select {
+  color: black;
+}

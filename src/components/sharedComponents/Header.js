@@ -7,11 +7,16 @@ const Header = () => {
   const history = useHistory();
   const [token, setToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
+  const [openUserInfo, setOpenUserInfo] = useState(false);
   ///function
+  const _clickedToUserImg = () => {
+    setOpenUserInfo(!openUserInfo);
+  };
   const _logOut = () => {
     localStorage.clear();
     history.push("/");
   };
+
   useEffect(() => {
     setToken(localStorage.getItem("token"));
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
@@ -43,7 +48,7 @@ const Header = () => {
             <Link to="/blog"> Blog</Link>
           </div>
         </div>
-        <div className={styles.userImg}>
+        <div className={styles.userImg} onClick={_clickedToUserImg}>
           {token ? (
             <img
               src={userInfo.imageUrl}
@@ -58,7 +63,7 @@ const Header = () => {
             />
           )}
         </div>
-        {token?.length > 0 ? (
+        {token?.length && openUserInfo ? (
           <div className={styles.userOption} id="nav">
             <div className={styles.userOptionContentWrapper}>
               <div className={styles.logOut} onClick={_logOut}>

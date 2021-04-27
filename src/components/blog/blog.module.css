@@ -1,13 +1,45 @@
-/* .blog {
-  width: 96rem;
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgb(189, 113, 113);
+}
+.wrapper img {
+  display: block;
+  cursor: pointer;
+}
+.container {
   margin: auto;
-  height: 100vh;
-  background-color: yellowgreen;
-} */
-
-.board {
-  width: 96rem;
-  height: 100vh;
-  background-color: green;
+  width: 100%;
+  max-width: 540px;
+}
+.container .selectedImg {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  border: 2px solid red;
+  object-fit: cover;
+  animation: toLeft 1.5s ease;
+}
+.container .imgContainer {
+  width: 100%;
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.container .imgContainer img {
+  width: 100px;
+  height: 100px;
+  margin: 5px 0;
+}
+.imgStyle {
+}
+@keyframes toLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
