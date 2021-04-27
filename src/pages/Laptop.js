@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/sharedComponents/Header";
-import Board from "../components/LaptopPage/board";
 import ItemSection from "../components/LaptopPage/itemSection";
 import Footer from "../components/LaptopPage/footer";
+import * as styles from "./cssFolder/laptop.module.css";
 import axios from "axios";
+import LaptopBoard from "../components/LaptopPage/LaptopBoard";
 const Laptop = () => {
   const initialArray = [
     "https://res.cloudinary.com/dsykf3mo9/image/upload/v1619539188/ProductImage/nitro5amd_ehsufz.jpg",
@@ -20,9 +21,9 @@ const Laptop = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
-      <Board />
+      <LaptopBoard />
       <ItemSection allData={allData} setAllData={setAllData} />
       <Footer />
     </div>
