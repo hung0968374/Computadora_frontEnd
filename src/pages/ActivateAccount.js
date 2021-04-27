@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
-import * as styles from "./activateAccount.module.css";
+import * as styles from "./cssFolder/activateAccount.module.css";
 export default function ActivateAccount({ match }) {
   const token = match.params.token;
   const name = "Huu hung";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./pc.css";
+import "./cssFolder/pc.css";
 const Pc = () => {
   const imagesUrls = [
     "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-AME.jpg",

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import * as styles from "./signIN.module.css";
+import * as styles from "./cssFolder/signIN.module.css";
 import { GoogleLogin } from "react-google-login";
 export default function SignIN() {
   ////////state

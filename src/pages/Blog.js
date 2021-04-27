@@ -2,10 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import * as styles from "../components/blog/blog.module.css";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.min.css";
-import "owl.carousel/dist/assets/owl.theme.default.min.css";
+import * as styles from "./cssFolder/blog.module.css";
 
 function Blog() {
   const imagesUrls = [

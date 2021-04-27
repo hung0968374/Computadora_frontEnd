@@ -1,4 +1,4 @@
-import * as styles from "../components/LangdingPage/App.module.css";
+import * as styles from "./cssFolder/landingPage.module.css";
 import React, { useState, useEffect } from "react";
 import Header from "../components/sharedComponents/Header";
 import Slogan from "../components/LangdingPage/Slogan";

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import * as styles from "./signUP.module.css";
+import * as styles from "./cssFolder/signUP.module.css";
 
 export default function SignUP() {
   //state

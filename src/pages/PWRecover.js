@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as styles from "./PWrecover.module.css";
+import * as styles from "./cssFolder/PWrecover.module.css";
 
 export default function PWRecover() {
   return (
@@ -61,4 +61,3 @@ export default function PWRecover() {
     </div>
   );
 }
-
