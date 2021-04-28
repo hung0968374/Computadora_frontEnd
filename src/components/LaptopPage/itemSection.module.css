@@ -9,7 +9,7 @@
 .sort_bar {
   flex: 2;
   background-color: rgb(88, 108, 119);
-  height: 50vh;
+  height: 80vh;
   position: sticky;
   top: 0;
   border-right: 1.5px solid black;
@@ -20,4 +20,34 @@
   display: flex;
   flex-direction: flex;
   flex-wrap: wrap;
+}
+.watchMoreContainer {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.watchMore {
+  width: 25%;
+  height: 50%;
+  background: rgb(170, 172, 168);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 10px 18px rgb(139, 130, 130);
+  transition: 300ms ease;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 550;
+}
+.watchMore img {
+  width: 10%;
+  height: 100%;
+  object-fit: contain;
+  color: white;
+  margin-left: 10%;
+}
+.watchMore:hover {
+  transform: scale(1.1);
 }

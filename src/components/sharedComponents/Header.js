@@ -21,7 +21,6 @@ const Header = () => {
     setToken(localStorage.getItem("token"));
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
   }, [location]);
-  console.log("uesr", userInfo);
   useEffect(() => {
     function handleClickOutside(event) {
       if (
