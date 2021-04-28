@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import * as styles from "./header_style.module.css";
 const Header = () => {
@@ -12,16 +12,31 @@ const Header = () => {
   const _clickedToUserImg = () => {
     setOpenUserInfo(!openUserInfo);
   };
+  const userOptionRef = useRef();
   const _logOut = () => {
     localStorage.clear();
     history.push("/");
   };
-
   useEffect(() => {
     setToken(localStorage.getItem("token"));
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
   }, [location]);
   console.log("uesr", userInfo);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        userOptionRef.current &&
+        !userOptionRef.current.contains(event.target)
+      ) {
+        setOpenUserInfo(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [userOptionRef]);
   return (
     <div className={styles.header}>
       <div className={styles.content_wrapper}>
@@ -64,7 +79,7 @@ const Header = () => {
           )}
         </div>
         {token?.length && openUserInfo ? (
-          <div className={styles.userOption} id="nav">
+          <div ref={userOptionRef} className={styles.userOption} id="nav">
             <div className={styles.userOptionContentWrapper}>
               <div className={styles.logOut} onClick={_logOut}>
                 Đăng xuất

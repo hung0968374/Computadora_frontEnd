@@ -1,51 +1,61 @@
-.item h2 {
-  font-size: 20px;
-}
-
-.item {
-  width: 24.8%;
-  height: 25%;
-  border: 0.000001px solid rgba(212, 205, 205, 0.712);
-  cursor: pointer;
+.itemImgs {
+  height: 30vh;
+  width: 24.7%;
+  border: 1px solid rgb(177, 172, 172);
+  transition: 300ms ease;
   background-color: white;
 }
-
-.items p {
-  margin-left: 6%;
-}
-.items h2 {
-  margin-left: 3%;
+.itemImgs:hover {
+  transform: scale(1.1);
+  z-index: 999 !important;
 }
 
-.item:hover {
-  transform: scale(1.25);
-  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.4);
-  opacity: 100%;
+.outerWrapper {
+  width: 92%;
+  height: 92%;
+  margin: auto;
+  margin-top: 4%;
 }
-
-.item_image {
-  height: 80%;
-  width: 80%;
-  display: block;
-  text-align: center;
-  margin-left: 1.5rem;
+.imgArea {
+  width: 100%;
+  height: 75%;
 }
-h2 {
-  margin-bottom: 0.5rem;
-}
-p {
-  display: inline;
-  opacity: 80%;
-}
-.price {
-  color: red;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-img {
-  width: 200%;
-  height: 200%;
+.imgArea img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  padding-top: 2rem;
+}
+.contentArea {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+}
+.itemName {
+  width: 100%;
+  height: 40%;
+  text-overflow: ellipsis;
+  overflow: hidden !important;
+  white-space: nowrap;
+  font-size: 1.3rem;
+  font-weight: 550;
+}
+.itemPrice {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+}
+.priceText {
+  font-size: 1.1rem;
+  font-weight: 550;
+}
+.priceInNumber {
+  font-size: 1.1rem;
+  color: red;
+  margin-left: 20px;
+}
+.currencyMark {
+  color: red;
+  font-size: 1.3rem;
 }

@@ -5,6 +5,7 @@ import Footer from "../components/LaptopPage/footer";
 import * as styles from "./cssFolder/laptop.module.css";
 import axios from "axios";
 import LaptopBoard from "../components/LaptopPage/LaptopBoard";
+import * as API from "../api/index";
 const Laptop = () => {
   const initialArray = [
     "https://res.cloudinary.com/dsykf3mo9/image/upload/v1619539188/ProductImage/nitro5amd_ehsufz.jpg",
@@ -15,16 +16,15 @@ const Laptop = () => {
   const [imageUrls, setImageUrls] = useState(initialArray);
   const [allData, setAllData] = useState([]);
   useEffect(async () => {
-    const api = await axios.get("http://localhost:5000/products");
-    const { data } = api;
-    setAllData(data);
+    const api = await API.fetchPostByPage(1);
+    setAllData(api.data.posts);
   }, []);
 
   return (
     <div className={styles.container}>
       <Header />
       <LaptopBoard />
-      <ItemSection allData={allData} setAllData={setAllData} />
+      <ItemSection allData={allData} />
       <Footer />
     </div>
   );
