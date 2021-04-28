@@ -10,17 +10,16 @@ h1 {
   font-size: 2rem;
   line-height: 30px;
   color: #000000;
-  margin-bottom: 45px;
+  margin-bottom: 4vh;
 }
 p {
   font-weight: normal;
-  font-size: 25px;
   color: #000000;
   width: 489px;
   margin-bottom: 75px;
 }
 .slog {
-  font-size: 1.7rem;
+  font-size: 1.3rem;
 }
 .auth {
   display: flex;

@@ -3,14 +3,14 @@ import { useHistory } from "react-router-dom";
 import * as styles from "./Item.module.css";
 
 export default function Item({ data }) {
+  console.log(data);
   const history = useHistory();
-  const redirectToItemDetrails = () => {
+  const title = data.title.trim();
+  const _navigateToDetailItem = () => {
     history.push(`/laptop/${data._id}`);
   };
-  console.log("data", data);
-  const title = data.title.trim();
   return (
-    <div className={styles.itemImgs}>
+    <div className={styles.itemImgs} onClick={_navigateToDetailItem}>
       <div className={styles.outerWrapper}>
         <div className={styles.imgArea}>
           <img src={data.imgs[0]} alt="" />

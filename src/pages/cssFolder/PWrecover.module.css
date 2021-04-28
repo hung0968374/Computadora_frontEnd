@@ -68,7 +68,6 @@ li input {
 }
 
 input {
-  border-radius: 50px;
   border: none;
   background-color: #faf3f3;
 }
@@ -112,6 +111,6 @@ p {
   transform: translateY(-8px);
 }
 
-.confirmLink{
+.confirmLink {
   color: #faf3f3;
 }

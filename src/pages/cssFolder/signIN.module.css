@@ -10,7 +10,14 @@
   height: 100vh;
   display: flex;
 }
-
+.wrapper {
+  width: 60%;
+  height: 75%;
+  background-color: #8bc5ef;
+  margin: auto;
+  border-radius: 70px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+}
 .header {
   display: flex;
   margin-top: 3%;
@@ -20,34 +27,24 @@
 
 .title {
   font-weight: bold;
-  font-size: 24px;
-}
-.wrapper {
-  width: 60%;
-  height: 75%;
-  background-color: #8bc5ef;
-  margin: auto;
-  border-radius: 70px;
-  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+  font-size: 1.7rem;
 }
 
 .main {
+  width: 100%;
+  height: 60%;
   display: flex;
-  margin-top: 1%;
 }
 
 .logo {
+  flex: 1;
   display: flex;
-  flex: 1;
   justify-content: center;
-  text-align: center;
-  margin-top: 3%;
 }
-
-.input_container {
-  margin-top: 8%;
-  flex: 1;
-  margin-left: 8%;
+.logo img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
 }
 
 .logo img {
@@ -55,57 +52,67 @@
   height: 100%;
   padding-top: 0rem;
 }
-
-.input_container ul li {
-  list-style: none;
+.input_container {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 }
 
-li input {
-  height: 4rem;
-  width: 70%;
-  padding-left: 5%;
-  margin-bottom: 8%;
+.input_area {
+  width: 80%;
+  height: 50%;
+  margin: auto;
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-input {
-  border-radius: 50px;
-  border: none;
-  background-color: #faf3f3;
+.input_area input {
+  width: 75%;
+  height: 30%;
+  margin-bottom: 5%;
+  border-radius: 2%;
+  box-shadow: 10px 10px 8px #888888;
+  padding: 0px 10px 0 10px;
+  font-size: 1.1rem;
 }
-
 input:focus {
   outline: none;
 }
-
-p {
-  font-size: 16px;
-}
-
-.forgot_pw {
+.more_func {
+  width: 80%;
   margin-left: 10%;
-}
-
-.footer {
-  margin-top: 2%;
+  height: 10%;
   display: flex;
-  justify-content: center;
-  text-align: center;
+  flex-direction: row;
+  font-size: 1.1rem;
+  font-weight: 520;
+  justify-content: space-between;
+}
+.forgot_pw {
+  margin-left: 20%;
+}
+.footer {
+  width: 100%;
+  height: 27%;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .confirm {
-  padding-top: 2%;
   background-color: #05807d;
   width: 30%;
-  height: 3rem;
-  border-radius: 15px;
-  text-decoration: none;
-  display: inline-block;
+  height: 35%;
+  border-radius: 5px;
   transition: 300ms;
-  justify-items: center;
-  font-size: 20px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .confirm:hover {
@@ -115,6 +122,9 @@ p {
 .confirmLink {
   color: #faf3f3;
   cursor: pointer;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
 .logginWithGoogle {
   width: 30%;

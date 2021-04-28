@@ -4,6 +4,7 @@
   display: flex;
   margin: auto;
   flex-direction: row;
+  cursor: pointer;
 }
 
 .sort_bar {

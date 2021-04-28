@@ -60,45 +60,34 @@ export default function SignIN() {
               <img src="/images/laptop.svg" />
             </div>
             <div className={styles.input_container}>
-              <ul>
-                <li>
-                  <input
-                    maxLength="30"
-                    type="text"
-                    placeholder="Tên đăng nhập"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </li>
-                <li>
-                  <input
-                    maxLength="30"
-                    minLength="6"
-                    className={styles.password}
-                    type="password"
-                    placeholder="Mật khẩu"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </li>
-                <li className={styles.more_func}>
-                  <div className={styles.new_acc}>
-                    <p>
-                      <Link to="/signUp">Chưa có tài khoản ?</Link>
-                    </p>
-                    <p className={styles.forgot_pw}>
-                      <Link to="/PWRecover">Quên mật khẩu</Link>
-                    </p>
-                  </div>
-                </li>
-              </ul>
+              <div className={styles.input_area}>
+                <input
+                  type="text"
+                  placeholder="Tên đăng nhập"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+                <input
+                  className={styles.password}
+                  type="password"
+                  placeholder="Mật khẩu"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className={styles.more_func}>
+                <div className={styles.new_acc}>
+                  <Link to="/signUp">Chưa có tài khoản ?</Link>
+                </div>
+                <div className={styles.forgot_pw}>
+                  <Link to="/PWRecover">Quên mật khẩu</Link>
+                </div>
+              </div>
             </div>
           </div>
           <div className={styles.footer}>
-            <div className={styles.confirm}>
-              <div className={styles.confirmLink} onClick={_handlingUserLoggin}>
-                Đăng nhập
-              </div>
+            <div className={styles.confirm} onClick={_handlingUserLoggin}>
+              Đăng nhập
             </div>
             <GoogleLogin
               className={styles.logginWithGoogle}
