@@ -11,21 +11,15 @@ const Pc = () => {
   ];
   const [currentImgIndex, setcurrentImgIndex] = useState(0);
   return (
-    <div className="container">
-      <img src={imagesUrls[currentImgIndex]} alt="" className="imgSelected" />
-      <div className="text_warp">
-        {imagesUrls.map((image, index) => (
-          <div
-            className={`text ${currentImgIndex === index ? "select" : null}`}
-            onClick={() => {
-              setcurrentImgIndex(index);
-            }}
-          >
-            ⬤
-          </div>
-        ))}
+    <div className="bttn">
+      <div>
+        <div className="a">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-      {currentImgIndex}
     </div>
   );
 };
