@@ -18,13 +18,13 @@ export default function footer() {
             <h2 className={styles.h2_footer}> Về chúng tôi</h2>
             <ul className={styles.ul_footer}>
               <li>
-                <Link>Lịch sử thành lập</Link>
+                <div>Lịch sử thành lập</div>
               </li>
               <li>
-                <Link>Giá trị cốt lõi</Link>
+                <div>Giá trị cốt lõi</div>
               </li>
               <li>
-                <Link>Tầm nhìn, sứ mệnh</Link>
+                <div>Tầm nhìn, sứ mệnh</div>
               </li>
             </ul>
           </div>
@@ -32,13 +32,13 @@ export default function footer() {
             <h2 className={styles.h2_footer}> Chính sách</h2>
             <ul className={styles.ul_footer}>
               <li>
-                <Link>Bảo hành</Link>
+                <div>Bảo hành</div>
               </li>
               <li>
-                <Link>Vận chuyển</Link>
+                <div>Vận chuyển</div>
               </li>
               <li>
-                <Link>Thanh toán</Link>
+                <div>Thanh toán</div>
               </li>
             </ul>
           </div>
@@ -47,32 +47,32 @@ export default function footer() {
             <div className={styles.table_1}>
               <ul className={styles.ul_footer}>
                 <li>
-                  <Link>Laptop Dell</Link>
+                  <div>Laptop Dell</div>
                 </li>
                 <li>
-                  <Link>Laptop HP</Link>
+                  <div>Laptop HP</div>
                 </li>
                 <li>
-                  <Link>Laptop ThinkPad</Link>
+                  <div>Laptop ThinkPad</div>
                 </li>
                 <li>
-                  <Link>Laptop Lenovo</Link>
+                  <div>Laptop Lenovo</div>
                 </li>
               </ul>
             </div>
             <div className={styles.table_2}>
               <ul className={styles.ul_footer}>
                 <li>
-                  <Link>Alienware</Link>
+                  <div>Alienware</div>
                 </li>
                 <li>
-                  <Link>Macbook</Link>
+                  <div>Macbook</div>
                 </li>
                 <li>
-                  <Link>Laptop Razor</Link>
+                  <div>Laptop Razor</div>
                 </li>
                 <li>
-                  <Link>Phụ kiện</Link>
+                  <div>Phụ kiện</div>
                 </li>
               </ul>
             </div>

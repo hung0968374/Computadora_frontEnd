@@ -86,16 +86,16 @@ function LaptopBoard() {
       </div>
       <div className="laptopBoard_blog_feature">
         <div className="laptopBoard_blog_content">
-          <Link> Blog 1</Link>
+          <div> Blog 1</div>
         </div>
         <div className="laptopBoard_blog_content">
-          <Link> Blog 2</Link>
+          <div> Blog 2</div>
         </div>
         <div className="laptopBoard_blog_content">
-          <Link> Blog 3</Link>
+          <div> Blog 3</div>
         </div>
         <div className="laptopBoard_news">
-          <Link> Tất cả tin tức</Link>
+          <div> Tất cả tin tức</div>
         </div>
       </div>
     </div>

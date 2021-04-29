@@ -1,0 +1,8 @@
+.reviewArea {
+  width: 75rem;
+  margin: auto;
+  height: 30rem;
+  display: flex;
+  margin-top: 5vh;
+  background-color: red;
+}

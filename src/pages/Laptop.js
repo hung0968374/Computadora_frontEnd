@@ -1,34 +1,32 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/sharedComponents/Header";
 import ItemSection from "../components/LaptopPage/itemSection";
-import Footer from "../components/LaptopPage/footer";
 import * as styles from "./cssFolder/laptop.module.css";
-import axios from "axios";
 import LaptopBoard from "../components/LaptopPage/LaptopBoard";
-import * as API from "../api/index";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchLaptopByPage,
   laptopByPage,
 } from "../redux/features/post/laptopItemSlice";
+import Footer from "../components/sharedComponents/footer";
 import { unwrapResult } from "@reduxjs/toolkit";
 const Laptop = () => {
   const dispatch = useDispatch();
   const laptopItemsInSeperatedPage = useSelector(laptopByPage);
   const dataByPage = laptopItemsInSeperatedPage.arrayOfLaptopItems;
   const [currentPage, setCurrentPage] = useState(1);
-  useEffect(async () => {
-    await dispatch(fetchLaptopByPage(currentPage));
-  }, []);
+  useEffect(async () => {}, []);
   const _loadMoreData = async () => {
     setCurrentPage((prev) => prev + 1);
-    const actionRes = await dispatch(fetchLaptopByPage(currentPage));
-    // console.log("unwrap", unwrapResult(actionRes));
+    console.log("current page", currentPage);
+    const actionRes = await dispatch(fetchLaptopByPage(currentPage + 1));
+    console.log("unwrap", unwrapResult(actionRes));
   };
   useEffect(() => {
-    // console.log(laptopItemsInSeperatedPage.arrayOfLaptopItems[0]?.posts);
+    dispatch(fetchLaptopByPage(1));
     console.log("lap slice", laptopItemsInSeperatedPage);
-  }, [currentPage]);
+    console.log("page", currentPage);
+  }, []);
   return (
     <div className={styles.container}>
       <Header />

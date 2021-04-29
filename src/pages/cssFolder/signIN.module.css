@@ -119,7 +119,7 @@ input:focus {
   background-color: #075250;
 }
 
-.confirmLink {
+.confirm {
   color: #faf3f3;
   cursor: pointer;
   display: flex;

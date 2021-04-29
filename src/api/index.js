@@ -6,4 +6,4 @@ const API = axios.create({
 export const fetchPostByPage = (page) =>
   API.get(`/api/posts/page=${page}/amountPerPage=24`);
 export const fetchPosts = () => API.get("/products");
-export const fetchPostsById = (id) => API.get(`/users/${id}`);
+export const fetchItemById = (id) => API.get(`/api/posts/${id}`);

@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import * as styles from "./Item.module.css";
 
 export default function Item({ data }) {
-  console.log(data);
   const history = useHistory();
   const title = data.title.trim();
   const _navigateToDetailItem = () => {

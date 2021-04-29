@@ -16,46 +16,32 @@ export default function PWRecover() {
           <div className={styles.logo}>
             <img src="/images/laptop.svg" />
           </div>
-          <div className={styles.input_container}>
-            <ul>
-              <li>
-                <input maxlength="15" type="text" placeholder="Tên đăng nhập" />
-              </li>
-              <li>
-                <input
-                  minlength="6"
-                  class="password"
-                  type="email"
-                  placeholder="Email"
-                />
-              </li>
-              <li>
-                <input
-                  maxlength="12"
-                  minlength="6"
-                  class="password"
-                  type="password"
-                  placeholder="Mật khẩu mới"
-                />
-              </li>
-              <li className={styles.more_func}>
-                <div className={styles.new_acc}>
-                  <p>
-                    <Link to="/signIn">Đã có tài khoản?</Link>
-                  </p>
-                  <p className={styles.forgot_pw}>
-                    <Link to="/signUp">Chưa có tài khoản?</Link>
-                  </p>
-                </div>
-              </li>
-            </ul>
+          <div className={styles.content_area}>
+            <div className={styles.input_container}>
+              <input maxlength="15" type="text" placeholder="Tên đăng nhập" />
+              <input
+                class="password"
+                type="email"
+                placeholder="Email xác thực"
+              />
+              <input
+                class="password"
+                type="password"
+                placeholder="Mật khẩu mới"
+              />
+            </div>
+            <div className={styles.more_func}>
+              <div className={styles.new_acc}>
+                <Link to="/signIn">Đã có tài khoản?</Link>
+              </div>
+              <div className={styles.forgot_pw}>
+                <Link to="/signUp">Chưa có tài khoản?</Link>
+              </div>
+            </div>
           </div>
         </div>
-
         <div className={styles.footer}>
-          <div className={styles.confirm}>
-            <Link className={styles.confirmLink}>Xác nhận</Link>
-          </div>
+          <div className={styles.confirm}>Xác nhận</div>
         </div>
       </div>
     </div>

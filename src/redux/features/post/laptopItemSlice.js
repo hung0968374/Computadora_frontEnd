@@ -1,12 +1,12 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import * as API from "../../../api/index";
 
 export const fetchLaptopByPage = createAsyncThunk(
   "laptopItem/fetchLaptopByPageFromApi",
-  async (params) => {
+  async (page) => {
     try {
-      const { data } = await API.fetchPostByPage(params);
-      return data;
+      const { data } = await API.fetchPostByPage(page);
+      return { data, page };
     } catch (error) {
       console.log(error);
     }
@@ -16,6 +16,7 @@ const initialState = {
   arrayOfLaptopItems: [],
   isFetchingLaptopItemsByPage: false,
   error: null,
+  pages: [],
 };
 
 const laptopItemSlice = createSlice({
@@ -29,10 +30,14 @@ const laptopItemSlice = createSlice({
     [fetchLaptopByPage.fulfilled]: (state, action) => {
       state.isFetchingLaptopItemsByPage = false;
       state.error = false;
-      state.arrayOfLaptopItems = [
-        ...state.arrayOfLaptopItems,
-        ...action.payload,
-      ];
+      if (!state.pages.includes(action.payload.page)) {
+        state.arrayOfLaptopItems = [
+          ...state.arrayOfLaptopItems,
+          ...action.payload.data,
+        ];
+      }
+      console.log("state in redux", current(state));
+      state.pages.push(action.payload.page);
     },
     [fetchLaptopByPage.rejected]: (state, action) => {
       state.error = true;
