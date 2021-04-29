@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as styles from "./reviewItem.module.css";
+import { FaAngleUp } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 const ReviewItem = ({ data }) => {
   const [isTruncated, setIsTruncated] = useState(false);
   const [truncatedReview, setTruncatedReview] = useState();
@@ -55,9 +57,16 @@ const ReviewItem = ({ data }) => {
           <div className={styles.dots}>...</div>
         </div>
       )}
-
       <div className={styles.readingBttn} onClick={_handleShowingText}>
-        {!isTruncated ? "   Xem thêm đánh giá" : "Thu gọn đánh giá"}
+        {!isTruncated ? (
+          <div>
+            Xem thêm đánh giá <FaAngleDown size={20} />
+          </div>
+        ) : (
+          <div>
+            Thu gọn đánh giá <FaAngleUp size={20} />
+          </div>
+        )}
       </div>
     </div>
   );

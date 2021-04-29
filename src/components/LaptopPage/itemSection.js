@@ -7,7 +7,7 @@ export default function item_section({ allData, loadMoreData, isLoadingData }) {
   console.log(isLoadingData);
   return (
     <div className={styles.item_section}>
-      <div className={styles.sort_bar}></div>
+      {/* <div className={styles.sort_bar}></div> */}
       <div className={styles.items}>
         {allData &&
           allData.map((data, index) => <Item data={data} key={index} />)}{" "}

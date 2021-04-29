@@ -4,6 +4,7 @@ import ItemSection from "../components/LaptopPage/itemSection";
 import * as styles from "./cssFolder/laptop.module.css";
 import LaptopBoard from "../components/LaptopPage/LaptopBoard";
 import { useDispatch, useSelector } from "react-redux";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 import {
   fetchLaptopByPage,
   laptopByPage,
@@ -37,6 +38,10 @@ const Laptop = () => {
         isLoadingData={laptopItemsInSeperatedPage.isFetchingLaptopItemsByPage}
       />
       <Footer />
+      <MessengerCustomerChat
+        pageId="101594652091801"
+        appId="1790240181155268"
+      />
     </div>
   );
 };

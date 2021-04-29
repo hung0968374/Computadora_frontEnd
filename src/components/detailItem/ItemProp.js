@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import * as styles from "./itemProp.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  itemInCart,
+  addingNewProductToCart,
+} from "../../redux/features/cart/cartSlice";
 const ItemProp = ({ data }) => {
+  //state
   const imgs = data?.imgs;
-  //function
+  const cartItems = useSelector(itemInCart);
   const [displayImg, setdisplayImg] = useState();
+  const dispatch = useDispatch();
+  //function
   useEffect(() => {
     if (imgs) {
       setdisplayImg(imgs[0]);
@@ -12,7 +20,22 @@ const ItemProp = ({ data }) => {
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
   }, []);
-  console.log(data);
+  useEffect(() => {
+    console.log("items in cart", cartItems);
+  }, [cartItems]);
+  /// selft defining function
+  const _addingThisItemToCart = () => {
+    dispatch(
+      addingNewProductToCart({
+        id: data._id,
+        productName: data.title,
+        quantity: 1,
+        price: data.price,
+        imgUrl: data.imgs[0],
+      })
+    );
+  };
+
   return (
     <div className={styles.itemPropContainer}>
       <div className={styles.imgArea}>
@@ -95,7 +118,7 @@ const ItemProp = ({ data }) => {
               />
             </div>
           </div>
-          <div className={styles.addingToCart}>
+          <div className={styles.addingToCart} onClick={_addingThisItemToCart}>
             <img src="/images/cart.svg" alt="" />
             Thêm vào giỏ hàng
           </div>

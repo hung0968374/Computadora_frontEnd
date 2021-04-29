@@ -9,6 +9,7 @@ import ItemProp from "../components/detailItem/ItemProp";
 import Comment from "../components/detailItem/Comment";
 import { fetchItemById } from "../api";
 import ReviewItem from "../components/detailItem/ReviewItem";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 export default function DetailItem({ match }) {
   const [specificItemById, setSpecificItemById] = useState([]);
   useEffect(async () => {
@@ -27,7 +28,11 @@ export default function DetailItem({ match }) {
       {specificItemById ? <ItemProp data={specificItemById} /> : null}
       <div className={styles.reviewSection}>Đánh giá chi tiết</div>
       <ReviewItem data={specificItemById} />
-      <Comment />
+      {/* <Comment /> */}
+      <MessengerCustomerChat
+        pageId="101594652091801"
+        appId="1790240181155268"
+      />
       <Footer />
     </>
   );
