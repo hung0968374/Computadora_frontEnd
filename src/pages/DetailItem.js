@@ -8,6 +8,7 @@ import Footer from "../components/sharedComponents/footer";
 import ItemProp from "../components/detailItem/ItemProp";
 import Comment from "../components/detailItem/Comment";
 import { fetchItemById } from "../api";
+import ReviewItem from "../components/detailItem/ReviewItem";
 export default function DetailItem({ match }) {
   const [specificItemById, setSpecificItemById] = useState([]);
   useEffect(async () => {
@@ -24,7 +25,8 @@ export default function DetailItem({ match }) {
     <>
       <Header />
       {specificItemById ? <ItemProp data={specificItemById} /> : null}
-      <div className={styles.reviewArea}></div>
+      <div className={styles.reviewSection}>Đánh giá chi tiết</div>
+      <ReviewItem data={specificItemById} />
       <Comment />
       <Footer />
     </>

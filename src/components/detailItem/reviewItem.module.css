@@ -1,0 +1,32 @@
+.reviewArea {
+  width: 65rem;
+  margin: auto;
+  height: auto;
+  display: flex;
+  margin-top: 5vh;
+  flex-direction: column;
+}
+.normalText {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+.boldText {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+.readingBttn {
+  height: 4rem;
+  width: 25%;
+  margin: auto;
+  background-color: rgb(172, 172, 172);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 15px;
+}
+.dots {
+  font-size: 3rem;
+}
