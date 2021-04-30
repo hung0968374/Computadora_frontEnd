@@ -9,6 +9,7 @@ import {
   ToastWarnMessage,
 } from "../components/sharedComponents/ToastMessage";
 import ShowModal from "../components/sharedComponents/ShowModal";
+import ModalSignUpWrapper from "../components/signUp/ModalSignUpWrapper";
 export default function SignUP() {
   //state
   const initialState = {
@@ -20,6 +21,11 @@ export default function SignUP() {
   const [form, setForm] = useState(initialState);
   const [errorMsgShownToUser, setErrorMsgShownToUser] = useState("");
   const [infoMsgToUser, setInfoMsgToUser] = useState("");
+  const [testData, settestData] = useState("qweqwewq");
+  const [loadingSigningUpResponse, setLoadingSigningUpResponse] = useState(
+    false
+  );
+
   /// function
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -52,17 +58,20 @@ export default function SignUP() {
       if (msg.length !== 0) {
         setErrorMsgShownToUser(msg);
         console.log(errorMsgShownToUser);
+        settestData("lhadsffhsalkfjds");
         setTimeout(() => {
           setErrorMsgShownToUser("");
+          settestData("");
         }, 6000);
       } else if (msg.length === 0) {
         try {
+          setLoadingSigningUpResponse(true);
           const res = await API.signUp(form);
           console.log(res.data.message);
           setInfoMsgToUser(res.data.message);
         } catch (error) {
-          const res = error.response.data;
-          setErrorMsgShownToUser((prev) => [...prev, res.message]);
+          const res = error?.response?.data;
+          setErrorMsgShownToUser((prev) => [...prev, res?.message]);
           setTimeout(() => {
             setErrorMsgShownToUser("");
           }, 6000);
@@ -76,7 +85,11 @@ export default function SignUP() {
       _handlingRegister();
     }
   };
-  const _closeModal = () => {};
+  const _closeModal = () => {
+    setInfoMsgToUser("");
+    setLoadingSigningUpResponse(false);
+  };
+  console.log("testdata", testData);
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -135,6 +148,15 @@ export default function SignUP() {
         <div className={styles.footer}>
           <div className={styles.confirm} onClick={_handlingRegister}>
             Đăng ký
+            {loadingSigningUpResponse ? (
+              <div>
+                <img
+                  className={styles.loadingIcon}
+                  src="images/loading.gif"
+                  alt=""
+                />
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -145,8 +167,8 @@ export default function SignUP() {
           })}
         </>
       ) : null}
-      {/* {infoMsgToUser.length > 0 ?  : null} */}
-      <ShowModal msg={"chung toi da gui..."} closeModal={_closeModal} />
+      <ModalSignUpWrapper testData={infoMsgToUser} closeModal={_closeModal} />
     </div>
   );
 }
+// <div className={styles.bg_active}>

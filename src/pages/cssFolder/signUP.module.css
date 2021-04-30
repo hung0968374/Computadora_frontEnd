@@ -110,3 +110,14 @@ input:focus {
 .confirm:hover {
   transform: translateY(-8px);
 }
+.confirm div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loadingIcon {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  margin-left: 1rem;
+}
