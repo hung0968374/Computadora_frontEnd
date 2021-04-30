@@ -8,6 +8,7 @@ const Header = () => {
   const [token, setToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [openUserInfo, setOpenUserInfo] = useState(false);
+  const totalItemsQuantityInCart = 1;
   ///function
   const _clickedToUserImg = () => {
     setOpenUserInfo(!openUserInfo);
@@ -16,6 +17,9 @@ const Header = () => {
   const _logOut = () => {
     localStorage.clear();
     history.push("/");
+  };
+  const _redirectToCartPage = () => {
+    history.push("/cart");
   };
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -64,11 +68,16 @@ const Header = () => {
         </div>
         <div className={styles.userImg} onClick={_clickedToUserImg}>
           {token ? (
-            <img
-              src={userInfo.imageUrl}
-              alt=""
-              className={styles.userImgStyle}
-            />
+            <>
+              <img
+                src={userInfo.imageUrl}
+                alt=""
+                className={styles.userImgStyle}
+              />
+              <i className={styles.amountOfNotification}>
+                {totalItemsQuantityInCart}
+              </i>
+            </>
           ) : (
             <img
               src="/images/account-icon.svg"
@@ -80,8 +89,11 @@ const Header = () => {
         {token?.length && openUserInfo ? (
           <div ref={userOptionRef} className={styles.userOption} id="nav">
             <div className={styles.userOptionContentWrapper}>
-              <div className={styles.logOut} onClick={_logOut}>
+              <div className={styles.optionItem} onClick={_logOut}>
                 Đăng xuất
+              </div>
+              <div className={styles.optionItem} onClick={_redirectToCartPage}>
+                Gio hang
               </div>
             </div>
           </div>

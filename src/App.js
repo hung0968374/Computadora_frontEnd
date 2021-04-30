@@ -10,6 +10,7 @@ import ActivateAccount from "./pages/ActivateAccount";
 import SignIN from "./pages/SignIn";
 import SignUP from "./pages/SignUp";
 import PWRecover from "./pages/PWRecover";
+import CartPage from "./pages/CartPage";
 function App() {
   return (
     <Provider store={store}>
@@ -24,6 +25,7 @@ function App() {
             <Route path="/signIn" exact component={SignIN} />
             <Route path="/signUp" exact component={SignUP} />
             <Route path="/pc" exact component={Pc} />
+            <Route path="/cart" exact component={CartPage} />
             <Route
               path="/activateAccount/:token"
               exact

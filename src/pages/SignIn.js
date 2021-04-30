@@ -1,36 +1,51 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as styles from "./cssFolder/signIN.module.css";
 import { GoogleLogin } from "react-google-login";
+import * as API from "../api/index";
+import {
+  ToastErrorMessage,
+  ToastSuccessMessage,
+  ToastWarnMessage,
+} from "../components/sharedComponents/ToastMessage";
 export default function SignIN() {
   ////////state
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [successfullLoggingIn, setSuccessfullLoggingIn] = useState(true);
+  const [failureMsg, setFailureMsg] = useState();
   const sendObjToServer = {
     username,
     password,
   };
+
   ///////function
   const _handlingUserLoggin = async () => {
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        sendObjToServer
-      );
-      console.log("response received from server", res);
-      localStorage.setItem("token", res.data.accessToken);
-      let object_serialized = JSON.stringify(res.data.user);
-      console.log("serialized", object_serialized);
-      localStorage.setItem("userInfo", object_serialized);
-      history.push("/");
-    } catch (error) {
-      const res = error.response.data;
-      alert(res.message);
+    if (successfullLoggingIn) {
+      try {
+        const res = await API.signIn(sendObjToServer);
+        console.log("response received from server", res);
+        localStorage.setItem("token", res.data.accessToken);
+        let object_serialized = JSON.stringify(res.data.user);
+        console.log("serialized", object_serialized);
+        localStorage.setItem("userInfo", object_serialized);
+
+        history.push("/");
+      } catch (error) {
+        setFailureMsg(error.response.data.message);
+        setSuccessfullLoggingIn(false);
+        setTimeout(() => {
+          setSuccessfullLoggingIn(true);
+        }, 6000);
+      }
     }
   };
-
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      _handlingUserLoggin();
+    }
+  };
   const _onSuccess = async (res) => {
     const userInfo = res?.profileObj;
     const token = res?.tokenId;
@@ -46,6 +61,7 @@ export default function SignIN() {
     console.log(error);
     console.log("Google sign in was unsuccessful. Try again later");
   };
+
   return (
     <div>
       <div className={styles.container}>
@@ -72,6 +88,7 @@ export default function SignIN() {
                   type="password"
                   placeholder="Mật khẩu"
                   value={password}
+                  onKeyDown={handleKeyDown}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
@@ -89,6 +106,12 @@ export default function SignIN() {
             <div className={styles.confirm} onClick={_handlingUserLoggin}>
               Đăng nhập
             </div>
+            {!successfullLoggingIn ? (
+              <ToastErrorMessage
+                msg={failureMsg}
+                setStt={setSuccessfullLoggingIn}
+              />
+            ) : null}
             <GoogleLogin
               className={styles.logginWithGoogle}
               clientId="244922534941-5gvl9rd0log4olllbi3pbsc9jepudgcr.apps.googleusercontent.com"

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import * as styles from "./cssFolder/activateAccount.module.css";
+import * as API from "../api/index";
 export default function ActivateAccount({ match }) {
   const token = match.params.token;
   const name = "Huu hung";
@@ -14,11 +15,12 @@ export default function ActivateAccount({ match }) {
   };
   useEffect(() => {
     const _sendActivateRequestToBackend = async () => {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/register/activateAccount",
-        sendingToServerObj
-      );
-      console.log("res", res);
+      try {
+        const res = await API.activateAccount(sendingToServerObj);
+        console.log("res", res);
+      } catch (error) {
+        console.log(error);
+      }
     };
     _sendActivateRequestToBackend();
   }, []);

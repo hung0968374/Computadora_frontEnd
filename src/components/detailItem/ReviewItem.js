@@ -20,7 +20,7 @@ const ReviewItem = ({ data }) => {
       {isTruncated ? (
         <>
           {fullReviewContent?.map((text, idx) => {
-            if (text.length > 50) {
+            if (text.length > 100) {
               return (
                 <div key={idx} className={styles.normalText}>
                   {text}
@@ -39,7 +39,7 @@ const ReviewItem = ({ data }) => {
         <div className={styles.normalText}>
           {truncatedReview?.map((text, index) => {
             if (index < 2) {
-              if (text.length > 50) {
+              if (text.length > 100) {
                 return (
                   <div key={index} className={styles.normalText}>
                     {text}

@@ -1,0 +1,24 @@
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 30%;
+  background-color: burlywood;
+}
+.header {
+  width: 100%;
+  height: 25%;
+  background-color: rebeccapurple;
+}
+.content {
+  height: 45%;
+  width: 100%;
+  background-color: red;
+}
+.confirm {
+  height: 30%;
+  width: 100%;
+  background-color: royalblue;
+}

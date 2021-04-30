@@ -5,11 +5,13 @@ import {
   itemInCart,
   addingNewProductToCart,
 } from "../../redux/features/cart/cartSlice";
+import { ToastInfoMessage } from "../sharedComponents/ToastMessage";
 const ItemProp = ({ data }) => {
   //state
   const imgs = data?.imgs;
   const cartItems = useSelector(itemInCart);
   const [displayImg, setdisplayImg] = useState();
+  const [showNoti, setShowNoti] = useState(false);
   const dispatch = useDispatch();
   //function
   useEffect(() => {
@@ -25,15 +27,21 @@ const ItemProp = ({ data }) => {
   }, [cartItems]);
   /// selft defining function
   const _addingThisItemToCart = () => {
-    dispatch(
-      addingNewProductToCart({
-        id: data._id,
-        productName: data.title,
-        quantity: 1,
-        price: data.price,
-        imgUrl: data.imgs[0],
-      })
-    );
+    if (!showNoti) {
+      dispatch(
+        addingNewProductToCart({
+          id: data._id,
+          productName: data.title,
+          quantity: 1,
+          price: data.price,
+          imgUrl: data.imgs[0],
+        })
+      );
+      setShowNoti(true);
+      setTimeout(() => {
+        setShowNoti(false);
+      }, 3000);
+    }
   };
 
   return (
@@ -124,6 +132,9 @@ const ItemProp = ({ data }) => {
           </div>
         </div>
       </div>
+      {showNoti ? (
+        <ToastInfoMessage msg={"Đã thêm item này vào giỏ hàng của bạn"} />
+      ) : null}
     </div>
   );
 };

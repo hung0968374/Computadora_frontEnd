@@ -7,13 +7,11 @@ function Posts() {
     "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-26A.jpg",
     "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-T7m.jpg",
     "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-co7.jpg",
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-1QT.jpg",
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-Edl.jpg",
   ];
   const [imagesUrls, setImagesUrls] = useState(initialState);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  useEffect(() => {}, []);
 
+  console.log(selectedIndex);
   return (
     <div className="posts_post">
       <div className="posts_image_container">
