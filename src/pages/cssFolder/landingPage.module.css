@@ -6,7 +6,7 @@
   width: 100%;
   font-family: "Helvetica", sans-serif;
   background-color: #a1d2f5;
-  animation: drop 1.5s ease;
+  animation: fadeOut 1.5s ease;
 }
 .subApp {
   width: 100%;
@@ -45,6 +45,15 @@ a:hover {
     transform: translateY(0px);
   }
 }
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @media screen and (max-width: 1024px) {
 }
 @media screen and (max-width: 760px) {

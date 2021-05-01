@@ -1,0 +1,126 @@
+.buyingItemContainer {
+  width: 100%;
+  height: 9rem;
+  display: flex;
+  border-bottom: 1px solid #888888;
+}
+.buyingItemImgArea {
+  flex: 7;
+  display: flex;
+}
+.imgStyle {
+  flex: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imgStyle img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+}
+.contentStyle {
+  flex: 6;
+}
+.itemName {
+  width: 90%;
+  height: 38%;
+  padding: 7% 5% 5% 5%;
+  display: flex;
+  word-break: break-all;
+  font-size: 16px;
+  color: #333;
+  font-weight: 700;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.salePromotion {
+  width: 100%;
+  height: 50%;
+  display: flex;
+}
+.promotion {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(10, 98, 214);
+  margin-bottom: 18px;
+}
+.promotionItems {
+  flex: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #202020;
+  margin-bottom: 18px;
+}
+.buyingItemQuantityArea {
+  flex: 3;
+  display: flex;
+}
+.priceAndQuantity {
+  flex: 6;
+}
+.price {
+  width: 100%;
+  height: 40%;
+  padding: 10% 0% 0% 0%;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.4rem;
+  color: red;
+  font-weight: 520;
+}
+.quantity {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  padding: 0% 0 10% 0;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.box {
+  border: 1px solid #888888;
+  width: 25%;
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: rgb(10, 98, 214);
+}
+.box:hover {
+  border: 1px solid rgb(10, 98, 214);
+  box-shadow: 0 0 4px rgb(10, 98, 214);
+}
+.quantityBox {
+  border: 1px solid #888888;
+  width: 30%;
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.quantityBox:hover {
+  border: 1px solid rgb(10, 98, 214);
+  box-shadow: 0 0 4px rgb(10, 98, 214);
+}
+.discardItem {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(192, 5, 5);
+}
+.discardBin {
+  transition: 200ms ease;
+}
+.discardBin:hover {
+  transform: scale(1.1);
+}

@@ -13,8 +13,6 @@ const ReviewItem = ({ data }) => {
     setFullReviewContent(data.review);
     setTruncatedReview(data.review);
   }, [data, isTruncated]);
-  console.log("trun review", truncatedReview);
-  console.log("bool", isTruncated);
   return (
     <div className={styles.reviewArea}>
       {isTruncated ? (

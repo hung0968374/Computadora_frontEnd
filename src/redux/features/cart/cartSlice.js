@@ -15,7 +15,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addingNewProductToCart: (state, action) => {
-      const index = state.itemsInsideTheCart.findIndex(
+      const index = state?.itemsInsideTheCart?.findIndex(
         (item) => item.id === action.payload.id
       );
       if (index >= 0) {
@@ -26,9 +26,39 @@ const cartSlice = createSlice({
       }
       return state;
     },
+    recoverItemsInCartEveryRefresh: (state, action) => {
+      state.itemsInsideTheCart = action.payload;
+    },
+    addingItemQuantity: (state, action) => {
+      const index = state?.itemsInsideTheCart.findIndex(
+        (product) => product.id == action.payload.id
+      );
+      state.itemsInsideTheCart[index].quantity =
+        state.itemsInsideTheCart[index].quantity + 1;
+    },
+    subtractItemQuantity: (state, action) => {
+      const index = state.itemsInsideTheCart.findIndex(
+        (product) => product.id == action.payload.id
+      );
+      if (state.itemsInsideTheCart[index].quantity > 1) {
+        state.itemsInsideTheCart[index].quantity =
+          state.itemsInsideTheCart[index].quantity - 1;
+      }
+    },
+    deleteAnItemFromCart: (state, action) => {
+      state.itemsInsideTheCart = state.itemsInsideTheCart.filter(
+        (product) => product.id !== action.payload.id
+      );
+    },
   },
 });
 
-export const { addingNewProductToCart } = cartSlice.actions;
+export const {
+  addingNewProductToCart,
+  recoverItemsInCartEveryRefresh,
+  addingItemQuantity,
+  subtractItemQuantity,
+  deleteAnItemFromCart,
+} = cartSlice.actions;
 export const itemInCart = (state) => state.cartItems.itemsInsideTheCart;
 export default cartSlice.reducer;

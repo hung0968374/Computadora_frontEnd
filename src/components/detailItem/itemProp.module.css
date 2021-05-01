@@ -51,6 +51,10 @@
   border: 1px solid red !important;
   position: relative;
 }
+.config {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 .itemConfiguration {
   width: 45%;
   height: 100%;

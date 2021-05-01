@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import * as styles from "./header_style.module.css";
+import { useSelector } from "react-redux";
+import { itemInCart } from "../../redux/features/cart/cartSlice";
 const Header = () => {
   ///////////state
   const location = useLocation();
@@ -8,10 +10,18 @@ const Header = () => {
   const [token, setToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [openUserInfo, setOpenUserInfo] = useState(false);
-  const totalItemsQuantityInCart = 1;
+  const allItemsInCart = useSelector(itemInCart);
+  const [
+    totalQuantityOfItemsInCart,
+    setTotalQuantityOfItemsInCart,
+  ] = useState();
   ///function
   const _clickedToUserImg = () => {
-    setOpenUserInfo(true);
+    if (!token) {
+      history.push("/signIn");
+    } else {
+      setOpenUserInfo(true);
+    }
   };
   const userOptionRef = useRef();
   const _logOut = () => {
@@ -21,10 +31,20 @@ const Header = () => {
   const _redirectToCartPage = () => {
     history.push("/cart");
   };
+  const _calculateCurrentQuantityInCart = () => {
+    let totalQuantity = 0;
+    allItemsInCart?.map((item, index) => {
+      totalQuantity += item.quantity;
+    });
+    setTotalQuantityOfItemsInCart(totalQuantity);
+  };
   useEffect(() => {
     setToken(localStorage.getItem("token"));
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
   }, [location]);
+  useEffect(() => {
+    _calculateCurrentQuantityInCart();
+  }, [allItemsInCart]);
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -75,7 +95,7 @@ const Header = () => {
                 className={styles.userImgStyle}
               />
               <i className={styles.amountOfNotification}>
-                {totalItemsQuantityInCart}
+                {totalQuantityOfItemsInCart}
               </i>
             </>
           ) : (
@@ -93,7 +113,7 @@ const Header = () => {
                 Đăng xuất
               </div>
               <div className={styles.optionItem} onClick={_redirectToCartPage}>
-                Gio hang
+                Giỏ hàng ( <span>{totalQuantityOfItemsInCart}</span> )
               </div>
             </div>
           </div>

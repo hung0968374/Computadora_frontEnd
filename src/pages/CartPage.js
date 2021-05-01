@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import * as styles from "./cssFolder/cart.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { itemInCart } from "../redux/features/cart/cartSlice";
+import {
+  addingNewProductToCart,
+  itemInCart,
+  recoverItemsInCartEveryRefresh,
+} from "../redux/features/cart/cartSlice";
 import "react-toastify/dist/ReactToastify.css";
 import { FaAngleLeft } from "react-icons/fa";
-import { ImBin } from "react-icons/im";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import {
   ToastBaseMessage,
@@ -14,24 +17,63 @@ import {
 } from "../components/sharedComponents/ToastMessage";
 import Header from "../components/sharedComponents/Header";
 import { useHistory } from "react-router";
+import ItemInCart from "../components/cartPage/ItemInCart";
 const CartPage = () => {
   /////state
   const history = useHistory();
+  const dispatch = useDispatch();
   const initialState = {
-    username: " ",
-    userPhone: " ",
-    email: " ",
-    address: " ",
+    username: "",
+    userPhone: "",
+    email: "",
+    address: "",
   };
+  const [
+    totalQuantityOfItemsInCart,
+    setTotalQuantityOfItemsInCart,
+  ] = useState();
+  const [totalPaidMoney, setTotalPaidMoney] = useState();
+  const itemsInCartTakenFromLocalStorage = localStorage.getItem("cartItems");
   const [form, setForm] = useState(initialState);
   const itemsInCart = useSelector(itemInCart);
   const [alertMsg, setAlertMsg] = useState();
   const imgUrl =
     "https://res.cloudinary.com/dsykf3mo9/image/upload/v1619539188/ProductImage/nitro5amd_ehsufz.jpg";
-  ////////////function
+  ////////////function useEffect
   useEffect(() => {
-    console.log("item in cart", itemsInCart);
+    _calculateCurrentQuantityInCart();
+    _calculateTotalMoney();
   }, [itemsInCart]);
+  const [emailFormatIsValid, setEmailFormatIsValid] = useState(true);
+  useEffect(() => {
+    if (itemsInCartTakenFromLocalStorage != null) {
+      dispatch(
+        recoverItemsInCartEveryRefresh(
+          JSON.parse(itemsInCartTakenFromLocalStorage)
+        )
+      );
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(itemsInCart));
+  }, [itemsInCart]);
+  ////// selft defining function
+  const _calculateTotalMoney = () => {
+    let totalMoney = 0;
+    itemsInCart?.map((item) => {
+      totalMoney +=
+        parseInt(item.price.split("₫").join("").split(",").join("")) *
+        item.quantity;
+    });
+    setTotalPaidMoney(totalMoney);
+  };
+  const _calculateCurrentQuantityInCart = () => {
+    let totalQuantity = 0;
+    itemsInCart?.map((item) => {
+      totalQuantity += item.quantity;
+    });
+    setTotalQuantityOfItemsInCart(totalQuantity);
+  };
   const _handlingFormChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -39,12 +81,23 @@ const CartPage = () => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   };
+  useEffect(() => {
+    const emailIsValid = validateEmail(form.email);
+    if (emailIsValid) {
+      setEmailFormatIsValid(true);
+    } else {
+      setEmailFormatIsValid(false);
+    }
+  }, [form.email]);
   const _confirmToBuy = () => {
     if (!alertMsg) {
       let alertToUser = [];
       const emailIsValid = validateEmail(form.email);
       if (!emailIsValid) {
         alertToUser.push("Email không đúng định dạng");
+        setEmailFormatIsValid(false);
+      } else {
+        setEmailFormatIsValid(true);
       }
       if (form.username === " " || form.username.trim() === "") {
         alertToUser.push("Không được để trống trường họ và tên");
@@ -64,11 +117,14 @@ const CartPage = () => {
       }, 6000);
     }
   };
-  console.log(alertMsg);
+  const moneyToStr = totalPaidMoney
+    ?.toString()
+    .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+
   return (
     <div className={styles.cartContainer}>
       <Header />
-      {itemsInCart.length == 0 ? (
+      {itemsInCart?.length == 0 ? (
         <>
           <div className={styles.blankItemContainer}>
             <section className={styles.cartEmptyArea}>
@@ -99,80 +155,25 @@ const CartPage = () => {
             <div>Giỏ hàng của bạn</div>
           </div>
           <div className={styles.contentContainer}>
-            <div className={styles.buyingItemContainer}>
-              <div className={styles.buyingItemImgArea}>
-                <div className={styles.imgStyle}>
-                  <img src={imgUrl} alt="" />
-                </div>
-                <div className={styles.contentStyle}>
-                  <div className={styles.itemName}>
-                    fasddddddddfffffffffffffffffffffffffffffffasddddddddffffffffffffffffffffffffffffff
-                  </div>
-                  <div className={styles.salePromotion}>
-                    <div className={styles.promotion}>2 khuyến mãi</div>
-                    <ul className={styles.promotionItems}>
-                      <li>Chuột không dây</li>
-                      <li>Balo Laptop Acer</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.buyingItemQuantityArea}>
-                <div className={styles.priceAndQuantity}>
-                  <div className={styles.price}>12.990.990d</div>
-                  <div className={styles.quantity}>
-                    <div className={styles.box}>-</div>
-                    <div className={styles.quantityBox}>3</div>
-                    <div className={styles.box}>+</div>
-                  </div>
-                </div>
-                <div className={styles.discardItem}>
-                  <ImBin size={30} />
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.buyingItemContainer}>
-              <div className={styles.buyingItemImgArea}>
-                <div className={styles.imgStyle}>
-                  <img src={imgUrl} alt="" />
-                </div>
-                <div className={styles.contentStyle}>
-                  <div className={styles.itemName}>
-                    fasddddddddfffffffffffffffffffffffffffffffasddddddddffffffffffffffffffffffffffffff
-                  </div>
-                  <div className={styles.salePromotion}>
-                    <div className={styles.promotion}>2 khuyến mãi</div>
-                    <ul className={styles.promotionItems}>
-                      <li>Chuột không dây</li>
-                      <li>Balo Laptop Acer</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.buyingItemQuantityArea}>
-                <div className={styles.priceAndQuantity}>
-                  <div className={styles.price}>12.990.990d</div>
-                  <div className={styles.quantity}>
-                    <div className={styles.box}>-</div>
-                    <div className={styles.quantityBox}>3</div>
-                    <div className={styles.box}>+</div>
-                  </div>
-                </div>
-                <div className={styles.discardItem}>
-                  <ImBin size={30} />
-                </div>
-              </div>
-            </div>
-
+            {/* a
+            a */}
+            {/* show item in cart */}
+            {itemsInCart?.map((item, index) => {
+              return <ItemInCart imgUrl={imgUrl} itemInfo={item} key={index} />;
+            })}
+            {/* show item in cart */}
+            {/* a
+            a */}
             <div className={styles.temporaryTotalMoneyArea}>
               <div className={styles.totalItems}>
-                <div>Tạm tính (6 sản phẩm):</div>
-                <div>123.123.123d</div>
+                <div>
+                  Tạm tính (<span>{totalQuantityOfItemsInCart}</span> sản phẩm):
+                </div>
+                <div>{moneyToStr}₫</div>
               </div>
               <div className={styles.tempMoney}>
                 <div>Tổng tiền:</div>
-                <div>1123</div>
+                <div>{moneyToStr}₫</div>
               </div>
             </div>
             <div className={styles.userInfo}>
@@ -186,7 +187,8 @@ const CartPage = () => {
                       placeholder="Họ và tên"
                       onChange={_handlingFormChange}
                     />
-                    {form.username.length == 0 ? (
+                    {form.username.length == 0 ||
+                    form.username.trim() === "" ? (
                       <span>Vui lòng nhập họ và tên</span>
                     ) : null}
                   </div>
@@ -197,7 +199,8 @@ const CartPage = () => {
                       placeholder="Số điện thoại"
                       onChange={_handlingFormChange}
                     />
-                    {form.userPhone.length == 0 ? (
+                    {form.userPhone.length == 0 ||
+                    form.userPhone.trim() === "" ? (
                       <span>Vui lòng nhập số điện thoại</span>
                     ) : null}
                   </div>
@@ -213,6 +216,9 @@ const CartPage = () => {
                   {form.email.length == 0 ? (
                     <span>Vui lòng nhập gmail</span>
                   ) : null}
+                  {!emailFormatIsValid ? (
+                    <span>Email không đúng định dạng</span>
+                  ) : null}
                 </div>
                 <div className={styles.addressContainer}>
                   <textarea
@@ -223,7 +229,7 @@ const CartPage = () => {
                     placeholder="Địa chỉ"
                     onChange={_handlingFormChange}
                   ></textarea>
-                  {form.address.length == 0 ? (
+                  {form.address.length == 0 || form.address.trim() === "" ? (
                     <span>Vui lòng nhập dia chi</span>
                   ) : null}
                 </div>
@@ -235,7 +241,7 @@ const CartPage = () => {
               <div className={styles.totalMoney}>
                 <div className={styles.money}>
                   <div>Tong tien</div>
-                  <div>12d</div>
+                  <div>{moneyToStr}₫</div>
                 </div>
                 <div className={styles.bttn} onClick={_confirmToBuy}>
                   Đặt hàng

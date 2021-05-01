@@ -43,6 +43,21 @@ export const ToastInfoMessage = ({ msg }) => {
     </div>
   );
 };
+export const ToastInfoMessageInCenter = ({ msg }) => {
+  const notify = () =>
+    toast.info(msg, {
+      autoClose: 2000,
+      position: "top-center",
+    });
+  useEffect(() => {
+    notify();
+  }, []);
+  return (
+    <div>
+      <ToastContainer />
+    </div>
+  );
+};
 export const ToastWarnMessage = ({ msg }) => {
   const notify = () =>
     toast.warn(msg, {

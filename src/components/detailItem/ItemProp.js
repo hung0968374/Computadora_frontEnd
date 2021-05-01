@@ -5,7 +5,8 @@ import {
   itemInCart,
   addingNewProductToCart,
 } from "../../redux/features/cart/cartSlice";
-import { ToastInfoMessage } from "../sharedComponents/ToastMessage";
+import { ToastInfoMessageInCenter } from "../sharedComponents/ToastMessage";
+import { useHistory } from "react-router";
 const ItemProp = ({ data }) => {
   //state
   const imgs = data?.imgs;
@@ -13,6 +14,8 @@ const ItemProp = ({ data }) => {
   const [displayImg, setdisplayImg] = useState();
   const [showNoti, setShowNoti] = useState(false);
   const dispatch = useDispatch();
+  const [token, setToken] = useState();
+  const history = useHistory();
   //function
   useEffect(() => {
     if (imgs) {
@@ -21,29 +24,37 @@ const ItemProp = ({ data }) => {
   }, [imgs]);
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    setToken(localStorage.getItem("token"));
   }, []);
   useEffect(() => {
     console.log("items in cart", cartItems);
   }, [cartItems]);
   /// selft defining function
   const _addingThisItemToCart = () => {
-    if (!showNoti) {
-      dispatch(
-        addingNewProductToCart({
-          id: data._id,
-          productName: data.title,
-          quantity: 1,
-          price: data.price,
-          imgUrl: data.imgs[0],
-        })
-      );
-      setShowNoti(true);
-      setTimeout(() => {
-        setShowNoti(false);
-      }, 3000);
+    if (!token) {
+      history.push("/signIn");
+    } else {
+      if (!showNoti) {
+        dispatch(
+          addingNewProductToCart({
+            id: data._id,
+            productName: data.title,
+            quantity: 1,
+            price: data.price,
+            imgUrl: data.imgs[0],
+          })
+        );
+        setShowNoti(true);
+        setTimeout(() => {
+          setShowNoti(false);
+        }, 2000);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      }
     }
   };
-
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
   return (
     <div className={styles.itemPropContainer}>
       <div className={styles.imgArea}>
@@ -133,7 +144,9 @@ const ItemProp = ({ data }) => {
         </div>
       </div>
       {showNoti ? (
-        <ToastInfoMessage msg={"Đã thêm item này vào giỏ hàng của bạn"} />
+        <ToastInfoMessageInCenter
+          msg={"Đã thêm item này vào giỏ hàng của bạn"}
+        />
       ) : null}
     </div>
   );
