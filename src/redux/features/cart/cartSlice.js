@@ -30,5 +30,5 @@ const cartSlice = createSlice({
 });
 
 export const { addingNewProductToCart } = cartSlice.actions;
-export const itemInCart = (state) => state.cartItems;
+export const itemInCart = (state) => state.cartItems.itemsInsideTheCart;
 export default cartSlice.reducer;

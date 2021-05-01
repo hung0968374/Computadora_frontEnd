@@ -3,10 +3,10 @@ import "./posts.css";
 
 function Posts() {
   const initialState = [
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-AME.jpg",
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-26A.jpg",
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-T7m.jpg",
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-co7.jpg",
+    "https://cdn.tgdd.vn/ValueIcons/1/cao-cap.jpg",
+    "https://cdn.tgdd.vn/ValueIcons/1/do-hoa-(tgdd).jpg",
+    "https://cdn.tgdd.vn/ValueIcons/1/gaming.jpg",
+    "https://cdn.tgdd.vn/ValueIcons/1/mong-nhe.jpg",
   ];
   const [imagesUrls, setImagesUrls] = useState(initialState);
   const [selectedIndex, setSelectedIndex] = useState(0);

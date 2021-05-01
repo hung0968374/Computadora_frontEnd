@@ -48,7 +48,6 @@ export default function SignUP() {
       if (!form.password || !form.confirmPassword) {
         msg.push("Không được để trống mật khấu hoặc nhập lại mật khẩu");
       }
-
       var passAndConfirmPassAreTheSame = form.password.localeCompare(
         form.confirmPassword
       );

@@ -11,7 +11,7 @@ const Header = () => {
   const totalItemsQuantityInCart = 1;
   ///function
   const _clickedToUserImg = () => {
-    setOpenUserInfo(!openUserInfo);
+    setOpenUserInfo(true);
   };
   const userOptionRef = useRef();
   const _logOut = () => {
