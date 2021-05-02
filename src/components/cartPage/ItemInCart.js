@@ -9,8 +9,11 @@ import {
 } from "../../redux/features/cart/cartSlice";
 import YesNoModal from "../sharedComponents/YesNoModal";
 export default function ItemInCart({ imgUrl, itemInfo }) {
+  console.log(itemInfo);
+  /////state
   const dispatch = useDispatch();
   const [showYesNoModal, setShowYesNoModal] = useState(false);
+  ////////function
   const _subtractItemQuantity = () => {
     dispatch(subtractItemQuantity({ id: itemInfo.id }));
   };
@@ -18,10 +21,15 @@ export default function ItemInCart({ imgUrl, itemInfo }) {
     dispatch(addingItemQuantity({ id: itemInfo.id }));
   };
   const _discardItemFromCart = () => {
-    dispatch(deleteAnItemFromCart({ id: itemInfo.id }));
-    // setShowYesNoModal(true);
+    setShowYesNoModal(true);
   };
-  console.log("open modal", showYesNoModal);
+  const _confirmDeleting = () => {
+    dispatch(deleteAnItemFromCart({ id: itemInfo.id }));
+    setShowYesNoModal(false);
+  };
+  const _rejectDeleting = () => {
+    setShowYesNoModal(false);
+  };
   return (
     <>
       <div className={styles.buyingItemContainer}>
@@ -61,11 +69,20 @@ export default function ItemInCart({ imgUrl, itemInfo }) {
             />
           </div>
         </div>
-        {/* {showYesNoModal ? (
+        {showYesNoModal ? (
           <div className={styles.modal_bg}>
-            <YesNoModal />
+            <YesNoModal
+              msg={
+                <div>
+                  Xóa sản phẩm <strong>{itemInfo.productName}</strong> khỏi giỏ
+                  hàng?
+                </div>
+              }
+              confirm={_confirmDeleting}
+              reject={_rejectDeleting}
+            />
           </div>
-        ) : null} */}
+        ) : null}
       </div>
     </>
   );

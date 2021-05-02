@@ -116,7 +116,7 @@ const CartPage = () => {
   const moneyToStr = totalPaidMoney
     ?.toString()
     .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
-
+  /////function for subcomponent
   return (
     <div className={styles.cartContainer}>
       <Header />
