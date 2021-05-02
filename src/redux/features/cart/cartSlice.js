@@ -22,7 +22,7 @@ const cartSlice = createSlice({
         state.itemsInsideTheCart[index].quantity =
           state.itemsInsideTheCart[index].quantity + 1;
       } else {
-        state.itemsInsideTheCart.push(action.payload);
+        state.itemsInsideTheCart?.push(action.payload);
       }
       return state;
     },

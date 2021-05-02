@@ -16,10 +16,9 @@ const Header = () => {
   const [userInfo, setUserInfo] = useState({});
   const [openUserInfo, setOpenUserInfo] = useState(false);
   const [allItemsInCart, setAllItemsInCart] = useState([]);
-  const [
-    totalQuantityOfItemsInCart,
-    setTotalQuantityOfItemsInCart,
-  ] = useState();
+  const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] = useState(
+    0
+  );
   ///function
   const _clickedToUserImg = () => {
     if (!token) {
@@ -37,23 +36,30 @@ const Header = () => {
   const _redirectToCartPage = () => {
     history.push("/cart");
   };
-  const _calculateCurrentQuantityInCart = () => {
-    let totalQuantity = 0;
-    allItemsInCart?.map((item, index) => {
-      totalQuantity += item.quantity;
-    });
-    setTotalQuantityOfItemsInCart(totalQuantity);
-  };
-  // useEffect(() => {
-  //   setAllItemsInCart(JSON.parse(localStorage.getItem("cartItems")));
-  // }, [JSON.parse(localStorage.getItem("cartItems"))]);
+
+  // tinh tong so luong gio hang
+
+  // const _calculateCurrentQuantityInCart = () => {
+  //   setAllItemsInCart(itemInReduxStorage);
+  //   let totalQuantity = 0;
+  //   allItemsInCart?.map((item, index) => {
+  //     totalQuantity += item.quantity;
+  //   });
+  //   setTotalQuantityOfItemsInCart(totalQuantity);
+  // };
+
+  useEffect(() => {
+    if (localStorage.getItem("quantity") != null) {
+      setTotalQuantityOfItemsInCart(localStorage.getItem("quantity"));
+    }
+  }, [localStorage.getItem("quantity")]);
+  // tinh tong so luong gio hang
+
   useEffect(() => {
     setToken(localStorage.getItem("token"));
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
   }, [location]);
-  useEffect(() => {
-    _calculateCurrentQuantityInCart();
-  }, [allItemsInCart]);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -104,7 +110,7 @@ const Header = () => {
                 className={styles.userImgStyle}
               />
               <i className={styles.amountOfNotification}>
-                {totalQuantityOfItemsInCart}
+                {totalQuantityOfItemsInCart || 0}
               </i>
             </>
           ) : (

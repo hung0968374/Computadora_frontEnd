@@ -11,8 +11,10 @@ import {
 } from "../redux/features/post/laptopItemSlice";
 import Footer from "../components/sharedComponents/footer";
 import { unwrapResult } from "@reduxjs/toolkit";
+import { useLocation } from "react-router";
 const Laptop = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const laptopItemsInSeperatedPage = useSelector(laptopByPage);
   const dataByPage = laptopItemsInSeperatedPage.arrayOfLaptopItems;
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,6 +30,9 @@ const Laptop = () => {
     console.log("lap slice", laptopItemsInSeperatedPage);
     console.log("page", currentPage);
   }, []);
+  useEffect(() => {
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+  }, [location]);
   return (
     <div className={styles.container}>
       <Header />

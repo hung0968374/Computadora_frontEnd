@@ -4,18 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   itemInCart,
   addingNewProductToCart,
+  recoverItemsInCartEveryRefresh,
 } from "../../redux/features/cart/cartSlice";
 import { ToastInfoMessageInCenter } from "../sharedComponents/ToastMessage";
+import { FaAngleLeft } from "react-icons/fa";
 import { useHistory } from "react-router";
 const ItemProp = ({ data }) => {
   //state
   const imgs = data?.imgs;
-  const cartItems = useSelector(itemInCart);
+  let totalItemInCartTakingFromRedux = useSelector(itemInCart);
+  const oldCart = JSON.parse(localStorage.getItem("cartItems"));
   const [displayImg, setdisplayImg] = useState();
   const [showNoti, setShowNoti] = useState(false);
   const dispatch = useDispatch();
   const [token, setToken] = useState();
   const history = useHistory();
+  const [totalQuantityInCart, setTotalQuantityInCart] = useState(0);
   //function
   useEffect(() => {
     if (imgs) {
@@ -25,10 +29,18 @@ const ItemProp = ({ data }) => {
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
     setToken(localStorage.getItem("token"));
+    setTotalQuantityInCart(parseInt(localStorage.getItem("quantity")));
+    dispatch(recoverItemsInCartEveryRefresh(oldCart));
   }, []);
+  console.log("item redux", totalItemInCartTakingFromRedux);
   useEffect(() => {
-    console.log("items in cart", cartItems);
-  }, [cartItems]);
+    if (totalItemInCartTakingFromRedux !== null) {
+      localStorage.setItem(
+        "cartItems",
+        JSON.stringify(totalItemInCartTakingFromRedux)
+      );
+    }
+  }, [totalItemInCartTakingFromRedux]);
   /// selft defining function
   const _addingThisItemToCart = () => {
     if (!token) {
@@ -48,16 +60,11 @@ const ItemProp = ({ data }) => {
         setTimeout(() => {
           setShowNoti(false);
         }, 2000);
-        // localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        setTotalQuantityInCart((prev) => prev + 1);
+        localStorage.setItem("quantity", totalQuantityInCart + 1);
       }
     }
   };
-  useEffect(() => {
-    if (cartItems.length > 0) {
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      console.log("cart in redux", cartItems);
-    }
-  }, [cartItems]);
   return (
     <div className={styles.itemPropContainer}>
       <div className={styles.imgArea}>
@@ -107,15 +114,32 @@ const ItemProp = ({ data }) => {
         </div>
         <div className={styles.itemParams}>
           <div className={styles.breakLine}></div>
-          <div className={styles.config}>Cấu hình:</div>
-          <div className={styles.configurationInDetail}>{data.processor}</div>
-          <div className={styles.configurationInDetail}>{data.screen}</div>
-          <div className={styles.configurationInDetail}>{data.ram}</div>
-          <div className={styles.configurationInDetail}>{data.graphicCard}</div>
-          <div className={styles.configurationInDetail}>{data.pin}</div>
-          <div className={styles.configurationInDetail}>{data.weight}</div>
+          <div className={styles.config}>Cấu hình</div>
           <div className={styles.configurationInDetail}>
-            {data.operatingSystem}
+            <span> {data?.processor?.split(":")[0]}</span> :
+            {data?.processor?.split(":")[1]}
+          </div>
+          <div className={styles.configurationInDetail}>
+            <span> {data?.screen?.split(":")[0]}</span> :
+            {data?.screen?.split(":")[1]}
+          </div>
+          <div className={styles.configurationInDetail}>
+            <span> {data?.ram?.split(":")[0]}</span> :{data?.ram?.split(":")[1]}
+          </div>
+          <div className={styles.configurationInDetail}>
+            <span> {data?.graphicCard?.split(":")[0]}</span> :
+            {data?.graphicCard?.split(":")[1]}
+          </div>
+          <div className={styles.configurationInDetail}>
+            <span> {data?.pin?.split(":")[0]}</span> :{data?.pin?.split(":")[1]}
+          </div>
+          <div className={styles.configurationInDetail}>
+            <span> {data?.weight?.split(":")[0]}</span> :
+            {data?.weight?.split(":")[1]}
+          </div>
+          <div className={styles.configurationInDetail}>
+            <span> {data?.operatingSystem?.split(":")[0]}</span> :
+            {data?.operatingSystem?.split(":")[1]}
           </div>
           <div className={styles.breakLine}></div>
           <div className={styles.salePromotion}>
@@ -143,6 +167,15 @@ const ItemProp = ({ data }) => {
           <div className={styles.addingToCart} onClick={_addingThisItemToCart}>
             <img src="/images/cart.svg" alt="" />
             Thêm vào giỏ hàng
+          </div>
+          <div
+            className={styles.continueShopping}
+            onClick={() => {
+              history.push("/laptop");
+            }}
+          >
+            <FaAngleLeft />
+            TIẾP TỤC MUA SẮM
           </div>
         </div>
       </div>

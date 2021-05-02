@@ -16,18 +16,13 @@ function LandingPage() {
   const dispatch = useDispatch();
   useEffect(() => {
     setScreenIsLoading(true);
-    // async function getAllData() {
-    //   let data1 = await (await Api.fetchPosts()).data;
-    //   console.log(data1);
-    //   setAllData(data1);
-    //   dispatch(incrementByAmount(data1));
-    //   dispatch(getData(data1));
-    // }
-    // getAllData();
     let user_deserialized = JSON.parse(localStorage.getItem("userInfo"));
     setTimeout(() => {
       setScreenIsLoading(false);
     }, 0);
+    if (localStorage.getItem("quantity") === null) {
+      localStorage.setItem("quantity", 0);
+    }
   }, [location]);
 
   return (
