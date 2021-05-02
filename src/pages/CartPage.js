@@ -9,12 +9,7 @@ import {
 import "react-toastify/dist/ReactToastify.css";
 import { FaAngleLeft } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";
-import {
-  ToastBaseMessage,
-  ToastErrorMessage,
-  ToastInfoMessage,
-  ToastWarnMessage,
-} from "../components/sharedComponents/ToastMessage";
+import { ToastErrorMessage } from "../components/sharedComponents/ToastMessage";
 import Header from "../components/sharedComponents/Header";
 import { useHistory } from "react-router";
 import ItemInCart from "../components/cartPage/ItemInCart";
@@ -73,6 +68,7 @@ const CartPage = () => {
       totalQuantity += item.quantity;
     });
     setTotalQuantityOfItemsInCart(totalQuantity);
+    localStorage.setItem("quantity", totalQuantity);
   };
   const _handlingFormChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });

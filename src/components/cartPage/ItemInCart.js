@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as styles from "./itemInCart.module.css";
 import { ImBin } from "react-icons/im";
 import { useDispatch } from "react-redux";
@@ -7,8 +7,10 @@ import {
   subtractItemQuantity,
   deleteAnItemFromCart,
 } from "../../redux/features/cart/cartSlice";
+import YesNoModal from "../sharedComponents/YesNoModal";
 export default function ItemInCart({ imgUrl, itemInfo }) {
   const dispatch = useDispatch();
+  const [showYesNoModal, setShowYesNoModal] = useState(false);
   const _subtractItemQuantity = () => {
     dispatch(subtractItemQuantity({ id: itemInfo.id }));
   };
@@ -17,7 +19,9 @@ export default function ItemInCart({ imgUrl, itemInfo }) {
   };
   const _discardItemFromCart = () => {
     dispatch(deleteAnItemFromCart({ id: itemInfo.id }));
+    // setShowYesNoModal(true);
   };
+  console.log("open modal", showYesNoModal);
   return (
     <>
       <div className={styles.buyingItemContainer}>
@@ -57,6 +61,11 @@ export default function ItemInCart({ imgUrl, itemInfo }) {
             />
           </div>
         </div>
+        {/* {showYesNoModal ? (
+          <div className={styles.modal_bg}>
+            <YesNoModal />
+          </div>
+        ) : null} */}
       </div>
     </>
   );

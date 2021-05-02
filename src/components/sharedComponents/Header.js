@@ -1,16 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import * as styles from "./header_style.module.css";
-import { useSelector } from "react-redux";
-import { itemInCart } from "../../redux/features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  itemInCart,
+  recoverItemsInCartEveryRefresh,
+} from "../../redux/features/cart/cartSlice";
 const Header = () => {
   ///////////state
   const location = useLocation();
   const history = useHistory();
+  const dispatch = useDispatch();
+  const itemInReduxStorage = useSelector(itemInCart);
   const [token, setToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [openUserInfo, setOpenUserInfo] = useState(false);
-  const allItemsInCart = useSelector(itemInCart);
+  const [allItemsInCart, setAllItemsInCart] = useState([]);
   const [
     totalQuantityOfItemsInCart,
     setTotalQuantityOfItemsInCart,
@@ -27,6 +32,7 @@ const Header = () => {
   const _logOut = () => {
     localStorage.clear();
     history.push("/");
+    dispatch(recoverItemsInCartEveryRefresh([]));
   };
   const _redirectToCartPage = () => {
     history.push("/cart");
@@ -38,6 +44,9 @@ const Header = () => {
     });
     setTotalQuantityOfItemsInCart(totalQuantity);
   };
+  // useEffect(() => {
+  //   setAllItemsInCart(JSON.parse(localStorage.getItem("cartItems")));
+  // }, [JSON.parse(localStorage.getItem("cartItems"))]);
   useEffect(() => {
     setToken(localStorage.getItem("token"));
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));

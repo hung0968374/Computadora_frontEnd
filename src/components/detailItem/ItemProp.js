@@ -48,12 +48,15 @@ const ItemProp = ({ data }) => {
         setTimeout(() => {
           setShowNoti(false);
         }, 2000);
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        // localStorage.setItem("cartItems", JSON.stringify(cartItems));
       }
     }
   };
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    if (cartItems.length > 0) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      console.log("cart in redux", cartItems);
+    }
   }, [cartItems]);
   return (
     <div className={styles.itemPropContainer}>
