@@ -66,6 +66,7 @@ export default function SignUP() {
         try {
           setLoadingSigningUpResponse(true);
           const res = await API.signUp(form);
+          setLoadingSigningUpResponse(false);
           console.log(res.data.message);
           setInfoMsgToUser(res.data.message);
         } catch (error) {
@@ -75,6 +76,7 @@ export default function SignUP() {
             setErrorMsgShownToUser("");
           }, 6000);
           console.log(error);
+          setLoadingSigningUpResponse(false);
         }
       }
     }
@@ -166,7 +168,7 @@ export default function SignUP() {
           })}
         </>
       ) : null}
-      <ModalSignUpWrapper testData={infoMsgToUser} closeModal={_closeModal} />
+      <ModalSignUpWrapper msg={infoMsgToUser} closeModal={_closeModal} />
     </div>
   );
 }

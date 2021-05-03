@@ -6,19 +6,26 @@ import {
   itemInCart,
   recoverItemsInCartEveryRefresh,
 } from "../../redux/features/cart/cartSlice";
+import {
+  goingToUpper,
+  goUp,
+  goDown,
+} from "../../redux/features/post/screenSlice";
 const Header = () => {
   ///////////state
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
-  const itemInReduxStorage = useSelector(itemInCart);
   const [token, setToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [openUserInfo, setOpenUserInfo] = useState(false);
-  const [allItemsInCart, setAllItemsInCart] = useState([]);
   const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] = useState(
     0
   );
+  const prevScrollY = useRef(0);
+  const [goingUp, setGoingUp] = useState(true);
+  const screenGoUp = useSelector(goingToUpper);
+  const userOptionRef = useRef();
   ///function
   const _clickedToUserImg = () => {
     if (!token) {
@@ -27,7 +34,6 @@ const Header = () => {
       setOpenUserInfo(true);
     }
   };
-  const userOptionRef = useRef();
   const _logOut = () => {
     localStorage.clear();
     history.push("/");
@@ -36,17 +42,6 @@ const Header = () => {
   const _redirectToCartPage = () => {
     history.push("/cart");
   };
-
-  // tinh tong so luong gio hang
-
-  // const _calculateCurrentQuantityInCart = () => {
-  //   setAllItemsInCart(itemInReduxStorage);
-  //   let totalQuantity = 0;
-  //   allItemsInCart?.map((item, index) => {
-  //     totalQuantity += item.quantity;
-  //   });
-  //   setTotalQuantityOfItemsInCart(totalQuantity);
-  // };
 
   useEffect(() => {
     if (localStorage.getItem("quantity") != null) {
@@ -59,7 +54,7 @@ const Header = () => {
     setToken(localStorage.getItem("token"));
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
   }, [location]);
-
+  ///////////set scrool up state
   useEffect(() => {
     function handleClickOutside(event) {
       if (
@@ -75,8 +70,31 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [userOptionRef]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 160) {
+        const currentScrollY = window.scrollY;
+        if (prevScrollY.current < currentScrollY && goingUp) {
+          setGoingUp(false);
+          dispatch(goUp(false));
+        }
+        if (prevScrollY.current > currentScrollY && !goingUp) {
+          setGoingUp(true);
+          dispatch(goUp(true));
+        }
+        prevScrollY.current = currentScrollY;
+      } else {
+        setGoingUp(true);
+        dispatch(goUp(true));
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [goingUp]);
+  const isGoingUp = screenGoUp ? styles.goingDown : styles.goingUp;
   return (
-    <div className={styles.header}>
+    <div className={`${styles.header} ${isGoingUp}`}>
       <div className={styles.content_wrapper}>
         <div className={styles.laptopImg}>
           <Link to="/" className={styles.linkWrapper}>
@@ -101,7 +119,11 @@ const Header = () => {
             <Link to="/blog"> Blog</Link>
           </div>
         </div>
-        <div className={styles.userImg} onClick={_clickedToUserImg}>
+        <div
+          ref={userOptionRef}
+          className={styles.userImg}
+          onClick={_clickedToUserImg}
+        >
           {token ? (
             <>
               <img
@@ -120,9 +142,24 @@ const Header = () => {
               className={styles.userImgStyle}
             />
           )}
+          {token?.length && openUserInfo ? (
+            <div className={styles.userOption}>
+              <div className={styles.userOptionContentWrapper}>
+                <div className={styles.optionItem} onClick={_logOut}>
+                  Đăng xuất
+                </div>
+                <div
+                  className={styles.optionItem}
+                  onClick={_redirectToCartPage}
+                >
+                  Giỏ hàng ( <span>{totalQuantityOfItemsInCart}</span> )
+                </div>
+              </div>
+            </div>
+          ) : null}
         </div>
-        {token?.length && openUserInfo ? (
-          <div ref={userOptionRef} className={styles.userOption} id="nav">
+        {/* {token?.length && openUserInfo ? (
+          <div className={styles.userOption}>
             <div className={styles.userOptionContentWrapper}>
               <div className={styles.optionItem} onClick={_logOut}>
                 Đăng xuất
@@ -132,7 +169,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-        ) : null}
+        ) : null} */}
       </div>
     </div>
   );

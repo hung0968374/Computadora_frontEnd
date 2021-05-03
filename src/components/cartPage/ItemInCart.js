@@ -9,7 +9,6 @@ import {
 } from "../../redux/features/cart/cartSlice";
 import YesNoModal from "../sharedComponents/YesNoModal";
 export default function ItemInCart({ imgUrl, itemInfo }) {
-  console.log(itemInfo);
   /////state
   const dispatch = useDispatch();
   const [showYesNoModal, setShowYesNoModal] = useState(false);

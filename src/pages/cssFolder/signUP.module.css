@@ -12,8 +12,8 @@
   animation: fadeOut 1s ease;
 }
 .wrapper {
-  width: 60%;
-  height: 75%;
+  width: 72rem;
+  height: 45rem;
   background-color: #8bc5ef;
   margin: auto;
   border-radius: 70px;
@@ -124,9 +124,9 @@ input:focus {
 }
 @keyframes fadeOut {
   0% {
-    opacity: 0;
+    background-color: rgb(120, 159, 182);
   }
   100% {
-    opacity: 1;
+    background-color: #a1d2f5;
   }
 }

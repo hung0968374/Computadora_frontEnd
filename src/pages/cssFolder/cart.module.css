@@ -1,7 +1,13 @@
+/* .pageWrapper {
+  width: 100%;
+  height: 100vh;
+  background-color: whitesmoke;
+} */
+
 .cartContainer {
   width: 100%;
   height: 100%;
-  margin: 0;
+  margin-top: 9vh;
   padding: 0;
   background-color: whitesmoke;
   animation: fadeOut 0.5s ease;
@@ -159,7 +165,7 @@ textarea {
   overflow: hidden;
   padding-top: 12px;
   color: #dd4b39;
-  font-size: 1rem;
+  font-size: 15px;
 }
 .email {
   margin-top: 1rem;
@@ -180,7 +186,7 @@ textarea {
   overflow: hidden;
   padding-top: 12px;
   color: #dd4b39;
-  font-size: 1rem;
+  font-size: 15px;
 }
 .addressContainer {
   display: flex;
@@ -203,7 +209,7 @@ textarea {
   overflow: hidden;
   padding-top: 12px;
   color: #dd4b39;
-  font-size: 1rem;
+  font-size: 15px;
 }
 .finalTotal {
   width: 90%;

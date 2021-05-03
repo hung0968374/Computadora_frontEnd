@@ -5,7 +5,7 @@
   transform: translate(-50%, -50%);
   width: 30%;
   height: 30%;
-  background-color: rgb(238, 226, 226);
+  background-color: white;
   z-index: 1000 !important;
   border-radius: 5px;
   cursor: pointer;
@@ -25,7 +25,8 @@
   height: 35%;
   width: 80%;
   display: flex;
-  border-top: 1px solid white;
+  border-top: 1px solid rgb(141, 140, 140);
+  border-bottom: 1px solid rgb(141, 140, 140);
   justify-content: center;
   align-items: center;
   font-size: 10px;
@@ -37,8 +38,7 @@
 .confirm {
   height: 30%;
   width: 100%;
-  background-color: rgb(238, 226, 226);
-  border-top: 2px solid whitesmoke;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: flex-end;

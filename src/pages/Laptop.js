@@ -32,7 +32,7 @@ const Laptop = () => {
   }, []);
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
-  }, [location]);
+  }, []);
   return (
     <div className={styles.container}>
       <Header />

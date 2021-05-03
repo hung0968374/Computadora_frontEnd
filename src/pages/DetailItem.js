@@ -19,6 +19,7 @@ export default function DetailItem({ match }) {
     } catch (error) {
       console.log(error);
     }
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
   }, []);
   const BaseUrl = "https://res.cloudinary.com/dsykf3mo9/image/upload/";
   return (

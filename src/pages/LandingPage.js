@@ -30,11 +30,13 @@ function LandingPage() {
       {!screenIsLoading ? (
         <div className={styles.App}>
           <Header />
-          <div className={styles.slo_auth_post}>
-            <Slogan />
-            <Posts />
+          <div className={styles.pageWrapper}>
+            <div className={styles.slo_auth_post}>
+              <Slogan />
+              <Posts />
+            </div>
+            <Footer />
           </div>
-          <Footer />
         </div>
       ) : (
         <div className={styles.greenScreen}>screen loading</div>

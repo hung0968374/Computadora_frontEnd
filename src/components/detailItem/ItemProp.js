@@ -9,6 +9,7 @@ import {
 import { ToastInfoMessageInCenter } from "../sharedComponents/ToastMessage";
 import { FaAngleLeft } from "react-icons/fa";
 import { useHistory } from "react-router";
+import { goUp } from "../../redux/features/post/screenSlice";
 const ItemProp = ({ data }) => {
   //state
   const imgs = data?.imgs;
@@ -27,7 +28,6 @@ const ItemProp = ({ data }) => {
     }
   }, [imgs]);
   useEffect(() => {
-    window.scroll({ top: 0, left: 0, behavior: "smooth" });
     setToken(localStorage.getItem("token"));
     setTotalQuantityInCart(parseInt(localStorage.getItem("quantity")));
     dispatch(recoverItemsInCartEveryRefresh(oldCart));
@@ -56,6 +56,7 @@ const ItemProp = ({ data }) => {
             imgUrl: data.imgs[0],
           })
         );
+        dispatch(goUp(false));
         setShowNoti(true);
         setTimeout(() => {
           setShowNoti(false);
@@ -82,6 +83,7 @@ const ItemProp = ({ data }) => {
                     alt="dog"
                     onClick={() => {
                       setdisplayImg(image);
+                      dispatch(goUp(false));
                     }}
                   />
                 );

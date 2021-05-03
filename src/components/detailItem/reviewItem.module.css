@@ -3,7 +3,7 @@
   margin: auto;
   height: auto;
   display: flex;
-  margin-top: 5vh;
+  margin-top: 5rem;
   flex-direction: column;
 }
 .normalText {

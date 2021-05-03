@@ -1,13 +1,12 @@
 import React from "react";
 import ShowModal from "../sharedComponents/ShowModal";
 import "./modalWrapper.css";
-export default function ModalSignUpWrapper({ testData, closeModal }) {
-  console.log("test", testData);
+export default function ModalSignUpWrapper({ msg, closeModal }) {
   return (
     <>
-      {testData.length > 0 ? (
+      {msg.length > 0 ? (
         <div className={"modal_bg"}>
-          <ShowModal msg={testData} closeModal={closeModal} />
+          <ShowModal msg={msg} closeModal={closeModal} />
         </div>
       ) : null}
     </>
