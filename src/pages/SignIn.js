@@ -8,6 +8,7 @@ import {
   ToastSuccessMessage,
   ToastWarnMessage,
 } from "../components/sharedComponents/ToastMessage";
+import FacebookLogin from "react-facebook-login";
 export default function SignIN() {
   ////////state
   const history = useHistory();
@@ -46,22 +47,43 @@ export default function SignIN() {
       _handlingUserLoggin();
     }
   };
+
+  ////////////google loggin
   const _onSuccess = async (res) => {
     const userInfo = res?.profileObj;
     const token = res?.tokenId;
     localStorage.setItem("token", token);
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
     history.push("/");
-    try {
-    } catch (error) {
-      console.log(error);
-    }
   };
   const _onFailure = (error) => {
     console.log(error);
     console.log("Google sign in was unsuccessful. Try again later");
   };
 
+  /////////////facebook loggin
+  const responseFacebook = (res) => {
+    const userInfo = {
+      email: "",
+      name: res.name,
+      userId: res.userId,
+      imageUrl: res.picture.data.url,
+    };
+    const token = res?.accessToken;
+    localStorage.setItem("token", token);
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    history.push("/");
+  };
+
+  const _failedToLogginWithFacebook = (error) => {
+    console.log(error);
+  };
+  //   email: "huuhung0968374305@gmail.com"
+  // familyName: "Nguyễn"
+  // givenName: "Hùng"
+  // googleId: "101795809549623446144"
+  // imageUrl: "https://lh3.googleusercontent.com/a/AATXAJxkORq_O961oPkzKG-moHlNOHjTZdtayz1KUaAQ=s96-c"
+  // name: "Hùng Nguyễn"
   return (
     <div>
       <div className={styles.container}>
@@ -119,6 +141,15 @@ export default function SignIN() {
               onSuccess={_onSuccess}
               onFailure={_onFailure}
               cookiePolicy={"single_host_origin"}
+            />
+            <FacebookLogin
+              cssClass={styles.logginWithFacebookBttn}
+              appId="312211730529505"
+              autoLoad={false}
+              fields="name,email,picture"
+              callback={responseFacebook}
+              textButton="Đăng nhập bằng FaceBook"
+              onFailure={_failedToLogginWithFacebook}
             />
           </div>
         </div>

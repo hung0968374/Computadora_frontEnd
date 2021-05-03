@@ -2,45 +2,24 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as styles from "./cssFolder/blog.module.css";
+import FacebookLogin from "react-facebook-login";
 
 function Blog() {
-  const imagesUrls = [
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-AME.jpg",
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-26A.jpg",
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-T7m.jpg",
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-co7.jpg",
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-1QT.jpg",
-    "https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/7/30/razer-blade-15-advanced-Blade15A03NU-Edl.jpg",
-  ];
-  const [selectedImg, setSelectedImg] = useState(imagesUrls[0]);
-  const [displayImg, setdisplayImg] = useState();
-  useEffect(() => {
-    setdisplayImg(selectedImg);
-  }, [selectedImg]);
-
+  const responseFacebook = (response) => {
+    console.log(response);
+  };
+  const componentClicked = () => {
+    console.log("clicked to facebook button");
+  };
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <img
-          src={displayImg}
-          alt="selected"
-          className={styles.selectedImg}
-          key={displayImg}
-        />
-        <div className={styles.imgContainer}>
-          {imagesUrls.map((image, index) => (
-            <img
-              className={styles.imgStyle}
-              key={index}
-              src={image}
-              alt="dog"
-              onClick={() => {
-                setSelectedImg(image);
-              }}
-            />
-          ))}
-        </div>
-      </div>
+    <div>
+      <FacebookLogin
+        appId="312211730529505"
+        autoLoad={false}
+        fields="name,email,picture"
+        onClick={componentClicked}
+        callback={responseFacebook}
+      />
     </div>
   );
 }

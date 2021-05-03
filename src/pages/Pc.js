@@ -3,13 +3,20 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/sharedComponents/Header";
 import { itemInCart } from "../redux/features/cart/cartSlice";
+import Pusher from "pusher-js";
 
-import {
-  fetchLaptopByPage,
-  laptopByPage,
-} from "../redux/features/post/laptopItemSlice";
 import "./cssFolder/pc.css";
 const Pc = () => {
+  useEffect(() => {
+    const pusher = new Pusher("0489280acfa7987721e1", {
+      cluster: "ap1",
+    });
+
+    var channel = pusher.subscribe("messages");
+    channel.bind("inserted", (data) => {
+      alert(JSON.stringify(data));
+    });
+  }, []);
   return (
     <div className="bttn">
       <Header />

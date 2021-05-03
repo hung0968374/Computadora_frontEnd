@@ -35,7 +35,7 @@ a {
 
 .main {
   width: 100%;
-  height: 60%;
+  height: 55%;
   display: flex;
 }
 
@@ -96,14 +96,6 @@ input:focus {
 .forgot_pw {
   margin-left: 20%;
 }
-.footer {
-  width: 100%;
-  height: 27%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 .confirm {
   background-color: #05807d;
@@ -120,6 +112,15 @@ input:focus {
 
 .confirm:hover {
   background-color: #075250;
+}
+.footer {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: cadetblue; */
 }
 
 .confirm {
@@ -138,6 +139,26 @@ input:focus {
   align-items: center;
   color: red;
   font-size: 18px;
+}
+.logginWithFacebookBttn {
+  border-radius: 2px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: background-color 0.3s, border-color 0.3s;
+  background-color: #4c69ba;
+  border: calc(0.06887vw + 0.67769px) solid #4c69ba;
+  padding: calc(0.34435vw + 13.38843px) calc(0.34435vw + 18.38843px);
+  width: 21.6rem;
+}
+.footer div,
+button {
+  margin-bottom: 10px;
 }
 @keyframes fadeOut {
   0% {

@@ -10,8 +10,6 @@ function Posts() {
   ];
   const [imagesUrls, setImagesUrls] = useState(initialState);
   const [selectedIndex, setSelectedIndex] = useState(0);
-
-  console.log(selectedIndex);
   return (
     <div className="posts_post">
       <div className="posts_image_container">
