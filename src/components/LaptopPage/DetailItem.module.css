@@ -2,6 +2,17 @@
   width: 94rem;
   height: 150vh;
   margin: auto;
+  animation: fadeIn 1s ease;
+}
+
+/* animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* wrapper */
@@ -33,6 +44,7 @@
 
 .boldText {
   font-weight: bold;
+  margin: 0;
 }
 
 .product_img img {
@@ -59,6 +71,10 @@
   height: 100%;
   display: flex;
   flex: 6;
+}
+
+.info_product p {
+  margin: 0;
 }
 
 .guarantee {
@@ -253,4 +269,32 @@ button {
 
 .guess_comments button {
   margin-left: 52rem;
+}
+
+.guess_comments button {
+  background-color: #11dbef;
+  color: white;
+}
+
+/* textarea */
+
+textarea {
+  border: none;
+  margin-left: 1rem;
+  border-radius: 30px;
+  background-color: #dcdcdc;
+  padding-top: 20px;
+  padding-left: 10px;
+  transition: 100ms;
+  font-size: 16px;
+}
+
+textarea:focus {
+  outline: none;
+  border: 1px solid #11dbef;
+}
+
+.block1 {
+  width: 100%;
+  height: 15rem;
 }

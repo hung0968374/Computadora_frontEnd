@@ -1,17 +1,40 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import * as styles from "./header_style.module.css";
-const Header = () => {
+
+const Header = ({ token }) => {
+  // khai bao
+  const history = useHistory();
+  const tokenGetFromLocalStorage = localStorage.getItem("userToken");
+  const HandleLoggoutEvent = () => {
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("userInfo");
+  };
+  const [userStatus, setUserStatus] = useState(false);
+
+  //function
+  const ClickLogoToReturnToLandingPage = () => {
+    history.push("/");
+  };
+  const ClickToAccountImage = () => {
+    setUserStatus(!userStatus);
+  };
   const link_style = {
     color: "black",
   };
+
   return (
     <div className={styles.header}>
       <div className={styles.nav_container}>
         <div className={styles.wrapper}>
           <nav>
             <div className={styles.logo}>
-              <img src="/images/laptop.svg" alt="" />
+              <img
+                onClick={ClickLogoToReturnToLandingPage}
+                className={styles.logoCPT}
+                src="/images/laptop.svg"
+                alt=""
+              />
             </div>
             <ul className={styles.nav_items}>
               <li>
@@ -19,7 +42,6 @@ const Header = () => {
                   PC{" "}
                 </Link>
               </li>
-
               <li className={styles.li_className}>
                 <Link style={link_style} to="/laptop">
                   Laptop
@@ -30,27 +52,58 @@ const Header = () => {
                   Linh kiện
                 </Link>
               </li>
-
               <li>
                 <Link style={link_style} to="/blog">
                   Blog{" "}
                 </Link>
               </li>
-
               <li>
                 <div className={styles.Account}>
                   <div className={styles.Acc_Image}>
-                    <img src="/images/account-icon.svg" alt="" />{" "}
+                    <img
+                      onClick={ClickToAccountImage}
+                      style={styles.profileImg}
+                      src="/images/account-icon.svg"
+                      alt=""
+                    />{" "}
                   </div>
+                  {userStatus ? (
+                    tokenGetFromLocalStorage ? (
+                      <div className={styles.dropdown_content}>
+                        <div className={styles.Content_of_DropDown_Content1}>
+                          <Link
+                            className={styles.textInDDC}
+                            to=""
+                            onClick={HandleLoggoutEvent}
+                          >
+                            Đăng xuất
+                          </Link>
+                        </div>
 
-                  <div className={styles.dropdown_content}>
-                    <Link to="/signIn">
-                      <p>Đăng nhập</p>
-                    </Link>
-                    <Link to="/signUP">
-                      <p>Đăng ký</p>
-                    </Link>
-                  </div>
+                        <div className={styles.Content_of_DropDown_Content2}>
+                          <Link
+                            to="/userInformation"
+                            className={styles.textInDDC}
+                          >
+                            Chỉnh sửa thông tin cá nhân
+                          </Link>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className={styles.dropdown_content}>
+                        <div className={styles.Content_of_DropDown_Content1}>
+                          <Link className={styles.textInDDC} to="/signIn">
+                            Đăng nhập
+                          </Link>
+                        </div>
+                        <div className={styles.Content_of_DropDown_Content2}>
+                          <Link className={styles.textInDDC} to="/signUP">
+                            Đăng ký
+                          </Link>
+                        </div>
+                      </div>
+                    )
+                  ) : null}
                 </div>
               </li>
             </ul>

@@ -1,0 +1,53 @@
+.Container {
+  padding: 0;
+  margin: 0;
+  margin: auto;
+  width: 96rem;
+  height: 100vh;
+  background-color: #a1d2f5;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.wrapper h1 {
+  margin: 0;
+  flex-direction: column;
+}
+
+.wrapper {
+  width: 45rem;
+  height: 20rem;
+  margin: auto;
+  border-radius: 50px;
+  background-color: #8bc5ef;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.imageConfirm img {
+  margin-top: 3rem;
+  width: 16%;
+  height: 40%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 80px;
+  cursor: pointer;
+  display: inline-block;
+  transition: 400ms;
+}
+
+.imageConfirm img:hover {
+  transform: translateY(-10px);
+}
+
+.textConfirm {
+  margin-top: 3rem;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.textConfirm h3 {
+  font-size: 23px;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-family: "Raleway", sans-serif;
+}

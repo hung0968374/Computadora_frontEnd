@@ -21,6 +21,8 @@ nav {
 nav ul {
   display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 .nav_container {
   width: 100%;
@@ -30,18 +32,13 @@ nav ul {
   margin-right: 10%;
 }
 nav ul li {
-  margin-top: 3rem;
   margin-left: 11%;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   opacity: 0.7;
 }
 .logo {
   position: absolute;
   width: 5%;
-}
-
-.logo img {
-  padding-bottom: 2rem;
 }
 
 .nav_items {
@@ -62,34 +59,106 @@ nav ul li {
 
 .Account {
   position: relative;
-  display: inline-block;
 }
 .Account img {
   width: 100%;
-  position: relative;
-  bottom: 2.2rem;
-}
-.Acc_Image {
-  width: 28%;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 15px;
 }
 
 .dropdown_content {
-  display: none;
-  background-color: red;
-  min-width: 160px;
+  display: block;
+  position: absolute;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
-}
-
-.Acc_Image:hover .dropdown_content {
-  background-color: black;
-}
-
-button {
-  width: 28%;
-  border-style: none;
-}
-
-p {
+  z-index: 1199;
   font-size: 16px;
+}
+
+.Acc_Image {
+  width: 30%;
+  margin-bottom: 0.5rem;
+}
+
+.logoCPT {
+  cursor: pointer;
+}
+
+/* animation */
+
+.Content_of_DropDown_Content1,
+.Content_of_DropDown_Content2,
+.Content_of_DropDown_Content3 {
+  background-color: white;
+  padding-top: 15px;
+  display: flex;
+  width: 14rem;
+  height: 2.5rem;
+  border: 1px solid gray;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.Content_of_DropDown_Content1 {
+  animation: fromRightToLeft 400ms ease;
+}
+.Content_of_DropDown_Content2 {
+  animation: fromRightToLeft 500ms ease;
+  animation-delay: 100ms;
+}
+.Content_of_DropDown_Content3 {
+  animation: fromRightToLeft 600ms ease;
+  animation-delay: 100ms;
+}
+.textInDDC {
+  color: black;
+}
+
+/* animation for header */
+
+.logo {
+  animation: fromTopToBottom 300ms ease-in;
+}
+
+.nav_items li:nth-child(1) {
+  animation: fromTopToBottom 400ms ease-in;
+  animation-delay: 200ms;
+}
+.nav_items li:nth-child(2) {
+  animation: fromTopToBottom 500ms ease-in;
+  animation-delay: 300ms;
+}
+.nav_items li:nth-child(3) {
+  animation: fromTopToBottom 600ms ease-in;
+  animation-delay: 400ms;
+}
+.nav_items li:nth-child(4) {
+  animation: fromTopToBottom 700ms ease-in;
+  animation-delay: 500ms;
+}
+.nav_items li:nth-child(5) {
+  animation: fromTopToBottom 800ms ease-in;
+  animation-delay: 600ms;
+}
+
+@keyframes fromRightToLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes fromTopToBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }

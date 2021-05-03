@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/sharedComponents/Header";
-import Board from "../components/LaptopPage/board";
-import ItemSection from "../components/LaptopPage/itemSection";
 import Footer from "../components/LaptopPage/footer";
 import axios from "axios";
+import LaptopBoard from "../components/LaptopPage/laptopBoard";
+import ItemSection from "../components/LaptopPage/ItemSection";
 const Laptop = () => {
   const [allData, setAllData] = useState([]);
   useEffect(async () => {
@@ -12,10 +12,11 @@ const Laptop = () => {
     setAllData(data);
   }, []);
 
+  console.log("data from laptop", allData);
   return (
     <div>
       <Header />
-      <Board />
+      <LaptopBoard />
       <ItemSection allData={allData} setAllData={setAllData} />
       <Footer />
     </div>

@@ -8,6 +8,7 @@ import Footer from "../components/LaptopPage/footer";
 
 export default function DetailItem({ match }) {
   const [SpecificItemById, setSpecificItemById] = useState([]);
+
   useEffect(async () => {
     const dataFromSpecificId = await axios.get(
       `http://localhost:5000/products/${match.params.id}`
@@ -16,13 +17,17 @@ export default function DetailItem({ match }) {
     setSpecificItemById(data);
   }, []);
 
+  useEffect(() => {
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   const BaseUrl = "https://res.cloudinary.com/dsykf3mo9/image/upload/";
 
   console.log("data", SpecificItemById);
   console.log(match);
   return (
     <div>
-      <Header/> 
+      <Header />
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.product_img}>
@@ -137,7 +142,7 @@ export default function DetailItem({ match }) {
               className={styles.textArea}
               name=""
               id=""
-              cols="150"
+              cols="108"
               rows="10"
               placeholder="Để lại bình luận của bạn"
             ></textarea>
@@ -145,6 +150,7 @@ export default function DetailItem({ match }) {
           </div>
         </div>
       </div>
+      <div className={styles.block1}></div>
       <Footer />
     </div>
   );

@@ -1,8 +1,49 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import * as styles from "./signIN.module.css";
-export default function signIN() {
-  
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import * as styles from "./SignIN.module.css";
+export default function SignIN() {
+  const history = useHistory();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const HandleLoginSubmit = async () => {
+    try {
+      if (!username) {
+        alert("You have not enter your username");
+      }
+      if (!password) {
+        alert("You have not enter your password");
+      }
+      if (username != "" && password != "") {
+        const inputAccount = {
+          username,
+          password,
+        };
+        const { data } = await axios.post(
+          "http://localhost:5000/api/user/login",
+          inputAccount
+        );
+        const tokenReceiveFromDatabase = data.token;
+        console.log("token from api ", tokenReceiveFromDatabase);
+
+        localStorage.setItem("userInfo", JSON.stringify(data.user));
+        localStorage.setItem("userToken", tokenReceiveFromDatabase);
+
+        console.log(localStorage);
+        alert("Loggin succesfully, Welcome back ");
+        history.push("/");
+      }
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+
+  const handleEnterToProcess = (e) => {
+    if (e.key === "Enter") {
+      HandleLoginSubmit();
+    }
+  };
+
   return (
     <div>
       <div className={styles.container}>
@@ -21,18 +62,22 @@ export default function signIN() {
               <ul>
                 <li>
                   <input
-                    maxlength="15"
+                    maxLength="20"
                     type="text"
                     placeholder="Tên đăng nhập"
+                    onChange={(e) => setUsername(e.target.value)}
+                    onKeyDown={handleEnterToProcess}
                   />
                 </li>
                 <li>
                   <input
-                    maxlength="12"
-                    minlength="6"
-                    class="password"
+                    maxLength="20"
+                    minLength="6"
+                    className={styles.password}
                     type="password"
                     placeholder="Mật khẩu"
+                    onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={handleEnterToProcess}
                   />
                 </li>
                 <li className={styles.more_func}>
@@ -50,8 +95,8 @@ export default function signIN() {
           </div>
 
           <div className={styles.footer}>
-            <div className={styles.confirm}>
-              <Link className={styles.confirmLink}>Đăng nhập</Link>
+            <div className={styles.confirm} onClick={HandleLoginSubmit}>
+              Đăng nhập
             </div>
           </div>
         </div>

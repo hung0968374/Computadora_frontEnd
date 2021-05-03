@@ -33,7 +33,6 @@
 
 .main {
   display: flex;
-  margin-top: 1%;
 }
 
 .logo {
@@ -41,11 +40,10 @@
   flex: 1;
   justify-content: center;
   text-align: center;
-  margin-top: 3%;
 }
 
 .input_container {
-  margin-top: 8%;
+  margin-top: 1.5rem;
   flex: 1;
   margin-left: 8%;
 }
@@ -59,16 +57,14 @@
   list-style: none;
 }
 
-li input {
-  height: 4rem;
+.input_container li input {
+  height: 3rem;
   width: 70%;
   padding-left: 5%;
   margin-bottom: 8%;
-}
-
-input {
   border-radius: 50px;
   border: none;
+  font-size: 16px;
   background-color: #faf3f3;
 }
 
@@ -105,12 +101,10 @@ p {
   justify-items: center;
   display: inline-block;
   font-size: 20px;
+  color: white;
+  cursor: pointer;
 }
 
 .confirm:hover {
   transform: translateY(-8px);
-}
-
-.confirmLink{
-  color: #faf3f3;
 }

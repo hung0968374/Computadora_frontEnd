@@ -1,36 +1,88 @@
-.post {
-  height: 100%;
-  width: 100%;
-  margin-top: 2%;
-}
-.image_container {
-  margin-top: 10%;
-  margin-left: 10%;
-  width: 70%;
-  height: 70%;
+.Post_Wrapper {
+  width: 35rem;
+  height: 26rem;
   background-color: #8bc5ef;
-  border-radius: 5%;
+  margin: auto;
+  margin-top: 6rem;
+  border-radius: 40px;
+  border: 1px solid black;
+}
+
+.imagePost {
   display: flex;
-  justify-content: center;
-}
-.hero_image {
-  padding-top: 4rem;
-  width: 450px;
-  height: 400px;
-}
-.hero_image img {
-  transition: 300ms;
-}
-.hero_image img:hover {
-  transform: scale(1.1);
-}
-.item {
   width: 100%;
-  height: 250px;
-}
-.imgs {
   height: 100%;
-  width: 100%;
-  object-fit: contain;
-  border-radius: 5%;
+  z-index: 99 !important;
+  object-fit: cover;
+}
+
+.backgroundHolderForImages {
+  display: flex;
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+  position: absolute;
+  width: 27rem;
+  background-color: #dcdcdc;
+  border-radius: 40px;
+  height: 23.5rem;
+  border: 1px solid black;
+}
+.changeChanel {
+  margin-top: 1rem;
+  margin-left: 30rem;
+  display: flex;
+  width: 5rem;
+  height: 23.5rem;
+  flex-direction: column;
+}
+
+.buttonChangeChanel,
+.buttonChangeChanel1 {
+  border: 1px solid black;
+
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 70%;
+  height: 15%;
+  background-color: #dcdcdc;
+  border-radius: 100%;
+}
+
+.buttonChangeChanel1 {
+  margin-top: 3rem;
+}
+
+/* antenna */
+
+.antenna1 {
+  display: flex;
+  margin-left: 10rem;
+  width: 6rem;
+  height: 7px;
+  background-color: #dcdcdc;
+  transform: rotate(40deg);
+}
+
+.antenna2 {
+  display: flex;
+  margin-left: 12rem;
+  width: 10rem;
+  height: 7px;
+  background-color: #f1e9e9;
+  transform: rotate(135deg);
+}
+
+/* animation */
+.ChangeEffect {
+  animation: OpacityChange 400ms ease-in;
+}
+
+@keyframes OpacityChange {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

@@ -19,7 +19,6 @@
 }
 
 .title {
-  display: flex;
   font-weight: bold;
   font-size: 24px;
 }
@@ -34,7 +33,7 @@
 
 .main {
   display: flex;
-  margin-top: 1%;
+  margin-top: 3rem;
 }
 
 .logo {
@@ -42,13 +41,12 @@
   flex: 1;
   justify-content: center;
   text-align: center;
-  margin-top: 3%;
 }
 
 .input_container {
-  margin-top: 8%;
   flex: 1;
   margin-left: 8%;
+  padding-top: 2rem;
 }
 
 .logo img {
@@ -60,16 +58,14 @@
   list-style: none;
 }
 
-li input {
-  height: 4rem;
+.input_container li input {
+  height: 3rem;
   width: 70%;
   padding-left: 5%;
   margin-bottom: 8%;
-}
-
-input {
   border-radius: 50px;
   border: none;
+  font-size: 16px;
   background-color: #faf3f3;
 }
 
@@ -104,14 +100,12 @@ p {
   transition: 300ms;
   text-align: center;
   justify-items: center;
-  display: inline-block;
   font-size: 20px;
+  color: white;
+  margin-top: 1.5rem;
+  cursor: pointer;
 }
 
 .confirm:hover {
   transform: translateY(-8px);
-}
-
-.confirmLink{
-  color: #faf3f3;
 }
