@@ -27,8 +27,6 @@ const Laptop = () => {
   };
   useEffect(() => {
     dispatch(fetchLaptopByPage(1));
-    console.log("lap slice", laptopItemsInSeperatedPage);
-    console.log("page", currentPage);
   }, []);
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });

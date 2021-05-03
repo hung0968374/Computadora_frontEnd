@@ -21,8 +21,8 @@ const CartPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const initialState = {
-    username: "",
-    userPhone: "",
+    customerName: "",
+    customerPhone: "",
     email: "",
     address: "",
   };
@@ -111,11 +111,11 @@ const CartPage = () => {
       } else {
         setEmailFormatIsValid(true);
       }
-      if (form.username === " " || form.username.trim() === "") {
+      if (form.customerName === " " || form.customerName.trim() === "") {
         alertToUser.push("Không được để trống trường họ và tên");
         setReadyToFetchBackend(false);
       }
-      if (form.userPhone === " " || form.userPhone.trim() === "") {
+      if (form.customerPhone === " " || form.customerPhone.trim() === "") {
         alertToUser.push("Không được để trống số điện thoại");
         setReadyToFetchBackend(false);
       }
@@ -137,13 +137,14 @@ const CartPage = () => {
         try {
           const response = await API.createNewInvoice({
             invoiceItems: itemsInCart,
+            form,
           });
           console.log("response", response);
           setInfoMsgToUser(
             "Đặt hàng thành công, chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất."
           );
         } catch (error) {
-          console.log(error);
+          console.log(error.message);
         }
       }
     }
@@ -218,24 +219,24 @@ const CartPage = () => {
                     <div className={styles.fillname}>
                       <input
                         type="text"
-                        name="username"
+                        name="customerName"
                         placeholder="Họ và tên"
                         onChange={_handlingFormChange}
                       />
-                      {form.username.length == 0 ||
-                      form.username.trim() === "" ? (
+                      {form.customerName.length == 0 ||
+                      form.customerName.trim() === "" ? (
                         <span>Vui lòng nhập họ và tên</span>
                       ) : null}
                     </div>
                     <div className={styles.fillname}>
                       <input
                         type="text"
-                        name="userPhone"
+                        name="customerPhone"
                         placeholder="Số điện thoại"
                         onChange={_handlingFormChange}
                       />
-                      {form.userPhone.length == 0 ||
-                      form.userPhone.trim() === "" ? (
+                      {form.customerPhone.length == 0 ||
+                      form.customerPhone.trim() === "" ? (
                         <span>Vui lòng nhập số điện thoại</span>
                       ) : null}
                     </div>

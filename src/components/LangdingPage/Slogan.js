@@ -2,6 +2,8 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as styles from "./slogan.module.css";
 const Slogan = () => {
+  const userToken = localStorage.getItem("token");
+  const currentUserInfo = JSON.parse(localStorage.getItem("userInfo"));
   const history = useHistory();
   const _signIn = () => {
     history.push("/signIn");
@@ -21,12 +23,21 @@ const Slogan = () => {
         </p>
       </div>
       <div className={styles.auth}>
-        <div className={styles.sign_in} onClick={_signIn}>
-          Đăng nhập
-        </div>
-        <div className={styles.sign_up} onClick={_signUp}>
-          Đăng ký
-        </div>
+        {!userToken ? (
+          <>
+            <div className={styles.sign_in} onClick={_signIn}>
+              Đăng nhập
+            </div>
+            <div className={styles.sign_up} onClick={_signUp}>
+              Đăng ký
+            </div>
+          </>
+        ) : (
+          <div className={styles.welcomeUser}>
+            Chúc <span>{currentUserInfo.name}</span> có những trải nghiệm tuyệt
+            vời 🥰
+          </div>
+        )}
       </div>
     </div>
   );

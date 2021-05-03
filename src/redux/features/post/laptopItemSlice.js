@@ -30,7 +30,7 @@ const laptopItemSlice = createSlice({
     [fetchLaptopByPage.fulfilled]: (state, action) => {
       state.isFetchingLaptopItemsByPage = false;
       state.error = false;
-      if (!state.pages.includes(action.payload.page)) {
+      if (!state?.pages.includes(action?.payload?.page)) {
         state.arrayOfLaptopItems = [
           ...state.arrayOfLaptopItems,
           ...action.payload.data,

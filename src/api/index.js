@@ -3,9 +3,15 @@ import axios from "axios";
 const API = axios.create({
   baseURL: "http://localhost:5000",
 });
+
 API.interceptors.request.use((req) => {
+  var facebookUserId = "";
+  if (localStorage.getItem("facebookCurrentUserId")) {
+    facebookUserId = localStorage.getItem("facebookCurrentUserId");
+  }
   if (localStorage.getItem("token")) {
     req.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+    req.headers.facebookUserId = facebookUserId;
   }
   return req;
 });

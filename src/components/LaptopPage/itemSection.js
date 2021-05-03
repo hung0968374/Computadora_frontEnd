@@ -4,7 +4,6 @@ import Item from "./Item/Item";
 import * as styles from "./itemSection.module.css";
 
 export default function item_section({ allData, loadMoreData, isLoadingData }) {
-  console.log(isLoadingData);
   return (
     <div className={styles.item_section}>
       {/* <div className={styles.sort_bar}></div> */}

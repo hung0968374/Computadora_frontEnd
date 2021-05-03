@@ -66,12 +66,14 @@ export default function SignIN() {
     const userInfo = {
       email: "",
       name: res.name,
-      userId: res.userId,
+      facebookUserId: res.id,
       imageUrl: res.picture.data.url,
     };
+    const facebookCurrentUserId = res.id;
     const token = res?.accessToken;
     localStorage.setItem("token", token);
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    localStorage.setItem("facebookCurrentUserId", facebookCurrentUserId);
     history.push("/");
   };
 
