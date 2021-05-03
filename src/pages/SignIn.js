@@ -63,6 +63,7 @@ export default function SignIN() {
 
   /////////////facebook loggin
   const responseFacebook = (res) => {
+    console.log(res);
     const userInfo = {
       email: "",
       name: res.name,

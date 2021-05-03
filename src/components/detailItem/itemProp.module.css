@@ -28,7 +28,7 @@
   width: 90%;
   height: 90%;
   object-fit: contain;
-  animation: toLeft 1.5s ease;
+  animation: detailItem_toLeft 1.5s ease;
 }
 .imgWrapper .ImgGallery {
   width: 100%;
@@ -188,13 +188,15 @@
 .continueShopping:hover {
   transform: translateY(-6px);
 }
-@keyframes toLeft {
+@keyframes detailItem_toLeft {
   0% {
     opacity: 0;
+    filter: blur(3px);
     transform: translateX(30px);
   }
   100% {
     opacity: 1;
+    filter: blur(0px);
     transform: translateX(0px);
   }
 }

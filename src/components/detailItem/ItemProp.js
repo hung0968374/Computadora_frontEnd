@@ -30,9 +30,10 @@ const ItemProp = ({ data }) => {
   useEffect(() => {
     setToken(localStorage.getItem("token"));
     setTotalQuantityInCart(parseInt(localStorage.getItem("quantity")));
-    dispatch(recoverItemsInCartEveryRefresh(oldCart));
+    if (oldCart !== null) {
+      dispatch(recoverItemsInCartEveryRefresh(oldCart));
+    }
   }, []);
-  console.log("item redux", totalItemInCartTakingFromRedux);
   useEffect(() => {
     if (totalItemInCartTakingFromRedux !== null) {
       localStorage.setItem(
@@ -66,6 +67,8 @@ const ItemProp = ({ data }) => {
       }
     }
   };
+  console.log("item redux", totalItemInCartTakingFromRedux);
+
   return (
     <div className={styles.itemPropContainer}>
       <div className={styles.imgArea}>

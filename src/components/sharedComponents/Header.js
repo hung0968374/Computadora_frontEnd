@@ -28,11 +28,7 @@ const Header = () => {
   const userOptionRef = useRef();
   ///function
   const _clickedToUserImg = () => {
-    if (!token) {
-      history.push("/signIn");
-    } else {
-      setOpenUserInfo(true);
-    }
+    setOpenUserInfo(true);
   };
   const _logOut = () => {
     localStorage.clear();
@@ -131,9 +127,13 @@ const Header = () => {
                 alt=""
                 className={styles.userImgStyle}
               />
-              <i className={styles.amountOfNotification}>
-                {totalQuantityOfItemsInCart || 0}
-              </i>
+              {totalQuantityOfItemsInCart > 0 ? (
+                <>
+                  <i className={styles.amountOfNotification}>
+                    {totalQuantityOfItemsInCart}
+                  </i>
+                </>
+              ) : null}
             </>
           ) : (
             <img
@@ -142,7 +142,7 @@ const Header = () => {
               className={styles.userImgStyle}
             />
           )}
-          {token?.length && openUserInfo ? (
+          {token?.length > 0 && openUserInfo ? (
             <div className={styles.userOption}>
               <div className={styles.userOptionContentWrapper}>
                 <div className={styles.optionItem} onClick={_logOut}>
@@ -153,6 +153,28 @@ const Header = () => {
                   onClick={_redirectToCartPage}
                 >
                   Giỏ hàng ( <span>{totalQuantityOfItemsInCart}</span> )
+                </div>
+              </div>
+            </div>
+          ) : null}
+          {!token && openUserInfo ? (
+            <div className={styles.userOption}>
+              <div className={styles.userOptionContentWrapper}>
+                <div
+                  className={styles.optionItem}
+                  onClick={() => {
+                    history.push("/signIn");
+                  }}
+                >
+                  Đăng nhập
+                </div>
+                <div
+                  className={styles.optionItem}
+                  onClick={() => {
+                    history.push("/signUp");
+                  }}
+                >
+                  Đăng kí
                 </div>
               </div>
             </div>
