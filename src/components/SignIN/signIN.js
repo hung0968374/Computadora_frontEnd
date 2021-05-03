@@ -1,11 +1,22 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import GoogleLogin from "react-google-login";
 import { Link, useHistory } from "react-router-dom";
 import * as styles from "./SignIN.module.css";
 export default function SignIN() {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  //function
+  const responseGoogle = (response) => {
+    console.log(response);
+    const { access_token } = response.tokenObj;
+    localStorage.setItem("userToken", access_token);
+    localStorage.setItem("userInfo", JSON.stringify(response.profileObj));
+    history.push("/");
+  };
+
   const HandleLoginSubmit = async () => {
     try {
       if (!username) {
@@ -98,6 +109,15 @@ export default function SignIN() {
             <div className={styles.confirm} onClick={HandleLoginSubmit}>
               Đăng nhập
             </div>
+          </div>
+          <div className={styles.signInGoogle}>
+            <GoogleLogin
+              clientId="773024041759-e9rq8jqlg36eabq2t9p1kqk93shu2f5p.apps.googleusercontent.com"
+              buttonText="Đăng nhập với Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
           </div>
         </div>
       </div>

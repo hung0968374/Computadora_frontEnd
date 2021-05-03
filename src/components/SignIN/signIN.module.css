@@ -24,7 +24,7 @@
 }
 .wrapper {
   width: 60%;
-  height: 80%;
+  height: 85%;
   background-color: #8bc5ef;
   margin: auto;
   border-radius: 70px;
@@ -105,9 +105,33 @@ p {
   font-size: 20px;
   color: white;
   cursor: pointer;
-  margin-top: 1.5rem;
+  margin-top: -2rem;
 }
 
 .confirm:hover {
+  transform: translateY(-8px);
+}
+
+/* google */
+.signInGoogle {
+  margin-left: 11.6rem;
+}
+.signInGoogle button {
+  display: inline-block;
+  margin-top: 2rem;
+  transition: 300ms;
+  width: 34.5rem;
+  height: 4rem;
+  padding-left: 9.5rem;
+}
+
+.signInGoogle span {
+  font-weight: 500;
+  font-size: 19px;
+}
+.signInGoogle div {
+  margin-left: 9rem;
+}
+.signInGoogle button:hover {
   transform: translateY(-8px);
 }

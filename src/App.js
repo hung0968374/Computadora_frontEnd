@@ -7,10 +7,10 @@ import store from "./redux/store";
 import { Provider } from "react-redux";
 import SignUP from "./components/SignUP/SignUP";
 import PWRecover from "./components/PWRecover/PWRecover";
-import SignIN from "./components/SignIN/SignIN";
 import ConfirmPage from "./components/confirmAndActivateAcount/ConfirmPage";
 import ActivePage from "./components/confirmAndActivateAcount/ActivePage";
 import UserInfo from "./components/UserInfo/UserInfo";
+import SignIN from "./components/SignIN/SignIN";
 
 function App() {
   return (

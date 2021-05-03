@@ -60,7 +60,7 @@ nav ul li {
 .Account {
   position: relative;
 }
-.Account img {
+.Acc_Icon {
   width: 100%;
   cursor: pointer;
   padding: 0;
@@ -84,6 +84,12 @@ nav ul li {
   cursor: pointer;
 }
 
+.icon {
+  margin-top: 0;
+  width: 20%;
+  height: 50%;
+}
+
 /* animation */
 
 .Content_of_DropDown_Content1,
@@ -94,8 +100,6 @@ nav ul li {
   display: flex;
   width: 14rem;
   height: 2.5rem;
-  border: 1px solid gray;
-  justify-content: center;
   cursor: pointer;
 }
 
@@ -112,6 +116,7 @@ nav ul li {
 }
 .textInDDC {
   color: black;
+  padding-left: 10px;
 }
 
 /* animation for header */

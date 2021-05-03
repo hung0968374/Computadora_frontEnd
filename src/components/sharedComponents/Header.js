@@ -61,6 +61,7 @@ const Header = ({ token }) => {
                 <div className={styles.Account}>
                   <div className={styles.Acc_Image}>
                     <img
+                      className={styles.Acc_Icon}
                       onClick={ClickToAccountImage}
                       style={styles.profileImg}
                       src="/images/account-icon.svg"
@@ -71,6 +72,11 @@ const Header = ({ token }) => {
                     tokenGetFromLocalStorage ? (
                       <div className={styles.dropdown_content}>
                         <div className={styles.Content_of_DropDown_Content1}>
+                          <img
+                            className={styles.icon}
+                            src="/images/logout.svg"
+                            alt=""
+                          />
                           <Link
                             className={styles.textInDDC}
                             to=""
@@ -81,22 +87,37 @@ const Header = ({ token }) => {
                         </div>
 
                         <div className={styles.Content_of_DropDown_Content2}>
+                          <img
+                            className={styles.icon}
+                            src="/images/userInfo.png"
+                            alt=""
+                          />
                           <Link
                             to="/userInformation"
                             className={styles.textInDDC}
                           >
-                            Chỉnh sửa thông tin cá nhân
+                            Thông tin cá nhân
                           </Link>
                         </div>
                       </div>
                     ) : (
                       <div className={styles.dropdown_content}>
                         <div className={styles.Content_of_DropDown_Content1}>
+                          <img
+                            className={styles.icon}
+                            src="/images/login.svg"
+                            alt=""
+                          />
                           <Link className={styles.textInDDC} to="/signIn">
                             Đăng nhập
                           </Link>
                         </div>
                         <div className={styles.Content_of_DropDown_Content2}>
+                          <img
+                            className={styles.icon}
+                            src="/images/signIn.svg"
+                            alt=""
+                          />
                           <Link className={styles.textInDDC} to="/signUP">
                             Đăng ký
                           </Link>
