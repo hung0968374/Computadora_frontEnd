@@ -1,7 +1,8 @@
 .header {
   width: 100%;
-  height: 9vh;
-  background-color: darkgray;
+  height: 6rem;
+  background-color: rgb(243 243 243);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.25);
   z-index: 99999 !important;
 }
 .goingUp {
@@ -87,10 +88,10 @@
   padding-top: 0rem;
   border-radius: 50%;
   position: absolute;
-  right: 10%;
+  right: 11.5rem;
 }
 .amountOfNotification {
-  position: relative;
+  position: absolute;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -100,16 +101,16 @@
   background-color: red;
   font-size: 1.1rem;
   font-weight: 550;
-  top: -35%;
   font-style: normal;
-  left: 40%;
+  right: 11.7rem;
+  bottom: 4rem;
 }
 .userOption {
-  width: 120px;
+  width: 150px;
   height: auto;
   position: absolute;
-  top: 9vh;
-  right: 9%;
+  top: 6rem;
+  right: 6.5rem;
   display: block;
   border-radius: 5px;
   padding: 0px;
@@ -148,12 +149,13 @@
 }
 .optionItem {
   width: 100%;
-  height: 5vh;
+  height: 3rem;
   background-color: whitesmoke;
   display: flex;
-  justify-content: center;
+  padding-left: 5px;
+  justify-content: flex-start;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 2px;
   cursor: pointer;
   border: 1px solid rgb(29, 28, 28);
 }

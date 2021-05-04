@@ -66,7 +66,6 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [userOptionRef]);
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 160) {
@@ -154,6 +153,14 @@ const Header = () => {
                 >
                   Giỏ hàng ( <span>{totalQuantityOfItemsInCart}</span> )
                 </div>
+                <div
+                  className={styles.optionItem}
+                  onClick={() => {
+                    history.push("/personalInfo");
+                  }}
+                >
+                  Thông tin cá nhân
+                </div>
               </div>
             </div>
           ) : null}
@@ -180,18 +187,6 @@ const Header = () => {
             </div>
           ) : null}
         </div>
-        {/* {token?.length && openUserInfo ? (
-          <div className={styles.userOption}>
-            <div className={styles.userOptionContentWrapper}>
-              <div className={styles.optionItem} onClick={_logOut}>
-                Đăng xuất
-              </div>
-              <div className={styles.optionItem} onClick={_redirectToCartPage}>
-                Giỏ hàng ( <span>{totalQuantityOfItemsInCart}</span> )
-              </div>
-            </div>
-          </div>
-        ) : null} */}
       </div>
     </div>
   );

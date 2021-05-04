@@ -2,12 +2,13 @@
   margin: 0;
 }
 .App {
-  height: 91vh;
+  height: calc(100vh - 6rem);
   width: 100%;
   font-family: "Helvetica", sans-serif;
   background-color: #a1d2f5;
-  margin-top: 9vh;
+  margin-top: 6rem;
   display: flex;
+  overflow-y: hidden;
 }
 .pageWrapper {
   width: 120rem;

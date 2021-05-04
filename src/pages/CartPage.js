@@ -138,6 +138,7 @@ const CartPage = () => {
           const response = await API.createNewInvoice({
             invoiceItems: itemsInCart,
             form,
+            billCharge: moneyToStr,
           });
           console.log("response", response);
           setInfoMsgToUser(
@@ -154,148 +155,151 @@ const CartPage = () => {
     .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
   /////function for subcomponent
   return (
-    <div className={styles.pageWrapper}>
-      <div className={styles.cartContainer}>
-        <Header />
-        {itemsInCart?.length == 0 ? (
-          <>
-            <div className={styles.blankItemContainer}>
-              <section className={styles.cartEmptyArea}>
-                <div className={styles.wrapper}>
-                  <div>
-                    <MdRemoveShoppingCart className={styles.cartEmptyIcon} />
-                  </div>
-                  <div>Giỏ hàng trống</div>
-                  <div
-                    onClick={() => {
-                      history.push("/laptop");
-                    }}
-                  >
-                    <FaAngleLeft />
-                    Tiếp tục mua sắm
-                  </div>
-                </div>
-              </section>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className={styles.subNav}>
-              <div>
-                <FaAngleLeft size={20} />
-                Mua thêm sản phẩm khác
-              </div>
-              <div>Giỏ hàng của bạn</div>
-            </div>
-            <div className={styles.contentContainer}>
-              {/* a
-            a */}
-              {/* show item in cart */}
-              {itemsInCart?.map((item, index) => {
-                return (
-                  <ItemInCart imgUrl={imgUrl} itemInfo={item} key={index} />
-                );
-              })}
-              {/* show item in cart */}
-              {/* a
-            a */}
-              <div className={styles.temporaryTotalMoneyArea}>
-                <div className={styles.totalItems}>
-                  <div>
-                    Tạm tính (<span>{totalQuantityOfItemsInCart}</span> sản
-                    phẩm):
-                  </div>
-                  <div>{moneyToStr}₫</div>
-                </div>
-                <div className={styles.tempMoney}>
-                  <div>Tổng tiền:</div>
-                  <div>{moneyToStr}₫</div>
-                </div>
-              </div>
-              <div className={styles.userInfo}>
-                <div className={styles.title}>Thông tin khách hàng</div>
-                <div className={styles.form}>
-                  <div className={styles.name_address}>
-                    <div className={styles.fillname}>
-                      <input
-                        type="text"
-                        name="customerName"
-                        placeholder="Họ và tên"
-                        onChange={_handlingFormChange}
-                      />
-                      {form.customerName.length == 0 ||
-                      form.customerName.trim() === "" ? (
-                        <span>Vui lòng nhập họ và tên</span>
-                      ) : null}
+    <div>
+      <Header />
+      <div className={styles.pageWrapper}>
+        <div className={styles.cartContainer}>
+          {itemsInCart?.length == 0 ? (
+            <>
+              <div className={styles.blankItemContainer}>
+                <section className={styles.cartEmptyArea}>
+                  <div className={styles.wrapper}>
+                    <div>
+                      <MdRemoveShoppingCart className={styles.cartEmptyIcon} />
                     </div>
-                    <div className={styles.fillname}>
-                      <input
-                        type="text"
-                        name="customerPhone"
-                        placeholder="Số điện thoại"
-                        onChange={_handlingFormChange}
-                      />
-                      {form.customerPhone.length == 0 ||
-                      form.customerPhone.trim() === "" ? (
-                        <span>Vui lòng nhập số điện thoại</span>
-                      ) : null}
+                    <div>Giỏ hàng trống</div>
+                    <div
+                      onClick={() => {
+                        history.push("/laptop");
+                      }}
+                    >
+                      <FaAngleLeft />
+                      Tiếp tục mua sắm
                     </div>
                   </div>
-                  <div className={styles.emailContainer}>
-                    <input
-                      type="text"
-                      name="email"
-                      placeholder="Email"
-                      className={styles.email}
-                      onChange={_handlingFormChange}
-                    ></input>
-                    {form.email.length == 0 ? (
-                      <span>Vui lòng nhập gmail</span>
-                    ) : null}
-                    {!emailFormatIsValid ? (
-                      <span>Email không đúng định dạng</span>
-                    ) : null}
-                  </div>
-                  <div className={styles.addressContainer}>
-                    <textarea
-                      name="address"
-                      id=""
-                      cols="80"
-                      rows="5"
-                      placeholder="Địa chỉ"
-                      onChange={_handlingFormChange}
-                    ></textarea>
-                    {form.address.length == 0 || form.address.trim() === "" ? (
-                      <span>Vui lòng nhập dia chi</span>
-                    ) : null}
-                  </div>
-                  <div className={styles.address}></div>
-                </div>
+                </section>
               </div>
-              {/* tong tien */}
-              <div className={styles.finalTotal}>
-                <div className={styles.totalMoney}>
-                  <div className={styles.money}>
-                    <div>Tong tien</div>
+            </>
+          ) : (
+            <>
+              <div className={styles.subNav}>
+                <div>
+                  <FaAngleLeft size={20} />
+                  Mua thêm sản phẩm khác
+                </div>
+                <div>Giỏ hàng của bạn</div>
+              </div>
+              <div className={styles.contentContainer}>
+                {/* a
+            a */}
+                {/* show item in cart */}
+                {itemsInCart?.map((item, index) => {
+                  return (
+                    <ItemInCart imgUrl={imgUrl} itemInfo={item} key={index} />
+                  );
+                })}
+                {/* show item in cart */}
+                {/* a
+            a */}
+                <div className={styles.temporaryTotalMoneyArea}>
+                  <div className={styles.totalItems}>
+                    <div>
+                      Tạm tính (<span>{totalQuantityOfItemsInCart}</span> sản
+                      phẩm):
+                    </div>
                     <div>{moneyToStr}₫</div>
                   </div>
-                  <div className={styles.bttn} onClick={_confirmToBuy}>
-                    Đặt hàng
+                  <div className={styles.tempMoney}>
+                    <div>Tổng tiền:</div>
+                    <div>{moneyToStr}₫</div>
+                  </div>
+                </div>
+                <div className={styles.userInfo}>
+                  <div className={styles.title}>Thông tin khách hàng</div>
+                  <div className={styles.form}>
+                    <div className={styles.name_address}>
+                      <div className={styles.fillname}>
+                        <input
+                          type="text"
+                          name="customerName"
+                          placeholder="Họ và tên"
+                          onChange={_handlingFormChange}
+                        />
+                        {form.customerName.length == 0 ||
+                        form.customerName.trim() === "" ? (
+                          <span>Vui lòng nhập họ và tên</span>
+                        ) : null}
+                      </div>
+                      <div className={styles.fillname}>
+                        <input
+                          type="text"
+                          name="customerPhone"
+                          placeholder="Số điện thoại"
+                          onChange={_handlingFormChange}
+                        />
+                        {form.customerPhone.length == 0 ||
+                        form.customerPhone.trim() === "" ? (
+                          <span>Vui lòng nhập số điện thoại</span>
+                        ) : null}
+                      </div>
+                    </div>
+                    <div className={styles.emailContainer}>
+                      <input
+                        type="text"
+                        name="email"
+                        placeholder="Email"
+                        className={styles.email}
+                        onChange={_handlingFormChange}
+                      ></input>
+                      {form.email.length == 0 ? (
+                        <span>Vui lòng nhập gmail</span>
+                      ) : null}
+                      {!emailFormatIsValid ? (
+                        <span>Email không đúng định dạng</span>
+                      ) : null}
+                    </div>
+                    <div className={styles.addressContainer}>
+                      <textarea
+                        name="address"
+                        id=""
+                        cols="80"
+                        rows="5"
+                        placeholder="Địa chỉ"
+                        onChange={_handlingFormChange}
+                      ></textarea>
+                      {form.address.length == 0 ||
+                      form.address.trim() === "" ? (
+                        <span>Vui lòng nhập dia chi</span>
+                      ) : null}
+                    </div>
+                    <div className={styles.address}></div>
+                  </div>
+                </div>
+                {/* tong tien */}
+                <div className={styles.finalTotal}>
+                  <div className={styles.totalMoney}>
+                    <div className={styles.money}>
+                      <div>Tong tien</div>
+                      <div>{moneyToStr}₫</div>
+                    </div>
+                    <div className={styles.bttn} onClick={_confirmToBuy}>
+                      Đặt hàng
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={styles.footer}></div>
-          </>
-        )}
-        {alertMsg?.length > 0 ? (
-          <>
-            {alertMsg.map((msg, index) => {
-              return <ToastErrorMessage msg={msg} key={index} />;
-            })}
-          </>
-        ) : null}
-        <ModalSignUpWrapper msg={infoMsgToUser} closeModal={_closeModal} />;
+              <div className={styles.footer}></div>
+            </>
+          )}
+          {alertMsg?.length > 0 ? (
+            <>
+              {alertMsg.map((msg, index) => {
+                return <ToastErrorMessage msg={msg} key={index} />;
+              })}
+            </>
+          ) : null}
+          <ModalSignUpWrapper msg={infoMsgToUser} closeModal={_closeModal} />;
+        </div>
       </div>
     </div>
   );
