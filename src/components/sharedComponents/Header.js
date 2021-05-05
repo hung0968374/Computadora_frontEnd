@@ -18,18 +18,15 @@ const Header = () => {
   const dispatch = useDispatch();
   const [token, setToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
-  const [openUserInfo, setOpenUserInfo] = useState(false);
   const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] = useState(
     0
   );
+
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(true);
   const screenGoUp = useSelector(goingToUpper);
-  const userOptionRef = useRef();
+
   ///function
-  const _clickedToUserImg = () => {
-    setOpenUserInfo(true);
-  };
   const _logOut = () => {
     localStorage.clear();
     history.push("/");
@@ -38,7 +35,6 @@ const Header = () => {
   const _redirectToCartPage = () => {
     history.push("/cart");
   };
-
   useEffect(() => {
     if (localStorage.getItem("quantity") != null) {
       setTotalQuantityOfItemsInCart(localStorage.getItem("quantity"));
@@ -51,21 +47,7 @@ const Header = () => {
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
   }, [location]);
   ///////////set scrool up state
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        userOptionRef.current &&
-        !userOptionRef.current.contains(event.target)
-      ) {
-        setOpenUserInfo(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [userOptionRef]);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 160) {
@@ -88,6 +70,9 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [goingUp]);
   const isGoingUp = screenGoUp ? styles.goingDown : styles.goingUp;
+  var userOptionAnimation = null;
+  // const userOptionAnimation = openUserInfo ? styles.dropDown : styles.goUp;
+
   return (
     <div className={`${styles.header} ${isGoingUp}`}>
       <div className={styles.content_wrapper}>
@@ -114,18 +99,16 @@ const Header = () => {
             <Link to="/blog"> Blog</Link>
           </div>
         </div>
-        <div
-          ref={userOptionRef}
-          className={styles.userImg}
-          onClick={_clickedToUserImg}
-        >
+        <div className={styles.userImg}>
           {token ? (
             <>
-              <img
-                src={userInfo.imageUrl}
-                alt=""
-                className={styles.userImgStyle}
-              />
+              <div className={styles.userImgWrapper}>
+                <img
+                  src={userInfo.imageUrl}
+                  alt=""
+                  className={styles.userImgStyle}
+                />
+              </div>
               {totalQuantityOfItemsInCart > 0 ? (
                 <>
                   <i className={styles.amountOfNotification}>
@@ -135,14 +118,40 @@ const Header = () => {
               ) : null}
             </>
           ) : (
-            <img
-              src="/images/account-icon.svg"
-              alt=""
-              className={styles.userImgStyle}
-            />
+            <div className={styles.userImgWrapper}>
+              <img
+                src="/images/account-icon.svg"
+                alt=""
+                className={styles.userImgStyle}
+              />
+            </div>
           )}
-          {token?.length > 0 && openUserInfo ? (
-            <div className={styles.userOption}>
+          {!token ? (
+            <div
+              className={`${styles.userOption} ${styles.userOptionForNotLoggingIn}`}
+            >
+              <div className={styles.userOptionContentWrapper}>
+                <div
+                  className={styles.optionItem}
+                  onClick={() => {
+                    history.push("/signIn");
+                  }}
+                >
+                  Đăng nhập
+                </div>
+                <div
+                  className={styles.optionItem}
+                  onClick={() => {
+                    history.push("/signUp");
+                  }}
+                >
+                  Đăng kí
+                </div>
+              </div>
+            </div>
+          ) : null}
+          {token ? (
+            <div className={`${styles.userOption} `}>
               <div className={styles.userOptionContentWrapper}>
                 <div className={styles.optionItem} onClick={_logOut}>
                   Đăng xuất
@@ -160,28 +169,6 @@ const Header = () => {
                   }}
                 >
                   Thông tin cá nhân
-                </div>
-              </div>
-            </div>
-          ) : null}
-          {!token && openUserInfo ? (
-            <div className={styles.userOption}>
-              <div className={styles.userOptionContentWrapper}>
-                <div
-                  className={styles.optionItem}
-                  onClick={() => {
-                    history.push("/signIn");
-                  }}
-                >
-                  Đăng nhập
-                </div>
-                <div
-                  className={styles.optionItem}
-                  onClick={() => {
-                    history.push("/signUp");
-                  }}
-                >
-                  Đăng kí
                 </div>
               </div>
             </div>

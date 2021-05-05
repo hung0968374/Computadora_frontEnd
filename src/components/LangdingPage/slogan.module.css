@@ -30,7 +30,9 @@ p {
   margin-top: 10%;
   font-size: 2rem;
   color: #2c07ff;
+  justify-content: center;
 }
+
 .welcomeUser span {
   font-size: 2.5rem;
   font-weight: bold;

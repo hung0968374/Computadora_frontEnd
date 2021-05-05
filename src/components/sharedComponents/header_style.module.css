@@ -16,25 +16,7 @@
   top: 0;
   animation: fadeIn 1s ease;
 }
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-9vh);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+
 .linkWrapper {
   width: 100%;
   height: 100%;
@@ -74,12 +56,14 @@
   margin-left: 15%;
   opacity: 0.7;
 }
-.userImg {
-  width: 10%;
+.userImgWrapper {
+  width: 100px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  right: 10.8rem;
 }
 .userImg img {
   width: 70px;
@@ -87,8 +71,8 @@
   object-fit: cover;
   padding-top: 0rem;
   border-radius: 50%;
-  position: absolute;
-  right: 11.5rem;
+  /* position: absolute;
+  right: 11.5rem; */
 }
 .amountOfNotification {
   position: absolute;
@@ -107,46 +91,28 @@
 }
 .userOption {
   width: 150px;
-  height: auto;
+  height: 0;
   position: absolute;
   top: 6rem;
   right: 6.5rem;
-  display: block;
   border-radius: 5px;
   padding: 0px;
-  z-index: 999 !important;
-  animation: drop 0.5s ease;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  transition: height 0.5s;
+  overflow: hidden;
+}
+.userImg:hover .userOption {
+  height: 9.25rem;
+}
+.userImg:hover .userOptionForNotLoggingIn {
+  height: 6.15rem;
 }
 .content_wrapper a {
   text-decoration: none;
   display: inline-block;
   transition: 0ms;
 }
-@keyframes slideUp {
-  0% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-}
-@keyframes drop {
-  0% {
-    opacity: 0;
-    transform: translateY(-70px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-.userOptionContentWrapper {
-  width: 100%;
-  height: 100%;
-  margin: auto;
-}
+
 .optionItem {
   width: 100%;
   height: 3rem;
@@ -157,7 +123,7 @@
   align-items: center;
   border-radius: 2px;
   cursor: pointer;
-  border: 1px solid rgb(29, 28, 28);
+  border-bottom: 1px solid rgb(151, 142, 142);
 }
 .optionItem span {
   color: red;
@@ -166,8 +132,39 @@
 .optionItem:hover {
   background-color: rgb(180, 180, 180);
 }
+
 @media screen and (max-width: 1024px) {
   .commonContentStyle {
     margin-left: 10%;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-9vh);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
