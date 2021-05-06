@@ -25,3 +25,6 @@ export const signIn = (obj) => API.post("/api/auth/login", obj);
 export const signUp = (obj) =>
   API.post("/api/auth/register/verifyAccount", obj);
 export const createNewInvoice = (obj) => API.post("/api/invoices", obj);
+export const getAllInvoices = () => API.get("/api/invoices");
+export const getInvoicesByParticularUser = () =>
+  API.get("/api/invoices/getInvoiceByParticularUser");

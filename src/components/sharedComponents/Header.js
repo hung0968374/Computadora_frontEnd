@@ -11,6 +11,8 @@ import {
   goUp,
   goDown,
 } from "../../redux/features/post/screenSlice";
+import jwt_decode from "jwt-decode";
+
 const Header = () => {
   ///////////state
   const location = useLocation();
@@ -21,6 +23,7 @@ const Header = () => {
   const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] = useState(
     0
   );
+  const [tokenExpired, setTokenExpired] = useState(false);
 
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(true);
@@ -35,16 +38,25 @@ const Header = () => {
   const _redirectToCartPage = () => {
     history.push("/cart");
   };
+  // tinh tong so luong gio hang
+
   useEffect(() => {
     if (localStorage.getItem("quantity") != null) {
       setTotalQuantityOfItemsInCart(localStorage.getItem("quantity"));
     }
   }, [localStorage.getItem("quantity")]);
-  // tinh tong so luong gio hang
-
+  //////////////handle set token and token expire
   useEffect(() => {
     setToken(localStorage.getItem("token"));
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
+  }, [location]);
+  useEffect(() => {
+    const tokenExpireIn = localStorage.getItem("tokenExpireIn");
+    console.log(tokenExpireIn);
+    if (tokenExpireIn && tokenExpireIn * 1000 < new Date().getTime()) {
+      setTokenExpired(true);
+      localStorage.clear();
+    }
   }, [location]);
   ///////////set scrool up state
 
@@ -72,7 +84,7 @@ const Header = () => {
   const isGoingUp = screenGoUp ? styles.goingDown : styles.goingUp;
   var userOptionAnimation = null;
   // const userOptionAnimation = openUserInfo ? styles.dropDown : styles.goUp;
-
+  console.log("expired", tokenExpired);
   return (
     <div className={`${styles.header} ${isGoingUp}`}>
       <div className={styles.content_wrapper}>
@@ -161,6 +173,14 @@ const Header = () => {
                   onClick={_redirectToCartPage}
                 >
                   Giỏ hàng ( <span>{totalQuantityOfItemsInCart}</span> )
+                </div>
+                <div
+                  className={styles.optionItem}
+                  onClick={() => {
+                    history.push("/boughtItemsRecord");
+                  }}
+                >
+                  Lịch sử mua hàng
                 </div>
                 <div
                   className={styles.optionItem}

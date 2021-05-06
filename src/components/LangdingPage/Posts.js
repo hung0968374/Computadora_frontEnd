@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./posts.css";
 
 function Posts() {
@@ -8,7 +8,7 @@ function Posts() {
     "https://cdn.tgdd.vn/ValueIcons/1/gaming.jpg",
     "https://cdn.tgdd.vn/ValueIcons/1/mong-nhe.jpg",
   ];
-  const [imagesUrls, setImagesUrls] = useState(initialState);
+  const [imagesUrls] = useState(initialState);
   const [selectedIndex, setSelectedIndex] = useState(0);
   return (
     <div className="posts_post">
@@ -18,6 +18,7 @@ function Posts() {
             src={imagesUrls[selectedIndex]}
             className="posts_displayImg"
             key={imagesUrls[selectedIndex]}
+            alt=""
           />
         </div>
         <div className="posts_dotArea">

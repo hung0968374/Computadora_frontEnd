@@ -1,0 +1,76 @@
+.page_container {
+  width: 100%;
+  height: 100vh;
+  background-color: whitesmoke;
+}
+.content_container {
+  position: relative;
+  top: 6rem;
+  width: 65rem;
+  height: 30rem;
+  margin: auto;
+}
+.page_container h2 {
+  margin: 2.5rem 0 2.5rem 0;
+}
+.table_area {
+  width: 100%;
+  height: 4rem;
+}
+.table_default {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table_default .product {
+  /* width: 40%; */
+}
+.table_default th,
+td {
+  border: 1px solid #c2c5ca;
+}
+
+.table_default th {
+  padding: 15px;
+  text-align: left;
+  font-size: 20px;
+}
+.table_default td {
+  padding: 10px;
+  text-align: left;
+  font-size: 18px;
+}
+.table_default .tdOfItems {
+  padding: 10px 10px 0px 10px;
+}
+.table_default .billCharge {
+  color: red;
+}
+.table_default .invoiceStt {
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+.table_default tr td li {
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table_default tr td li span:nth-child(2) {
+  color: red;
+}
+.table_default tr td li:hover {
+  color: blue;
+  transform: scale(1.01);
+}
+.invoiceNotExisting {
+  margin-top: 2rem;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  color: red;
+}

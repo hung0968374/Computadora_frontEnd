@@ -1,0 +1,141 @@
+.main_feature {
+  width: 73%;
+  height: auto;
+}
+.userAccountInfo {
+  width: 100%;
+  height: 40rem;
+}
+
+.user_profile_container {
+  display: flex;
+  width: 102%;
+  height: 93%;
+  border: 1px solid #c0c0c0;
+}
+
+.column1 {
+  display: flex;
+  flex: 4.5;
+  padding-left: 2rem;
+}
+
+.column2 {
+  display: flex;
+  flex: 5.5;
+}
+
+.first {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.acc_img {
+  width: 20%;
+  height: 20%;
+}
+
+.acc_button {
+  margin-top: 25px;
+  margin-left: 25px;
+  width: 200px;
+  height: 2.5rem;
+  border-radius: 40px;
+  outline: none;
+  border: 0.5px solid #c0c0c0;
+}
+.container1 h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.container1 h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+input {
+  margin-left: 0.8rem;
+  background-color: #dcdcdc;
+  outline: none;
+  width: 20rem;
+  height: 2.5rem;
+  padding-left: 0.7rem;
+  border: none;
+}
+
+.Update_info {
+  margin-top: 1rem;
+  width: 9rem;
+  height: 2rem;
+  background-color: #06c1d4;
+  display: flex;
+  cursor: pointer;
+  text-align: center;
+  justify-content: center;
+  padding-top: 0.9rem;
+  border-radius: 20px;
+  font-size: 17px;
+  margin-bottom: 1rem;
+}
+
+.Update_info div {
+  text-decoration: none;
+  color: #f7f7f7;
+}
+
+.email_input {
+  margin-top: 2.3rem;
+}
+
+.container1 a {
+  text-decoration: none;
+}
+
+.list li {
+  margin-top: 1rem;
+}
+
+input:focus {
+  border: 0.3px solid #06c1d4;
+}
+
+.distric_input {
+  margin-top: 1rem;
+}
+
+.ship_address,
+.pw_change {
+  width: 100%;
+  height: 18rem;
+}
+
+.pw_change .column2 li {
+  margin-top: 7.4rem;
+}
+
+.user_profile .column2 h3:nth-child(1) {
+  margin-top: 1.9rem;
+}
+.ship_address .column2 h3:nth-child(1) {
+  margin-top: 1.5rem;
+}
+
+.wrapper1 input {
+  background-color: #f7f7f7;
+}
+
+/* animation */
+
+.footerMarginTop {
+  margin-top: 35rem;
+}
+
+.current_function h3 {
+  padding-left: 14px;
+}
+.inputNeedAbitPadding {
+  margin-top: -1px;
+}
+.retypePw {
+  margin-top: 1px;
+}

@@ -8,7 +8,7 @@
 .goingUp {
   position: fixed;
   top: 0;
-  transform: translateY(-9vh);
+  transform: translateY(-9rem);
   animation: fadeOut 1s ease;
 }
 .goingDown {
@@ -98,11 +98,11 @@
   border-radius: 5px;
   padding: 0px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-  transition: height 0.5s;
+  transition: height 0.3s;
   overflow: hidden;
 }
 .userImg:hover .userOption {
-  height: 9.25rem;
+  height: 12.2rem;
 }
 .userImg:hover .userOptionForNotLoggingIn {
   height: 6.15rem;
@@ -130,7 +130,7 @@
   font-weight: bold;
 }
 .optionItem:hover {
-  background-color: rgb(180, 180, 180);
+  background-color: rgb(221, 221, 221);
 }
 
 @media screen and (max-width: 1024px) {

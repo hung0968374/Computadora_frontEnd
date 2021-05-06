@@ -9,6 +9,7 @@ import {
   ToastWarnMessage,
 } from "../components/sharedComponents/ToastMessage";
 import FacebookLogin from "react-facebook-login";
+import jwt_decode from "jwt-decode";
 export default function SignIN() {
   ////////state
   const history = useHistory();
@@ -26,12 +27,13 @@ export default function SignIN() {
     if (successfullLoggingIn) {
       try {
         const res = await API.signIn(sendObjToServer);
-        console.log("response received from server", res);
         localStorage.setItem("token", res.data.accessToken);
-        let object_serialized = JSON.stringify(res.data.user);
-        console.log("serialized", object_serialized);
+        const object_serialized = JSON.stringify(res.data.user);
         localStorage.setItem("userInfo", object_serialized);
-
+        ///////////decode token
+        const decodedToken = jwt_decode(res.data.accessToken);
+        console.log(decodedToken);
+        localStorage.setItem("tokenExpireIn", decodedToken.exp);
         history.push("/");
       } catch (error) {
         setFailureMsg(error.response.data.message);
@@ -52,6 +54,8 @@ export default function SignIN() {
   const _onSuccess = async (res) => {
     const userInfo = res?.profileObj;
     const token = res?.tokenId;
+    console.log(res.qc);
+    localStorage.setItem("tokenExpireIn", res.qc.expires_at); //// set token expiration
     localStorage.setItem("token", token);
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
     history.push("/");
@@ -72,6 +76,8 @@ export default function SignIN() {
     };
     const facebookCurrentUserId = res.id;
     const token = res?.accessToken;
+    ///////////////set token expiration
+    localStorage.setItem("tokenExpireIn", res.data_access_expiration_time);
     localStorage.setItem("token", token);
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
     localStorage.setItem("facebookCurrentUserId", facebookCurrentUserId);
