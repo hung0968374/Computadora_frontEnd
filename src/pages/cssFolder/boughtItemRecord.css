@@ -15,7 +15,7 @@
 }
 .table_area {
   width: 100%;
-  height: 4rem;
+  height: auto;
 }
 .table_default {
   width: 100%;
@@ -26,9 +26,11 @@
 }
 .table_default th,
 td {
-  border: 1px solid #c2c5ca;
+  border: 3px solid #c2c5ca;
 }
-
+.table_default tr th {
+  border: 3px solid rgba(0, 0, 0, 0.671);
+}
 .table_default th {
   padding: 15px;
   text-align: left;
@@ -63,6 +65,17 @@ td {
 .table_default tr td li:hover {
   color: blue;
   transform: scale(1.01);
+}
+.totalInvoicesValue {
+  width: 100%;
+  margin-top: 2.5rem;
+  height: 4rem;
+  text-align: end;
+  font-size: 25px;
+}
+.totalInvoicesValue span {
+  color: red;
+  object-fit: contain;
 }
 .invoiceNotExisting {
   margin-top: 2rem;

@@ -52,7 +52,6 @@ const Header = () => {
   }, [location]);
   useEffect(() => {
     const tokenExpireIn = localStorage.getItem("tokenExpireIn");
-    console.log(tokenExpireIn);
     if (tokenExpireIn && tokenExpireIn * 1000 < new Date().getTime()) {
       setTokenExpired(true);
       localStorage.clear();
@@ -84,7 +83,6 @@ const Header = () => {
   const isGoingUp = screenGoUp ? styles.goingDown : styles.goingUp;
   var userOptionAnimation = null;
   // const userOptionAnimation = openUserInfo ? styles.dropDown : styles.goUp;
-  console.log("expired", tokenExpired);
   return (
     <div className={`${styles.header} ${isGoingUp}`}>
       <div className={styles.content_wrapper}>

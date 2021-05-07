@@ -7,29 +7,17 @@ import Pusher from "pusher-js";
 
 import "./cssFolder/pc.css";
 const Pc = () => {
-  useEffect(() => {
-    const pusher = new Pusher("0489280acfa7987721e1", {
-      cluster: "ap1",
-    });
+  // useEffect(() => {
+  //   const pusher = new Pusher("0489280acfa7987721e1", {
+  //     cluster: "ap1",
+  //   });
 
-    var channel = pusher.subscribe("messages");
-    channel.bind("inserted", (data) => {
-      alert(JSON.stringify(data));
-    });
-  }, []);
-  return (
-    <div className="bttn">
-      <Header />
-      <div>
-        <div className="a">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div>
-  );
+  //   var channel = pusher.subscribe("messages");
+  //   channel.bind("inserted", (data) => {
+  //     alert(JSON.stringify(data));
+  //   });
+  // }, []);
+  return <div className="bttn"></div>;
 };
 
 export default Pc;

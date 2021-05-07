@@ -71,6 +71,9 @@ export default function BoughtItemRecord() {
               })}
           </table>
         </div>
+        <div className="totalInvoicesValue">
+          Tổng tiền đã giao dịch: <span>0₫</span>
+        </div>
         {userInvoices.length === 0 ? (
           <div className="invoiceNotExisting">
             <span>Đơn hàng của bạn trống</span>

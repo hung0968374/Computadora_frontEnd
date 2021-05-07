@@ -21,7 +21,25 @@ const ItemProp = ({ data }) => {
   const [token, setToken] = useState();
   const history = useHistory();
   const [totalQuantityInCart, setTotalQuantityInCart] = useState(0);
+
+  const imgDisplayState = {
+    backgroundImage: `url(${displayImg})`,
+    backgroundPosition: "0% 0%",
+  };
+  const [imgZoomState, setImgZoomState] = useState(imgDisplayState);
   //function
+
+  const _handleMouseMove = (e) => {
+    const { left, top, width, height } = e.target.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+    setImgZoomState({
+      backgroundPosition: `${x}% ${y}%`,
+      backgroundImage: `url(${displayImg})`,
+    });
+    console.log(imgZoomState);
+  };
+
   useEffect(() => {
     if (imgs) {
       setdisplayImg(imgs[0]);
@@ -67,14 +85,19 @@ const ItemProp = ({ data }) => {
       }
     }
   };
-  console.log("item redux", totalItemInCartTakingFromRedux);
-
+  // console.log("item redux", totalItemInCartTakingFromRedux);
   return (
     <div className={styles.itemPropContainer}>
       <div className={styles.imgArea}>
         <div className={styles.imgWrapper}>
           <div className={styles.displayImg}>
-            {imgs ? <img src={displayImg} alt="" key={displayImg} /> : null}
+            <figure
+              onMouseMove={_handleMouseMove}
+              style={imgZoomState}
+              key={displayImg}
+            >
+              {imgs ? <img src={displayImg} alt="" key={displayImg} /> : null}
+            </figure>
           </div>
           <div className={styles.ImgGallery}>
             {imgs?.map((image) => {
