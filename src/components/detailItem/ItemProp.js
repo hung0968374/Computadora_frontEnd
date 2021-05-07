@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as styles from "./itemProp.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,9 +9,10 @@ import {
 import { ToastInfoMessageInCenter } from "../sharedComponents/ToastMessage";
 import { FaAngleLeft } from "react-icons/fa";
 import { useHistory } from "react-router";
-import { goUp } from "../../redux/features/post/screenSlice";
+import { discardNavBar, goUp } from "../../redux/features/post/screenSlice";
 const ItemProp = ({ data }) => {
   //state
+  const displayImageRef = useRef(null);
   const imgs = data?.imgs;
   let totalItemInCartTakingFromRedux = useSelector(itemInCart);
   const oldCart = JSON.parse(localStorage.getItem("cartItems"));
@@ -21,8 +22,27 @@ const ItemProp = ({ data }) => {
   const [token, setToken] = useState();
   const history = useHistory();
   const [totalQuantityInCart, setTotalQuantityInCart] = useState(0);
+  const [isZoomedIn, setIsZoomedIn] = useState(false);
 
   //function
+
+  /////////handling click outside event
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        displayImageRef.current &&
+        !displayImageRef.current.contains(event.target)
+      ) {
+        setIsZoomedIn(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [displayImageRef]);
+  /////////handling click outside event
 
   useEffect(() => {
     if (imgs) {
@@ -69,13 +89,41 @@ const ItemProp = ({ data }) => {
       }
     }
   };
+  //////////handling zoom image in event
+  const _handlingZoomInOutDisplayingImg = () => {
+    setIsZoomedIn(!isZoomedIn);
+    dispatch(goUp(true));
+  };
+  useEffect(() => {
+    if (isZoomedIn === true) {
+      dispatch(discardNavBar(true));
+    } else {
+      dispatch(discardNavBar(false));
+    }
+  }, [isZoomedIn]);
+  //////////handling zoom image in event
   // console.log("item redux", totalItemInCartTakingFromRedux);
   return (
     <div className={styles.itemPropContainer}>
       <div className={styles.imgArea}>
         <div className={styles.imgWrapper}>
           <div className={styles.displayImg}>
-            {imgs ? <img src={displayImg} alt="" key={displayImg} /> : null}
+            {imgs ? (
+              <>
+                <img
+                  src={displayImg}
+                  alt=""
+                  key={displayImg}
+                  onClick={_handlingZoomInOutDisplayingImg}
+                  className={`${
+                    isZoomedIn ? styles.zoomInImg : styles.zoomOutImg
+                  }`}
+                />
+                {isZoomedIn ? (
+                  <div className={styles.blurDisplayImgBackground}></div>
+                ) : null}
+              </>
+            ) : null}
           </div>
           <div className={styles.ImgGallery}>
             {imgs?.map((image) => {
@@ -87,7 +135,9 @@ const ItemProp = ({ data }) => {
                     alt="dog"
                     onClick={() => {
                       setdisplayImg(image);
-                      dispatch(goUp(false));
+                      if (window.scrollY > 160) {
+                        dispatch(goUp(false));
+                      }
                     }}
                   />
                 );

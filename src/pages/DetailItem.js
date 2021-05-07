@@ -9,7 +9,10 @@ import Comment from "../components/detailItem/Comment";
 import { fetchItemById } from "../api";
 import ReviewItem from "../components/detailItem/ReviewItem";
 import MessengerCustomerChat from "react-messenger-customer-chat";
+import { useSelector } from "react-redux";
+import { discardNavOrNot } from "../redux/features/post/screenSlice";
 export default function DetailItem({ match }) {
+  const showNavOrNot = useSelector(discardNavOrNot);
   const [specificItemById, setSpecificItemById] = useState([]);
   useEffect(async () => {
     try {
@@ -22,9 +25,10 @@ export default function DetailItem({ match }) {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
   }, []);
   const BaseUrl = "https://res.cloudinary.com/dsykf3mo9/image/upload/";
+  console.log("discard nav", showNavOrNot);
   return (
     <>
-      <Header />
+      {showNavOrNot ? null : <Header />}
       {specificItemById ? <ItemProp data={specificItemById} /> : null}
       <div className={styles.reviewSection}>Đánh giá chi tiết</div>
       <ReviewItem data={specificItemById} />
