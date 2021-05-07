@@ -53,7 +53,7 @@
   margin-bottom: 0.6rem;
 }
 
-input {
+.current_function input {
   margin-left: 0.8rem;
   background-color: #dcdcdc;
   outline: none;

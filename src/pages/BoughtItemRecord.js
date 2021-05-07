@@ -3,9 +3,11 @@ import Header from "../components/sharedComponents/Header";
 import "./cssFolder/boughtItemRecord.css";
 import * as API from "../api/index";
 import { useHistory } from "react-router";
+import ModalSignUpWrapper from "../components/signUp/ModalSignUpWrapper";
 export default function BoughtItemRecord() {
   const history = useHistory();
   const [userInvoices, setUserInvoices] = useState([]);
+  const [tokenHasExpired, setTokenHasExpired] = useState(false);
   useEffect(() => {
     const fetchAllInvoices = async () => {
       try {
@@ -13,10 +15,22 @@ export default function BoughtItemRecord() {
         setUserInvoices(response.data.invoices);
       } catch (error) {
         console.log(error.response);
+        if (error.response.status === 403) {
+          setTokenHasExpired(true);
+        }
       }
     };
     fetchAllInvoices();
   }, []);
+  const _closeExpiredTokenModal = () => {
+    const restoreItemsInCart = JSON.parse(localStorage.getItem("cartItems"));
+    const restoreQuantity = localStorage.getItem("quantity");
+    localStorage.clear();
+    localStorage.setItem("cartItems", JSON.stringify(restoreItemsInCart));
+    localStorage.setItem("quantity", restoreQuantity);
+    setTokenHasExpired(false);
+    history.push("/signIn");
+  };
   console.log("user invoice", userInvoices);
   return (
     <div className="page_container">
@@ -80,6 +94,14 @@ export default function BoughtItemRecord() {
           </div>
         ) : null}
       </div>
+      {tokenHasExpired ? (
+        <>
+          <ModalSignUpWrapper
+            msg={"Phiên đăng nhập của bạn đã hết, bạn cần phải đăng nhập lại."}
+            closeModal={_closeExpiredTokenModal}
+          />
+        </>
+      ) : null}
     </div>
   );
 }

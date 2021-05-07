@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import * as styles from "./cssFolder/cart.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addingNewProductToCart,
   itemInCart,
   recoverItemsInCartEveryRefresh,
 } from "../redux/features/cart/cartSlice";
@@ -36,7 +35,7 @@ const CartPage = () => {
   const [form, setForm] = useState(initialState);
   const itemsInCart = useSelector(itemInCart);
   const [alertMsg, setAlertMsg] = useState();
-  const [readyToFetchBackend, setReadyToFetchBackend] = useState(true);
+  const [tokenHasExpired, setTokenHasExpired] = useState(false);
   const imgUrl =
     "https://res.cloudinary.com/dsykf3mo9/image/upload/v1619539188/ProductImage/nitro5amd_ehsufz.jpg";
   ////////////function useEffect
@@ -70,6 +69,8 @@ const CartPage = () => {
     }
   }, [form.email]);
   ////// selft defining function
+
+  ////calculate money
   const _calculateTotalMoney = () => {
     let totalMoney = 0;
     itemsInCart?.map((item) => {
@@ -79,6 +80,7 @@ const CartPage = () => {
     });
     setTotalPaidMoney(totalMoney);
   };
+  ///calculate items quantity
   const _calculateCurrentQuantityInCart = () => {
     let totalQuantity = 0;
     itemsInCart?.map((item) => {
@@ -94,11 +96,23 @@ const CartPage = () => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   };
+  ////////close modal     line 309
   const _closeModal = () => {
     localStorage.setItem("cartItems", []);
     dispatch(recoverItemsInCartEveryRefresh([]));
     setInfoMsgToUser("");
   };
+  ///////handle expired token         line 314
+  const _closeExpiredTokenModal = () => {
+    const restoreItemsInCart = JSON.parse(localStorage.getItem("cartItems"));
+    const restoreQuantity = localStorage.getItem("quantity");
+    localStorage.clear();
+    localStorage.setItem("cartItems", JSON.stringify(restoreItemsInCart));
+    localStorage.setItem("quantity", restoreQuantity);
+    setTokenHasExpired(false);
+    history.push("/signIn");
+  };
+  ///////// user press to buying button
   const _confirmToBuy = async () => {
     dispatch(goUp(false));
     if (!alertMsg) {
@@ -107,29 +121,25 @@ const CartPage = () => {
       if (!emailIsValid) {
         alertToUser.push("Email không đúng định dạng");
         setEmailFormatIsValid(false);
-        setReadyToFetchBackend(false);
       } else {
         setEmailFormatIsValid(true);
       }
       if (form.customerName === " " || form.customerName.trim() === "") {
         alertToUser.push("Không được để trống trường họ và tên");
-        setReadyToFetchBackend(false);
       }
       if (form.customerPhone === " " || form.customerPhone.trim() === "") {
         alertToUser.push("Không được để trống số điện thoại");
-        setReadyToFetchBackend(false);
       }
       if (form.email === " " || form.email.trim() === "") {
         alertToUser.push("Không được để trống email");
-        setReadyToFetchBackend(false);
       }
       if (form.address === " " || form.address.trim() === "") {
         alertToUser.push("Không được để trống địa chỉ");
-        setReadyToFetchBackend(false);
       }
       setAlertMsg(alertToUser);
       setTimeout(() => {
         setAlertMsg("");
+        dispatch(goUp(true));
       }, 6000);
 
       //////////if theres no form error,  fetch then send data to backend
@@ -145,7 +155,10 @@ const CartPage = () => {
             "Đặt hàng thành công, chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất."
           );
         } catch (error) {
-          console.log(error.message);
+          console.log(error.response.status);
+          if (error.response.status === 403) {
+            setTokenHasExpired(true);
+          }
         }
       }
     }
@@ -154,6 +167,7 @@ const CartPage = () => {
     ?.toString()
     .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
   /////function for subcomponent
+  // console.log("token expired", tokenHasExpired);
   return (
     <div>
       <Header />
@@ -269,7 +283,7 @@ const CartPage = () => {
                       ></textarea>
                       {form.address.length == 0 ||
                       form.address.trim() === "" ? (
-                        <span>Vui lòng nhập dia chi</span>
+                        <span>Vui lòng nhập địa chỉ</span>
                       ) : null}
                     </div>
                     <div className={styles.address}></div>
@@ -299,6 +313,16 @@ const CartPage = () => {
             </>
           ) : null}
           <ModalSignUpWrapper msg={infoMsgToUser} closeModal={_closeModal} />;
+          {tokenHasExpired ? (
+            <>
+              <ModalSignUpWrapper
+                msg={
+                  "Phiên đăng nhập của bạn đã hết, bạn cần phải đăng nhập lại."
+                }
+                closeModal={_closeExpiredTokenModal}
+              />
+            </>
+          ) : null}
         </div>
       </div>
     </div>

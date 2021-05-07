@@ -27,12 +27,13 @@ export default function SignIN() {
     if (successfullLoggingIn) {
       try {
         const res = await API.signIn(sendObjToServer);
+        console.log("res", res);
         localStorage.setItem("token", res.data.accessToken);
         const object_serialized = JSON.stringify(res.data.user);
         localStorage.setItem("userInfo", object_serialized);
         ///////////decode token
         const decodedToken = jwt_decode(res.data.accessToken);
-        console.log(decodedToken);
+        console.log("decode jwt tooken", decodedToken);
         localStorage.setItem("tokenExpireIn", decodedToken.exp);
         history.push("/");
       } catch (error) {

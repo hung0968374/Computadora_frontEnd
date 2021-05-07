@@ -22,23 +22,7 @@ const ItemProp = ({ data }) => {
   const history = useHistory();
   const [totalQuantityInCart, setTotalQuantityInCart] = useState(0);
 
-  const imgDisplayState = {
-    backgroundImage: `url(${displayImg})`,
-    backgroundPosition: "0% 0%",
-  };
-  const [imgZoomState, setImgZoomState] = useState(imgDisplayState);
   //function
-
-  const _handleMouseMove = (e) => {
-    const { left, top, width, height } = e.target.getBoundingClientRect();
-    const x = ((e.pageX - left) / width) * 100;
-    const y = ((e.pageY - top) / height) * 100;
-    setImgZoomState({
-      backgroundPosition: `${x}% ${y}%`,
-      backgroundImage: `url(${displayImg})`,
-    });
-    console.log(imgZoomState);
-  };
 
   useEffect(() => {
     if (imgs) {
@@ -91,13 +75,7 @@ const ItemProp = ({ data }) => {
       <div className={styles.imgArea}>
         <div className={styles.imgWrapper}>
           <div className={styles.displayImg}>
-            <figure
-              onMouseMove={_handleMouseMove}
-              style={imgZoomState}
-              key={displayImg}
-            >
-              {imgs ? <img src={displayImg} alt="" key={displayImg} /> : null}
-            </figure>
+            {imgs ? <img src={displayImg} alt="" key={displayImg} /> : null}
           </div>
           <div className={styles.ImgGallery}>
             {imgs?.map((image) => {

@@ -90,6 +90,7 @@ export default function SignUP() {
     setInfoMsgToUser("");
     setLoadingSigningUpResponse(false);
   };
+
   console.log("testdata", testData);
   return (
     <div className={styles.container}>

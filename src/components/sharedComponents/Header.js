@@ -23,7 +23,6 @@ const Header = () => {
   const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] = useState(
     0
   );
-  const [tokenExpired, setTokenExpired] = useState(false);
 
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(true);
@@ -50,15 +49,6 @@ const Header = () => {
     setToken(localStorage.getItem("token"));
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
   }, [location]);
-  useEffect(() => {
-    const tokenExpireIn = localStorage.getItem("tokenExpireIn");
-    if (tokenExpireIn && tokenExpireIn * 1000 < new Date().getTime()) {
-      setTokenExpired(true);
-      localStorage.clear();
-    }
-  }, [location]);
-  ///////////set scrool up state
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 160) {
