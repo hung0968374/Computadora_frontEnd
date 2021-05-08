@@ -58,11 +58,11 @@ const ReviewItem = ({ data }) => {
       <div className={styles.readingBttn} onClick={_handleShowingText}>
         {!isTruncated ? (
           <div>
-            Xem thêm đánh giá <FaAngleDown size={20} />
+            Xem thêm <FaAngleDown size={20} />
           </div>
         ) : (
           <div>
-            Thu gọn đánh giá <FaAngleUp size={20} />
+            Thu gọn <FaAngleUp size={20} />
           </div>
         )}
       </div>

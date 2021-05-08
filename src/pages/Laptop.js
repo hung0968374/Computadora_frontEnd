@@ -12,6 +12,7 @@ import {
 import Footer from "../components/sharedComponents/footer";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { useLocation } from "react-router";
+import SearchComponent from "../components/sharedComponents/SearchComponent";
 const Laptop = () => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -34,6 +35,7 @@ const Laptop = () => {
   return (
     <div className={styles.container}>
       <Header />
+      <SearchComponent />
       <LaptopBoard />
       <ItemSection
         allData={dataByPage}

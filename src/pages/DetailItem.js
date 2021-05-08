@@ -11,9 +11,12 @@ import ReviewItem from "../components/detailItem/ReviewItem";
 import MessengerCustomerChat from "react-messenger-customer-chat";
 import { useSelector } from "react-redux";
 import { discardNavOrNot } from "../redux/features/post/screenSlice";
+import SearchComponent from "../components/sharedComponents/SearchComponent";
+import { useLocation } from "react-router";
 export default function DetailItem({ match }) {
   const showNavOrNot = useSelector(discardNavOrNot);
   const [specificItemById, setSpecificItemById] = useState([]);
+  const location = useLocation();
   useEffect(async () => {
     try {
       const dataFromSpecificId = await fetchItemById(match.params.id);
@@ -23,12 +26,13 @@ export default function DetailItem({ match }) {
       console.log(error);
     }
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
-  }, []);
+  }, [location]);
   const BaseUrl = "https://res.cloudinary.com/dsykf3mo9/image/upload/";
   console.log("discard nav", showNavOrNot);
   return (
     <>
       {showNavOrNot ? null : <Header />}
+      <SearchComponent />
       {specificItemById ? <ItemProp data={specificItemById} /> : null}
       <div className={styles.reviewSection}>Đánh giá chi tiết</div>
       <ReviewItem data={specificItemById} />

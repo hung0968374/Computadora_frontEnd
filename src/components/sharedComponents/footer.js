@@ -10,7 +10,7 @@ export default function footer() {
           <img className={styles.footer_logo} src="/images/laptop.svg" alt="" />
         </div>
         <div className={styles.section}>
-          <span className={styles.h2_footer}> Team phát triển</span>
+          <div className={styles.h2_footer}> Team phát triển</div>
           <ul className={styles.ul_footer}>
             <li>
               <div className={styles.devMember}>Nguyễn Đức Quang</div>
@@ -22,7 +22,7 @@ export default function footer() {
           </ul>
         </div>
         <div className={styles.section}>
-          <span className={styles.h2_footer}>Liên hệ</span>
+          <div className={styles.h2_footer}>Liên hệ</div>
           <ul className={styles.ul_footer}>
             <li>
               <div>

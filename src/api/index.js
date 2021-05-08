@@ -28,3 +28,5 @@ export const createNewInvoice = (obj) => API.post("/api/invoices", obj);
 export const getAllInvoices = () => API.get("/api/invoices");
 export const getInvoicesByParticularUser = () =>
   API.get("/api/invoices/getInvoiceByParticularUser");
+export const getSearchResultsPool = () =>
+  API.get("/api/posts/search/searchItemsPool");

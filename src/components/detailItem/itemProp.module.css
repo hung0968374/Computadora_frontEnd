@@ -1,9 +1,8 @@
 .itemPropContainer {
-  width: 65rem;
+  width: 75rem;
   margin: auto;
-  height: 80rem;
+  height: 90rem;
   display: flex;
-  margin-top: 10rem;
 }
 .imgArea {
   width: 55%;
