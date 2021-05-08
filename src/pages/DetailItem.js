@@ -36,7 +36,7 @@ export default function DetailItem({ match }) {
       {specificItemById ? <ItemProp data={specificItemById} /> : null}
       <div className={styles.reviewSection}>Đánh giá chi tiết</div>
       <ReviewItem data={specificItemById} />
-      {/* <Comment /> */}
+      <Comment />
       <MessengerCustomerChat
         pageId="101594652091801"
         appId="1790240181155268"

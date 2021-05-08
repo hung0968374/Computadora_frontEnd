@@ -1,8 +1,80 @@
 .commentArea {
-  width: 75rem;
+  width: 55rem;
   margin: auto;
-  height: 30rem;
+  height: auto;
+}
+.commentArea .title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.commentArea .title span {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+.commentArea .yourComment {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+.cmtContainer {
+  margin-top: 1rem;
+  width: 100%;
+  height: 8rem;
+}
+
+.cmtContainer textarea {
+  height: calc(100% - 34px);
+  padding: 16px;
+  width: calc(100% - 34px);
+  resize: none;
+  font-size: 1.3rem;
+  background-color: whitesmoke;
+  border: 1px solid whitesmoke;
+}
+.cmtContainer textarea:hover {
+  border: 1px solid #06c1d4;
+}
+.cmtContainer textarea:focus {
+  outline: none;
+  border: 1px solid #06c1d4;
+}
+.userCommentedContainer {
+  width: 100%;
+  margin-top: 3rem;
+  height: auto;
   display: flex;
-  margin-top: 5vh;
-  background-color: red;
+}
+.userImg {
+  width: 12%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+.userImg img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+.commentedContainer {
+  width: 88%;
+  height: auto;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid rgb(95, 95, 95);
+}
+.userName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+.userCommentContent {
+  word-break: break-all;
+  text-align: justify;
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
+}
+.timeStamp {
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }

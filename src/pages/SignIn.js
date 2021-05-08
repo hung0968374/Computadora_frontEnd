@@ -55,7 +55,7 @@ export default function SignIN() {
   const _onSuccess = async (res) => {
     const userInfo = res?.profileObj;
     const token = res?.tokenId;
-    console.log(res.qc);
+    console.log(res);
     localStorage.setItem("tokenExpireIn", res.qc.expires_at); //// set token expiration
     localStorage.setItem("token", token);
     localStorage.setItem("userInfo", JSON.stringify(userInfo));

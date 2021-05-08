@@ -14,24 +14,25 @@ export default function SearchComponent() {
   const [searchPool, setSearchPool] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {
-    if (searchInput.length >= 2) {
-      setShowSearchChoicesForUser(true);
-      if (searchPool.length > 0) {
-        const searchRes = searchPool.filter(function (value) {
-          return value.title.toUpperCase().includes(searchInput.toUpperCase());
-        });
-        setSearchResult(searchRes);
-      }
-    } else {
-      setShowSearchChoicesForUser(false);
-      setSearchResult([]);
+    if (searchPool.length > 0) {
+      const searchRes = searchPool.filter(function (value) {
+        return value.title.toUpperCase().includes(searchInput.toUpperCase());
+      });
+      setSearchResult(searchRes);
     }
+    // if (searchPool.length > 0) {
+    //   const searchRes = searchPool.filter(function (value) {
+    //     return value.title.toUpperCase().includes(searchInput.toUpperCase());
+    //   });
+    //   setSearchResult(searchRes);
+    // }
   }, [searchInput]);
   useEffect(() => {
     const _fetchAllItemsName = async () => {
       try {
         const { data } = await API.getSearchResultsPool();
         setSearchPool(data.searchResultsPool);
+        setSearchResult(data.searchResultsPool);
       } catch (error) {
         console.log(error);
       }
@@ -57,6 +58,11 @@ export default function SearchComponent() {
     };
   }, [displaySearchPoolRef]);
   /////////handling click outside search area
+  ////////handling dynamic html
+  const _setDynamicHtml = (text) => {
+    return { __html: `<strong>${text}</strong>` };
+  };
+  ////////handling dynamic html
   console.log("show user choice", showSearchChoicesForUser);
   return (
     <div className={styles.container}>
@@ -71,7 +77,7 @@ export default function SearchComponent() {
         <input
           type="text"
           className={styles.inputArea}
-          placeholder="Nhập tối thiểu 2 từ để tìm kiếm"
+          placeholder="Tìm kiếm"
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
         />
@@ -98,7 +104,12 @@ export default function SearchComponent() {
                       <div className={styles.searchImgArea}>
                         <img src={item.imgs[0]} alt="" />
                       </div>
-                      <div className={styles.searchTitleArea}>{item.title}</div>
+                      <div
+                        className={styles.searchTitleArea}
+                        // dangerouslySetInnerHTML={_setDynamicHtml(item.title)}
+                      >
+                        {item.title}
+                      </div>
                     </div>
                     <div className={styles.searchPriceArea}>
                       {item.price.split("₫").join("")}₫

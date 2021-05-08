@@ -3,9 +3,7 @@
   margin: auto;
   height: auto;
   display: flex;
-  margin-top: 5rem;
   flex-direction: column;
-  padding-top: 2rem;
   padding-bottom: 4rem;
   /* border-bottom: 1px solid red; */
 }
@@ -23,7 +21,7 @@
   height: 4rem;
   width: 40%;
   margin: auto;
-  color: #288ad6;
+  color: #0071c7;
   display: flex;
   justify-content: center;
   align-items: center;

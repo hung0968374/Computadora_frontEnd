@@ -95,7 +95,7 @@
   margin-top: 1rem;
 }
 
-input:focus {
+.current_function input:focus {
   border: 0.3px solid #06c1d4;
 }
 

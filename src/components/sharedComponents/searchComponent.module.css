@@ -47,9 +47,12 @@
   background-color: white;
   border: 1px solid rgb(185, 185, 185);
 }
+.inputArea:focus {
+  border: 2px solid #06c1d4;
+}
 .selectionSearch {
   position: absolute;
-  top: 3.2rem;
+  top: 3.5rem;
   width: 100%;
   height: auto;
   z-index: 99 !important;
@@ -105,17 +108,17 @@
 }
 /* handle search item style */
 
-::-webkit-scrollbar {
+.makeSearchResPoolScrollable::-webkit-scrollbar {
   width: 10px;
 }
-::-webkit-scrollbar-track {
+.makeSearchResPoolScrollable::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
-::-webkit-scrollbar-thumb {
+.makeSearchResPoolScrollable::-webkit-scrollbar-thumb {
   background: rgb(160, 159, 159);
   border-radius: 10px;
 }
-::-webkit-scrollbar-thumb:hover {
+.makeSearchResPoolScrollable::-webkit-scrollbar-thumb:hover {
   background: rgb(112, 112, 112);
 }
