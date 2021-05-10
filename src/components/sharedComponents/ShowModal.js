@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "./modal.module.css";
+import * as styles from "./cssFolderOfSharedComponent/modal.module.css";
 const ShowModal = ({ msg, closeModal }) => {
   return (
     <div className={styles.center}>

@@ -1,17 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import * as styles from "./header_style.module.css";
+import * as styles from "./cssFolderOfSharedComponent/header_style.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  itemInCart,
-  recoverItemsInCartEveryRefresh,
-} from "../../redux/features/cart/cartSlice";
-import {
-  goingToUpper,
-  goUp,
-  goDown,
-} from "../../redux/features/post/screenSlice";
-import jwt_decode from "jwt-decode";
+import { recoverItemsInCartEveryRefresh } from "../../redux/features/cart/cartSlice";
+import { goingToUpper, goUp } from "../../redux/features/post/screenSlice";
 
 const Header = () => {
   ///////////state

@@ -13,7 +13,7 @@ import Header from "../components/sharedComponents/Header";
 import { useHistory } from "react-router";
 import ItemInCart from "../components/cartPage/ItemInCart";
 import * as API from "../api/index";
-import ModalSignUpWrapper from "../components/signUp/ModalSignUpWrapper";
+import OnlyYesModal from "../components/sharedComponents/OnlyYesModal";
 import { goUp } from "../redux/features/post/screenSlice";
 const CartPage = () => {
   /////state
@@ -312,10 +312,10 @@ const CartPage = () => {
               })}
             </>
           ) : null}
-          <ModalSignUpWrapper msg={infoMsgToUser} closeModal={_closeModal} />;
+          <OnlyYesModal msg={infoMsgToUser} closeModal={_closeModal} />;
           {tokenHasExpired ? (
             <>
-              <ModalSignUpWrapper
+              <OnlyYesModal
                 msg={
                   "Phiên đăng nhập của bạn đã hết, bạn cần phải đăng nhập lại."
                 }

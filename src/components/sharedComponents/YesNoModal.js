@@ -1,16 +1,25 @@
 import React from "react";
-import * as styles from "./yesNoModal.module.css";
+import * as styles from "./cssFolderOfSharedComponent/yesNoModal.module.css";
+import { FcInfo } from "react-icons/fc";
+
 export default function YesNoModal({ msg, confirm, reject }) {
   return (
-    <div className={styles.center}>
-      <div className={styles.header}>Thông báo</div>
-      <div className={styles.content}>{msg}</div>
-      <div className={styles.confirm}>
-        <div className={styles.bttn} onClick={reject}>
-          Cancel
+    <div className={styles.modal_bg}>
+      <div className={styles.center}>
+        <div className={styles.header}>
+          <i>
+            <FcInfo size={60} color="rgb(0, 132, 255)" />
+          </i>
+          Thông báo
         </div>
-        <div className={styles.bttn} onClick={confirm}>
-          Ok
+        <div className={styles.content}>{msg}</div>
+        <div className={styles.confirm}>
+          <div className={styles.cancelBttn} onClick={reject}>
+            Cancel
+          </div>
+          <div className={styles.okBttn} onClick={confirm}>
+            Ok
+          </div>
         </div>
       </div>
     </div>

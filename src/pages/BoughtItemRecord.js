@@ -3,7 +3,7 @@ import Header from "../components/sharedComponents/Header";
 import "./cssFolder/boughtItemRecord.css";
 import * as API from "../api/index";
 import { useHistory } from "react-router";
-import ModalSignUpWrapper from "../components/signUp/ModalSignUpWrapper";
+import OnlyYesModal from "../components/sharedComponents/OnlyYesModal";
 export default function BoughtItemRecord() {
   const history = useHistory();
   const [userInvoices, setUserInvoices] = useState([]);
@@ -96,7 +96,7 @@ export default function BoughtItemRecord() {
       </div>
       {tokenHasExpired ? (
         <>
-          <ModalSignUpWrapper
+          <OnlyYesModal
             msg={"Phiên đăng nhập của bạn đã hết, bạn cần phải đăng nhập lại."}
             closeModal={_closeExpiredTokenModal}
           />

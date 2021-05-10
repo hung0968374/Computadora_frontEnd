@@ -3,13 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as styles from "./cssFolder/signUP.module.css";
 import * as API from "../api/index";
-import {
-  ToastErrorMessage,
-  ToastInfoMessage,
-  ToastWarnMessage,
-} from "../components/sharedComponents/ToastMessage";
-import ShowModal from "../components/sharedComponents/ShowModal";
-import ModalSignUpWrapper from "../components/signUp/ModalSignUpWrapper";
+import { ToastErrorMessage } from "../components/sharedComponents/ToastMessage";
+import OnlyYesModal from "../components/sharedComponents/OnlyYesModal";
 export default function SignUP() {
   //state
   const initialState = {
@@ -169,7 +164,7 @@ export default function SignUP() {
           })}
         </>
       ) : null}
-      <ModalSignUpWrapper msg={infoMsgToUser} closeModal={_closeModal} />
+      <OnlyYesModal msg={infoMsgToUser} closeModal={_closeModal} />
     </div>
   );
 }

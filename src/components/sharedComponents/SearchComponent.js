@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import * as styles from "./searchComponent.module.css";
+import * as styles from "./cssFolderOfSharedComponent/searchComponent.module.css";
 import { BsSearch } from "react-icons/bs";
 import * as API from "../../api/index";
 import { useHistory } from "react-router";
@@ -13,19 +13,40 @@ export default function SearchComponent() {
   );
   const [searchPool, setSearchPool] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
+
+  /////////////////function
+
   useEffect(() => {
     if (searchPool.length > 0) {
-      const searchRes = searchPool.filter(function (value) {
-        return value.title.toUpperCase().includes(searchInput.toUpperCase());
+      let searchResult = [];
+      searchPool.map(function (value) {
+        // const value = { title: "         Asus ZenBook 14      13 Q407iq" };
+        var stringToCompare = value.title
+          .trim()
+          .split(" ")
+          .join("")
+          .toLowerCase();
+        const stringNeedComparing = searchInput
+          .trim()
+          .split(" ")
+          .join("")
+          .toLowerCase();
+        let count = 0;
+        for (var i = 0; i < stringNeedComparing.length; i++) {
+          if (stringToCompare.includes(stringNeedComparing[i])) {
+            count++;
+            stringToCompare = stringToCompare.replace(
+              stringNeedComparing[i],
+              ""
+            );
+          }
+        }
+        if (count === stringNeedComparing.length) {
+          searchResult.push(value);
+        }
       });
-      setSearchResult(searchRes);
+      setSearchResult(searchResult);
     }
-    // if (searchPool.length > 0) {
-    //   const searchRes = searchPool.filter(function (value) {
-    //     return value.title.toUpperCase().includes(searchInput.toUpperCase());
-    //   });
-    //   setSearchResult(searchRes);
-    // }
   }, [searchInput]);
   useEffect(() => {
     const _fetchAllItemsName = async () => {
@@ -39,6 +60,7 @@ export default function SearchComponent() {
     };
     _fetchAllItemsName();
   }, []);
+
   /////////handling click outside search area
   useEffect(() => {
     function handleClickOutside(event) {
@@ -58,17 +80,38 @@ export default function SearchComponent() {
     };
   }, [displaySearchPoolRef]);
   /////////handling click outside search area
+
   ////////handling dynamic html
   const _setDynamicHtml = (text) => {
-    return { __html: `<strong>${text}</strong>` };
+    let tempString = text.toLowerCase();
+    String.prototype.replaceAt = function (index, replacement) {
+      return (
+        this.substr(0, index) +
+        replacement +
+        this.substr(index - 7 + replacement.length)
+      );
+    };
+    var i = 0;
+    for (var j = 0; j < tempString.length; j++) {
+      if (searchInput[i] === tempString[j]) {
+        const span = "<i></i>";
+        if (!span.includes(tempString[j])) {
+          tempString = tempString.replaceAt(j, `<i>${tempString[j]}</i>`);
+          i++;
+        } else if (span.includes(tempString[j])) {
+          i++;
+        }
+      }
+    }
+    return { __html: tempString };
   };
   ////////handling dynamic html
-  console.log("show user choice", showSearchChoicesForUser);
+
   return (
     <div className={styles.container}>
       <div className={styles.mainLogoArea}>
         <img src="/images/insta-icon.svg" alt="" />
-        <span> COMPUTADORA</span>
+        <span>COMPUTADORA</span>
       </div>
       <div className={styles.searchArea} ref={displaySearchPoolRef}>
         <span className={styles.search_icon}>
@@ -98,18 +141,14 @@ export default function SearchComponent() {
                     onClick={() => {
                       history.push(`/laptop/${item._id}`);
                       setSearchInput("");
+                      setShowSearchChoicesForUser(false);
                     }}
                   >
                     <div className={styles.search_imgAndTitleArea}>
                       <div className={styles.searchImgArea}>
                         <img src={item.imgs[0]} alt="" />
                       </div>
-                      <div
-                        className={styles.searchTitleArea}
-                        // dangerouslySetInnerHTML={_setDynamicHtml(item.title)}
-                      >
-                        {item.title}
-                      </div>
+                      <div className={styles.searchTitleArea}>{item.title}</div>
                     </div>
                     <div className={styles.searchPriceArea}>
                       {item.price.split("₫").join("")}₫

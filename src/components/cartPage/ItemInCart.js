@@ -69,18 +69,16 @@ export default function ItemInCart({ imgUrl, itemInfo }) {
           </div>
         </div>
         {showYesNoModal ? (
-          <div className={styles.modal_bg}>
-            <YesNoModal
-              msg={
-                <div>
-                  Xóa sản phẩm <strong>{itemInfo.productName}</strong> khỏi giỏ
-                  hàng?
-                </div>
-              }
-              confirm={_confirmDeleting}
-              reject={_rejectDeleting}
-            />
-          </div>
+          <YesNoModal
+            msg={
+              <div>
+                Xóa sản phẩm <strong>{itemInfo.productName}</strong> khỏi giỏ
+                hàng?
+              </div>
+            }
+            confirm={_confirmDeleting}
+            reject={_rejectDeleting}
+          />
         ) : null}
       </div>
     </>

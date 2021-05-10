@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import * as styles from "./footer.module.css";
+import * as styles from "./cssFolderOfSharedComponent/footer.module.css";
 
 export default function footer() {
   return (

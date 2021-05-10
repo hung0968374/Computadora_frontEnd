@@ -1,6 +1,6 @@
 import React from "react";
-import ShowModal from "../sharedComponents/ShowModal";
-import "./modalWrapper.css";
+import ShowModal from "./ShowModal";
+import "./cssFolderOfSharedComponent/onlyYesModal.css";
 export default function ModalSignUpWrapper({ msg, closeModal }) {
   return (
     <>
@@ -12,4 +12,3 @@ export default function ModalSignUpWrapper({ msg, closeModal }) {
     </>
   );
 }
-// + (testData.length > 0 ? "bg_active" : null)

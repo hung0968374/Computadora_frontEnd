@@ -16,8 +16,10 @@ import { useLocation } from "react-router";
 export default function DetailItem({ match }) {
   const showNavOrNot = useSelector(discardNavOrNot);
   const [specificItemById, setSpecificItemById] = useState([]);
+  const [postId, setPostId] = useState();
   const location = useLocation();
   useEffect(async () => {
+    setPostId(match.params.id);
     try {
       const dataFromSpecificId = await fetchItemById(match.params.id);
       const { data } = dataFromSpecificId;
@@ -28,7 +30,6 @@ export default function DetailItem({ match }) {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
   }, [location]);
   const BaseUrl = "https://res.cloudinary.com/dsykf3mo9/image/upload/";
-  console.log("discard nav", showNavOrNot);
   return (
     <>
       {showNavOrNot ? null : <Header />}
@@ -36,7 +37,7 @@ export default function DetailItem({ match }) {
       {specificItemById ? <ItemProp data={specificItemById} /> : null}
       <div className={styles.reviewSection}>Đánh giá chi tiết</div>
       <ReviewItem data={specificItemById} />
-      <Comment />
+      <Comment postId={postId} />
       <MessengerCustomerChat
         pageId="101594652091801"
         appId="1790240181155268"

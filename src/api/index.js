@@ -30,3 +30,5 @@ export const getInvoicesByParticularUser = () =>
   API.get("/api/invoices/getInvoiceByParticularUser");
 export const getSearchResultsPool = () =>
   API.get("/api/posts/search/searchItemsPool");
+export const postAComment = (obj) => API.post("/api/comment", obj);
+export const getCommentsByPostId = (id) => API.get(`/api/comment/postId/${id}`);

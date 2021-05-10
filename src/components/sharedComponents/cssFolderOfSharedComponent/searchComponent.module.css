@@ -17,8 +17,11 @@
 }
 .mainLogoArea span {
   font-size: xx-large;
-  font-weight: bold;
+  /* font-weight: bold; */
   padding-left: 1rem;
+}
+.mainLogoArea i {
+  color: red;
 }
 .mainLogoArea img {
   height: 100%;
@@ -96,8 +99,17 @@
   height: 100%;
   font-size: 1.2rem;
   display: flex;
+  flex-direction: row;
   align-items: center;
+  word-break: break-all;
   padding-left: 5%;
+}
+.searchTitleArea i {
+  color: red;
+  font-style: normal;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .searchPriceArea {
   height: 100%;
@@ -108,12 +120,26 @@
 }
 /* handle search item style */
 
-.makeSearchResPoolScrollable::-webkit-scrollbar {
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  /* border-radius: 10px; */
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(160, 159, 159);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(112, 112, 112);
+}
+
+/* .makeSearchResPoolScrollable::-webkit-scrollbar {
   width: 10px;
 }
 .makeSearchResPoolScrollable::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
 }
 .makeSearchResPoolScrollable::-webkit-scrollbar-thumb {
   background: rgb(160, 159, 159);
@@ -121,4 +147,4 @@
 }
 .makeSearchResPoolScrollable::-webkit-scrollbar-thumb:hover {
   background: rgb(112, 112, 112);
-}
+} */

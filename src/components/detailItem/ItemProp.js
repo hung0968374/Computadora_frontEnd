@@ -10,6 +10,7 @@ import { ToastInfoMessageInCenter } from "../sharedComponents/ToastMessage";
 import { FaAngleLeft } from "react-icons/fa";
 import { useHistory } from "react-router";
 import { discardNavBar, goUp } from "../../redux/features/post/screenSlice";
+import YesNoModal from "../sharedComponents/YesNoModal";
 const ItemProp = ({ data }) => {
   //state
   const displayImageRef = useRef(null);
@@ -23,7 +24,7 @@ const ItemProp = ({ data }) => {
   const history = useHistory();
   const [totalQuantityInCart, setTotalQuantityInCart] = useState(0);
   const [isZoomedIn, setIsZoomedIn] = useState(false);
-
+  const [userNotLoggined, setUserNotLoggined] = useState(false);
   //function
 
   /////////handling click outside event
@@ -64,10 +65,10 @@ const ItemProp = ({ data }) => {
       );
     }
   }, [totalItemInCartTakingFromRedux]);
-  /// selft defining function
+  /// adding to cart
   const _addingThisItemToCart = () => {
     if (!token) {
-      history.push("/signIn");
+      setUserNotLoggined(true);
     } else {
       if (!showNoti) {
         dispatch(
@@ -102,7 +103,16 @@ const ItemProp = ({ data }) => {
     }
   }, [isZoomedIn]);
   //////////handling zoom image in event
-  // console.log("item redux", totalItemInCartTakingFromRedux);
+
+  /////////////handling user not loggin in but comment
+  const _confirmLoggingIn = () => {
+    history.push("/signIn");
+    setUserNotLoggined(false);
+  };
+  const _rejectLoggingIn = () => {
+    setUserNotLoggined(false);
+  };
+  console.log("not loggined", userNotLoggined);
   return (
     <div className={styles.itemPropContainer}>
       <div className={styles.imgArea}>
@@ -238,6 +248,13 @@ const ItemProp = ({ data }) => {
       {showNoti ? (
         <ToastInfoMessageInCenter
           msg={"Đã thêm item này vào giỏ hàng của bạn"}
+        />
+      ) : null}
+      {userNotLoggined ? (
+        <YesNoModal
+          msg={"Bạn phải đăng nhập để sử dụng chức năng thêm vào giỏ hàng."}
+          confirm={_confirmLoggingIn}
+          reject={_rejectLoggingIn}
         />
       ) : null}
     </div>

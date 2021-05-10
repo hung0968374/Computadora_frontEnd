@@ -1,16 +1,91 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as styles from "./comment.module.css";
-const Comment = () => {
+import * as API from "../../api/index";
+import { ToastInfoMessage } from "../sharedComponents/ToastMessage";
+import YesNoModal from "../sharedComponents/YesNoModal";
+import { useHistory } from "react-router";
+import ModalSignUpWrapper from "../sharedComponents/OnlyYesModal";
+
+const Comment = ({ postId }) => {
   //state
+  const history = useHistory();
   const [userComment, setUserComment] = useState();
+  const [
+    showingMessageInformUserCommentSent,
+    setShowingMessageInformUserCommentSent,
+  ] = useState(false);
+  const [userNotLoggined, setUserNotLoggined] = useState(false);
+  const [allCommentInParticularPost, setAllCommentInParticularPost] = useState(
+    []
+  );
+  const [tokenHasExpired, setTokenHasExpired] = useState(false);
   //////function
-  const _handlingKeyEnterPressed = (e) => {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const _handlingKeyEnterPressed = async (e) => {
+    const token = localStorage.getItem("token");
     if (e.keyCode == 13 && e.shiftKey == false) {
       e.preventDefault();
-      alert("enter");
+      console.log("token comment", token);
+      if (!token) {
+        setUserNotLoggined(true);
+      } else {
+        try {
+          const response = await API.postAComment({
+            comment: userComment,
+            postId,
+            userInfo,
+          });
+          setUserComment("");
+          setShowingMessageInformUserCommentSent(true);
+          setTimeout(() => {
+            setShowingMessageInformUserCommentSent(false);
+          }, 3000);
+          _getAllUserCommentedInParticularPost();
+        } catch (error) {
+          console.log(error.response.status);
+          if (error.response.status === 403) {
+            setTokenHasExpired(true);
+          }
+        }
+      }
     }
   };
-  console.log(userComment);
+
+  ///////handle expired token
+
+  const _closeExpiredTokenModal = () => {
+    const restoreItemsInCart = JSON.parse(localStorage.getItem("cartItems"));
+    const restoreQuantity = localStorage.getItem("quantity");
+    localStorage.clear();
+    localStorage.setItem("cartItems", JSON.stringify(restoreItemsInCart));
+    localStorage.setItem("quantity", restoreQuantity);
+    setTokenHasExpired(false);
+    history.push("/signIn");
+  };
+
+  /////////////handling user not loggin in but comment
+
+  const _confirmLoggingIn = () => {
+    history.push("/signIn");
+    setUserNotLoggined(false);
+  };
+  const _rejectLoggingIn = () => {
+    setUserNotLoggined(false);
+  };
+  /////////////useEffect
+  const _getAllUserCommentedInParticularPost = async () => {
+    try {
+      const response = await API.getCommentsByPostId(postId);
+      // console.log("user commented", response);
+      setAllCommentInParticularPost(response.data.comments);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    _getAllUserCommentedInParticularPost();
+  }, [postId]);
+  console.log("all comment", allCommentInParticularPost);
   return (
     <div className={styles.commentArea}>
       <div className={styles.title}>
@@ -24,42 +99,49 @@ const Comment = () => {
           placeholder="Viết bình luận"
           onChange={(e) => setUserComment(e.target.value)}
           onKeyDown={_handlingKeyEnterPressed}
+          value={userComment}
         ></textarea>
       </div>
-      <div className={styles.userCommentedContainer}>
-        <div className={styles.userImg}>
-          <img
-            src=" https://i.pinimg.com/236x/24/21/85/242185eaef43192fc3f9646932fe3b46.jpg"
-            alt=""
-          />
-        </div>
-        <div className={styles.commentedContainer}>
-          <div className={styles.userName}>Huu hung</div>
-          <div className={styles.userCommentContent}>
-            hung huuhung huuhung huuhung huuhung huuhung huuhung huuhung huuhung
-            huuhung huuhung huuhung huuhung huuhung huuhung huuhung huuhung
-            huuhung huuhung huuhung huuhung huuhung huuhung huuhung huuhung
-            huuhung huuhung huuhung huuhung huuhung huuhung huuhung huuhung
-            huuhung huuhung huuhung huuhung huuhung huuhung huuhung huuhung
-            huuhung huuhung huuhung huuhung huuhung huuhung huuhung huuhung
-            huuhung huu
-          </div>
-          <div className={styles.timeStamp}>1 thang truoc</div>
-        </div>
+      <div className={styles.commentOutsideWrapper}>
+        {allCommentInParticularPost.map((eachComment, index) => {
+          return (
+            <div className={styles.userCommentedContainer}>
+              <div className={styles.userImg}>
+                <img src={eachComment.user.imageUrl} alt="" />
+              </div>
+              <div className={styles.commentedContainer} key={index}>
+                <div className={styles.userName}>{eachComment.user.name}</div>
+                <div className={styles.userCommentContent}>
+                  {eachComment.commentContent}
+                </div>
+                <div className={styles.timeStamp}>{eachComment.createdAt}</div>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div className={styles.userCommentedContainer}>
-        <div className={styles.userImg}>
-          <img
-            src=" https://i.pinimg.com/236x/24/21/85/242185eaef43192fc3f9646932fe3b46.jpg"
-            alt=""
+
+      {showingMessageInformUserCommentSent ? (
+        <>
+          <ToastInfoMessage msg={"Comment đã được gửi"} />
+        </>
+      ) : null}
+      {userNotLoggined ? (
+        <YesNoModal
+          msg={"Bạn phải đăng nhập để sử dụng chức năng bình luận."}
+          confirm={_confirmLoggingIn}
+          reject={_rejectLoggingIn}
+        />
+      ) : null}
+      {/* handling token expired */}
+      {tokenHasExpired ? (
+        <>
+          <ModalSignUpWrapper
+            msg={"Phiên đăng nhập của bạn đã hết, bạn cần phải đăng nhập lại."}
+            closeModal={_closeExpiredTokenModal}
           />
-        </div>
-        <div className={styles.commentedContainer}>
-          <div className={styles.userName}>Huu hung</div>
-          <div className={styles.userCommentContent}>hung huuhung</div>
-          <div className={styles.timeStamp}>1 thang truoc</div>
-        </div>
-      </div>
+        </>
+      ) : null}
     </div>
   );
 };
