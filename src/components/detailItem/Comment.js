@@ -4,7 +4,6 @@ import * as API from "../../api/index";
 import { ToastInfoMessage } from "../sharedComponents/ToastMessage";
 import YesNoModal from "../sharedComponents/YesNoModal";
 import { useHistory } from "react-router";
-import ModalSignUpWrapper from "../sharedComponents/OnlyYesModal";
 
 const Comment = ({ postId }) => {
   //state
@@ -85,7 +84,8 @@ const Comment = ({ postId }) => {
   useEffect(() => {
     _getAllUserCommentedInParticularPost();
   }, [postId]);
-  console.log("all comment", allCommentInParticularPost);
+  // console.log("all comment", allCommentInParticularPost);
+
   return (
     <div className={styles.commentArea}>
       <div className={styles.title}>
@@ -104,6 +104,19 @@ const Comment = ({ postId }) => {
       </div>
       <div className={styles.commentOutsideWrapper}>
         {allCommentInParticularPost.map((eachComment, index) => {
+          const now = new Date().getTime();
+          const commentSentDate = new Date(eachComment.createdAt).getTime();
+          var delta = Math.abs(now - commentSentDate) / 1000;
+          // calculate (and subtract) whole days
+          var days = Math.floor(delta / 86400);
+          delta -= days * 86400;
+          // calculate (and subtract) whole hours
+          var hours = Math.floor(delta / 3600) % 24;
+          delta -= hours * 3600;
+          // calculate (and subtract) whole minutes
+          var minutes = Math.floor(delta / 60) % 60;
+          delta -= minutes * 60;
+          console.log(" minutes ", minutes, " hour ", hours, "days", days);
           return (
             <div className={styles.userCommentedContainer}>
               <div className={styles.userImg}>
@@ -114,7 +127,22 @@ const Comment = ({ postId }) => {
                 <div className={styles.userCommentContent}>
                   {eachComment.commentContent}
                 </div>
-                <div className={styles.timeStamp}>{eachComment.createdAt}</div>
+                <div className={styles.timeStamp}>
+                  {days > 0 ? (
+                    <>{days} trước</>
+                  ) : (
+                    <>
+                      {hours > 0 ? (
+                        <>
+                          {hours} giờ {minutes} phút trước
+                        </>
+                      ) : (
+                        <>{minutes} phút trước</>
+                      )}
+                    </>
+                  )}
+                </div>
+                {/* <div className={styles.timeStamp}>{interval}</div> */}
               </div>
             </div>
           );
@@ -136,9 +164,10 @@ const Comment = ({ postId }) => {
       {/* handling token expired */}
       {tokenHasExpired ? (
         <>
-          <ModalSignUpWrapper
+          <YesNoModal
             msg={"Phiên đăng nhập của bạn đã hết, bạn cần phải đăng nhập lại."}
-            closeModal={_closeExpiredTokenModal}
+            confirm={_closeExpiredTokenModal}
+            notDisplayRejectBttn={true}
           />
         </>
       ) : null}

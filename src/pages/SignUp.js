@@ -1,10 +1,9 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as styles from "./cssFolder/signUP.module.css";
 import * as API from "../api/index";
 import { ToastErrorMessage } from "../components/sharedComponents/ToastMessage";
-import OnlyYesModal from "../components/sharedComponents/OnlyYesModal";
+import YesNoModal from "../components/sharedComponents/YesNoModal";
 export default function SignUP() {
   //state
   const initialState = {
@@ -16,10 +15,10 @@ export default function SignUP() {
   const [form, setForm] = useState(initialState);
   const [errorMsgShownToUser, setErrorMsgShownToUser] = useState("");
   const [infoMsgToUser, setInfoMsgToUser] = useState("");
-  const [testData, settestData] = useState("qweqwewq");
   const [loadingSigningUpResponse, setLoadingSigningUpResponse] = useState(
     false
   );
+  const [showYesNoModalToUser, setShowYesNoModalToUser] = useState(false);
 
   /// function
   const validateEmail = (email) => {
@@ -52,10 +51,8 @@ export default function SignUP() {
       if (msg.length !== 0) {
         setErrorMsgShownToUser(msg);
         console.log(errorMsgShownToUser);
-        settestData("lhadsffhsalkfjds");
         setTimeout(() => {
           setErrorMsgShownToUser("");
-          settestData("");
         }, 6000);
       } else if (msg.length === 0) {
         try {
@@ -64,6 +61,7 @@ export default function SignUP() {
           setLoadingSigningUpResponse(false);
           console.log(res.data.message);
           setInfoMsgToUser(res.data.message);
+          setShowYesNoModalToUser(true);
         } catch (error) {
           const res = error?.response?.data;
           setErrorMsgShownToUser((prev) => [...prev, res?.message]);
@@ -82,11 +80,10 @@ export default function SignUP() {
     }
   };
   const _closeModal = () => {
-    setInfoMsgToUser("");
-    setLoadingSigningUpResponse(false);
+    setShowYesNoModalToUser(false);
+    setForm(initialState);
   };
 
-  console.log("testdata", testData);
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -107,6 +104,7 @@ export default function SignUP() {
                 placeholder="Tên đăng nhập"
                 onChange={_handlingFormChange}
                 onKeyDown={handleKeyDown}
+                value={form.username}
               />
               <input
                 className={styles.password}
@@ -115,6 +113,7 @@ export default function SignUP() {
                 name="password"
                 onChange={_handlingFormChange}
                 onKeyDown={handleKeyDown}
+                value={form.password}
               />
               <input
                 className={styles.password}
@@ -123,12 +122,14 @@ export default function SignUP() {
                 placeholder="Xác nhận mật khẩu"
                 onChange={_handlingFormChange}
                 onKeyDown={handleKeyDown}
+                value={form.confirmPassword}
               />
               <input
                 name="email"
                 placeholder="email"
                 onChange={_handlingFormChange}
                 onKeyDown={handleKeyDown}
+                value={form.email}
               />
             </div>
             <div className={styles.more_func}>
@@ -164,8 +165,13 @@ export default function SignUP() {
           })}
         </>
       ) : null}
-      <OnlyYesModal msg={infoMsgToUser} closeModal={_closeModal} />
+      {showYesNoModalToUser ? (
+        <YesNoModal
+          msg={infoMsgToUser}
+          confirm={_closeModal}
+          notDisplayRejectBttn={true}
+        />
+      ) : null}
     </div>
   );
 }
-// <div className={styles.bg_active}>

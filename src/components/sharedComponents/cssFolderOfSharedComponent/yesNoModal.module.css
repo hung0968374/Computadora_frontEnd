@@ -43,22 +43,24 @@
   justify-content: center;
 }
 .content {
-  height: 6rem;
-  width: 80%;
+  height: auto;
+  min-height: 7rem;
+  width: calc(100% - 4rem);
   display: flex;
   border-top: 1px solid rgb(0, 68, 255);
   border-bottom: 1px solid rgb(0, 68, 255);
   justify-content: center;
   align-items: center;
+  text-align: justify;
   font-size: 10px;
   font-weight: 520;
-  padding: 5% 10% 5% 10%;
-  font-size: 1.8rem;
+  padding: 1rem 2rem 1rem 2rem;
+  font-size: 2rem;
   flex-direction: row;
 }
 .confirm {
   height: 6rem;
-  width: 80%;
+  width: 70%;
   margin: auto;
   display: flex;
   align-items: center;
@@ -96,6 +98,9 @@
 .cancelBttn:hover {
   opacity: 1;
   background-color: rgb(7, 104, 196);
+}
+.onlyOkBttnExist {
+  margin-left: 66%;
 }
 @keyframes fadeOut {
   0% {

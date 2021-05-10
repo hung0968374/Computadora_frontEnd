@@ -13,8 +13,8 @@ import Header from "../components/sharedComponents/Header";
 import { useHistory } from "react-router";
 import ItemInCart from "../components/cartPage/ItemInCart";
 import * as API from "../api/index";
-import OnlyYesModal from "../components/sharedComponents/OnlyYesModal";
 import { goUp } from "../redux/features/post/screenSlice";
+import YesNoModal from "../components/sharedComponents/YesNoModal";
 const CartPage = () => {
   /////state
   const history = useHistory();
@@ -204,17 +204,11 @@ const CartPage = () => {
                 <div>Giỏ hàng của bạn</div>
               </div>
               <div className={styles.contentContainer}>
-                {/* a
-            a */}
-                {/* show item in cart */}
                 {itemsInCart?.map((item, index) => {
                   return (
                     <ItemInCart imgUrl={imgUrl} itemInfo={item} key={index} />
                   );
                 })}
-                {/* show item in cart */}
-                {/* a
-            a */}
                 <div className={styles.temporaryTotalMoneyArea}>
                   <div className={styles.totalItems}>
                     <div>
@@ -312,14 +306,15 @@ const CartPage = () => {
               })}
             </>
           ) : null}
-          <OnlyYesModal msg={infoMsgToUser} closeModal={_closeModal} />;
+          <YesNoModal msg={infoMsgToUser} confirm={_closeModal} />;
           {tokenHasExpired ? (
             <>
-              <OnlyYesModal
+              <YesNoModal
                 msg={
                   "Phiên đăng nhập của bạn đã hết, bạn cần phải đăng nhập lại."
                 }
-                closeModal={_closeExpiredTokenModal}
+                confirm={_closeExpiredTokenModal}
+                notDisplayRejectBttn={true}
               />
             </>
           ) : null}
