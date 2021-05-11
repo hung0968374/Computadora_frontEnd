@@ -112,7 +112,6 @@ const ItemProp = ({ data }) => {
   const _rejectLoggingIn = () => {
     setUserNotLoggined(false);
   };
-  console.log("not loggined", userNotLoggined);
   return (
     <div className={styles.itemPropContainer}>
       <div className={styles.imgArea}>

@@ -1,3 +1,19 @@
+.modal_bg {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s;
+  animation: fadeOut 0.3s ease-in-out;
+}
+
 .commentArea {
   width: 55rem;
   margin: auto;
@@ -85,18 +101,16 @@
 .timeStamp {
   font-size: 15px;
 }
-.modal_bg {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+.watchMoreCmt {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0s, opacity 0.5s;
-  animation: fadeOut 0.3s ease-in-out;
+  width: auto;
+  max-width: 25%;
+  margin-top: 3rem;
+  line-height: 2rem;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.watchMoreCmt:hover {
+  transform: scale(1.03);
 }

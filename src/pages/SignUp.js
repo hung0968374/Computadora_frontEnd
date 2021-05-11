@@ -15,32 +15,48 @@ export default function SignUP() {
   const [form, setForm] = useState(initialState);
   const [errorMsgShownToUser, setErrorMsgShownToUser] = useState("");
   const [infoMsgToUser, setInfoMsgToUser] = useState("");
-  const [loadingSigningUpResponse, setLoadingSigningUpResponse] = useState(
-    false
-  );
+  const [loadingSigningUpResponse, setLoadingSigningUpResponse] =
+    useState(false);
   const [showYesNoModalToUser, setShowYesNoModalToUser] = useState(false);
 
   /// function
   const validateEmail = (email) => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   };
   const _handlingFormChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const _handlingRegister = async () => {
+    let msg = [];
+    function validateUsername(username) {
+      if (username.length === 0) {
+        msg.push("Không được để trống tên đăng nhập");
+      } else if (username.length < 5) {
+        msg.push("Tên đăng nhập tối thiểu cần 6 kí tự");
+      }
+      var nameRegex = /^[a-zA-Z0-9]+$/;
+      var validUsername = username.match(nameRegex);
+      if (validUsername == null) {
+        msg.push(
+          "Tên đăng nhập không hợp lệ, chỉ những kí tự từ A-Z, a-z, - , 0-9 được chấp nhận"
+        );
+        return false;
+      }
+    }
+    validateUsername(form.username);
     if (!errorMsgShownToUser) {
       console.log("form", form);
-      let msg = [];
       const emailIsValid = validateEmail(form.email);
       if (!emailIsValid) {
         msg.push("Email không đúng định dạng");
       }
-      if (!form.username) {
-        msg.push("Không được để trống tên đăng nhập");
-      }
+
       if (!form.password || !form.confirmPassword) {
         msg.push("Không được để trống mật khấu hoặc nhập lại mật khẩu");
+      } else if (form.password.length < 5 || form.confirmPassword < 5) {
+        msg.push("Mật khẩu quá yếu");
       }
       var passAndConfirmPassAreTheSame = form.password.localeCompare(
         form.confirmPassword

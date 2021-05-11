@@ -138,12 +138,7 @@ export default function SignIN() {
             <div className={styles.confirm} onClick={_handlingUserLoggin}>
               Đăng nhập
             </div>
-            {!successfullLoggingIn ? (
-              <ToastErrorMessage
-                msg={failureMsg}
-                setStt={setSuccessfullLoggingIn}
-              />
-            ) : null}
+
             <GoogleLogin
               className={styles.logginWithGoogle}
               clientId="244922534941-5gvl9rd0log4olllbi3pbsc9jepudgcr.apps.googleusercontent.com"
@@ -164,6 +159,9 @@ export default function SignIN() {
           </div>
         </div>
       </div>
+      {!successfullLoggingIn ? (
+        <ToastErrorMessage msg={failureMsg} setStt={setSuccessfullLoggingIn} />
+      ) : null}
     </div>
   );
 }

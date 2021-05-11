@@ -73,6 +73,7 @@
   border-radius: 50%;
   /* position: absolute;
   right: 11.5rem; */
+  border: 1px solid rgb(182, 182, 182);
 }
 .amountOfNotification {
   position: absolute;
