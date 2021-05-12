@@ -10,16 +10,7 @@ import { useLocation } from "react-router";
 
 function LandingPage() {
   const location = useLocation();
-  const [allData, setAllData] = useState([]);
-  const [screenIsLoading, setScreenIsLoading] = useState(false);
-  const [changeStt, setChangeStt] = useState(false);
-  const dispatch = useDispatch();
   useEffect(() => {
-    setScreenIsLoading(true);
-    let user_deserialized = JSON.parse(localStorage.getItem("userInfo"));
-    setTimeout(() => {
-      setScreenIsLoading(false);
-    }, 0);
     if (localStorage.getItem("quantity") === null) {
       localStorage.setItem("quantity", 0);
     }
@@ -27,20 +18,16 @@ function LandingPage() {
 
   return (
     <>
-      {!screenIsLoading ? (
-        <div className={styles.App}>
-          <Header />
-          <div className={styles.pageWrapper}>
-            <div className={styles.slo_auth_post}>
-              <Slogan />
-              <Posts />
-            </div>
-            <Footer />
+      <div className={styles.App}>
+        <Header />
+        <div className={styles.pageWrapper}>
+          <div className={styles.slo_auth_post}>
+            <Slogan />
+            <Posts />
           </div>
+          <Footer />
         </div>
-      ) : (
-        <div className={styles.greenScreen}>screen loading</div>
-      )}
+      </div>
     </>
   );
 }

@@ -5,7 +5,6 @@ import * as styles from "./cssFolder/DetailItem.module.css";
 import Header from "../components/sharedComponents/Header";
 import Footer from "../components/sharedComponents/footer";
 import ItemProp from "../components/detailItem/ItemProp";
-import Comment from "../components/detailItem/Comment";
 import { fetchItemById } from "../api";
 import ReviewItem from "../components/detailItem/ReviewItem";
 import MessengerCustomerChat from "react-messenger-customer-chat";
@@ -13,6 +12,7 @@ import { useSelector } from "react-redux";
 import { discardNavOrNot } from "../redux/features/post/screenSlice";
 import SearchComponent from "../components/sharedComponents/SearchComponent";
 import { useLocation } from "react-router";
+import Comment from "../components/sharedComponents/Comment";
 export default function DetailItem({ match }) {
   const showNavOrNot = useSelector(discardNavOrNot);
   const [specificItemById, setSpecificItemById] = useState([]);

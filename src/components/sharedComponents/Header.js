@@ -4,6 +4,7 @@ import * as styles from "./cssFolderOfSharedComponent/header_style.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { recoverItemsInCartEveryRefresh } from "../../redux/features/cart/cartSlice";
 import { goingToUpper, goUp } from "../../redux/features/post/screenSlice";
+import YesNoModal from "../sharedComponents/YesNoModal";
 
 const Header = () => {
   ///////////state
@@ -12,9 +13,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const [token, setToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
-  const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] = useState(
-    0
-  );
+  const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] =
+    useState(0);
 
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(true);
@@ -26,6 +26,7 @@ const Header = () => {
     history.push("/");
     dispatch(recoverItemsInCartEveryRefresh([]));
   };
+
   const _redirectToCartPage = () => {
     history.push("/cart");
   };
@@ -63,8 +64,33 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [goingUp]);
   const isGoingUp = screenGoUp ? styles.goingDown : styles.goingUp;
-  var userOptionAnimation = null;
-  // const userOptionAnimation = openUserInfo ? styles.dropDown : styles.goUp;
+
+  //////////    localstorage real time
+  window.onstorage = () => {
+    setInterval(() => {
+      if (localStorage.getItem("token")?.length > 0) {
+        setToken(localStorage.getItem("token"));
+        setTotalQuantityOfItemsInCart(localStorage.getItem("quantity"));
+        setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
+      } else {
+        localStorage.clear();
+        setToken("");
+        setUserInfo({});
+        setTotalQuantityOfItemsInCart(0);
+      }
+    }, 1000);
+    if (JSON.parse(localStorage.getItem("cartItems")) !== null) {
+      setTimeout(() => {
+        dispatch(
+          recoverItemsInCartEveryRefresh(
+            JSON.parse(localStorage.getItem("cartItems"))
+          )
+        );
+      }, 1000);
+    }
+  };
+
+  ///////handle expired token or user log out
   return (
     <div className={`${styles.header} ${isGoingUp}`}>
       <div className={styles.content_wrapper}>
@@ -96,7 +122,7 @@ const Header = () => {
             <>
               <div className={styles.userImgWrapper}>
                 <img
-                  src={userInfo.imageUrl}
+                  src={userInfo?.imageUrl}
                   alt=""
                   className={styles.userImgStyle}
                 />

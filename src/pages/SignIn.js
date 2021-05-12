@@ -21,6 +21,14 @@ export default function SignIN() {
     username,
     password,
   };
+  ////////// if user already loggined, redirect to home page
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    console.log("token", token);
+    if (token?.length > 0) {
+      history.push("/");
+    }
+  }, [token]);
 
   ///////function
   const _handlingUserLoggin = async () => {

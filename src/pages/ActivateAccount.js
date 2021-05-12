@@ -3,12 +3,15 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import * as styles from "./cssFolder/activateAccount.module.css";
 import * as API from "../api/index";
+import jwt_decode from "jwt-decode";
+
 export default function ActivateAccount({ match }) {
   const token = match.params.token;
   const name = "Huu hung";
   const sendingToServerObj = {
     token,
   };
+  const decodedToken = jwt_decode(token);
   const history = useHistory();
   const _returnToLandingPage = () => {
     history.push("/");
@@ -24,6 +27,7 @@ export default function ActivateAccount({ match }) {
     };
     _sendActivateRequestToBackend();
   }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

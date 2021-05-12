@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import * as styles from "./comment.module.css";
+import * as styles from "./cssFolderOfSharedComponent/comment.module.css";
 import * as API from "../../api/index";
-import { ToastInfoMessage } from "../sharedComponents/ToastMessage";
-import YesNoModal from "../sharedComponents/YesNoModal";
+import { ToastInfoMessage } from "./ToastMessage";
+import YesNoModal from "./YesNoModal";
 import { useHistory } from "react-router";
 import Pusher from "pusher-js";
 import { useDispatch } from "react-redux";
 import { goUp } from "../../redux/features/post/screenSlice";
+import EachComment from "./EachComment";
+require("dotenv").config();
 
 const Comment = ({ postId }) => {
   //state
@@ -24,13 +26,16 @@ const Comment = ({ postId }) => {
   const [totalComment, setTotalComment] = useState();
   const [commentPage, setCommentPage] = useState(1);
   const [commentLeft, setCommentLeft] = useState();
+  const [variableToMakeReactUpdateCmt, setVariableToMakeReactUpdateCmt] =
+    useState(false);
+  ////// this variable is used to show the delete post without checking anything
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   //////////// press enter
   const _handlingKeyEnterPressed = async (e) => {
     const token = localStorage.getItem("token");
     if (e.keyCode == 13 && e.shiftKey == false) {
       e.preventDefault();
-      console.log("token comment", token);
+      // console.log("token comment", token);
       if (!token) {
         setUserNotLoggined(true);
       } else {
@@ -45,6 +50,7 @@ const Comment = ({ postId }) => {
           setTimeout(() => {
             setShowingMessageInformUserCommentSent(false);
           }, 3000);
+          setVariableToMakeReactUpdateCmt(!variableToMakeReactUpdateCmt);
           /////// pushing nav bar to upper or make it disappear
           dispatch(goUp(false));
         } catch (error) {
@@ -113,11 +119,10 @@ const Comment = ({ postId }) => {
   useEffect(() => {
     _getCommentAmountLeft();
   }, [totalComment, commentPage]);
-
   //////////// real time comment
   useEffect(() => {
-    const pusher = new Pusher("0489280acfa7987721e1", {
-      cluster: "ap1",
+    const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
+      cluster: process.env.REACT_APP_PUSHER_CLUSTER,
     });
 
     var channel = pusher.subscribe("comment");
@@ -126,28 +131,41 @@ const Comment = ({ postId }) => {
       if (data.postId == postId) {
         const newComment = {
           commentContent: data.comment,
+          _id: data.commentId,
           createdAt: data.sentCommentTime,
           user: {
             name: data.name,
             imageUrl: data.userImg,
+            id: data.userIdSentComment,
           },
         };
-        // console.log("new comment", newComment);
+        console.log("new comment", newComment);
 
-        ////////// day comment moi len tren dau cac comment cu
+        //////// day comment moi len tren dau cac comment cu
         setSlicedCommentInParticularPost([
           newComment,
           ...slicedCommentInParticularPost,
         ]);
-
         //////////  update so luong comment
         _getTotalAmountOfCmtInThisPost();
       }
+    });
+    channel.bind("deleted", (data) => {
+      // console.log("comment deleted", data);
+      const idCommentDeleted = data.idCommentDeleted;
+      // console.log("id", idCommentDeleted);
+      setSlicedCommentInParticularPost((slicedCommentInParticularPost) =>
+        slicedCommentInParticularPost.filter(
+          (comment) => comment._id !== idCommentDeleted
+        )
+      );
     });
     return () => {
       channel.unbind_all();
     };
   }, [postId, slicedCommentInParticularPost]);
+  /////////// click deleting comment
+
   return (
     <div className={styles.commentArea}>
       <div className={styles.title}>
@@ -166,47 +184,13 @@ const Comment = ({ postId }) => {
       </div>
       <div className={styles.commentOutsideWrapper}>
         {slicedCommentInParticularPost.map((eachComment, index) => {
-          const now = new Date().getTime();
-          const commentSentDate = new Date(eachComment.createdAt).getTime();
-          var delta = Math.abs(now - commentSentDate) / 1000;
-          // calculate (and subtract) whole days
-          var days = Math.floor(delta / 86400);
-          delta -= days * 86400;
-          // calculate (and subtract) whole hours
-          var hours = Math.floor(delta / 3600) % 24;
-          delta -= hours * 3600;
-          // calculate (and subtract) whole minutes
-          var minutes = Math.floor(delta / 60) % 60;
-          delta -= minutes * 60;
-          // console.log(" minutes ", minutes, " hour ", hours, "days", days);
+          // console.log(eachComment);
           return (
-            <div className={styles.userCommentedContainer}>
-              <div className={styles.userImg}>
-                <img src={eachComment?.user?.imageUrl} alt="" />
-              </div>
-              <div className={styles.commentedContainer} key={index}>
-                <div className={styles.userName}>{eachComment.user.name}</div>
-                <div className={styles.userCommentContent}>
-                  {eachComment.commentContent}
-                </div>
-                <div className={styles.timeStamp}>
-                  {days > 0 ? (
-                    <>{days} trước</>
-                  ) : (
-                    <>
-                      {hours > 0 ? (
-                        <>
-                          {hours} giờ {minutes} phút trước
-                        </>
-                      ) : (
-                        <>{minutes} phút trước</>
-                      )}
-                    </>
-                  )}
-                </div>
-                {/* <div className={styles.timeStamp}>{interval}</div> */}
-              </div>
-            </div>
+            <EachComment
+              key={index}
+              eachComment={eachComment}
+              userInfo={userInfo}
+            />
           );
         })}
       </div>

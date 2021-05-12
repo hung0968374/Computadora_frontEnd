@@ -14,6 +14,8 @@ const Slogan = () => {
   const link_style1 = {
     color: "white",
   };
+  /////////////// localstorage change
+
   return (
     <div className={styles.slogan}>
       <div className={styles.styleTheSlogan}>

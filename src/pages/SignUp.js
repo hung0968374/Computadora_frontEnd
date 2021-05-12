@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import * as styles from "./cssFolder/signUP.module.css";
 import * as API from "../api/index";
 import { ToastErrorMessage } from "../components/sharedComponents/ToastMessage";
 import YesNoModal from "../components/sharedComponents/YesNoModal";
 export default function SignUP() {
   //state
+  const history = useHistory();
   const initialState = {
     username: "",
     password: "",
@@ -99,7 +100,13 @@ export default function SignUP() {
     setShowYesNoModalToUser(false);
     setForm(initialState);
   };
-
+  ////////// if user already loggined, redirect to home page
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (token?.length > 0) {
+      history.push("/");
+    }
+  }, [token]);
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

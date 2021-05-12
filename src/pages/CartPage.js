@@ -25,10 +25,15 @@ const CartPage = () => {
     email: "",
     address: "",
   };
-  const [
-    totalQuantityOfItemsInCart,
-    setTotalQuantityOfItemsInCart,
-  ] = useState();
+  ////////////redirect if user not loggined
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (!token) {
+      history.push("/");
+    }
+  }, []);
+  const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] =
+    useState();
   const [infoMsgToUser, setInfoMsgToUser] = useState("");
   const [totalPaidMoney, setTotalPaidMoney] = useState();
   const itemsInCartTakenFromLocalStorage = localStorage.getItem("cartItems");
@@ -93,7 +98,8 @@ const CartPage = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const validateEmail = (email) => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   };
   ////////close modal     line 309
@@ -306,7 +312,9 @@ const CartPage = () => {
               })}
             </>
           ) : null}
-          <YesNoModal msg={infoMsgToUser} confirm={_closeModal} />;
+          {infoMsgToUser?.length > 0 ? (
+            <YesNoModal msg={infoMsgToUser} confirm={_closeModal} />
+          ) : null}
           {tokenHasExpired ? (
             <>
               <YesNoModal
