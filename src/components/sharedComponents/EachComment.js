@@ -36,7 +36,7 @@ export default function EachComment({ eachComment, userInfo }) {
         <div className={styles.timeStampAndDelCmt}>
           <div className={styles.timeStamp}>
             {days > 0 ? (
-              <>{days} trước</>
+              <>{days} ngày trước</>
             ) : (
               <>
                 {hours > 0 ? (

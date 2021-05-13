@@ -77,8 +77,8 @@
   font-size: 2rem;
   font-weight: 520;
   color: white;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  padding-right: 2.5rem;
+  padding-left: 2.5rem;
 }
 .cancelBttn {
   width: auto;
@@ -100,7 +100,7 @@
   background-color: rgb(7, 104, 196);
 }
 .onlyOkBttnExist {
-  margin-left: 66%;
+  margin-left: 60%;
 }
 @keyframes fadeOut {
   0% {

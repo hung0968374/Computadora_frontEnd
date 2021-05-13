@@ -63,8 +63,8 @@ td {
   color: red;
 }
 .table_default tr td li:hover {
-  color: blue;
-  transform: scale(1.01);
+  text-decoration: underline;
+  transform: scale(1.02);
 }
 .totalInvoicesValue {
   width: 100%;

@@ -36,3 +36,4 @@ export const getSlicedCommentsByPostId = (id, page) =>
   API.get(`/api/comment/filter?postId=${id}&&page=${page}`);
 export const deleteComment = (obj) =>
   API.delete(`/api/comment/${obj._id}`, { data: obj });
+export const updateJWTUserInfo = (obj) => API.put(`/api/user`, obj);

@@ -27,9 +27,16 @@ const CartPage = () => {
   };
   ////////////redirect if user not loggined
   const token = localStorage.getItem("token");
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   useEffect(() => {
     if (!token) {
       history.push("/");
+    } else {
+      setForm({
+        customerName: userInfo.name,
+        customerPhone: userInfo?.userPhone,
+        email: userInfo.email,
+      });
     }
   }, []);
   const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] =
@@ -238,6 +245,7 @@ const CartPage = () => {
                           name="customerName"
                           placeholder="Họ và tên"
                           onChange={_handlingFormChange}
+                          value={form.customerName}
                         />
                         {form.customerName.length == 0 ||
                         form.customerName.trim() === "" ? (
@@ -250,6 +258,7 @@ const CartPage = () => {
                           name="customerPhone"
                           placeholder="Số điện thoại"
                           onChange={_handlingFormChange}
+                          value={form.customerPhone}
                         />
                         {form.customerPhone.length == 0 ||
                         form.customerPhone.trim() === "" ? (
@@ -264,6 +273,7 @@ const CartPage = () => {
                         placeholder="Email"
                         className={styles.email}
                         onChange={_handlingFormChange}
+                        value={form.email}
                       ></input>
                       {form.email.length == 0 ? (
                         <span>Vui lòng nhập gmail</span>
@@ -280,9 +290,10 @@ const CartPage = () => {
                         rows="5"
                         placeholder="Địa chỉ"
                         onChange={_handlingFormChange}
+                        value={form.address}
                       ></textarea>
-                      {form.address.length == 0 ||
-                      form.address.trim() === "" ? (
+                      {form?.address?.length == 0 ||
+                      form?.address?.trim() === "" ? (
                         <span>Vui lòng nhập địa chỉ</span>
                       ) : null}
                     </div>
