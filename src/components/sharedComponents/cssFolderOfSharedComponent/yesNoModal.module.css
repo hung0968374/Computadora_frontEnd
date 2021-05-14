@@ -40,9 +40,7 @@
 .redHeader {
   color: red;
 }
-.redHeader i {
-  display: none !important;
-}
+
 .header i {
   margin-right: 1rem;
   display: flex;
@@ -92,6 +90,7 @@
   padding-right: 2.5rem;
   padding-left: 2.5rem;
 }
+
 .cancelBttn {
   width: auto;
   border-radius: 5px;
@@ -111,8 +110,14 @@
   opacity: 1;
   background-color: rgb(7, 104, 196);
 }
+.redOkBttn {
+  background-color: red;
+}
+.redOkBttn:hover {
+  background-color: rgb(199, 0, 0);
+}
 .onlyOkBttnExist {
-  margin-left: 60%;
+  margin: auto;
 }
 @keyframes fadeOut {
   0% {

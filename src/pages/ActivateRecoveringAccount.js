@@ -1,17 +1,13 @@
-import axios from "axios";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
-import * as styles from "./cssFolder/activateAccount.module.css";
+import * as styles from "./cssFolder/recoverAccount.module.css";
 import * as API from "../api/index";
-import jwt_decode from "jwt-decode";
 
-export default function ActivateAccount({ match }) {
+export default function ActivateRecoveringAccount({ match }) {
   const token = match.params.token;
-  const name = "Huu hung";
   const sendingToServerObj = {
     token,
   };
-  const decodedToken = jwt_decode(token);
   const history = useHistory();
   const _returnToLandingPage = () => {
     history.push("/");
@@ -19,7 +15,7 @@ export default function ActivateAccount({ match }) {
   useEffect(() => {
     const _sendActivateRequestToBackend = async () => {
       try {
-        const res = await API.activateAccount(sendingToServerObj);
+        const res = await API.activateRecoveringPw(sendingToServerObj);
         console.log("res", res);
       } catch (error) {
         console.log(error);
@@ -31,7 +27,7 @@ export default function ActivateAccount({ match }) {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <div className={styles.title}>account của bạn đã được kích hoạt!</div>
+        <div className={styles.title}>Lấy lại tài khoản thành công!</div>
         <div
           onClick={_returnToLandingPage}
           className={styles.returnToHomePageBttn}

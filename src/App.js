@@ -13,6 +13,8 @@ import PWRecover from "./pages/PWRecover";
 import CartPage from "./pages/CartPage";
 import PersonalUserInfo from "./pages/PersonalUserInfo";
 import BoughtItemRecord from "./pages/BoughtItemRecord";
+import ActivateRecoveringAccount from "./pages/ActivateRecoveringAccount";
+
 function App() {
   return (
     <Provider store={store}>
@@ -38,6 +40,11 @@ function App() {
               path="/activateAccount/:token"
               exact
               component={ActivateAccount}
+            />
+            <Route
+              path="/activateRecoveringPw/:token"
+              exact
+              component={ActivateRecoveringAccount}
             />
           </Switch>
         </div>

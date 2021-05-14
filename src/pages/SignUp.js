@@ -5,7 +5,6 @@ import * as API from "../api/index";
 import { ToastErrorMessage } from "../components/sharedComponents/ToastMessage";
 import YesNoModal from "../components/sharedComponents/YesNoModal";
 import { FaEyeSlash, FaRegEye } from "react-icons/fa";
-import { FaRegEyeSlash } from "react-icons/fa";
 
 export default function SignUP() {
   //state
@@ -39,7 +38,7 @@ export default function SignUP() {
       if (username.length === 0) {
         msg.push("Không được để trống tên đăng nhập");
       } else if (username.length < 5) {
-        msg.push("Tên đăng nhập tối thiểu cần 6 kí tự");
+        msg.push("Tên đăng nhập tối thiểu phải đạt 6 kí tự");
       }
       var nameRegex = /^[a-zA-Z0-9]+$/;
       var validUsername = username.match(nameRegex);
@@ -61,7 +60,7 @@ export default function SignUP() {
       if (!form.password || !form.confirmPassword) {
         msg.push("Không được để trống mật khấu hoặc nhập lại mật khẩu");
       } else if (form.password.length < 5 || form.confirmPassword < 5) {
-        msg.push("Mật khẩu quá yếu");
+        msg.push("Mật khẩu tối thiểu phải đạt 6 kí tự.");
       }
       var passAndConfirmPassAreTheSame = form.password.localeCompare(
         form.confirmPassword

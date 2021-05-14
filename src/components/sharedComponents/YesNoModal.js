@@ -1,6 +1,6 @@
 import React from "react";
 import * as styles from "./cssFolderOfSharedComponent/yesNoModal.module.css";
-import { FcInfo } from "react-icons/fc";
+import { MdInfo } from "react-icons/md";
 
 export default function YesNoModal({
   msg,
@@ -12,11 +12,9 @@ export default function YesNoModal({
   return (
     <div className={styles.modal_bg}>
       <div className={styles.center}>
-        <div
-          className={`${styles.header} ${isArray ? styles.redHeader : null}`}
-        >
+        <div className={`${styles.header} ${isArray && styles.redHeader}`}>
           <i>
-            <FcInfo size={60} />
+            <MdInfo className={styles.headerIcon} />
           </i>
           Thông báo
         </div>
@@ -39,8 +37,9 @@ export default function YesNoModal({
           )}
           <div
             className={`${styles.okBttn} ${
-              notDisplayRejectBttn ? styles.onlyOkBttnExist : null
-            }`}
+              notDisplayRejectBttn && styles.onlyOkBttnExist
+            } ${isArray && styles.redOkBttn}
+            `}
             onClick={confirm}
           >
             Ok

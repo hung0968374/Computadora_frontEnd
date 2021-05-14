@@ -39,3 +39,7 @@ export const deleteComment = (obj) =>
 export const updateJWTUserBaseInfo = (obj) => API.put(`/api/user`, obj);
 export const updateJWTUserPassword = (obj) =>
   API.put(`/api/user/changePw`, obj);
+export const requireRecoveringPw = (obj) =>
+  API.post(`/api/user/recoverPw`, obj);
+export const activateRecoveringPw = (obj) =>
+  API.post(`/api/user/activateRecoveringPw`, obj);
