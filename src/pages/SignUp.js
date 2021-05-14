@@ -4,6 +4,9 @@ import * as styles from "./cssFolder/signUP.module.css";
 import * as API from "../api/index";
 import { ToastErrorMessage } from "../components/sharedComponents/ToastMessage";
 import YesNoModal from "../components/sharedComponents/YesNoModal";
+import { FaEyeSlash, FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+
 export default function SignUP() {
   //state
   const history = useHistory();
@@ -19,7 +22,8 @@ export default function SignUP() {
   const [loadingSigningUpResponse, setLoadingSigningUpResponse] =
     useState(false);
   const [showYesNoModalToUser, setShowYesNoModalToUser] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   /// function
   const validateEmail = (email) => {
     const re =
@@ -129,27 +133,41 @@ export default function SignUP() {
                 onKeyDown={handleKeyDown}
                 value={form.username}
               />
-              <input
-                className={styles.password}
-                type="password"
-                placeholder="Mật khẩu"
-                name="password"
-                onChange={_handlingFormChange}
-                onKeyDown={handleKeyDown}
-                value={form.password}
-              />
-              <input
-                className={styles.password}
-                type="password"
-                name="confirmPassword"
-                placeholder="Xác nhận mật khẩu"
-                onChange={_handlingFormChange}
-                onKeyDown={handleKeyDown}
-                value={form.confirmPassword}
-              />
+              <div className={styles.passwordContainer}>
+                <input
+                  type={`${showPassword ? "text" : "password"}`}
+                  placeholder="Mật khẩu"
+                  name="password"
+                  onChange={_handlingFormChange}
+                  onKeyDown={handleKeyDown}
+                  value={form.password}
+                />
+                <i
+                  className={styles.iconForPassword}
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaRegEye /> : <FaEyeSlash />}
+                </i>
+              </div>
+              <div className={styles.passwordContainer}>
+                <input
+                  type={`${showConfirmPassword ? "text" : "password"}`}
+                  name="confirmPassword"
+                  placeholder="Xác nhận mật khẩu"
+                  onChange={_handlingFormChange}
+                  onKeyDown={handleKeyDown}
+                  value={form.confirmPassword}
+                />
+                <i
+                  className={styles.iconForPassword}
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? <FaRegEye /> : <FaEyeSlash />}
+                </i>
+              </div>
               <input
                 name="email"
-                placeholder="email"
+                placeholder="Email"
                 onChange={_handlingFormChange}
                 onKeyDown={handleKeyDown}
                 value={form.email}

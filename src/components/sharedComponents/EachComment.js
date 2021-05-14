@@ -2,7 +2,12 @@ import React from "react";
 import * as styles from "./cssFolderOfSharedComponent/comment.module.css";
 import * as API from "../../api/index";
 
-export default function EachComment({ eachComment, userInfo }) {
+export default function EachComment({
+  eachComment,
+  userInfo,
+  setMessageInformUserCommentStatus,
+  messageInformUserCommentStatus,
+}) {
   const now = new Date().getTime();
   // console.log("each cmt", eachComment);
   const commentSentDate = new Date(eachComment.createdAt).getTime();
@@ -21,6 +26,10 @@ export default function EachComment({ eachComment, userInfo }) {
   ///// delete a comment
   const _deleteThisComment = async () => {
     const response = await API.deleteComment(eachComment);
+    setMessageInformUserCommentStatus([
+      ...messageInformUserCommentStatus,
+      "Đã xóa comment",
+    ]);
   };
   //   console.log("each", eachComment);
   return (

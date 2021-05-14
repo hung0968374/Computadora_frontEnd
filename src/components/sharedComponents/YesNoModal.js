@@ -7,17 +7,30 @@ export default function YesNoModal({
   confirm,
   reject,
   notDisplayRejectBttn,
+  isArray = false,
 }) {
   return (
     <div className={styles.modal_bg}>
       <div className={styles.center}>
-        <div className={styles.header}>
+        <div
+          className={`${styles.header} ${isArray ? styles.redHeader : null}`}
+        >
           <i>
-            <FcInfo size={60} color="rgb(0, 132, 255)" />
+            <FcInfo size={60} />
           </i>
           Thông báo
         </div>
-        <div className={styles.content}>{msg}</div>
+        <div className={styles.content}>
+          {isArray ? (
+            <div>
+              {msg.map((message, idx) => {
+                return <li key={idx}>{message}</li>;
+              })}
+            </div>
+          ) : (
+            <li>{msg}</li>
+          )}
+        </div>
         <div className={styles.confirm}>
           {notDisplayRejectBttn === true ? null : (
             <div className={styles.cancelBttn} onClick={reject}>

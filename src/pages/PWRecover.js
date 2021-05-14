@@ -1,8 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import * as styles from "./cssFolder/PWrecover.module.css";
 
 export default function PWRecover() {
+  const history = useHistory();
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (token) {
+      history.push("/");
+    }
+  }, [token]);
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -11,7 +18,6 @@ export default function PWRecover() {
             <h2>Lấy lại mật khẩu</h2>
           </div>
         </div>
-
         <div className={styles.main}>
           <div className={styles.logo}>
             <img src="/images/laptop.svg" />

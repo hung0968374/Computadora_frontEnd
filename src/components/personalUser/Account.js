@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
 import "./account.css";
 import { BiImageAdd } from "react-icons/bi";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
 import * as API from "../../api/index";
 import YesNoModal from "../sharedComponents/YesNoModal";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import { goUp } from "../../redux/features/post/screenSlice";
 
 export default function Account() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const token = localStorage.getItem("token");
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const initialPasswordState = {
+    currentPassword: null,
+    newPassword: null,
+    confirmNewPassword: null,
+  };
   // const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState();
   const [baseUserInfo, setBaseUserInfo] = useState({
@@ -16,11 +26,17 @@ export default function Account() {
     userPhone: "",
     email: "",
   });
+  const [passwordForm, setPasswordForm] = useState(initialPasswordState);
   const [showModalRequestUserLoggout, setShowModalRequestUserLoggout] =
     useState(false);
   const [isSendingUpdateRequestToServer, setIsSendingUpdateRequestToServer] =
     useState(false);
   const [showMustBeImgModal, setshowMustBeImgModal] = useState(false);
+  const [showNewPwText, setshowNewPwText] = useState(false);
+  const [showConfirmPwText, setshowConfirmPwText] = useState(false);
+  const [msgSendToUser, setMsgSendToUser] = useState([]);
+  const [updatedPwSuccessfully, setUpdatedPwSuccessfully] = useState("");
+  const [updatingPwFailedMsg, setUpdatingPwFailedMsg] = useState("");
   /////// function
   useEffect(() => {
     if (!token) {
@@ -58,11 +74,11 @@ export default function Account() {
       };
       console.log("new user", newUserInfo);
       setIsSendingUpdateRequestToServer(true);
-      const response = await API.updateJWTUserInfo(newUserInfo);
+      const response = await API.updateJWTUserBaseInfo(newUserInfo);
       setIsSendingUpdateRequestToServer(false);
       setShowModalRequestUserLoggout(true);
-      ///////////clear all user inform in case they reload the page without navigate to login page as programmed
-      // console.log("res", response);
+      console.log("res", response);
+      localStorage.clear();
     } catch (error) {
       console.log(error);
       console.log(error.response);
@@ -84,6 +100,47 @@ export default function Account() {
     localStorage.clear();
     history.push("/signIn");
   };
+
+  /////////// change password
+  const _handleChangePassword = (e) => {
+    setPasswordForm({ ...passwordForm, [e.target.name]: e.target.value });
+  };
+  const _handleUserPasswordChanged = async () => {
+    dispatch(goUp(false));
+    let msg = [];
+    if (
+      passwordForm?.currentPassword?.length < 5 ||
+      !passwordForm.currentPassword
+    ) {
+      msg.push("Mật khẩu hiện tại tối thiểu phải đủ 6 kí tự. ");
+    }
+    if (passwordForm?.newPassword?.length < 5 || !passwordForm.newPassword) {
+      msg.push("Mật khẩu mới tối thiểu phải đủ 6 kí tự. ");
+    }
+    if (
+      passwordForm?.confirmNewPassword?.length < 5 ||
+      !passwordForm.confirmNewPassword
+    ) {
+      msg.push("Mật khẩu nhập lại tối thiểu phải đủ 6 kí tự.");
+    }
+    if (passwordForm.newPassword !== passwordForm.confirmNewPassword) {
+      msg.push("Mật khẩu mới và nhập lại mật khẩu không khớp.");
+    }
+    setMsgSendToUser(msg);
+    if (msg.length === 0) {
+      try {
+        const response = await API.updateJWTUserPassword(passwordForm);
+        console.log("up user pw", response);
+        setUpdatedPwSuccessfully(
+          "Thay đổi mật khẩu thành công, chúng tôi sẽ điều hướng bạn về trang đăng nhập."
+        );
+      } catch (error) {
+        // console.log(error.response.data.message);
+        setUpdatingPwFailedMsg(error.response.data.message);
+      }
+    }
+  };
+  // console.log("pw form", passwordForm);
   return (
     <div className="user_profile">
       <h2>Thông tin tài khoản</h2>
@@ -179,34 +236,68 @@ export default function Account() {
                   <h3>Nhập mật khẩu hiện tại</h3>
                   <input
                     type="password"
-                    maxLength="20"
-                    minLength="6"
+                    maxLength="50"
+                    name="currentPassword"
                     placeholder="Nhập mật khẩu hiện tại"
+                    onChange={_handleChangePassword}
+                    className={`${
+                      passwordForm?.currentPassword?.length < 6
+                        ? "redBorder"
+                        : null
+                    }`}
                   />
                 </li>
                 <li>
                   <h3>Nhập mật khẩu mới</h3>
                   <input
-                    type="password"
-                    maxLength="20"
-                    minLength="6"
+                    type={showNewPwText ? "text" : "password"}
+                    name="newPassword"
+                    maxLength="50"
                     placeholder="Nhập mật khẩu mới"
+                    onChange={_handleChangePassword}
+                    className={`typeNewPassword ${
+                      passwordForm?.newPassword?.length < 6 ? "redBorder" : null
+                    }`}
                   />
+                  <i
+                    className="typePwIcon"
+                    onClick={() => setshowNewPwText(!showNewPwText)}
+                  >
+                    {showNewPwText ? <FaRegEye /> : <FaRegEyeSlash />}
+                  </i>
                 </li>
                 <li>
-                  <div className="Update_info">Cập nhật</div>
+                  <div
+                    className="Update_info"
+                    onClick={_handleUserPasswordChanged}
+                  >
+                    Cập nhật
+                  </div>
                 </li>
               </ul>
             </div>
             <div className="column2">
               <ul>
-                <li>
+                <li className="retypePasswordContainer">
                   <h3>Nhập lại mật khẩu mới</h3>
                   <input
-                    type="password"
+                    type={showConfirmPwText ? "text" : "password"}
+                    name="confirmNewPassword"
                     placeholder="Nhập lại mật khẩu mới"
-                    className="retypePw"
+                    className={`retypePw ${
+                      passwordForm?.confirmNewPassword?.length < 6
+                        ? "redBorder"
+                        : null
+                    }`}
+                    onChange={_handleChangePassword}
+                    maxLength="50"
                   />
+                  <i
+                    className="retypePwIcon"
+                    onClick={() => setshowConfirmPwText(!showConfirmPwText)}
+                  >
+                    {showConfirmPwText ? <FaRegEye /> : <FaRegEyeSlash />}
+                  </i>
                 </li>
               </ul>
             </div>
@@ -230,6 +321,40 @@ export default function Account() {
               setshowMustBeImgModal(false);
             }}
             msg="File input phải là một ảnh."
+          />
+        </>
+      ) : null}
+      {msgSendToUser?.length > 0 ? (
+        <>
+          <YesNoModal
+            notDisplayRejectBttn={true}
+            msg={msgSendToUser}
+            isArray={true}
+            confirm={() => setMsgSendToUser([])}
+          />
+        </>
+      ) : null}
+      {updatedPwSuccessfully?.length ? (
+        <>
+          <YesNoModal
+            notDisplayRejectBttn={true}
+            msg={updatedPwSuccessfully}
+            confirm={() => {
+              setUpdatedPwSuccessfully("");
+              localStorage.clear();
+              history.push("/signIn");
+            }}
+          />
+        </>
+      ) : null}
+      {updatingPwFailedMsg?.length > 0 ? (
+        <>
+          <YesNoModal
+            notDisplayRejectBttn={true}
+            msg={updatingPwFailedMsg}
+            confirm={() => {
+              setUpdatingPwFailedMsg("");
+            }}
           />
         </>
       ) : null}

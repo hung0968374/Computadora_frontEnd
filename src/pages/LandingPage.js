@@ -1,32 +1,43 @@
 import * as styles from "./cssFolder/landingPage.module.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/sharedComponents/Header";
 import Slogan from "../components/LangdingPage/Slogan";
 import Posts from "../components/LangdingPage/Posts";
 import Footer from "../components/LangdingPage/Footer";
-import * as Api from "../api";
-import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router";
+import { goUp } from "../redux/features/post/screenSlice";
+import { useDispatch } from "react-redux";
 
 function LandingPage() {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const [reloadPage, setReloadPage] = useState(true);
   useEffect(() => {
     if (localStorage.getItem("quantity") === null) {
       localStorage.setItem("quantity", 0);
     }
+    dispatch(goUp(true));
+    setReloadPage(false);
+    setInterval(() => {
+      setReloadPage(true);
+    }, 0);
   }, [location]);
 
   return (
     <>
       <div className={styles.App}>
-        <Header />
-        <div className={styles.pageWrapper}>
-          <div className={styles.slo_auth_post}>
-            <Slogan />
-            <Posts />
-          </div>
-          <Footer />
-        </div>
+        {reloadPage ? (
+          <>
+            <Header />
+            <div className={styles.pageWrapper}>
+              <div className={styles.slo_auth_post}>
+                <Slogan />
+                <Posts />
+              </div>
+              <Footer />
+            </div>
+          </>
+        ) : null}
       </div>
     </>
   );

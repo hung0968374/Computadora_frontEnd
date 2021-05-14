@@ -24,7 +24,7 @@
   z-index: 1000 !important;
   border-radius: 5px;
   cursor: pointer;
-  border: 1px solid rgb(0, 68, 255);
+  border: 1px solid whitesmoke;
 }
 
 .header {
@@ -37,6 +37,12 @@
   align-items: center;
   color: rgb(0, 132, 255);
 }
+.redHeader {
+  color: red;
+}
+.redHeader i {
+  display: none !important;
+}
 .header i {
   margin-right: 1rem;
   display: flex;
@@ -47,8 +53,8 @@
   min-height: 7rem;
   width: calc(100% - 4rem);
   display: flex;
-  border-top: 1px solid rgb(0, 68, 255);
-  border-bottom: 1px solid rgb(0, 68, 255);
+  border-top: 1px solid rgb(145, 143, 143);
+  border-bottom: 1px solid rgb(145, 143, 143);
   justify-content: center;
   align-items: center;
   text-align: justify;
@@ -57,6 +63,12 @@
   padding: 1rem 2rem 1rem 2rem;
   font-size: 2rem;
   flex-direction: row;
+}
+.content li {
+  list-style: disc !important;
+  color: red;
+  margin-bottom: 5px;
+  font-size: 1.5rem;
 }
 .confirm {
   height: 6rem;

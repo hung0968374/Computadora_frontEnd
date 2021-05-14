@@ -210,7 +210,7 @@ const CartPage = () => {
           ) : (
             <>
               <div className={styles.subNav}>
-                <div>
+                <div onClick={() => history.push("/laptop")}>
                   <FaAngleLeft size={20} />
                   Mua thêm sản phẩm khác
                 </div>

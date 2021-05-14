@@ -87,7 +87,7 @@ export const ToastWarnMessage = ({ msg }) => {
     </div>
   );
 };
-export const ToastErrorMessage = ({ msg, setStt }) => {
+export const ToastErrorMessage = ({ msg }) => {
   const notify = () =>
     toast.error(msg, {
       autoClose: 6000,

@@ -15,10 +15,8 @@ const Comment = ({ postId }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [userComment, setUserComment] = useState();
-  const [
-    showingMessageInformUserCommentSent,
-    setShowingMessageInformUserCommentSent,
-  ] = useState(false);
+  const [messageInformUserCommentStatus, setMessageInformUserCommentStatus] =
+    useState([]);
   const [userNotLoggined, setUserNotLoggined] = useState(false);
   const [slicedCommentInParticularPost, setSlicedCommentInParticularPost] =
     useState([]);
@@ -46,13 +44,13 @@ const Comment = ({ postId }) => {
             userInfo,
           });
           setUserComment("");
-          setShowingMessageInformUserCommentSent(true);
-          setTimeout(() => {
-            setShowingMessageInformUserCommentSent(false);
-          }, 3000);
           setVariableToMakeReactUpdateCmt(!variableToMakeReactUpdateCmt);
           /////// pushing nav bar to upper or make it disappear
           dispatch(goUp(false));
+          setMessageInformUserCommentStatus([
+            ...messageInformUserCommentStatus,
+            "Đã gửi comment",
+          ]);
         } catch (error) {
           console.log(error.response.status);
           if (error.response.status === 403) {
@@ -68,10 +66,12 @@ const Comment = ({ postId }) => {
     const restoreItemsInCart = JSON.parse(localStorage.getItem("cartItems"));
     const restoreQuantity = localStorage.getItem("quantity");
     localStorage.clear();
-    localStorage.setItem("cartItems", JSON.stringify(restoreItemsInCart));
-    localStorage.setItem("quantity", restoreQuantity);
-    setTokenHasExpired(false);
-    history.push("/signIn");
+    setTimeout(() => {
+      localStorage.setItem("cartItems", JSON.stringify(restoreItemsInCart));
+      localStorage.setItem("quantity", restoreQuantity);
+      setTokenHasExpired(false);
+      history.push("/signIn");
+    }, 5000);
   };
 
   /////////////handling user not loggin in but comment
@@ -159,6 +159,7 @@ const Comment = ({ postId }) => {
           (comment) => comment._id !== idCommentDeleted
         )
       );
+      _getTotalAmountOfCmtInThisPost();
     });
     return () => {
       channel.unbind_all();
@@ -190,6 +191,10 @@ const Comment = ({ postId }) => {
               key={index}
               eachComment={eachComment}
               userInfo={userInfo}
+              setMessageInformUserCommentStatus={
+                setMessageInformUserCommentStatus
+              }
+              messageInformUserCommentStatus={messageInformUserCommentStatus}
             />
           );
         })}
@@ -199,11 +204,14 @@ const Comment = ({ postId }) => {
           <>Xem thêm {commentLeft > 5 ? "5" : commentLeft} bình luận</>
         ) : null}
       </div>
-      {showingMessageInformUserCommentSent ? (
-        <>
-          <ToastInfoMessage msg={"Comment đã được gửi"} />
-        </>
-      ) : null}
+      {messageInformUserCommentStatus.map((message, index) => {
+        return (
+          <>
+            <ToastInfoMessage msg={message} key={index} />
+          </>
+        );
+      })}
+
       {userNotLoggined ? (
         <YesNoModal
           msg={"Bạn phải đăng nhập để sử dụng chức năng bình luận."}

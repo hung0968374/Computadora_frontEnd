@@ -112,7 +112,11 @@
   width: calc(20rem - 42px);
   height: calc(2.5rem - 2px);
 }
-
+.user_profile .redBorder {
+  border: 1px solid red !important;
+  width: calc(20rem - 42px) !important;
+  height: calc(2.5rem - 2px) !important;
+}
 .pw_change {
   width: 100%;
   height: auto;
@@ -149,4 +153,16 @@
   height: 50%;
   object-fit: contain;
   margin-left: 1rem;
+}
+
+/* eye icon */
+.user_profile_container .typePwIcon {
+  position: relative;
+  left: 290px;
+  bottom: 27px;
+}
+.user_profile_container .retypePwIcon {
+  position: relative;
+  right: 30px;
+  top: 5px;
 }

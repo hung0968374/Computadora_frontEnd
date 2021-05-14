@@ -4,7 +4,17 @@ import * as styles from "./cssFolderOfSharedComponent/header_style.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { recoverItemsInCartEveryRefresh } from "../../redux/features/cart/cartSlice";
 import { goingToUpper, goUp } from "../../redux/features/post/screenSlice";
-import YesNoModal from "../sharedComponents/YesNoModal";
+import { RiLogoutBoxRFill } from "react-icons/ri";
+import { HiShoppingCart } from "react-icons/hi";
+import { BiHistory } from "react-icons/bi";
+import { IoIosPerson } from "react-icons/io";
+import { GrLogin } from "react-icons/gr";
+import { IoIosPersonAdd } from "react-icons/io";
+import { IoMdKey } from "react-icons/io";
+import {
+  isCustomizedUser,
+  toggleIsCustomizedUser,
+} from "../../redux/features/user/userSlice";
 
 const Header = () => {
   ///////////state
@@ -19,6 +29,7 @@ const Header = () => {
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(true);
   const screenGoUp = useSelector(goingToUpper);
+  const isCustomUser = useSelector(isCustomizedUser);
 
   ///function
   const _logOut = () => {
@@ -30,13 +41,14 @@ const Header = () => {
   const _redirectToCartPage = () => {
     history.push("/cart");
   };
-  // tinh tong so luong gio hang
 
+  // tinh tong so luong gio hang
   useEffect(() => {
     if (localStorage.getItem("quantity") != null) {
       setTotalQuantityOfItemsInCart(localStorage.getItem("quantity"));
     }
   }, [localStorage.getItem("quantity")]);
+
   //////////////handle set token and token expire
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -65,6 +77,16 @@ const Header = () => {
   }, [goingUp]);
   const isGoingUp = screenGoUp ? styles.goingDown : styles.goingUp;
 
+  ///////// is customized user
+  console.log("userinfo", userInfo);
+  useEffect(() => {
+    if (userInfo?._id?.length > 0) {
+      dispatch(toggleIsCustomizedUser(true));
+    } else {
+      dispatch(toggleIsCustomizedUser(false));
+    }
+  }, [location, userInfo]);
+  console.log("custom", isCustomUser);
   //////////    localstorage real time
   window.onstorage = () => {
     setInterval(() => {
@@ -148,54 +170,82 @@ const Header = () => {
             <div
               className={`${styles.userOption} ${styles.userOptionForNotLoggingIn}`}
             >
-              <div className={styles.userOptionContentWrapper}>
-                <div
-                  className={styles.optionItem}
-                  onClick={() => {
-                    history.push("/signIn");
-                  }}
-                >
-                  Đăng nhập
-                </div>
-                <div
-                  className={styles.optionItem}
-                  onClick={() => {
-                    history.push("/signUp");
-                  }}
-                >
-                  Đăng kí
-                </div>
+              <div
+                className={styles.optionItem}
+                onClick={() => {
+                  history.push("/signIn");
+                }}
+              >
+                <i>
+                  <GrLogin />
+                </i>
+                Đăng nhập
+              </div>
+              <div
+                className={styles.optionItem}
+                onClick={() => {
+                  history.push("/signUp");
+                }}
+              >
+                <i>
+                  <IoIosPersonAdd />
+                </i>
+                Đăng kí
+              </div>
+              <div
+                className={styles.optionItem}
+                onClick={() => {
+                  history.push("/PWRecover");
+                }}
+              >
+                <i>
+                  <IoMdKey />
+                </i>
+                Quên mật khẩu
               </div>
             </div>
           ) : null}
           {token ? (
-            <div className={`${styles.userOption} `}>
-              <div className={styles.userOptionContentWrapper}>
-                <div className={styles.optionItem} onClick={_logOut}>
-                  Đăng xuất
-                </div>
-                <div
-                  className={styles.optionItem}
-                  onClick={_redirectToCartPage}
-                >
-                  Giỏ hàng ( <span>{totalQuantityOfItemsInCart}</span> )
-                </div>
-                <div
-                  className={styles.optionItem}
-                  onClick={() => {
-                    history.push("/boughtItemsRecord");
-                  }}
-                >
-                  Lịch sử mua hàng
-                </div>
-                <div
-                  className={styles.optionItem}
-                  onClick={() => {
-                    history.push("/personalInfo");
-                  }}
-                >
-                  Thông tin cá nhân
-                </div>
+            <div
+              className={`${styles.userOption}  ${
+                !isCustomUser && styles.styleForNotCustomUser
+              } `}
+            >
+              <div className={styles.optionItem} onClick={_logOut}>
+                <i>
+                  <RiLogoutBoxRFill />
+                </i>
+                Đăng xuất
+              </div>
+              <div className={styles.optionItem} onClick={_redirectToCartPage}>
+                <i>
+                  <HiShoppingCart />
+                </i>
+                Giỏ hàng (<span>{totalQuantityOfItemsInCart}</span> )
+              </div>
+              <div
+                className={styles.optionItem}
+                onClick={() => {
+                  history.push("/boughtItemsRecord");
+                }}
+              >
+                <i>
+                  <BiHistory />
+                </i>
+                Lịch sử mua hàng
+              </div>
+              <div
+                className={`${styles.optionItem} ${
+                  !isCustomUser && styles.isNotCustomUser
+                }`}
+                onClick={() => {
+                  history.push("/personalInfo");
+                }}
+              >
+                <i>
+                  <IoIosPerson />
+                </i>
+                Thông tin cá nhân
               </div>
             </div>
           ) : null}
