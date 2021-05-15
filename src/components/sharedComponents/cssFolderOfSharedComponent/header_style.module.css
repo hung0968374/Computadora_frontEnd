@@ -1,7 +1,7 @@
 .header {
   width: 100%;
   height: 6rem;
-  background-color: whitesmoke;
+  background-color: white;
   box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.25);
   z-index: 99999 !important;
 }
@@ -180,4 +180,10 @@
     opacity: 1;
     transform: translateY(0px);
   }
+}
+.header a:-webkit-any-link {
+  color: black;
+}
+.header a:hover {
+  color: blue;
 }

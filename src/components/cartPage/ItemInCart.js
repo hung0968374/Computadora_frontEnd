@@ -71,10 +71,10 @@ export default function ItemInCart({ imgUrl, itemInfo }) {
         {showYesNoModal ? (
           <YesNoModal
             msg={
-              <div>
+              <>
                 Xóa sản phẩm <strong>{itemInfo.productName}</strong> khỏi giỏ
                 hàng?
-              </div>
+              </>
             }
             confirm={_confirmDeleting}
             reject={_rejectDeleting}

@@ -65,6 +65,7 @@ const CartPage = () => {
       );
     }
   }, []);
+  console.log("item in cart", itemInCart);
   /////scroll to top of screen
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
@@ -186,7 +187,7 @@ const CartPage = () => {
       <Header />
       <div className={styles.pageWrapper}>
         <div className={styles.cartContainer}>
-          {itemsInCart?.length == 0 ? (
+          {itemsInCart?.length === 0 ? (
             <>
               <div className={styles.blankItemContainer}>
                 <section className={styles.cartEmptyArea}>
@@ -247,8 +248,8 @@ const CartPage = () => {
                           onChange={_handlingFormChange}
                           value={form.customerName}
                         />
-                        {form.customerName.length == 0 ||
-                        form.customerName.trim() === "" ? (
+                        {form?.customerName?.length == 0 ||
+                        form?.customerName?.trim() === "" ? (
                           <span>Vui lòng nhập họ và tên</span>
                         ) : null}
                       </div>
@@ -260,8 +261,8 @@ const CartPage = () => {
                           onChange={_handlingFormChange}
                           value={form.customerPhone}
                         />
-                        {form.customerPhone.length == 0 ||
-                        form.customerPhone.trim() === "" ? (
+                        {form?.customerPhone?.length == 0 ||
+                        form?.customerPhone?.trim() === "" ? (
                           <span>Vui lòng nhập số điện thoại</span>
                         ) : null}
                       </div>
@@ -275,7 +276,7 @@ const CartPage = () => {
                         onChange={_handlingFormChange}
                         value={form.email}
                       ></input>
-                      {form.email.length == 0 ? (
+                      {form?.email?.length == 0 ? (
                         <span>Vui lòng nhập gmail</span>
                       ) : null}
                       {!emailFormatIsValid ? (

@@ -15,6 +15,7 @@ export default function UserInfo() {
     if (!token) {
       history.push("/");
     }
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
   }, []);
   return (
     <div className="personalInfo">

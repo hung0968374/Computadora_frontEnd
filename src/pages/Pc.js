@@ -1,28 +1,52 @@
-import React, { useEffect, useState } from "react";
-import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 import Header from "../components/sharedComponents/Header";
-import { itemInCart } from "../redux/features/cart/cartSlice";
-import Pusher from "pusher-js";
-import * as styles from "./cssFolder/pc.module.css";
+import ItemSection from "../components/LaptopPage/itemSection";
+import * as styles from "./cssFolder/laptop.module.css";
+import LaptopBoard from "../components/LaptopPage/LaptopBoard";
+import { useDispatch, useSelector } from "react-redux";
+import MessengerCustomerChat from "react-messenger-customer-chat";
+import {
+  fetchLaptopByPage,
+  laptopByPage,
+} from "../redux/features/post/laptopItemSlice";
+import Footer from "../components/sharedComponents/footer";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { useLocation } from "react-router";
+import SearchComponent from "../components/sharedComponents/SearchComponent";
 const Pc = () => {
-  // useEffect(() => {
-  //   const pusher = new Pusher("0489280acfa7987721e1", {
-  //     cluster: "ap1",
-  //   });
-
-  //   var channel = pusher.subscribe("messages");
-  //   channel.bind("inserted", (data) => {
-  //     alert(JSON.stringify(data));
-  //   });
-  // }, []);
-  const [input, setInput] = useState();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const laptopItemsInSeperatedPage = useSelector(laptopByPage);
+  const dataByPage = laptopItemsInSeperatedPage.arrayOfLaptopItems;
+  const [currentPage, setCurrentPage] = useState(1);
+  useEffect(async () => {}, []);
+  const _loadMoreData = async () => {
+    setCurrentPage((prev) => prev + 1);
+    console.log("current page", currentPage);
+    const actionRes = await dispatch(fetchLaptopByPage(currentPage + 1));
+    console.log("unwrap", unwrapResult(actionRes));
+  };
+  useEffect(() => {
+    dispatch(fetchLaptopByPage(1));
+  }, []);
+  useEffect(() => {
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   return (
-    <div className={styles.bttn}>
-      <div className={styles.container}>
-        <div className={styles.inputContainer}></div>
-        <div className={styles.select}></div>
-      </div>
+    <div className={styles.container}>
+      <Header />
+      <SearchComponent />
+      <LaptopBoard />
+      <ItemSection
+        allData={dataByPage}
+        loadMoreData={_loadMoreData}
+        isLoadingData={laptopItemsInSeperatedPage.isFetchingLaptopItemsByPage}
+      />
+      <Footer />
+      <MessengerCustomerChat
+        pageId="101594652091801"
+        appId="1790240181155268"
+      />
     </div>
   );
 };

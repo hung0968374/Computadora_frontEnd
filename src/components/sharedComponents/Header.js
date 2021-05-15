@@ -25,7 +25,6 @@ const Header = () => {
   const [userInfo, setUserInfo] = useState({});
   const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] =
     useState(0);
-
   const prevScrollY = useRef(0);
   const [goingUp, setGoingUp] = useState(true);
   const screenGoUp = useSelector(goingToUpper);

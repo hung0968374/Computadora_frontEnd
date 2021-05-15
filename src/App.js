@@ -14,6 +14,7 @@ import CartPage from "./pages/CartPage";
 import PersonalUserInfo from "./pages/PersonalUserInfo";
 import BoughtItemRecord from "./pages/BoughtItemRecord";
 import ActivateRecoveringAccount from "./pages/ActivateRecoveringAccount";
+import Accessories from "./pages/Accessories";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               exact
               component={BoughtItemRecord}
             />
+            <Route path="/accessories" exact component={Accessories} />
             <Route
               path="/activateAccount/:token"
               exact

@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import * as styles from "./cssFolder/activateAccount.module.css";
 import { FcHome } from "react-icons/fc";
 
-function Blog() {
+function Accessories() {
   const history = useHistory();
   const _returnToLandingPage = () => {
     history.push("/");
@@ -28,4 +28,4 @@ function Blog() {
   );
 }
 
-export default Blog;
+export default Accessories;

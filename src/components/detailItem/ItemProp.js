@@ -20,11 +20,11 @@ const ItemProp = ({ data }) => {
   const [displayImg, setdisplayImg] = useState();
   const [showNoti, setShowNoti] = useState(false);
   const dispatch = useDispatch();
-  const [token, setToken] = useState();
   const history = useHistory();
   const [totalQuantityInCart, setTotalQuantityInCart] = useState(0);
   const [isZoomedIn, setIsZoomedIn] = useState(false);
-  const [userNotLoggined, setUserNotLoggined] = useState(false);
+  const [requireLogginMsg, setRequireLogginMsg] = useState("");
+  const token = localStorage.getItem("token");
   //function
 
   /////////handling click outside event
@@ -51,7 +51,6 @@ const ItemProp = ({ data }) => {
     }
   }, [imgs]);
   useEffect(() => {
-    setToken(localStorage.getItem("token"));
     setTotalQuantityInCart(parseInt(localStorage.getItem("quantity")));
     if (oldCart !== null) {
       dispatch(recoverItemsInCartEveryRefresh(oldCart));
@@ -68,7 +67,9 @@ const ItemProp = ({ data }) => {
   /// adding to cart
   const _addingThisItemToCart = () => {
     if (!token) {
-      setUserNotLoggined(true);
+      setRequireLogginMsg(
+        "Bạn phải đăng nhập để sử dụng chức năng thêm vào giỏ hàng."
+      );
     } else {
       if (!showNoti) {
         dispatch(
@@ -105,13 +106,7 @@ const ItemProp = ({ data }) => {
   //////////handling zoom image in event
 
   /////////////handling user not loggin in but comment
-  const _confirmLoggingIn = () => {
-    history.push("/signIn");
-    setUserNotLoggined(false);
-  };
-  const _rejectLoggingIn = () => {
-    setUserNotLoggined(false);
-  };
+
   return (
     <div className={styles.itemPropContainer}>
       <div className={styles.imgArea}>
@@ -249,13 +244,16 @@ const ItemProp = ({ data }) => {
           msg={"Đã thêm item này vào giỏ hàng của bạn"}
         />
       ) : null}
-      {userNotLoggined ? (
+      {requireLogginMsg.length > 0 && (
         <YesNoModal
-          msg={"Bạn phải đăng nhập để sử dụng chức năng thêm vào giỏ hàng."}
-          confirm={_confirmLoggingIn}
-          reject={_rejectLoggingIn}
+          msg={requireLogginMsg}
+          confirm={() => {
+            history.push("/signIn");
+            setRequireLogginMsg("");
+          }}
+          reject={() => setRequireLogginMsg("")}
         />
-      ) : null}
+      )}
     </div>
   );
 };
