@@ -2,9 +2,17 @@ import React from "react";
 import { useHistory } from "react-router";
 import * as styles from "./cssFolder/activateAccount.module.css";
 import { FcHome } from "react-icons/fc";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 
 function Accessories() {
   const history = useHistory();
+  const { search } = useLocation();
+  const values = queryString.parse(search);
+  console.log(values.type); // "top"
+  console.log(values.id); // "im"
+
+  //////////// function
   const _returnToLandingPage = () => {
     history.push("/");
   };
