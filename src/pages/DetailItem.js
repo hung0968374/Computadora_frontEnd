@@ -13,15 +13,21 @@ import { discardNavOrNot } from "../redux/features/post/screenSlice";
 import SearchComponent from "../components/sharedComponents/SearchComponent";
 import { useLocation } from "react-router";
 import Comment from "../components/sharedComponents/Comment";
-export default function DetailItem({ match }) {
+import queryString from "query-string";
+
+export default function DetailItem({}) {
+  const { search } = useLocation();
+  const values = queryString.parse(search);
+  const itemId = values.id;
+  console.log("itemId", itemId);
+  console.log("type", values.genre);
   const showNavOrNot = useSelector(discardNavOrNot);
   const [specificItemById, setSpecificItemById] = useState([]);
   const [postId, setPostId] = useState();
   const location = useLocation();
   useEffect(async () => {
-    setPostId(match.params.id);
     try {
-      const dataFromSpecificId = await fetchItemById(match.params.id);
+      const dataFromSpecificId = await fetchItemById(itemId);
       const { data } = dataFromSpecificId;
       setSpecificItemById(data[0]);
     } catch (error) {
@@ -37,7 +43,7 @@ export default function DetailItem({ match }) {
       {specificItemById ? <ItemProp data={specificItemById} /> : null}
       <div className={styles.reviewSection}>Đánh giá chi tiết</div>
       <ReviewItem data={specificItemById} />
-      <Comment postId={postId} />
+      <Comment postId={itemId} />
       <MessengerCustomerChat
         pageId="101594652091801"
         appId="1790240181155268"

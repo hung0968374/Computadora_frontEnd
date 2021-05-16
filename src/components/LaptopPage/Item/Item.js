@@ -10,7 +10,7 @@ export default function Item({ data }) {
   };
   return (
     <Link
-      to={`/laptop/${data._id}`}
+      to={`/item?genre=${data.genre}&id=${data._id}`}
       className={styles.itemImgs}
       onClick={_navigateToDetailItem}
     >

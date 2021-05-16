@@ -15,6 +15,7 @@ import PersonalUserInfo from "./pages/PersonalUserInfo";
 import BoughtItemRecord from "./pages/BoughtItemRecord";
 import ActivateRecoveringAccount from "./pages/ActivateRecoveringAccount";
 import Accessories from "./pages/Accessories";
+import Test from "./pages/Test";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
             <Route path="/laptop" exact component={Laptop} />
             <Route path="/" exact component={LandingPage} />
             <Route path="/blog" exact component={Blog} />
-            <Route path="/laptop/:id" exact component={DetailItem} />
+            <Route path="/item" exact component={DetailItem} />
             <Route path="/PWRecover" exact component={PWRecover} />
             <Route path="/signIn" exact component={SignIN} />
             <Route path="/signUp" exact component={SignUP} />
@@ -48,6 +49,7 @@ function App() {
               exact
               component={ActivateRecoveringAccount}
             />
+            <Route path="/test" exact component={Test} />
           </Switch>
         </div>
       </Router>

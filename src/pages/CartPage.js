@@ -65,7 +65,7 @@ const CartPage = () => {
       );
     }
   }, []);
-  console.log("item in cart", itemInCart);
+  console.log("item in cart", itemsInCart);
   /////scroll to top of screen
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
