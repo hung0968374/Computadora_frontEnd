@@ -26,7 +26,7 @@ export default function YesNoModal({
               })}
             </div>
           ) : (
-            <li>{msg}</li>
+            <span className={styles.oneMsg}>{msg}</span>
           )}
         </div>
         <div className={styles.confirm}>

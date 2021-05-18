@@ -58,13 +58,13 @@ td {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-indent: 2rem;
 }
 .table_default tr td li span:nth-child(2) {
   color: red;
 }
 .table_default tr td li:hover {
-  text-decoration: underline;
-  transform: scale(1.02);
+  color: blue;
 }
 .totalInvoicesValue {
   width: 100%;

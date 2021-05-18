@@ -29,8 +29,8 @@ const Pc = () => {
   return (
     <div className={styles.containerForPc}>
       <Header />
-      <SearchComponent />
-      <LaptopBoard />
+      <SearchComponent isPc={true} />
+      <LaptopBoard isPc={true} />
       <ItemSection
         allData={pcItems}
         isPc={true}

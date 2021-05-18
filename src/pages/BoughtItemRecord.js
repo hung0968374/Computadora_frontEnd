@@ -66,12 +66,7 @@ export default function BoughtItemRecord() {
                     <td className="tdOfItems">
                       {invoice.invoiceItems.map((item, index) => {
                         return (
-                          <li
-                            onClick={() => {
-                              history.push(`/laptop/${item.id}`);
-                            }}
-                            key={index}
-                          >
+                          <li key={index}>
                             <span>{item.productName}</span>
                             <span>x{item.quantity}</span>
                           </li>

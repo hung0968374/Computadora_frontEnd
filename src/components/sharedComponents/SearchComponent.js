@@ -4,13 +4,12 @@ import { BsSearch } from "react-icons/bs";
 import * as API from "../../api/index";
 import { useHistory } from "react-router";
 
-export default function SearchComponent() {
+export default function SearchComponent({ isPc = false }) {
   const displaySearchPoolRef = useRef(null);
   const history = useHistory();
   const [searchInput, setSearchInput] = useState("");
-  const [showSearchChoicesForUser, setShowSearchChoicesForUser] = useState(
-    false
-  );
+  const [showSearchChoicesForUser, setShowSearchChoicesForUser] =
+    useState(false);
   const [searchPool, setSearchPool] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
 
@@ -20,11 +19,12 @@ export default function SearchComponent() {
     if (searchPool.length > 0) {
       let searchResult = [];
       searchPool.map(function (value) {
-        // const value = { title: "         Asus ZenBook 14      13 Q407iq" };
         var stringToCompare = value.title
           .trim()
           .split(" ")
           .join("")
+          .split("(")[0]
+          .split("-")[0]
           .toLowerCase();
         const stringNeedComparing = searchInput
           .trim()
@@ -51,7 +51,10 @@ export default function SearchComponent() {
   useEffect(() => {
     const _fetchAllItemsName = async () => {
       try {
-        const { data } = await API.getSearchResultsPool();
+        // const { data } = await API.getPcSearchItemPool();
+        const { data } = isPc
+          ? await API.getPcSearchItemPool()
+          : await API.getSearchResultsPool();
         setSearchPool(data.searchResultsPool);
         setSearchResult(data.searchResultsPool);
       } catch (error) {
@@ -120,7 +123,7 @@ export default function SearchComponent() {
         <input
           type="text"
           className={styles.inputArea}
-          placeholder="Tìm kiếm"
+          placeholder={`${isPc ? "Tìm kiếm Pc" : "Tìm kiếm Laptop"}`}
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
         />
@@ -139,7 +142,8 @@ export default function SearchComponent() {
                     className={styles.selectionItem}
                     key={index}
                     onClick={() => {
-                      history.push(`/laptop/${item._id}`);
+                      // if (isPc) history.push(`/laptop/${item._id}`);
+                      // else if (!isPc) history.push(`/laptop/${item._id}`);
                       setSearchInput("");
                       setShowSearchChoicesForUser(false);
                     }}
@@ -148,10 +152,12 @@ export default function SearchComponent() {
                       <div className={styles.searchImgArea}>
                         <img src={item.imgs[0]} alt="" />
                       </div>
-                      <div className={styles.searchTitleArea}>{item.title}</div>
+                      <div className={styles.searchTitleArea}>
+                        {item.title.split("(")[0].split("-")[0]}
+                      </div>
                     </div>
                     <div className={styles.searchPriceArea}>
-                      {item.price.split("₫").join("")}₫
+                      {item.price.split("₫").join("").split("đ").join("")}₫
                     </div>
                   </div>
                 );

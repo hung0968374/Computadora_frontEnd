@@ -27,14 +27,15 @@ const ItemProp = ({ data, genre }) => {
   const token = localStorage.getItem("token");
 
   /////////////// handling data property
-  const itemTitle = genre === "pc" ? data.title?.split("(")[0] : data?.title;
+  const itemTitle =
+    genre === "pc" ? data.title?.split("(")[0].split("-")[0] : data?.title;
   const itemPrice =
     genre === "pc"
       ? data?.price?.split("đ").join("")
       : data?.price?.split("₫").join("");
-  console.log(itemTitle);
+  // console.log(itemTitle);
+  console.log("title unsplit", data?.title);
   //function
-  console.log(data);
   /////////handling click outside event
   useEffect(() => {
     function handleClickOutside(event) {

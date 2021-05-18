@@ -29,7 +29,7 @@
 
 .header {
   width: 100%;
-  height: 6rem;
+  height: 5.5rem;
   font-size: 3rem;
   font-weight: 600;
   display: flex;
@@ -68,6 +68,18 @@
   margin-bottom: 5px;
   font-size: 1.5rem;
   text-align: start;
+}
+.oneMsg {
+  color: red;
+}
+.oneMsg::first-line {
+  text-indent: 4rem;
+}
+.oneMsg div {
+  color: black !important;
+}
+.oneMsg div strong {
+  color: red !important;
 }
 .confirm {
   height: 6rem;

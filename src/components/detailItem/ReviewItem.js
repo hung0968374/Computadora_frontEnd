@@ -1,20 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as styles from "./reviewItem.module.css";
 import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
+import { goUp } from "../../redux/features/post/screenSlice";
+import { useDispatch } from "react-redux";
 const ReviewItem = ({ data }) => {
   const [isTruncated, setIsTruncated] = useState(false);
   const [truncatedReview, setTruncatedReview] = useState();
   const [fullReviewContent, setFullReviewContent] = useState();
+  const myRef = useRef(null);
+  const dispatch = useDispatch();
   const _handleShowingText = () => {
+    if (!isTruncated) {
+      myRef.current.scrollIntoView();
+      setTimeout(() => {
+        dispatch(goUp(false));
+      }, 200);
+    }
     setIsTruncated(!isTruncated);
+    dispatch(goUp(false));
+    setTimeout(() => {
+      dispatch(goUp(false));
+    }, 0);
   };
   useEffect(() => {
     setFullReviewContent(data.review);
     setTruncatedReview(data.review);
   }, [data, isTruncated]);
   return (
-    <div className={styles.reviewArea}>
+    <div className={styles.reviewArea} ref={myRef}>
       {isTruncated ? (
         <>
           {fullReviewContent?.map((text, idx) => {

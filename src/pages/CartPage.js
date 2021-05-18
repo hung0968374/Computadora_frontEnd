@@ -75,6 +75,7 @@ const CartPage = () => {
       localStorage.setItem("cartItems", JSON.stringify(itemsInCart));
     }
   }, [itemsInCart]);
+  console.log("item in cart", itemsInCart);
   useEffect(() => {
     const emailIsValid = validateEmail(form.email);
     if (emailIsValid) {
@@ -90,8 +91,17 @@ const CartPage = () => {
     let totalMoney = 0;
     itemsInCart?.map((item) => {
       totalMoney +=
-        parseInt(item.price.split("₫").join("").split(",").join("")) *
-        item.quantity;
+        parseInt(
+          item.price
+            .split("₫")
+            .join("")
+            .split("đ")
+            .join("")
+            .split(",")
+            .join("")
+            .split(".")
+            .join("")
+        ) * item.quantity;
     });
     setTotalPaidMoney(totalMoney);
   };
@@ -140,16 +150,16 @@ const CartPage = () => {
       } else {
         setEmailFormatIsValid(true);
       }
-      if (form.customerName === " " || form?.customerName?.trim() === "") {
+      if (!form.customerName || form?.customerName?.trim() === "") {
         alertToUser.push("Không được để trống trường họ và tên");
       }
-      if (form.customerPhone === " " || form?.customerPhone?.trim() === "") {
+      if (!form?.customerPhone || form?.customerPhone?.trim() === "") {
         alertToUser.push("Không được để trống số điện thoại");
       }
-      if (form.email === " " || form?.email?.trim() === "") {
+      if (!form.email || form?.email?.trim() === "") {
         alertToUser.push("Không được để trống email");
       }
-      if (form.address === " " || form?.address?.trim() === "") {
+      if (!form?.address || form?.address?.trim() === "") {
         alertToUser.push("Không được để trống địa chỉ");
       }
       setAlertMsg(alertToUser);
