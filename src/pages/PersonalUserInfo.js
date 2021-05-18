@@ -20,9 +20,7 @@ export default function UserInfo() {
   return (
     <div className="personalInfo">
       <Header />
-      {/* <div className="container1"> */}
       <Account />
-      {/* </div> */}
       <div className="footerMarginTop"></div>
       <Footer />
     </div>

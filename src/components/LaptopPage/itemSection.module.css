@@ -7,17 +7,29 @@
   cursor: pointer;
 }
 
-.sort_bar {
+/* .sort_bar {
   flex: 2;
   background-color: rgb(88, 108, 119);
   height: 80vh;
   position: sticky;
   top: 0;
   border-right: 1.5px solid black;
+} */
+.pcLoadingIconContainer {
+  width: 60rem;
+  margin: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
 }
-
+.pcLoadingIconContainer img {
+  width: 100px;
+  height: 50px;
+  object-fit: contain;
+}
 .items {
-  flex: 7;
+  /* flex: 7; */
+  width: 100%;
   display: flex;
   flex-direction: flex;
   flex-wrap: wrap;

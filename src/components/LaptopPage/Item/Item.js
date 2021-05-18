@@ -2,12 +2,13 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as styles from "./Item.module.css";
 
-export default function Item({ data }) {
+export default function Item({ data, isPc }) {
   const history = useHistory();
   const title = data.title.trim();
   const _navigateToDetailItem = () => {
     // history.push(`/laptop/${data._id}`);
   };
+  console.log("is pc from item", isPc);
   return (
     <Link
       to={`/item?genre=${data.genre}&id=${data._id}`}

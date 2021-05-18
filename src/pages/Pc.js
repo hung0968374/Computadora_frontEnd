@@ -3,44 +3,37 @@ import Header from "../components/sharedComponents/Header";
 import ItemSection from "../components/LaptopPage/itemSection";
 import * as styles from "./cssFolder/laptop.module.css";
 import LaptopBoard from "../components/LaptopPage/LaptopBoard";
-import { useDispatch, useSelector } from "react-redux";
 import MessengerCustomerChat from "react-messenger-customer-chat";
-import {
-  fetchLaptopByPage,
-  laptopByPage,
-} from "../redux/features/post/laptopItemSlice";
 import Footer from "../components/sharedComponents/footer";
-import { unwrapResult } from "@reduxjs/toolkit";
-import { useLocation } from "react-router";
 import SearchComponent from "../components/sharedComponents/SearchComponent";
+import * as API from "../api/index";
+
 const Pc = () => {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const laptopItemsInSeperatedPage = useSelector(laptopByPage);
-  const dataByPage = laptopItemsInSeperatedPage.arrayOfLaptopItems;
-  const [currentPage, setCurrentPage] = useState(1);
-  useEffect(async () => {}, []);
-  const _loadMoreData = async () => {
-    setCurrentPage((prev) => prev + 1);
-    console.log("current page", currentPage);
-    const actionRes = await dispatch(fetchLaptopByPage(currentPage + 1));
-    console.log("unwrap", unwrapResult(actionRes));
-  };
+  const [pcItems, setPcItems] = useState([]);
+  const [pcIsFetchingData, setPcIsFetchingData] = useState(false);
   useEffect(() => {
-    dispatch(fetchLaptopByPage(1));
-  }, []);
-  useEffect(() => {
-    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    try {
+      const _getPcItems = async () => {
+        setPcIsFetchingData(true);
+        const response = await API.fetchPcs();
+        setPcItems(response.data.pcs);
+        setPcIsFetchingData(false);
+      };
+      _getPcItems();
+      window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
   return (
-    <div className={styles.container}>
+    <div className={styles.containerForPc}>
       <Header />
       <SearchComponent />
       <LaptopBoard />
       <ItemSection
-        allData={dataByPage}
-        loadMoreData={_loadMoreData}
-        isLoadingData={laptopItemsInSeperatedPage.isFetchingLaptopItemsByPage}
+        allData={pcItems}
+        isPc={true}
+        pcIsFetchingData={pcIsFetchingData}
       />
       <Footer />
       <MessengerCustomerChat

@@ -16,11 +16,19 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-///////////post
+///////////laptop (post ở đây là laptop, và đó là 1 sai lầm)
 export const fetchPostByPage = (page) =>
   API.get(`/api/posts/genre=laptop/filter?page=${page}&amountPerPage=24`);
 export const fetchPosts = () => API.get("/products");
 export const fetchItemById = (id) => API.get(`/api/posts/${id}`);
+export const getSearchResultsPool = () =>
+  API.get("/api/posts/search/searchItemsPool");
+
+///////////// pc
+export const fetchPcs = () => API.get("/api/pcs");
+export const fetchParticularPc = (id) => API.get(`/api/pcs/${id}`);
+export const getPcSearchItemPool = () =>
+  API.get(`/api/pcs/search/searchItemsPool`);
 
 /////////////account signIn signUp
 export const activateAccount = (obj) =>
@@ -34,10 +42,6 @@ export const createNewInvoice = (obj) => API.post("/api/invoices", obj);
 export const getAllInvoices = () => API.get("/api/invoices");
 export const getInvoicesByParticularUser = () =>
   API.get("/api/invoices/getInvoiceByParticularUser");
-
-////////// search
-export const getSearchResultsPool = () =>
-  API.get("/api/posts/search/searchItemsPool");
 
 /////////// comment
 export const postAComment = (obj) => API.post("/api/comment", obj);

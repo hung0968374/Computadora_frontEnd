@@ -77,7 +77,7 @@ const Header = () => {
   const isGoingUp = screenGoUp ? styles.goingDown : styles.goingUp;
 
   ///////// is customized user
-  console.log("userinfo", userInfo);
+  // console.log("userinfo", userInfo);
   useEffect(() => {
     if (userInfo?._id?.length > 0) {
       dispatch(toggleIsCustomizedUser(true));
@@ -85,7 +85,6 @@ const Header = () => {
       dispatch(toggleIsCustomizedUser(false));
     }
   }, [location, userInfo]);
-  console.log("custom", isCustomUser);
   //////////    localstorage real time
   window.onstorage = () => {
     setInterval(() => {
