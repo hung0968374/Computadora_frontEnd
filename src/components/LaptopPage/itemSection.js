@@ -10,8 +10,6 @@ export default function item_section({
   isPc,
   pcIsFetchingData,
 }) {
-  console.log("ispc", isPc);
-  console.log("prIsfetching", pcIsFetchingData);
   return (
     <>
       {isPc && pcIsFetchingData && (

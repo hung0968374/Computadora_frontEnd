@@ -25,6 +25,7 @@ const Pc = () => {
       console.log(error);
     }
   }, []);
+  // console.log("pc", pcItems);
   return (
     <div className={styles.containerForPc}>
       <Header />

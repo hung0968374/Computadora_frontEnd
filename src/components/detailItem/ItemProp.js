@@ -11,7 +11,7 @@ import { FaAngleLeft } from "react-icons/fa";
 import { useHistory } from "react-router";
 import { discardNavBar, goUp } from "../../redux/features/post/screenSlice";
 import YesNoModal from "../sharedComponents/YesNoModal";
-const ItemProp = ({ data }) => {
+const ItemProp = ({ data, genre }) => {
   //state
   const displayImageRef = useRef(null);
   const imgs = data?.imgs;
@@ -25,8 +25,16 @@ const ItemProp = ({ data }) => {
   const [isZoomedIn, setIsZoomedIn] = useState(false);
   const [requireLogginMsg, setRequireLogginMsg] = useState("");
   const token = localStorage.getItem("token");
-  //function
 
+  /////////////// handling data property
+  const itemTitle = genre === "pc" ? data.title?.split("(")[0] : data?.title;
+  const itemPrice =
+    genre === "pc"
+      ? data?.price?.split("đ").join("")
+      : data?.price?.split("₫").join("");
+  console.log(itemTitle);
+  //function
+  console.log(data);
   /////////handling click outside event
   useEffect(() => {
     function handleClickOutside(event) {
@@ -164,43 +172,68 @@ const ItemProp = ({ data }) => {
       </div>
       <div className={styles.itemConfiguration}>
         <div className={styles.mainProp}>
-          <div className={styles.itemName}>{data.title}</div>
+          <div className={styles.itemName}>{itemTitle}</div>
           <div className={styles.itemPrice}>
             <div> Giá:</div>
-            <div className={styles.price}>
-              {data?.price?.split("₫").join("")}₫
-            </div>
+            <div className={styles.price}>{itemPrice}₫</div>
           </div>
         </div>
         <div className={styles.itemParams}>
           <div className={styles.breakLine}></div>
           <div className={styles.config}>Cấu hình</div>
-          <div className={styles.configurationInDetail}>
-            <span> {data?.processor?.split(":")[0]}</span> :
-            {data?.processor?.split(":")[1]}
-          </div>
-          <div className={styles.configurationInDetail}>
-            <span> {data?.screen?.split(":")[0]}</span> :
-            {data?.screen?.split(":")[1]}
-          </div>
-          <div className={styles.configurationInDetail}>
-            <span> {data?.ram?.split(":")[0]}</span> :{data?.ram?.split(":")[1]}
-          </div>
-          <div className={styles.configurationInDetail}>
-            <span> {data?.graphicCard?.split(":")[0]}</span> :
-            {data?.graphicCard?.split(":")[1]}
-          </div>
-          <div className={styles.configurationInDetail}>
-            <span> {data?.pin?.split(":")[0]}</span> :{data?.pin?.split(":")[1]}
-          </div>
-          <div className={styles.configurationInDetail}>
-            <span> {data?.weight?.split(":")[0]}</span> :
-            {data?.weight?.split(":")[1]}
-          </div>
-          <div className={styles.configurationInDetail}>
-            <span> {data?.operatingSystem?.split(":")[0]}</span> :
-            {data?.operatingSystem?.split(":")[1]}
-          </div>
+
+          {genre === "pc" ? (
+            <div className={styles.configurationContainer}>
+              <div className={styles.configurationInDetail}>
+                <span> Vi xử lý:</span> {data?.processor}
+              </div>
+              <div className={styles.configurationInDetail}>
+                <span> Card đồ họa:</span> {data?.graphicCard}
+              </div>
+              <div className={styles.configurationInDetail}>
+                <span>RAM:</span> {data?.ram}
+              </div>
+              <div className={styles.configurationInDetail}>
+                <span> Ổ SSD:</span> {data?.ssd}
+              </div>
+              <div className={styles.configurationInDetail}>
+                <span>Hệ điều hành: </span>
+                {data?.operatingSystem}
+              </div>
+            </div>
+          ) : (
+            <div className={styles.configurationContainer}>
+              <div className={styles.configurationInDetail}>
+                <span> {data?.processor?.split(":")[0]}:</span>
+                {data?.processor?.split(":")[1]}
+              </div>
+              <div className={styles.configurationInDetail}>
+                <span> {data?.screen?.split(":")[0]}:</span>
+                {data?.screen?.split(":")[1]}
+              </div>
+              <div className={styles.configurationInDetail}>
+                <span> {data?.ram?.split(":")[0]}:</span>
+                {data?.ram?.split(":")[1]}
+              </div>
+              <div className={styles.configurationInDetail}>
+                <span> {data?.graphicCard?.split(":")[0]}:</span>
+                {data?.graphicCard?.split(":")[1]}
+              </div>
+              <div className={styles.configurationInDetail}>
+                <span> {data?.pin?.split(":")[0]}:</span>
+                {data?.pin?.split(":")[1]}
+              </div>
+              <div className={styles.configurationInDetail}>
+                <span> {data?.weight?.split(":")[0]}:</span>
+                {data?.weight?.split(":")[1]}
+              </div>
+              <div className={styles.configurationInDetail}>
+                <span> {data?.operatingSystem?.split(":")[0]}:</span>
+                {data?.operatingSystem?.split(":")[1]}
+              </div>
+            </div>
+          )}
+
           <div className={styles.breakLine}></div>
           <div className={styles.salePromotion}>
             <div className={styles.discountTitle}>

@@ -5,7 +5,7 @@ import * as styles from "./cssFolder/DetailItem.module.css";
 import Header from "../components/sharedComponents/Header";
 import Footer from "../components/sharedComponents/footer";
 import ItemProp from "../components/detailItem/ItemProp";
-import { fetchItemById } from "../api";
+import * as API from "../api/index";
 import ReviewItem from "../components/detailItem/ReviewItem";
 import MessengerCustomerChat from "react-messenger-customer-chat";
 import { useSelector } from "react-redux";
@@ -19,28 +19,31 @@ export default function DetailItem({}) {
   const { search } = useLocation();
   const values = queryString.parse(search);
   const itemId = values.id;
-  console.log("itemId", itemId);
-  console.log("type", values.genre);
+  const genre = values.genre;
   const showNavOrNot = useSelector(discardNavOrNot);
   const [specificItemById, setSpecificItemById] = useState([]);
-  const [postId, setPostId] = useState();
   const location = useLocation();
   useEffect(async () => {
+    var dataFromSpecificId;
     try {
-      const dataFromSpecificId = await fetchItemById(itemId);
-      const { data } = dataFromSpecificId;
-      setSpecificItemById(data[0]);
+      if (genre === "Laptop") {
+        dataFromSpecificId = await API.fetchItemById(itemId);
+      } else if (genre === "pc") {
+        dataFromSpecificId = await API.fetchParticularPc(itemId);
+      }
+      setSpecificItemById(dataFromSpecificId.data);
     } catch (error) {
       console.log(error);
     }
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
   }, [location]);
-  const BaseUrl = "https://res.cloudinary.com/dsykf3mo9/image/upload/";
   return (
     <>
       {showNavOrNot ? null : <Header />}
       <SearchComponent />
-      {specificItemById ? <ItemProp data={specificItemById} /> : null}
+      {specificItemById ? (
+        <ItemProp data={specificItemById} genre={genre} />
+      ) : null}
       <div className={styles.reviewSection}>Đánh giá chi tiết</div>
       <ReviewItem data={specificItemById} />
       <Comment postId={itemId} />

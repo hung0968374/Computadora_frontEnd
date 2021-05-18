@@ -73,10 +73,11 @@
   height: 26%;
   margin-left: 1%;
   object-fit: cover;
+  border: 1px solid rgb(189, 189, 189);
 }
 .selectedImgInGallery {
   transform: scale(1.1);
-  border: 2px solid red;
+  border: 2px solid red !important;
   position: relative;
 }
 .config {
@@ -86,6 +87,9 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+.configurationContainer {
+  height: auto;
 }
 .itemConfiguration {
   width: 45%;

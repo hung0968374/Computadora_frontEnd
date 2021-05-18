@@ -1,19 +1,20 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as styles from "./Item.module.css";
 
 export default function Item({ data, isPc }) {
-  const history = useHistory();
+  // console.log("item", data);
   const title = data.title.trim();
-  const _navigateToDetailItem = () => {
-    // history.push(`/laptop/${data._id}`);
-  };
-  console.log("is pc from item", isPc);
+  let price;
+  if (!isPc) {
+    price = data.price.split("₫").join("");
+  } else if (isPc) {
+    price = data.price.split("đ").join("");
+  }
   return (
     <Link
       to={`/item?genre=${data.genre}&id=${data._id}`}
       className={styles.itemImgs}
-      onClick={_navigateToDetailItem}
     >
       <div className={styles.outerWrapper}>
         <div className={styles.imgArea}>
@@ -23,10 +24,8 @@ export default function Item({ data, isPc }) {
           <div className={styles.itemName}>{title}</div>
           <div className={styles.itemPrice}>
             <div className={styles.priceText}> Giá: </div>
-            <div className={styles.priceInNumber}>
-              {data.price.split("₫").join("")}
-            </div>
-            <div className={styles.currencyMark}>₫</div>
+            <div className={styles.priceInNumber}>{price}₫</div>
+            {/* <div className={styles.currencyMark}>₫</div> */}
           </div>
         </div>
       </div>

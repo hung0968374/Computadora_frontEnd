@@ -18,7 +18,9 @@ const ReviewItem = ({ data }) => {
       {isTruncated ? (
         <>
           {fullReviewContent?.map((text, idx) => {
-            if (text.length > 100) {
+            if (text.includes("https://")) {
+              return <img src={text} alt="" key={idx} />;
+            } else if (text.length > 100) {
               return (
                 <div key={idx} className={styles.normalText}>
                   {text}
