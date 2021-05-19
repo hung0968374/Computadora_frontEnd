@@ -265,7 +265,8 @@ const ItemProp = ({ data, genre }) => {
           <div
             className={styles.continueShopping}
             onClick={() => {
-              history.push("/laptop");
+              if (genre === "pc") history.push("/pc");
+              else history.push("/laptop");
             }}
           >
             <FaAngleLeft />

@@ -9,7 +9,7 @@ const Footer = () => {
           src="/images/insta-icon.svg"
           alt=""
         />
-        <img className={styles.name} src="/images/Computadora.svg" alt="" />
+        <div>COMPUTADORA</div>
       </div>
     </div>
   );

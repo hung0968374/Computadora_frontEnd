@@ -29,8 +29,9 @@ p {
 .welcomeUser {
   margin-top: 10%;
   font-size: 2rem;
-  color: #2c07ff;
+  width: 80%;
   justify-content: center;
+  text-align: justify;
 }
 
 .welcomeUser span {

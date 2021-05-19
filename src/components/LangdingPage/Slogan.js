@@ -36,8 +36,8 @@ const Slogan = () => {
           </>
         ) : (
           <div className={styles.welcomeUser}>
-            Cảm ơn <span>{currentUserInfo.name}</span> đã giành thời gian đặt
-            chân đến mảnh đất này 🥰🥰🥰
+            Cảm ơn <span>{currentUserInfo.name}</span> đã giành thời gian ghé
+            thăm COMPUTADORA 💖
           </div>
         )}
       </div>

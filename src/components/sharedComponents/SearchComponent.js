@@ -142,8 +142,7 @@ export default function SearchComponent({ isPc = false }) {
                     className={styles.selectionItem}
                     key={index}
                     onClick={() => {
-                      // if (isPc) history.push(`/laptop/${item._id}`);
-                      // else if (!isPc) history.push(`/laptop/${item._id}`);
+                      history.push(`/item?genre=${item.genre}&id=${item._id}`);
                       setSearchInput("");
                       setShowSearchChoicesForUser(false);
                     }}

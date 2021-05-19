@@ -124,7 +124,7 @@ const CartPage = () => {
   };
   ////////close modal     line 309
   const _closeModal = () => {
-    localStorage.setItem("cartItems", []);
+    localStorage.setItem("cartItems", null);
     dispatch(recoverItemsInCartEveryRefresh([]));
     setInfoMsgToUser("");
   };

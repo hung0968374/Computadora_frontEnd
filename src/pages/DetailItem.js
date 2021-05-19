@@ -37,10 +37,11 @@ export default function DetailItem({}) {
     }
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
   }, [location]);
+  console.log("part item", specificItemById);
   return (
     <>
       {showNavOrNot ? null : <Header />}
-      <SearchComponent />
+      <SearchComponent isPc={genre === "pc" ? true : false} />
       {specificItemById ? (
         <ItemProp data={specificItemById} genre={genre} />
       ) : null}
