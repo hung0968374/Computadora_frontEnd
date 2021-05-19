@@ -130,11 +130,15 @@ const Header = () => {
           <div className={[styles.commonContentStyle]}>
             <Link to="/laptop">Laptop</Link>
           </div>
-          <div className={[styles.commonContentStyle]}>
-            <Link to="/accessories"> Linh kiện</Link>
+          <div className={`${styles.commonContentStyle}`}>
+            <Link className={styles.lineThrough} to="/accessories">
+              Linh kiện
+            </Link>
           </div>
           <div className={[styles.commonContentStyle]}>
-            <Link to="/blog"> Blog</Link>
+            <Link className={styles.lineThrough} to="/blog">
+              Blog
+            </Link>
           </div>
         </div>
         <div className={styles.userImg}>

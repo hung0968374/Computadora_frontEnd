@@ -337,7 +337,11 @@ const CartPage = () => {
             </>
           ) : null}
           {infoMsgToUser?.length > 0 ? (
-            <YesNoModal msg={infoMsgToUser} confirm={_closeModal} />
+            <YesNoModal
+              msg={infoMsgToUser}
+              notDisplayRejectBttn={true}
+              confirm={_closeModal}
+            />
           ) : null}
           {tokenHasExpired ? (
             <>
