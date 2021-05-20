@@ -16,6 +16,7 @@ import BoughtItemRecord from "./pages/BoughtItemRecord";
 import ActivateRecoveringAccount from "./pages/ActivateRecoveringAccount";
 import Accessories from "./pages/Accessories";
 import Test from "./pages/Test";
+import BlogDetail from "./pages/BlogDetail";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/laptop" exact component={Laptop} />
             <Route path="/" exact component={LandingPage} />
             <Route path="/blog" exact component={Blog} />
+            <Route path="/blog/:id" exact component={BlogDetail} />
             <Route path="/item" exact component={DetailItem} />
             <Route path="/PWRecover" exact component={PWRecover} />
             <Route path="/signIn" exact component={SignIN} />

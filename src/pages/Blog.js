@@ -3,8 +3,11 @@ import "./cssFolder/blog.css";
 import * as API from "../api/index";
 import Header from "../components/sharedComponents/Header";
 import Footer from "../components/sharedComponents/footer";
+import { useHistory } from "react-router";
+import BlogSearchComponent from "../components/blog/BlogSearchComponent";
 
 function Blog() {
+  const history = useHistory();
   const [blogs, setBlogs] = useState([]);
   const [randomBlog, setRandomBlog] = useState();
   const [currentBlogPage, setCurrentBlogPage] = useState(1);
@@ -36,17 +39,19 @@ function Blog() {
       setRandomBlog(response.data.blog);
     };
     _fetchRandomBlog();
+
+    ////// auto scroll screen
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
   }, []);
-  console.log(isLoadingBlog);
   return (
     <>
       <Header />
+      <BlogSearchComponent />
       <div className="blog_container">
-        <article>
+        <article onClick={() => history.push(`/blog/${randomBlog._id}`)}>
           <img src={randomBlog?.blogMainImg} alt="" />
           <div className="article_content">
             <div className="article_timeStamp">
-              {" "}
               {randomBlogDay > 0 ? randomBlogDay : "1"} ngày trước
             </div>
             <div className="article_title">{randomBlog?.blogTitle}</div>
@@ -59,7 +64,11 @@ function Blog() {
       <div className="blog_blogItemContainer">
         {blogs.map((blog, index) => {
           return (
-            <article className="blog_blogItemWrapper" key={index}>
+            <article
+              className="blog_blogItemWrapper"
+              key={index}
+              onClick={() => history.push(`/blog/${blog._id}`)}
+            >
               <img src={blog.blogMainImg} alt="" />
               <div className="blog_blogItemContentWrapper">
                 <div className="blog_blogItemTimeStamp">

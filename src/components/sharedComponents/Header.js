@@ -136,9 +136,7 @@ const Header = () => {
             </Link>
           </div>
           <div className={[styles.commonContentStyle]}>
-            <Link className={styles.lineThrough} to="/blog">
-              Blog
-            </Link>
+            <Link to="/blog">Blog</Link>
           </div>
         </div>
         <div className={styles.userImg}>
