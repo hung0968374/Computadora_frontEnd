@@ -1,30 +1,39 @@
 .footer {
   margin-top: 10rem;
   width: 100%;
-  height: 20rem;
+  height: 30rem;
   background-color: #06c1d4;
   opacity: 2;
+  display: flex;
+  flex-direction: row;
 }
 .footer_container {
-  width: 90%;
+  width: 80%;
   display: flex;
-  margin-left: 10%;
+  margin: auto;
   flex-direction: row;
   justify-content: space-between;
   height: 100%;
 }
-
-.section {
-  width: 33%;
-  height: 100%;
+.contactContainer {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
-
+.imgSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.extraSection1 {
+  margin-right: 25%;
+}
 .footer li {
   list-style: none;
 }
 
 .footer .h2_footer {
-  margin-top: 3rem;
   color: red;
   font-weight: bold;
   font-size: 2.5rem;

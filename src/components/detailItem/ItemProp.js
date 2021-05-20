@@ -205,32 +205,60 @@ const ItemProp = ({ data, genre }) => {
           ) : (
             <div className={styles.configurationContainer}>
               <div className={styles.configurationInDetail}>
-                <span> {data?.processor?.split(":")[0]}:</span>
-                {data?.processor?.split(":")[1]}
+                {data?.processor && (
+                  <>
+                    <span> {data?.processor?.split(":")[0]}:</span>
+                    {data?.processor?.split(":")[1]}
+                  </>
+                )}
               </div>
               <div className={styles.configurationInDetail}>
-                <span> {data?.screen?.split(":")[0]}:</span>
-                {data?.screen?.split(":")[1]}
+                {data?.screen && (
+                  <>
+                    <span> {data?.screen?.split(":")[0]}:</span>
+                    {data?.screen?.split(":")[1]}
+                  </>
+                )}
               </div>
               <div className={styles.configurationInDetail}>
-                <span> {data?.ram?.split(":")[0]}:</span>
-                {data?.ram?.split(":")[1]}
+                {data?.ram && (
+                  <>
+                    <span> {data?.ram?.split(":")[0]}:</span>
+                    {data?.ram?.split(":")[1]}
+                  </>
+                )}
               </div>
               <div className={styles.configurationInDetail}>
-                <span> {data?.graphicCard?.split(":")[0]}:</span>
-                {data?.graphicCard?.split(":")[1]}
+                {data?.graphicCard && (
+                  <>
+                    <span> {data?.graphicCard?.split(":")[0]}:</span>
+                    {data?.graphicCard?.split(":")[1]}
+                  </>
+                )}
               </div>
               <div className={styles.configurationInDetail}>
-                <span> {data?.pin?.split(":")[0]}:</span>
-                {data?.pin?.split(":")[1]}
+                {data?.pin && (
+                  <>
+                    <span> {data?.pin?.split(":")[0]}:</span>
+                    {data?.pin?.split(":")[1]}
+                  </>
+                )}
               </div>
               <div className={styles.configurationInDetail}>
-                <span> {data?.weight?.split(":")[0]}:</span>
-                {data?.weight?.split(":")[1]}
+                {data?.weight && (
+                  <>
+                    <span> {data?.weight?.split(":")[0]}:</span>
+                    {data?.weight?.split(":")[1]}
+                  </>
+                )}
               </div>
               <div className={styles.configurationInDetail}>
-                <span> {data?.operatingSystem?.split(":")[0]}:</span>
-                {data?.operatingSystem?.split(":")[1]}
+                {data?.operatingSystem && (
+                  <>
+                    <span> {data?.operatingSystem?.split(":")[0]}:</span>
+                    {data?.operatingSystem?.split(":")[1]}
+                  </>
+                )}
               </div>
             </div>
           )}
@@ -249,11 +277,11 @@ const ItemProp = ({ data, genre }) => {
             </ul>
             <div className={styles.discountItemImg}>
               <img
-                src="https://cdn.tgdd.vn/Products/Images/86/195376/chuot-khong-day-logitech-m170-den-1-200x200.jpg"
+                src="https://salt.tikicdn.com/ts/product/14/e2/b2/ebfddbebf6c3a874bbeda8790a1bbbe1.PNG"
                 alt=""
               />
               <img
-                src="https://cdn.tgdd.vn/Products/Images/2102/86101/balo-laptop-hp-km-khuyen-mai-200x200.jpg"
+                src="https://product.hstatic.net/1000079076/product/ba_lo_legion_7_924ae62f238a4aa98580a8dfd4300bce_large.jpg"
                 alt=""
               />
             </div>
@@ -269,7 +297,7 @@ const ItemProp = ({ data, genre }) => {
               else history.push("/laptop");
             }}
           >
-            <FaAngleLeft />
+            <FaAngleLeft size={50} />
             TIẾP TỤC MUA SẮM
           </div>
         </div>

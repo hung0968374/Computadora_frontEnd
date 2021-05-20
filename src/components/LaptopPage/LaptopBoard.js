@@ -4,10 +4,10 @@ import "./laptopBoard.css";
 function LaptopBoard({ isPc = false }) {
   const imgUrls = isPc
     ? [
-        "https://res.cloudinary.com/nonde/image/upload/v1621338595/computadora/1106_goc-pc-gaming-choi-game_814x320_d6deml.jpg",
+        "https://www.phucanh.vn/media/news/1007_233.jpg",
         "https://res.cloudinary.com/nonde/image/upload/v1621338681/computadora/5126498_27g2_goc_gaming_1_814x320_fzz2ig.jpg",
-        "https://res.cloudinary.com/nonde/image/upload/v1621338829/computadora/top-5-bo-may-tinh-gia-re-choi-game-duoi-5-trieu-2_814x320_ndcyhq.jpg",
         "https://res.cloudinary.com/nonde/image/upload/v1621338901/computadora/msi_800x450_814x320_kkeebl.jpg",
+        "https://res.cloudinary.com/nonde/image/upload/v1621338829/computadora/top-5-bo-may-tinh-gia-re-choi-game-duoi-5-trieu-2_814x320_ndcyhq.jpg",
       ]
     : [
         "https://res.cloudinary.com/dsykf3mo9/image/upload/v1619539188/ProductImage/nitro5amd_ehsufz.jpg",
