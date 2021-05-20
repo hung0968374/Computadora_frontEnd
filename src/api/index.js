@@ -30,6 +30,11 @@ export const fetchParticularPc = (id) => API.get(`/api/pcs/${id}`);
 export const getPcSearchItemPool = () =>
   API.get(`/api/pcs/search/searchItemsPool`);
 
+///////////// blog
+export const fetchBlogsByPagination = (page) =>
+  API.get(`/api/blog/filter?page=${page}&amountPerPage=6`);
+export const fetchRandomBlog = () => API.get(`/api/blog/random/ramdomBlog`);
+
 /////////////account signIn signUp
 export const activateAccount = (obj) =>
   API.post("api/auth/register/activateAccount", obj);
