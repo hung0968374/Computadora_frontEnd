@@ -114,8 +114,10 @@ export default function PWRecover() {
               <div className={styles.new_acc}>
                 <Link to="/signIn">Đã có tài khoản?</Link>
               </div>
-              <div className={styles.forgot_pw}>
-                <Link to="/signUp">Chưa có tài khoản?</Link>
+              <div>
+                <Link className={styles.forgot_pw} to="/signUp">
+                  Chưa có tài khoản?
+                </Link>
               </div>
             </div>
           </div>

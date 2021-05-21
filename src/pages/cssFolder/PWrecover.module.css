@@ -81,10 +81,11 @@ input:focus {
   padding-top: 5%;
   width: 60%;
   height: 10%;
-  margin: auto;
+  margin-left: 25%;
   display: flex;
   justify-content: space-between;
 }
+
 .footer {
   width: 100%;
   height: 25%;

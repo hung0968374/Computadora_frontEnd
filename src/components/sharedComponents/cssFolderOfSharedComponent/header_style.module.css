@@ -17,10 +17,6 @@
   animation: fadeIn 1s ease;
 }
 
-.linkWrapper {
-  width: 100%;
-  height: 100%;
-}
 .content_wrapper {
   max-width: 80%;
   height: 100%;
@@ -29,13 +25,24 @@
 }
 .laptopImg {
   height: 100%;
-  width: 15%;
+  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 3px;
+  padding-top: 0px;
   animation: drop 0.5s ease;
   animation-delay: 100ms;
+  cursor: pointer;
+}
+.laptopImg img {
+  height: 55%;
+  margin-right: 1rem;
+}
+.laptopImg span {
+  font-size: 2rem;
+}
+.laptopImg span:nth-child(3) {
+  color: red;
 }
 .lapImgStyle {
   height: 90%;
@@ -44,9 +51,9 @@
   padding-top: 0rem;
 }
 .textWrapper {
-  width: 75%;
+  width: 50%;
   height: 100%;
-  margin-left: 1%;
+  margin-left: 20%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -54,10 +61,13 @@
 }
 .commonContentStyle {
   font-size: 26px;
-  /* margin-left: 15%; */
-  opacity: 0.7;
 }
-
+.hightlightHeaderLink {
+  color: red !important;
+}
+.userImg {
+  display: flex;
+}
 .userImgWrapper {
   width: 100px;
   height: 100%;
@@ -65,7 +75,6 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 10.8rem;
 }
 .userImg img {
   width: 70px;
@@ -73,8 +82,6 @@
   object-fit: cover;
   padding-top: 0rem;
   border-radius: 50%;
-  /* position: absolute;
-  right: 11.5rem; */
   border: 1px solid rgb(182, 182, 182);
 }
 .amountOfNotification {
@@ -96,9 +103,8 @@
   width: auto;
   min-width: 150px;
   height: 0;
-  position: absolute;
+  position: relative;
   top: 6rem;
-  right: 6.5rem;
   border-radius: 3px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   transition: height 0.3s;
@@ -109,7 +115,6 @@
 }
 .userImg:hover .userOptionForNotLoggingIn {
   height: 9.25rem;
-  right: 6.5rem;
 }
 .userImg:hover .styleForNotCustomUser {
   height: 9.25rem;
@@ -150,11 +155,6 @@
   background-color: red;
   display: none;
 }
-@media screen and (max-width: 1024px) {
-  .commonContentStyle {
-    margin-left: 10%;
-  }
-}
 @keyframes fadeOut {
   0% {
     opacity: 1;
@@ -191,7 +191,20 @@
 .header a:-webkit-any-link {
   color: black;
 }
-.header a:hover {
-  color: blue;
-  transform: scale(1.1);
+
+/* responsive */
+@media screen and (max-width: 1500px) {
+  .textWrapper {
+    margin-left: 10%;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .textWrapper {
+    margin-left: 10%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .textWrapper {
+    margin-left: 0%;
+  }
 }

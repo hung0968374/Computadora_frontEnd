@@ -43,7 +43,7 @@ export default function SignIN() {
         const decodedToken = jwt_decode(res.data.accessToken);
         console.log("decode jwt tooken", decodedToken);
         localStorage.setItem("tokenExpireIn", decodedToken.exp);
-        history.push("/");
+        history.goBack();
       } catch (error) {
         setFailureMsg(error.response.data.message);
         setSuccessfullLoggingIn(false);
@@ -67,7 +67,7 @@ export default function SignIN() {
     localStorage.setItem("tokenExpireIn", res.qc.expires_at); //// set token expiration
     localStorage.setItem("token", token);
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
-    history.push("/");
+    history.goBack();
   };
   const _onFailure = (error) => {
     console.log(error);
@@ -90,18 +90,13 @@ export default function SignIN() {
     localStorage.setItem("token", token);
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
     localStorage.setItem("facebookCurrentUserId", facebookCurrentUserId);
-    history.push("/");
+    history.goBack();
   };
 
   const _failedToLogginWithFacebook = (error) => {
     console.log(error);
   };
-  //   email: "huuhung0968374305@gmail.com"
-  // familyName: "Nguyễn"
-  // givenName: "Hùng"
-  // googleId: "101795809549623446144"
-  // imageUrl: "https://lh3.googleusercontent.com/a/AATXAJxkORq_O961oPkzKG-moHlNOHjTZdtayz1KUaAQ=s96-c"
-  // name: "Hùng Nguyễn"
+
   return (
     <div>
       <div className={styles.container}>

@@ -29,7 +29,6 @@ const Header = () => {
   const [goingUp, setGoingUp] = useState(true);
   const screenGoUp = useSelector(goingToUpper);
   const isCustomUser = useSelector(isCustomizedUser);
-
   ///function
   const _logOut = () => {
     localStorage.clear();
@@ -78,6 +77,7 @@ const Header = () => {
 
   ///////// is customized user
   // console.log("userinfo", userInfo);
+
   useEffect(() => {
     if (userInfo?._id?.length > 0) {
       dispatch(toggleIsCustomizedUser(true));
@@ -110,34 +110,51 @@ const Header = () => {
     }
   };
 
+  console.log(location.pathname);
   ///////handle expired token or user log out
   return (
     <div className={`${styles.header} ${isGoingUp}`}>
       <div className={styles.content_wrapper}>
         <div className={styles.laptopImg}>
-          <Link to="/" className={styles.linkWrapper}>
-            <img
-              className={styles.lapImgStyle}
-              src="/images/laptop.svg"
-              alt=""
-            />
-          </Link>
+          <img src="/images/insta-icon.svg" alt="" />
+          <span>COMPU</span>
+          <span>TADORA</span>
         </div>
         <div className={styles.textWrapper}>
-          <div className={[styles.commonContentStyle]}>
-            <Link to="/pc">PC</Link>
-          </div>
-          <div className={[styles.commonContentStyle]}>
-            <Link to="/laptop">Laptop</Link>
-          </div>
-          <div className={`${styles.commonContentStyle}`}>
-            <Link className={styles.lineThrough} to="/accessories">
-              Linh kiện
-            </Link>
-          </div>
-          <div className={[styles.commonContentStyle]}>
-            <Link to="/blog">Blog</Link>
-          </div>
+          <Link
+            className={`${styles.commonContentStyle} ${
+              location.pathname === "/" && styles.hightlightHeaderLink
+            }`}
+            to="/"
+          >
+            Home
+          </Link>
+
+          <Link
+            className={`${styles.commonContentStyle} ${
+              location.pathname === "/pc" && styles.hightlightHeaderLink
+            }`}
+            to="/pc"
+          >
+            PC
+          </Link>
+
+          <Link
+            className={`${styles.commonContentStyle} ${
+              location.pathname === "/laptop" && styles.hightlightHeaderLink
+            }`}
+            to="/laptop"
+          >
+            Laptop
+          </Link>
+          <Link
+            className={`${styles.commonContentStyle} ${
+              location.pathname.includes("/blog") && styles.hightlightHeaderLink
+            }`}
+            to="/blog"
+          >
+            Blog
+          </Link>
         </div>
         <div className={styles.userImg}>
           {token ? (
