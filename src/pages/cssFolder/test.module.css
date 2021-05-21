@@ -1,0 +1,125 @@
+.landingPage {
+  height: 100vh;
+  width: 100%;
+  overflow-y: hidden;
+  overflow: hidden;
+}
+.imgContainer {
+  width: 100%;
+  height: 65vh;
+  z-index: 0;
+}
+.imgContainer img {
+  width: 100%;
+  height: 100%;
+  animation: toLeft 0.5s ease;
+}
+.cardsContainer {
+  width: 1056px;
+  height: 320px;
+  margin: auto;
+  margin-top: -160px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  width: 434px;
+  margin: 50px auto 75px;
+  text-align: center;
+}
+
+.cards {
+  width: 330px;
+  height: 100%;
+  background-color: rosybrown;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  /* transition: 0.2s ease; */
+}
+
+.cards:nth-child(1) {
+  background-color: #478ac9;
+}
+.cards:nth-child(2) {
+  background-color: #2cccc4;
+}
+.cards:nth-child(3) {
+  background-color: #7145e0;
+}
+.cardContent {
+  width: calc(100% - 40px);
+  height: calc(50% - 20px);
+  display: none;
+  color: whitesmoke;
+  padding: 10px 20px 0 20px;
+}
+.cards:hover .cardContent {
+  display: block;
+}
+.cardContentTitle {
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 2rem;
+  font-weight: bolder;
+  color: red;
+}
+.cardTextContent {
+  text-align: center;
+  font-size: 20px;
+}
+.cards:hover img {
+  height: 25%;
+  background-color: royalblue;
+}
+.cards img {
+  width: 100%;
+  height: 75%;
+  object-fit: cover;
+  z-index: 99999 !important;
+  transition: height 0.5s ease;
+  background-color: royalblue;
+}
+.watchMoreContainer {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0px;
+}
+
+.watchMore {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-style: solid;
+  font-weight: 700;
+  font-family: SF_Pro_Display, system-ui, -apple-system, Segoe UI, Roboto,
+    Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji" !important;
+  padding: 10px 58px 10px 57px;
+  border-color: #eeeeee;
+  color: #111111 !important;
+  background-color: #ffffff;
+  border-width: 0;
+  font-size: 0.875rem;
+  font-style: initial;
+  white-space: nowrap;
+}
+.watchMore:hover {
+  background-color: rgb(226, 224, 224);
+}
+@keyframes toLeft {
+  0% {
+    filter: blur(2px);
+    transform: translateX(15px);
+  }
+  100% {
+    filter: blur(0px);
+    transform: translateX(0px);
+  }
+}

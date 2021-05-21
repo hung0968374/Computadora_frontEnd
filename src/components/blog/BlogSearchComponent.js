@@ -97,7 +97,8 @@ export default function BlogSearchComponent() {
     <div className={styles.container}>
       <div className={styles.mainLogoArea}>
         <img src="/images/insta-icon.svg" alt="" />
-        <span>COMPUTADORA</span>
+        <span>COMPU</span>
+        <span>TADORA</span>
       </div>
       <div className={styles.searchArea} ref={displaySearchPoolRef}>
         <span className={styles.search_icon}>
