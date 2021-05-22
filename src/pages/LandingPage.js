@@ -54,27 +54,21 @@ function LandingPage() {
                 </div>
               </div>
               <div className={styles.watchMoreContainer}>
-                <Link
-                  to={index === 0 && "/pc"}
-                  className={styles.watchMore}
-                  onClick={() => {
-                    if (index === 0) history.push("/pc");
-                    else if (index === 1) history.push("/laptop");
-                    else if (index === 2) history.push("/blog");
-                  }}
-                >
-                  Xem thêm
-                </Link>
-                {/* <div
-                  className={styles.watchMore}
-                  onClick={() => {
-                    if (index === 0) history.push("/pc");
-                    else if (index === 1) history.push("/laptop");
-                    else if (index === 2) history.push("/blog");
-                  }}
-                >
-                  Xem thêm
-                </div> */}
+                {index === 0 && (
+                  <Link to="/pc" className={styles.watchMore}>
+                    Xem thêm
+                  </Link>
+                )}
+                {index === 1 && (
+                  <Link to="/laptop" className={styles.watchMore}>
+                    Xem thêm
+                  </Link>
+                )}
+                {index === 2 && (
+                  <Link to="/blog" className={styles.watchMore}>
+                    Xem thêm
+                  </Link>
+                )}
               </div>
             </div>
           );

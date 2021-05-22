@@ -23,6 +23,11 @@ export default function DetailItem({}) {
   const showNavOrNot = useSelector(discardNavOrNot);
   const [specificItemById, setSpecificItemById] = useState([]);
   const location = useLocation();
+
+  /////// function
+  useEffect(() => {
+    if (specificItemById?.title) document.title = specificItemById?.title;
+  }, [specificItemById]);
   useEffect(async () => {
     var dataFromSpecificId;
     try {

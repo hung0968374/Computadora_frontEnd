@@ -42,6 +42,9 @@ function Blog() {
 
     ////// auto scroll screen
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
+
+    ///////// setting page title
+    document.title = "Blog";
   }, []);
   return (
     <>

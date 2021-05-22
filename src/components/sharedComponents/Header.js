@@ -42,10 +42,6 @@ const Header = () => {
     dispatch(recoverItemsInCartEveryRefresh([]));
   };
 
-  const _redirectToCartPage = () => {
-    history.push("/cart");
-  };
-
   // tinh tong so luong gio hang
   useEffect(() => {
     if (localStorage.getItem("quantity") != null) {
@@ -195,38 +191,29 @@ const Header = () => {
             <div
               className={`${styles.userOption} ${styles.userOptionForNotLoggingIn}`}
             >
-              <div
-                className={styles.optionItem}
-                onClick={() => {
-                  history.push("/signIn");
-                }}
-              >
-                <i>
-                  <GrLogin />
-                </i>
-                Đăng nhập
+              <div className={styles.optionItem}>
+                <Link to="/signIn">
+                  <i>
+                    <GrLogin />
+                  </i>
+                  Đăng nhập
+                </Link>
               </div>
-              <div
-                className={styles.optionItem}
-                onClick={() => {
-                  history.push("/signUp");
-                }}
-              >
-                <i>
-                  <IoIosPersonAdd />
-                </i>
-                Đăng kí
+              <div className={styles.optionItem}>
+                <Link to="/signUp">
+                  <i>
+                    <IoIosPersonAdd />
+                  </i>
+                  Đăng kí
+                </Link>
               </div>
-              <div
-                className={styles.optionItem}
-                onClick={() => {
-                  history.push("/PWRecover");
-                }}
-              >
-                <i>
-                  <IoMdKey />
-                </i>
-                <p>Quên mật khẩu</p>
+              <div className={styles.optionItem}>
+                <Link to="/PWRecover">
+                  <i>
+                    <IoMdKey />
+                  </i>
+                  <p>Quên mật khẩu</p>
+                </Link>
               </div>
             </div>
           ) : null}
@@ -245,35 +232,33 @@ const Header = () => {
                 </i>
                 <p>Đăng xuất</p>
               </div>
-              <div className={styles.optionItem} onClick={_redirectToCartPage}>
-                <i>
-                  <HiShoppingCart />
-                </i>
-                Giỏ hàng (<span>{totalQuantityOfItemsInCart}</span> )
+              <div className={styles.optionItem}>
+                <Link to="/cart">
+                  <i>
+                    <HiShoppingCart />
+                  </i>
+                  Giỏ hàng (<span>{totalQuantityOfItemsInCart}</span> )
+                </Link>
               </div>
-              <div
-                className={styles.optionItem}
-                onClick={() => {
-                  history.push("/boughtItemsRecord");
-                }}
-              >
-                <i>
-                  <BiHistory />
-                </i>
-                <p>Lịch sử mua hàng</p>
+              <div className={styles.optionItem}>
+                <Link to="/boughtItemsRecord">
+                  <i>
+                    <BiHistory />
+                  </i>
+                  <p>Lịch sử mua hàng</p>
+                </Link>
               </div>
               <div
                 className={`${styles.optionItem} ${
                   !isCustomUser && styles.isNotCustomUser
                 }`}
-                onClick={() => {
-                  history.push("/personalInfo");
-                }}
               >
-                <i>
-                  <IoIosPerson />
-                </i>
-                <p>Thông tin cá nhân</p>
+                <Link to="/personalInfo">
+                  <i>
+                    <IoIosPerson />
+                  </i>
+                  <p>Thông tin cá nhân</p>
+                </Link>
               </div>
             </div>
           ) : null}

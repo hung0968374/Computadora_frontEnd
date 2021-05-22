@@ -31,6 +31,9 @@ const Laptop = () => {
   }, []);
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
+
+    ///////// setting page title
+    document.title = "Laptop";
   }, []);
   return (
     <div className={styles.container}>

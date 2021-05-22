@@ -15,6 +15,11 @@ export default function BlogDetail({ match }) {
     _fetchBlogInDetail();
   }, []);
 
+  /////////// set title of this page
+  useEffect(() => {
+    if (blogInDetail?.blogTitle) document.title = blogInDetail?.blogTitle;
+  }, [blogInDetail]);
+
   ////////////reformatting date to VietNam timeStamp
   const DATE_OPTIONS = {
     hour: "numeric",

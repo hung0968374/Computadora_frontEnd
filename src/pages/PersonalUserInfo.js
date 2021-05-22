@@ -17,6 +17,9 @@ export default function UserInfo() {
     }
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+  useEffect(() => {
+    document.title = "Thông tin cá nhân";
+  }, []);
   return (
     <div className="personalInfo">
       <Header />

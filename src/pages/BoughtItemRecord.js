@@ -9,6 +9,9 @@ export default function BoughtItemRecord() {
   const [userInvoices, setUserInvoices] = useState([]);
   const [tokenHasExpired, setTokenHasExpired] = useState(false);
   useEffect(() => {
+    document.title = "Lịch sử mua hàng";
+  }, []);
+  useEffect(() => {
     const fetchAllInvoices = async () => {
       try {
         const response = await API.getInvoicesByParticularUser();

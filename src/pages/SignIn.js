@@ -31,6 +31,9 @@ export default function SignIN() {
   }, [token]);
 
   ///////function
+  useEffect(() => {
+    document.title = "Đăng nhập";
+  }, []);
   const _handlingUserLoggin = async () => {
     if (successfullLoggingIn) {
       try {

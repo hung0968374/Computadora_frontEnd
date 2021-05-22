@@ -24,6 +24,9 @@ const Pc = () => {
     } catch (error) {
       console.log(error);
     }
+
+    ///////////////// setting page title
+    document.title = "PC";
   }, []);
   // console.log("pc", pcItems);
   return (

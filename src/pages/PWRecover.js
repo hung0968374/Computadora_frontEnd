@@ -23,7 +23,9 @@ export default function PWRecover() {
       history.push("/");
     }
   }, [token]);
-
+  useEffect(() => {
+    document.title = "Lấy lại mật khẩu";
+  }, []);
   ///////retake pw
   const retakePwFormChange = (e) => {
     setRetakePwForm({ ...retakePwForm, [e.target.name]: e.target.value });

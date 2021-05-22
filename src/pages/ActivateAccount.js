@@ -28,7 +28,9 @@ export default function ActivateAccount({ match }) {
     };
     _sendActivateRequestToBackend();
   }, []);
-
+  useEffect(() => {
+    document.title = "Kích hoạt tài khoản";
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

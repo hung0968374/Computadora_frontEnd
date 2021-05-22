@@ -110,6 +110,9 @@ export default function SignUP() {
       history.push("/");
     }
   }, [token]);
+  useEffect(() => {
+    document.title = "Đăng kí";
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

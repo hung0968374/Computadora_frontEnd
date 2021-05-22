@@ -29,7 +29,9 @@ export default function ActivateRecoveringAccount({ match }) {
     };
     _sendActivateRequestToBackend();
   }, []);
-
+  useEffect(() => {
+    document.title = "Lấy lại mật khẩu";
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

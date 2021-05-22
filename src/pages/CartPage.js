@@ -39,6 +39,9 @@ const CartPage = () => {
       });
     }
   }, []);
+  useEffect(() => {
+    document.title = "Giỏ hàng";
+  }, []);
   const [totalQuantityOfItemsInCart, setTotalQuantityOfItemsInCart] =
     useState();
   const [infoMsgToUser, setInfoMsgToUser] = useState("");
