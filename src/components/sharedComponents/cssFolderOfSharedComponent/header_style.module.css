@@ -65,8 +65,12 @@
 .hightlightHeaderLink {
   color: red !important;
 }
+
 .userImg {
   display: flex;
+  justify-content: center;
+  max-width: 100px;
+  margin-left: 40px;
 }
 .userImgWrapper {
   width: 100px;
@@ -85,8 +89,8 @@
   border: 1px solid rgb(182, 182, 182);
 }
 .amountOfNotification {
-  position: absolute;
-  width: 30px;
+  position: relative;
+  min-width: 30px !important;
   height: 30px;
   border-radius: 50%;
   display: flex;
@@ -96,28 +100,33 @@
   font-size: 1.1rem;
   font-weight: 550;
   font-style: normal;
-  right: 11.7rem;
-  bottom: 4rem;
+  z-index: 999 !important;
+  color: white;
+  left: 6rem;
 }
 .userOption {
-  width: auto;
   min-width: 150px;
+  width: auto;
   height: 0;
   position: relative;
   top: 6rem;
+  left: 30px;
   border-radius: 3px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   transition: height 0.3s;
   overflow: hidden;
 }
+.userOptionWhenQuantityExist {
+  left: 20px;
+}
 .userImg:hover .userOption {
   height: 12.2rem;
 }
 .userImg:hover .userOptionForNotLoggingIn {
-  height: 9.25rem;
+  height: 147px;
 }
 .userImg:hover .styleForNotCustomUser {
-  height: 9.25rem;
+  height: 147px;
 }
 .content_wrapper a {
   text-decoration: none;
@@ -198,11 +207,7 @@
     margin-left: 10%;
   }
 }
-@media screen and (max-width: 1500px) {
-  .textWrapper {
-    margin-left: 10%;
-  }
-}
+
 @media screen and (max-width: 1200px) {
   .textWrapper {
     margin-left: 0%;

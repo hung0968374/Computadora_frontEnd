@@ -44,6 +44,8 @@ const Header = () => {
   useEffect(() => {
     if (localStorage.getItem("quantity") != null) {
       setTotalQuantityOfItemsInCart(localStorage.getItem("quantity"));
+    } else {
+      localStorage.setItem("quantity", 0);
     }
   }, [localStorage.getItem("quantity")]);
 
@@ -159,6 +161,11 @@ const Header = () => {
         <div className={styles.userImg}>
           {token ? (
             <>
+              {totalQuantityOfItemsInCart > 0 ? (
+                <i className={styles.amountOfNotification}>
+                  {totalQuantityOfItemsInCart}
+                </i>
+              ) : null}
               <div className={styles.userImgWrapper}>
                 <img
                   src={userInfo?.imageUrl}
@@ -166,13 +173,6 @@ const Header = () => {
                   className={styles.userImgStyle}
                 />
               </div>
-              {totalQuantityOfItemsInCart > 0 ? (
-                <>
-                  <i className={styles.amountOfNotification}>
-                    {totalQuantityOfItemsInCart}
-                  </i>
-                </>
-              ) : null}
             </>
           ) : (
             <div className={styles.userImgWrapper}>
@@ -226,7 +226,10 @@ const Header = () => {
             <div
               className={`${styles.userOption}  ${
                 !isCustomUser && styles.styleForNotCustomUser
-              } `}
+              } ${
+                totalQuantityOfItemsInCart > 0 &&
+                styles.userOptionWhenQuantityExist
+              }`}
             >
               <div className={styles.optionItem} onClick={_logOut}>
                 <i>
