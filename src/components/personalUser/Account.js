@@ -143,7 +143,7 @@ export default function Account() {
   // console.log("pw form", passwordForm);
   return (
     <div className="user_profile">
-      <h2>Thông tin tài khoản</h2>
+      <h2>Thông tin cá nhân</h2>
       <div className="user_profile_container">
         <div className="column1">
           <ul>

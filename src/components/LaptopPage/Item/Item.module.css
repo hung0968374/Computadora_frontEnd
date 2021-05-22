@@ -1,6 +1,6 @@
 .itemImgs {
-  height: 18rem;
-  width: 24.7%;
+  height: calc(18rem - 2px);
+  width: calc(25% - 2px);
   border: 1px solid rgb(177, 172, 172);
   transition: 300ms ease;
   background-color: white;
@@ -61,4 +61,21 @@
 }
 a {
   color: black;
+}
+
+/* responsive */
+@media screen and (max-width: 950px) {
+  .itemImgs {
+    width: 33%;
+  }
+}
+@media screen and (max-width: 870px) {
+  .itemImgs {
+    width: calc(50% - 4px);
+  }
+}
+@media screen and (max-width: 650px) {
+  .itemImgs {
+    width: 100%;
+  }
 }

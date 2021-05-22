@@ -166,3 +166,17 @@
     transform: translateX(0px);
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .laptopBoard_blog_feature {
+    display: none;
+  }
+  .laptopBoard_new_feature {
+    width: 100%;
+  }
+  .laptopBoard_main_feature {
+    margin: auto;
+  }
+}
+.laptopBoard_blog_feature {
+}

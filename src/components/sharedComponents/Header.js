@@ -15,6 +15,7 @@ import {
   isCustomizedUser,
   toggleIsCustomizedUser,
 } from "../../redux/features/user/userSlice";
+import queryString from "query-string";
 
 const Header = () => {
   ///////////state
@@ -29,6 +30,11 @@ const Header = () => {
   const [goingUp, setGoingUp] = useState(true);
   const screenGoUp = useSelector(goingToUpper);
   const isCustomUser = useSelector(isCustomizedUser);
+  ///// detect url includes pc or laptop or not
+  const { search } = useLocation();
+  const values = queryString.parse(search);
+  // console.log("search", values.genre);
+
   ///function
   const _logOut = () => {
     localStorage.clear();
@@ -112,7 +118,7 @@ const Header = () => {
     }
   };
 
-  console.log(location.pathname);
+  // console.log(location.pathname);
   ///////handle expired token or user log out
   return (
     <div className={`${styles.header} ${isGoingUp}`}>
@@ -134,7 +140,8 @@ const Header = () => {
 
           <Link
             className={`${styles.commonContentStyle} ${
-              location.pathname === "/pc" && styles.hightlightHeaderLink
+              (location.pathname === "/pc" || values.genre === "pc") &&
+              styles.hightlightHeaderLink
             }`}
             to="/pc"
           >
@@ -143,7 +150,8 @@ const Header = () => {
 
           <Link
             className={`${styles.commonContentStyle} ${
-              location.pathname === "/laptop" && styles.hightlightHeaderLink
+              (location.pathname === "/laptop" || values.genre === "Laptop") &&
+              styles.hightlightHeaderLink
             }`}
             to="/laptop"
           >
@@ -218,7 +226,7 @@ const Header = () => {
                 <i>
                   <IoMdKey />
                 </i>
-                Quên mật khẩu
+                <p>Quên mật khẩu</p>
               </div>
             </div>
           ) : null}
@@ -235,7 +243,7 @@ const Header = () => {
                 <i>
                   <RiLogoutBoxRFill />
                 </i>
-                Đăng xuất
+                <p>Đăng xuất</p>
               </div>
               <div className={styles.optionItem} onClick={_redirectToCartPage}>
                 <i>
@@ -252,7 +260,7 @@ const Header = () => {
                 <i>
                   <BiHistory />
                 </i>
-                Lịch sử mua hàng
+                <p>Lịch sử mua hàng</p>
               </div>
               <div
                 className={`${styles.optionItem} ${
@@ -265,7 +273,7 @@ const Header = () => {
                 <i>
                   <IoIosPerson />
                 </i>
-                Thông tin cá nhân
+                <p>Thông tin cá nhân</p>
               </div>
             </div>
           ) : null}

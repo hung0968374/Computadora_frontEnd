@@ -5,6 +5,7 @@ import Header from "../components/sharedComponents/Header";
 import Footer from "../components/sharedComponents/footer";
 import { useHistory } from "react-router";
 import BlogSearchComponent from "../components/blog/BlogSearchComponent";
+import { Link } from "react-router-dom";
 
 function Blog() {
   const history = useHistory();
@@ -14,7 +15,6 @@ function Blog() {
   const [isLoadingBlog, setIsLoadingBlog] = useState(false);
   const [notDisplayWatchingMoreBttn, setNotDisplayWatchingMoreBttn] =
     useState(false);
-
   ////////////handling timeStamp
   const now = new Date().getTime();
   const ramdomBlogPublishedTime = new Date(randomBlog?.createdAt).getTime();
@@ -48,7 +48,7 @@ function Blog() {
       <Header />
       <BlogSearchComponent />
       <div className="blog_container">
-        <article onClick={() => history.push(`/blog/${randomBlog._id}`)}>
+        <Link to={`/blog/${randomBlog?._id}`}>
           <img src={randomBlog?.blogMainImg} alt="" />
           <div className="article_content">
             <div className="article_timeStamp">
@@ -59,15 +59,15 @@ function Blog() {
               {randomBlog?.blogBody[0]}
             </div>
           </div>
-        </article>
+        </Link>
       </div>
       <div className="blog_blogItemContainer">
         {blogs.map((blog, index) => {
           return (
-            <article
+            <Link
+              to={`/blog/${blog._id}`}
               className="blog_blogItemWrapper"
               key={index}
-              onClick={() => history.push(`/blog/${blog._id}`)}
             >
               <img src={blog.blogMainImg} alt="" />
               <div className="blog_blogItemContentWrapper">
@@ -79,7 +79,7 @@ function Blog() {
                   {blog.blogBody[0]}
                 </div>
               </div>
-            </article>
+            </Link>
           );
         })}
       </div>
