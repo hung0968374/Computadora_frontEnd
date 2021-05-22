@@ -2,6 +2,7 @@ import * as styles from "./cssFolder/landingPage.module.css";
 import React, { useEffect, useState } from "react";
 import Header from "../components/sharedComponents/Header";
 import { useHistory, useLocation } from "react-router";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   const urls = [
@@ -16,6 +17,7 @@ function LandingPage() {
     if (localStorage.getItem("quantity") === null) {
       localStorage.setItem("quantity", 0);
     }
+    document.title = "Home";
   }, [location]);
 
   return (
@@ -52,7 +54,8 @@ function LandingPage() {
                 </div>
               </div>
               <div className={styles.watchMoreContainer}>
-                <div
+                <Link
+                  to={index === 0 && "/pc"}
                   className={styles.watchMore}
                   onClick={() => {
                     if (index === 0) history.push("/pc");
@@ -61,7 +64,17 @@ function LandingPage() {
                   }}
                 >
                   Xem thêm
-                </div>
+                </Link>
+                {/* <div
+                  className={styles.watchMore}
+                  onClick={() => {
+                    if (index === 0) history.push("/pc");
+                    else if (index === 1) history.push("/laptop");
+                    else if (index === 2) history.push("/blog");
+                  }}
+                >
+                  Xem thêm
+                </div> */}
               </div>
             </div>
           );

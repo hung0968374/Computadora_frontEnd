@@ -36,6 +36,8 @@ export const fetchBlogSearchPoolResult = () =>
 export const fetchBlogsByPagination = (page) =>
   API.get(`/api/blog/filter?page=${page}&amountPerPage=6`);
 export const fetchRandomBlog = () => API.get(`/api/blog/random/ramdomBlog`);
+export const fetchSevenDistinctRandomBlog = () =>
+  API.get(`/api/blog/random/getSevenDistinctRandomBlog`);
 export const fetchBlogById = (id) => API.get(`/api/blog/${id}`);
 
 /////////////account signIn signUp
