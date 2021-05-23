@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import Header from "../components/sharedComponents/Header";
+import ScrollToTop from "../components/sharedComponents/ScrollToTop";
 import * as styles from "./cssFolder/test.module.css";
 
 export default function Test() {
@@ -13,6 +14,7 @@ export default function Test() {
   const [imgIndexDisplaying, setImgIndexDisplaying] = useState(0);
   return (
     <section className={styles.landingPage}>
+      <ScrollToTop />
       <div className={styles.header}>
         <Header />
       </div>

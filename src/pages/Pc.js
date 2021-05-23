@@ -6,6 +6,7 @@ import LaptopBoard from "../components/LaptopPage/LaptopBoard";
 import MessengerCustomerChat from "react-messenger-customer-chat";
 import Footer from "../components/sharedComponents/footer";
 import SearchComponent from "../components/sharedComponents/SearchComponent";
+import ScrollToTop from "../components/sharedComponents/ScrollToTop";
 import * as API from "../api/index";
 
 const Pc = () => {
@@ -31,6 +32,7 @@ const Pc = () => {
   // console.log("pc", pcItems);
   return (
     <div className={styles.containerForPc}>
+      <ScrollToTop />
       <Header />
       <SearchComponent isPc={true} />
       <LaptopBoard isPc={true} />

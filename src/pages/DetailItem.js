@@ -14,6 +14,7 @@ import SearchComponent from "../components/sharedComponents/SearchComponent";
 import { useLocation } from "react-router";
 import Comment from "../components/sharedComponents/Comment";
 import queryString from "query-string";
+import ScrollToTop from "../components/sharedComponents/ScrollToTop";
 
 export default function DetailItem({}) {
   const { search } = useLocation();
@@ -47,6 +48,7 @@ export default function DetailItem({}) {
     <>
       {showNavOrNot ? null : <Header />}
       <SearchComponent isPc={genre === "pc" ? true : false} />
+      <ScrollToTop />
       {specificItemById ? (
         <ItemProp data={specificItemById} genre={genre} />
       ) : null}

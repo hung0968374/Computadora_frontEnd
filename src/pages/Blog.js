@@ -3,9 +3,9 @@ import "./cssFolder/blog.css";
 import * as API from "../api/index";
 import Header from "../components/sharedComponents/Header";
 import Footer from "../components/sharedComponents/footer";
-import { useHistory } from "react-router";
 import BlogSearchComponent from "../components/blog/BlogSearchComponent";
 import { Link } from "react-router-dom";
+import ScrollToTop from "../components/sharedComponents/ScrollToTop";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -47,6 +47,7 @@ function Blog() {
   }, []);
   return (
     <>
+      <ScrollToTop />
       <Header />
       <BlogSearchComponent />
       <div className="blog_container">

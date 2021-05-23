@@ -4,6 +4,7 @@ import Footer from "../components/sharedComponents/footer";
 import "./cssFolder/blogDetail.css";
 import * as API from "../api/index";
 import { Link, useLocation } from "react-router-dom";
+import ScrollToTop from "../components/sharedComponents/ScrollToTop";
 
 export default function BlogDetail({ match }) {
   const location = useLocation();
@@ -47,6 +48,7 @@ export default function BlogDetail({ match }) {
   );
   return (
     <>
+      <ScrollToTop />
       <Header />
       <div className="blogDetail_headerContainer">
         <div className="blogDetail_title">{blogInDetail.blogTitle}</div>
