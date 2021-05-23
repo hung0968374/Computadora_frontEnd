@@ -1,13 +1,14 @@
 .itemImgs {
   height: calc(18rem - 2px);
   width: calc(25% - 4px);
-  border: 1px solid #e3e7ef;
+  border: 1px solid #b8bdc4;
   transition: 300ms ease;
   background-color: white;
 }
 .itemImgs:hover {
   transform: scale(1.1);
   z-index: 999 !important;
+  box-shadow: 0px 0px 20px 2px #888888;
 }
 
 .outerWrapper {

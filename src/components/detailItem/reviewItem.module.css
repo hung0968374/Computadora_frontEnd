@@ -10,9 +10,7 @@
 .reviewArea img {
   margin-bottom: 1rem;
 }
-html {
-  scroll-behavior: smooth;
-}
+
 .normalText {
   font-size: 1.2rem;
   margin-bottom: 2rem;

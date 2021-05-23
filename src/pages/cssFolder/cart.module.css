@@ -73,7 +73,7 @@
   align-items: flex-end;
   font-size: 1.3rem;
 }
-.subNav div:nth-child(1) {
+.subNav a:nth-child(1) {
   color: rgb(10, 98, 214);
   cursor: pointer;
   display: flex;
@@ -156,8 +156,8 @@ textarea {
   border-radius: 4px;
 }
 .name_address input:focus {
-  border: 1px solid #fc9639;
-  box-shadow: 0 0 4px #fc9639;
+  border: 1px solid #06c1d4;
+  box-shadow: 0 0 4px #06c1d4;
 }
 .fillname span {
   display: block;
@@ -177,8 +177,8 @@ textarea {
   border-radius: 4px;
 }
 .emailContainer input:focus {
-  border: 1px solid #fc9639;
-  box-shadow: 0 0 4px #fc9639;
+  border: 1px solid #06c1d4;
+  box-shadow: 0 0 4px #06c1d4;
 }
 .emailContainer span {
   display: block;
@@ -200,8 +200,8 @@ textarea {
   margin-top: 1rem;
 }
 .addressContainer textarea:focus {
-  border: 1px solid #fc9639;
-  box-shadow: 0 0 4px #fc9639;
+  border: 1px solid #06c1d4;
+  box-shadow: 0 0 4px #06c1d4;
 }
 .addressContainer span {
   display: block;

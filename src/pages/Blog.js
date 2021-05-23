@@ -8,7 +8,6 @@ import BlogSearchComponent from "../components/blog/BlogSearchComponent";
 import { Link } from "react-router-dom";
 
 function Blog() {
-  const history = useHistory();
   const [blogs, setBlogs] = useState([]);
   const [randomBlog, setRandomBlog] = useState();
   const [currentBlogPage, setCurrentBlogPage] = useState(1);
@@ -41,7 +40,7 @@ function Blog() {
     _fetchRandomBlog();
 
     ////// auto scroll screen
-    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    window.scroll({ top: 0, left: 0, behavior: "auto" });
 
     ///////// setting page title
     document.title = "Blog";
@@ -66,6 +65,9 @@ function Blog() {
       </div>
       <div className="blog_blogItemContainer">
         {blogs.map((blog, index) => {
+          const blogPublishingTime = new Date(blog?.createdAt).getTime();
+          var randomBlogDelta = Math.abs(now - blogPublishingTime) / 1000;
+          const blogInterval = Math.floor(randomBlogDelta / 86400);
           return (
             <Link
               to={`/blog/${blog._id}`}
@@ -75,7 +77,7 @@ function Blog() {
               <img src={blog.blogMainImg} alt="" />
               <div className="blog_blogItemContentWrapper">
                 <div className="blog_blogItemTimeStamp">
-                  {randomBlogDay > 0 ? randomBlogDay : "1"} ngày trước
+                  {blogInterval > 0 ? blogInterval : "1"} ngày trước
                 </div>
                 <div className="blog_blogItemTitle">{blog.blogTitle}</div>
                 <div className="blog_blogItemPartOfContent">

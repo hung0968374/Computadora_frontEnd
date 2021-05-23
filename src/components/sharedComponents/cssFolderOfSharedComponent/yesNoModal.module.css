@@ -71,9 +71,9 @@
 }
 .oneMsg {
   color: red;
+  text-align: center;
 }
 .oneMsg::first-line {
-  text-indent: 4rem;
 }
 .oneMsg div {
   color: black !important;

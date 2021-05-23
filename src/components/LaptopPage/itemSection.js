@@ -8,6 +8,7 @@ export default function item_section({
   isLoadingData,
   isPc,
   pcIsFetchingData,
+  disableWatchMoreBttn,
 }) {
   return (
     <>
@@ -22,11 +23,10 @@ export default function item_section({
             allData.map((data, index) => (
               <Item data={data} key={index} isPc={isPc} />
             ))}
-          {!isPc && (
+          {!isPc && !disableWatchMoreBttn && (
             <div className={styles.watchMoreContainer}>
               <div className={styles.watchMore} onClick={loadMoreData}>
-                Xem thêm
-                {isLoadingData ? <img src="images/loading.gif" /> : null}
+                {isLoadingData ? <img src="images/loading.gif" /> : "Xem thêm"}
               </div>
             </div>
           )}

@@ -15,7 +15,7 @@ export default function UserInfo() {
     if (!token) {
       history.push("/");
     }
-    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    window.scroll({ top: 0, left: 0, behavior: "auto" });
   }, []);
   useEffect(() => {
     document.title = "Thông tin cá nhân";

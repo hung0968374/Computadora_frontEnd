@@ -24,6 +24,8 @@
   margin: auto;
   margin-top: 2rem;
   height: auto;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid skyblue;
 }
 .blogDetail_textContainer img {
   margin-bottom: 24px;
@@ -42,4 +44,22 @@
   line-height: 1.75rem;
   text-align: justify;
   font-weight: bold;
+}
+.blogDetail_relatingTitle {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 2rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+.blogDetail_relatingBlogContainer {
+  width: 1000px;
+  height: auto;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.blog_blogItemWrapper {
+  width: calc(50% - 2rem);
 }

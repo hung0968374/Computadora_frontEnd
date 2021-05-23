@@ -50,10 +50,12 @@
 }
 .cmtContainer textarea:hover {
   border: 1px solid #06c1d4;
+  box-shadow: 0 0 4px #06c1d4;
 }
 .cmtContainer textarea:focus {
   outline: none;
   border: 1px solid #06c1d4;
+  box-shadow: 0 0 4px #06c1d4;
 }
 .userCommentedContainer {
   width: 100%;

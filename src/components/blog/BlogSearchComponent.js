@@ -12,20 +12,8 @@ export default function BlogSearchComponent() {
     useState(false);
   const [searchPool, setSearchPool] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
-
+  console.log("se res", searchResult);
   ////// reformating date
-  const DATE_OPTIONS = {
-    hour: "numeric",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    weekday: "long",
-    minute: "numeric",
-  };
-  const reformatDate = new Date(searchResult[1]?.createdAt).toLocaleDateString(
-    "vi",
-    DATE_OPTIONS
-  );
 
   //////// get-set item pool result
   useEffect(() => {
@@ -121,6 +109,17 @@ export default function BlogSearchComponent() {
               }`}
             >
               {searchResult.map((item, index) => {
+                const DATE_OPTIONS = {
+                  hour: "numeric",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  weekday: "long",
+                  minute: "numeric",
+                };
+                const reformatDate = new Date(
+                  item?.createdAt
+                ).toLocaleDateString("vi", DATE_OPTIONS);
                 return (
                   <div
                     className={styles.selectionItem}

@@ -15,6 +15,7 @@ import ItemInCart from "../components/cartPage/ItemInCart";
 import * as API from "../api/index";
 import { goUp } from "../redux/features/post/screenSlice";
 import YesNoModal from "../components/sharedComponents/YesNoModal";
+import { Link } from "react-router-dom";
 const CartPage = () => {
   /////state
   const history = useHistory();
@@ -71,7 +72,7 @@ const CartPage = () => {
   console.log("item in cart", itemsInCart);
   /////scroll to top of screen
   useEffect(() => {
-    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    window.scroll({ top: 0, left: 0, behavior: "auto" });
   }, []);
   useEffect(() => {
     if (itemsInCart?.length > 0) {
@@ -226,10 +227,10 @@ const CartPage = () => {
           ) : (
             <>
               <div className={styles.subNav}>
-                <div onClick={() => history.push("/laptop")}>
+                <Link to="/laptop">
                   <FaAngleLeft size={20} />
                   Mua thêm sản phẩm khác
-                </div>
+                </Link>
                 <div>Giỏ hàng của bạn</div>
               </div>
               <div className={styles.contentContainer}>
@@ -320,7 +321,7 @@ const CartPage = () => {
                 <div className={styles.finalTotal}>
                   <div className={styles.totalMoney}>
                     <div className={styles.money}>
-                      <div>Tong tien</div>
+                      <div>Tổng tiền</div>
                       <div>{moneyToStr}₫</div>
                     </div>
                     <div className={styles.bttn} onClick={_confirmToBuy}>

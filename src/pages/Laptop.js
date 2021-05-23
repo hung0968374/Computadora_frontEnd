@@ -19,19 +19,22 @@ const Laptop = () => {
   const laptopItemsInSeperatedPage = useSelector(laptopByPage);
   const dataByPage = laptopItemsInSeperatedPage.arrayOfLaptopItems;
   const [currentPage, setCurrentPage] = useState(1);
+  const [disableWatchMoreBttn, setDisableWatchMoreBttn] = useState(false);
   useEffect(async () => {}, []);
   const _loadMoreData = async () => {
     setCurrentPage((prev) => prev + 1);
     console.log("current page", currentPage);
     const actionRes = await dispatch(fetchLaptopByPage(currentPage + 1));
-    console.log("unwrap", unwrapResult(actionRes));
+    console.log("unwrap", unwrapResult(actionRes).data);
+    if (unwrapResult(actionRes).data.length == 0) {
+      setDisableWatchMoreBttn(true);
+    }
   };
   useEffect(() => {
     dispatch(fetchLaptopByPage(1));
   }, []);
   useEffect(() => {
-    window.scroll({ top: 0, left: 0, behavior: "smooth" });
-
+    window.scroll({ top: 0, left: 0, behavior: "auto" });
     ///////// setting page title
     document.title = "Laptop";
   }, []);
@@ -44,6 +47,7 @@ const Laptop = () => {
         allData={dataByPage}
         loadMoreData={_loadMoreData}
         isLoadingData={laptopItemsInSeperatedPage.isFetchingLaptopItemsByPage}
+        disableWatchMoreBttn={disableWatchMoreBttn}
       />
       <Footer />
       <MessengerCustomerChat

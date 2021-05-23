@@ -12,7 +12,8 @@ const ReviewItem = ({ data }) => {
   const dispatch = useDispatch();
   const _handleShowingText = () => {
     if (!isTruncated) {
-      myRef.current.scrollIntoView();
+      // myRef.current.scrollIntoView();
+      window.scrollTo({ top: myRef.current.offsetTop, behavior: "smooth" });
       setTimeout(() => {
         dispatch(goUp(false));
       }, 200);

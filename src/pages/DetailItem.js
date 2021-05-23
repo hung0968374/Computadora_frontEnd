@@ -40,7 +40,7 @@ export default function DetailItem({}) {
     } catch (error) {
       console.log(error);
     }
-    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    window.scroll({ top: 0, left: 0, behavior: "auto" });
   }, [location]);
   console.log("part item", specificItemById);
   return (

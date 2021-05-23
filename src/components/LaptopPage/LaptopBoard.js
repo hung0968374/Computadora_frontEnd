@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./laptopBoard.css";
 import * as API from "../../api/index";
+import { FaAngleRight } from "react-icons/fa";
 
 function LaptopBoard({ isPc = false }) {
   const imgUrls = isPc
@@ -75,7 +76,12 @@ function LaptopBoard({ isPc = false }) {
           );
         })}
         <div className="laptopBoard_news">
-          <Link to="/blog"> Tất cả tin tức</Link>
+          <Link to="/blog">
+            Tất cả tin tức
+            <i>
+              <FaAngleRight size={24} />
+            </i>
+          </Link>
         </div>
       </div>
     </div>
