@@ -36,7 +36,7 @@ export default function BoughtItemRecord() {
   };
   console.log("user invoice", userInvoices);
   return (
-    <div className="page_container">
+    <>
       <Header />
       <div className="content_container">
         <h2>Lịch sử mua hàng</h2>
@@ -101,6 +101,6 @@ export default function BoughtItemRecord() {
           />
         </>
       ) : null}
-    </div>
+    </>
   );
 }
