@@ -8,7 +8,8 @@ function LandingPage() {
   const urls = [
     "https://cmcdistribution.com.vn/en/wp-content/uploads/2020/12/The-BEST-Wallpapers-For-Your-Gaming-Setup-Wallpaper-Engine.jpg",
     "https://lumen.thinkpro.vn//backend/uploads/baiviet/2021/4/3/blade14AMDThumb.jpg",
-    "https://lumen.thinkpro.vn/backend/uploads/editor/v2/nitro5amd.jpg",
+    // "https://lumen.thinkpro.vn/backend/uploads/editor/v2/nitro5amd.jpg",
+    "https://lumen.thinkpro.vn//backend/uploads/baiviet/2020/12/22/laptopplaycp2077-1thumb.jpg",
   ];
   const history = useHistory();
   const location = useLocation();

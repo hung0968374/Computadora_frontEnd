@@ -55,7 +55,8 @@ function Blog() {
           <img src={randomBlog?.blogMainImg} alt="" />
           <div className="article_content">
             <div className="article_timeStamp">
-              {randomBlogDay > 0 ? randomBlogDay : "1"} ngày trước
+              {randomBlogDay && randomBlogDay > 0 ? randomBlogDay : "1"} ngày
+              trước
             </div>
             <div className="article_title">{randomBlog?.blogTitle}</div>
             <div className="article_smallPartOfContent">

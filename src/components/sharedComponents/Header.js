@@ -56,6 +56,8 @@ const Header = () => {
     setToken(localStorage.getItem("token"));
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
   }, [location]);
+
+  //////// handle scrolling screen
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 160) {
