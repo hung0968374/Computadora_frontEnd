@@ -9,9 +9,14 @@ export default function YesNoModal({
   notDisplayRejectBttn,
   isArray = false,
 }) {
+  console.log("is array", isArray);
   return (
     <div className={styles.modal_bg}>
-      <div className={styles.center}>
+      <div
+        className={`${styles.center} ${
+          !isArray && styles.wrapperForNotArrayMsg
+        }`}
+      >
         <div className={`${styles.header} ${isArray && styles.redHeader}`}>
           <i>
             <MdInfo className={styles.headerIcon} />

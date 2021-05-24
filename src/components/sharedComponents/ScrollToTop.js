@@ -25,7 +25,7 @@ export default function ScrollToTop() {
         `}
           onClick={() => window.scroll({ top: 0, left: 0, behavior: "smooth" })}
         >
-          <FaAngleUp size={50} />
+          <FaAngleUp size={40} />
         </div>
       )}
     </>

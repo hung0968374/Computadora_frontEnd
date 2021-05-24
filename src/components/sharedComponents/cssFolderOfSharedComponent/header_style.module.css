@@ -213,9 +213,12 @@
 }
 
 /* responsive */
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1550px) {
   .textWrapper {
-    margin-left: 10%;
+    margin-left: 15%;
+  }
+  .laptopImg {
+    margin-left: 10px;
   }
 }
 
