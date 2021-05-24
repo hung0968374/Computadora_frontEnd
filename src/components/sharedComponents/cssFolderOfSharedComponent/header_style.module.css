@@ -227,17 +227,24 @@
     margin-left: 0%;
   }
 }
-@media screen and (max-width: 900px) {
-  .textWrapper {
+@media screen and (max-width: 1030px) {
+  .laptopImg {
     display: none;
   }
+  .content_wrapper {
+  }
+  .textWrapper {
+    width: 80%;
+    justify-content: space-between;
+    margin-left: 0%;
+  }
   .userImg {
-    margin-left: 40%;
+    margin-left: 10%;
   }
 }
 
 @media screen and (max-width: 700px) {
   .userImg {
-    margin-left: 20%;
+    margin-left: 5%;
   }
 }

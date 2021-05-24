@@ -60,6 +60,28 @@
   display: flex;
   flex-wrap: wrap;
 }
-.blog_blogItemWrapper {
-  width: calc(50% - 2rem);
+@media screen and (max-width: 1200px) {
+}
+@media screen and (max-width: 1000px) {
+  .blogDetail_title {
+    width: 90%;
+    margin: auto;
+  }
+  .blogDetail_headerContainer {
+    width: 100%;
+  }
+  .blogDetail_headerContainer img {
+    width: 100%;
+    object-fit: contain;
+  }
+  .blogDetail_relatingBlogContainer {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .blogDetail_textContainer {
+    width: 90%;
+    margin: auto;
+  }
 }

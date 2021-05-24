@@ -33,7 +33,23 @@
   cursor: pointer;
   border-radius: 15px;
 }
+.readingBttn i {
+  margin-left: 10px;
+  padding-top: 3px;
+}
 .dots {
   font-size: 3rem;
   color: rgb(150, 150, 150);
+}
+@media screen and (max-width: 1200px) {
+}
+@media screen and (max-width: 900px) {
+  .reviewArea {
+    width: 90%;
+    margin: auto;
+  }
+  .reviewArea img {
+    width: 100%;
+    object-fit: contain;
+  }
 }

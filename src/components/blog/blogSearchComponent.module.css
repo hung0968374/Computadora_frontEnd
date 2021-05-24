@@ -138,3 +138,17 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(112, 112, 112);
 }
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 640px) {
+  .mainLogoArea {
+    display: none;
+  }
+  .searchArea {
+    width: 90%;
+    margin: auto;
+  }
+}

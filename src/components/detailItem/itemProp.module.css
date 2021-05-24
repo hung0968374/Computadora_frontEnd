@@ -252,3 +252,16 @@
     opacity: 1;
   }
 }
+@media screen and (max-width: 1200px) {
+  .itemPropContainer {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1065px) {
+  .imgArea {
+    width: 90% !important;
+  }
+  .imgArea img {
+    object-fit: contain;
+  }
+}
