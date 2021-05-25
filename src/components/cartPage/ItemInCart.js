@@ -75,7 +75,7 @@ export default function ItemInCart({ imgUrl, itemInfo }) {
                 Xóa sản phẩm{" "}
                 <strong>
                   {itemInfo.productName.split("(")[0].split("-")[0]}
-                </strong>
+                </strong>{" "}
                 khỏi giỏ hàng?
               </div>
             }
