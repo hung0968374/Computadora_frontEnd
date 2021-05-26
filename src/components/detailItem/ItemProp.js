@@ -34,7 +34,7 @@ const ItemProp = ({ data, genre }) => {
       ? data?.price?.split("đ").join("")
       : data?.price?.split("₫").join("");
   // console.log(itemTitle);
-  console.log("title unsplit", data?.title);
+  // console.log("title unsplit", data?.title);
   //function
   /////////handling click outside event
   useEffect(() => {

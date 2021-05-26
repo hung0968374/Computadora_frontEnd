@@ -13,10 +13,10 @@ export default function footer() {
             <div className={styles.h2_footer}> Team phát triển</div>
             <ul className={styles.ul_footer}>
               <li>
-                <div className={styles.devMember}>Nguyễn Đức Quang</div>
+                <div className={styles.devMember}>Nguyễn Hữu Hùng</div>
               </li>
               <li>
-                <div className={styles.devMember}>Nguyễn Hữu Hùng</div>
+                <div className={styles.devMember}>Nguyễn Đức Quang</div>
               </li>
               <li></li>
             </ul>
@@ -26,12 +26,12 @@ export default function footer() {
             <ul className={styles.ul_footer}>
               <li>
                 <div>
-                  <span>096.484.9119</span> (Đức Quang)
+                  <span>039.308.1326</span> (Hữu Hùng)
                 </div>
               </li>
               <li>
                 <div>
-                  <span>039.308.1326</span> (Hữu Hùng)
+                  <span>096.484.9119</span> (Đức Quang)
                 </div>
               </li>
             </ul>

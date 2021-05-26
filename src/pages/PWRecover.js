@@ -53,11 +53,9 @@ export default function PWRecover() {
       try {
         setIsSendingRequest(true);
         const response = await API.requireRecoveringPw(retakePwForm);
-        console.log("recore pw res", response.data.message);
         setIsSendingRequest(false);
         setRecoverPwSttMsg(response.data.message);
       } catch (error) {
-        console.log(error.response);
         setErrorMsg([...errorMsg, error.response.data.message]);
         setIsSendingRequest(false);
       }

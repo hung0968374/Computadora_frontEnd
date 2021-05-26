@@ -9,7 +9,7 @@ export default function YesNoModal({
   notDisplayRejectBttn,
   isArray = false,
 }) {
-  console.log("is array", isArray);
+  // console.log("is array", isArray);
   return (
     <div className={styles.modal_bg}>
       <div

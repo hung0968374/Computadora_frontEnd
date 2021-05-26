@@ -6,6 +6,7 @@ import Footer from "../components/sharedComponents/footer";
 import BlogSearchComponent from "../components/blog/BlogSearchComponent";
 import { Link } from "react-router-dom";
 import ScrollToTop from "../components/sharedComponents/ScrollToTop";
+import MessengerChat from "../components/sharedComponents/MessengerChat";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -107,6 +108,7 @@ function Blog() {
         </div>
       )}
       <Footer />
+      <MessengerChat />
     </>
   );
 }

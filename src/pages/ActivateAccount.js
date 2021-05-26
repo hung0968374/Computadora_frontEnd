@@ -21,7 +21,6 @@ export default function ActivateAccount({ match }) {
     const _sendActivateRequestToBackend = async () => {
       try {
         const res = await API.activateAccount(sendingToServerObj);
-        console.log("res", res);
       } catch (error) {
         console.log(error);
       }

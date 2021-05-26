@@ -18,10 +18,8 @@ export default function ActivateRecoveringAccount({ match }) {
     const _sendActivateRequestToBackend = async () => {
       try {
         const res = await API.activateRecoveringPw(sendingToServerObj);
-        console.log("res", res);
         setMessageToUser("Lấy lại tài khoản thành công!");
       } catch (error) {
-        console.log(error.response);
         setMessageToUser(
           "Đường link này đã được sử dụng, lấy lại mật khẩu thất bại!"
         );

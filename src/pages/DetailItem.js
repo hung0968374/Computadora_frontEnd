@@ -7,7 +7,6 @@ import Footer from "../components/sharedComponents/footer";
 import ItemProp from "../components/detailItem/ItemProp";
 import * as API from "../api/index";
 import ReviewItem from "../components/detailItem/ReviewItem";
-import MessengerCustomerChat from "react-messenger-customer-chat";
 import { useSelector } from "react-redux";
 import { discardNavOrNot } from "../redux/features/post/screenSlice";
 import SearchComponent from "../components/sharedComponents/SearchComponent";
@@ -15,6 +14,7 @@ import { useLocation } from "react-router";
 import Comment from "../components/sharedComponents/Comment";
 import queryString from "query-string";
 import ScrollToTop from "../components/sharedComponents/ScrollToTop";
+import MessengerChat from "../components/sharedComponents/MessengerChat";
 
 export default function DetailItem({}) {
   const { search } = useLocation();
@@ -43,7 +43,6 @@ export default function DetailItem({}) {
     }
     window.scroll({ top: 0, left: 0, behavior: "auto" });
   }, [location]);
-  console.log("part item", specificItemById);
   return (
     <>
       {showNavOrNot ? null : <Header />}
@@ -55,10 +54,7 @@ export default function DetailItem({}) {
       <div className={styles.reviewSection}>Đánh giá chi tiết</div>
       <ReviewItem data={specificItemById} />
       <Comment postId={itemId} />
-      <MessengerCustomerChat
-        pageId="101594652091801"
-        appId="1790240181155268"
-      />
+      <MessengerChat />
       <Footer />
     </>
   );

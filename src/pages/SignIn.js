@@ -10,6 +10,8 @@ import {
 } from "../components/sharedComponents/ToastMessage";
 import FacebookLogin from "react-facebook-login";
 import jwt_decode from "jwt-decode";
+require("dotenv").config();
+
 export default function SignIN() {
   ////////state
   const history = useHistory();
@@ -24,7 +26,6 @@ export default function SignIN() {
   ////////// if user already loggined, redirect to home page
   const token = localStorage.getItem("token");
   useEffect(() => {
-    console.log("token", token);
     if (token?.length > 0) {
       history.push("/");
     }
@@ -38,13 +39,11 @@ export default function SignIN() {
     if (successfullLoggingIn) {
       try {
         const res = await API.signIn(sendObjToServer);
-        console.log("res", res);
         localStorage.setItem("token", res.data.accessToken);
         const object_serialized = JSON.stringify(res.data.user);
         localStorage.setItem("userInfo", object_serialized);
         ///////////decode token
         const decodedToken = jwt_decode(res.data.accessToken);
-        console.log("decode jwt tooken", decodedToken);
         localStorage.setItem("tokenExpireIn", decodedToken.exp);
         history.goBack();
       } catch (error) {
@@ -66,7 +65,6 @@ export default function SignIN() {
   const _onSuccess = async (res) => {
     const userInfo = res?.profileObj;
     const token = res?.tokenId;
-    console.log(res);
     localStorage.setItem("tokenExpireIn", res.qc.expires_at); //// set token expiration
     localStorage.setItem("token", token);
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
@@ -79,7 +77,6 @@ export default function SignIN() {
 
   /////////////facebook loggin
   const responseFacebook = (res) => {
-    console.log(res);
     const userInfo = {
       email: "",
       name: res.name,
@@ -147,7 +144,7 @@ export default function SignIN() {
 
             <GoogleLogin
               className={styles.logginWithGoogle}
-              clientId="244922534941-5gvl9rd0log4olllbi3pbsc9jepudgcr.apps.googleusercontent.com"
+              clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
               buttonText=" Đăng nhập bằng tài khoản google"
               onSuccess={_onSuccess}
               onFailure={_onFailure}
@@ -155,7 +152,7 @@ export default function SignIN() {
             />
             <FacebookLogin
               cssClass={styles.logginWithFacebookBttn}
-              appId="312211730529505"
+              appId={`${process.env.REACT_APP_FACEBOOK_APP_ID}`}
               autoLoad={false}
               fields="name,email,picture"
               callback={responseFacebook}

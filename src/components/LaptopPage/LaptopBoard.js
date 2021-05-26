@@ -29,8 +29,8 @@ function LaptopBoard({ isPc = false }) {
     };
     _getSenvenRandomBlog();
   }, []);
-  if (normalBlog.length > 0) console.log("nor blog", normalBlog);
-  if (blogWithImage.length > 0) console.log(" blog with img", blogWithImage);
+  // if (normalBlog.length > 0) console.log("nor blog", normalBlog);
+  // if (blogWithImage.length > 0) console.log(" blog with img", blogWithImage);
   return (
     <div className="laptopBoard_new_feature">
       <div className="laptopBoard_main_feature">

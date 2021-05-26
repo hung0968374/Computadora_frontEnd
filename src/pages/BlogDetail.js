@@ -5,6 +5,7 @@ import "./cssFolder/blogDetail.css";
 import * as API from "../api/index";
 import { Link, useLocation } from "react-router-dom";
 import ScrollToTop from "../components/sharedComponents/ScrollToTop";
+import MessengerChat from "../components/sharedComponents/MessengerChat";
 
 export default function BlogDetail({ match }) {
   const location = useLocation();
@@ -26,7 +27,6 @@ export default function BlogDetail({ match }) {
     /////// scroll to top
     window.scroll({ top: 0, left: 0, behavior: "auto" });
   }, [location]);
-  console.log("4 ran", fourRelatingBlogs);
 
   /////////// set title of this page
   useEffect(() => {
@@ -58,11 +58,21 @@ export default function BlogDetail({ match }) {
       <div className="blogDetail_textContainer">
         {blogInDetail?.blogBody?.map((blogContent, index) => {
           if (blogContent.includes("https")) {
-            return <img src={blogContent} alt="" />;
+            if (blogContent.includes("Chi tiết sản phẩm:")) {
+              blogContent = blogContent
+                .split("Chi tiết sản phẩm:")[1]
+                .split("2. MSI")[0];
+              console.log("img splited", blogContent);
+            }
+            return <img src={blogContent} alt="" key={index} />;
           } else if (blogContent.length > 75) {
             return <p key={index}>{blogContent}</p>;
           } else if (blogContent.length < 75) {
-            return <p className="blogDetail_strongText">{blogContent}</p>;
+            return (
+              <p className="blogDetail_strongText" key={index}>
+                {blogContent}
+              </p>
+            );
           }
         })}
       </div>
@@ -72,7 +82,6 @@ export default function BlogDetail({ match }) {
           const blogPublishingTime = new Date(blog?.createdAt).getTime();
           var randomBlogDelta = Math.abs(now - blogPublishingTime) / 1000;
           const blogInterval = Math.floor(randomBlogDelta / 86400);
-          console.log(blog);
           return (
             <Link
               to={`/blog/${blog?._id}`}
@@ -94,6 +103,7 @@ export default function BlogDetail({ match }) {
         })}
       </div>
       <Footer />
+      <MessengerChat />
     </>
   );
 }

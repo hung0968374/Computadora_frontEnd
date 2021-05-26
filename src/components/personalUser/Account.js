@@ -72,12 +72,12 @@ export default function Account() {
         ...baseUserInfo,
         imageUrl: base64EncodedImage,
       };
-      console.log("new user", newUserInfo);
+      // console.log("new user", newUserInfo);
       setIsSendingUpdateRequestToServer(true);
       const response = await API.updateJWTUserBaseInfo(newUserInfo);
       setIsSendingUpdateRequestToServer(false);
       setShowModalRequestUserLoggout(true);
-      console.log("res", response);
+      // console.log("res", response);
       localStorage.clear();
     } catch (error) {
       console.log(error);
@@ -130,7 +130,7 @@ export default function Account() {
     if (msg.length === 0) {
       try {
         const response = await API.updateJWTUserPassword(passwordForm);
-        console.log("up user pw", response);
+        // console.log("up user pw", response);
         setUpdatedPwSuccessfully(
           "Thay đổi mật khẩu thành công, chúng tôi sẽ điều hướng bạn về trang đăng nhập."
         );

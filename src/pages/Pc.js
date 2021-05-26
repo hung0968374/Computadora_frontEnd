@@ -3,11 +3,11 @@ import Header from "../components/sharedComponents/Header";
 import ItemSection from "../components/LaptopPage/itemSection";
 import * as styles from "./cssFolder/laptop.module.css";
 import LaptopBoard from "../components/LaptopPage/LaptopBoard";
-import MessengerCustomerChat from "react-messenger-customer-chat";
 import Footer from "../components/sharedComponents/footer";
 import SearchComponent from "../components/sharedComponents/SearchComponent";
 import ScrollToTop from "../components/sharedComponents/ScrollToTop";
 import * as API from "../api/index";
+import MessengerChat from "../components/sharedComponents/MessengerChat";
 
 const Pc = () => {
   const [pcItems, setPcItems] = useState([]);
@@ -42,10 +42,7 @@ const Pc = () => {
         pcIsFetchingData={pcIsFetchingData}
       />
       <Footer />
-      <MessengerCustomerChat
-        pageId="101594652091801"
-        appId="1790240181155268"
-      />
+      <MessengerChat />
     </div>
   );
 };

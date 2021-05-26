@@ -69,7 +69,6 @@ const CartPage = () => {
       );
     }
   }, []);
-  console.log("item in cart", itemsInCart);
   /////scroll to top of screen
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "auto" });
@@ -79,7 +78,6 @@ const CartPage = () => {
       localStorage.setItem("cartItems", JSON.stringify(itemsInCart));
     }
   }, [itemsInCart]);
-  console.log("item in cart", itemsInCart);
   useEffect(() => {
     const emailIsValid = validateEmail(form.email);
     if (emailIsValid) {
@@ -180,12 +178,10 @@ const CartPage = () => {
             form,
             billCharge: moneyToStr,
           });
-          console.log("response", response);
           setInfoMsgToUser(
             "Đặt hàng thành công, chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất."
           );
         } catch (error) {
-          console.log(error.response.status);
           if (error.response.status === 403) {
             setTokenHasExpired(true);
           }

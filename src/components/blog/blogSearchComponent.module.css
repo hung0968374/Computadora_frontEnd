@@ -114,7 +114,8 @@
   text-align: justify;
   padding-left: 5%;
 }
-.searchTitleRes {
+.searchTitleRes span {
+  color: red;
 }
 .searchResTimeStamp {
   display: flex;

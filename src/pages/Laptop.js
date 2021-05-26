@@ -4,7 +4,6 @@ import ItemSection from "../components/LaptopPage/itemSection";
 import * as styles from "./cssFolder/laptop.module.css";
 import LaptopBoard from "../components/LaptopPage/LaptopBoard";
 import { useDispatch, useSelector } from "react-redux";
-import MessengerCustomerChat from "react-messenger-customer-chat";
 import {
   fetchLaptopByPage,
   laptopByPage,
@@ -14,6 +13,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { useLocation } from "react-router";
 import SearchComponent from "../components/sharedComponents/SearchComponent";
 import ScrollToTop from "../components/sharedComponents/ScrollToTop";
+import MessengerChat from "../components/sharedComponents/MessengerChat";
 
 const Laptop = () => {
   const dispatch = useDispatch();
@@ -25,9 +25,7 @@ const Laptop = () => {
   useEffect(async () => {}, []);
   const _loadMoreData = async () => {
     setCurrentPage((prev) => prev + 1);
-    console.log("current page", currentPage);
     const actionRes = await dispatch(fetchLaptopByPage(currentPage + 1));
-    console.log("unwrap", unwrapResult(actionRes).data);
     if (unwrapResult(actionRes).data.length == 0) {
       setDisableWatchMoreBttn(true);
     }
@@ -53,10 +51,7 @@ const Laptop = () => {
         disableWatchMoreBttn={disableWatchMoreBttn}
       />
       <Footer />
-      <MessengerCustomerChat
-        pageId="101594652091801"
-        appId="1790240181155268"
-      />
+      <MessengerChat />
     </div>
   );
 };

@@ -51,7 +51,6 @@ export default function SignUP() {
     }
     validateUsername(form.username);
     if (!errorMsgShownToUser) {
-      console.log("form", form);
       const emailIsValid = validateEmail(form.email);
       if (!emailIsValid) {
         msg.push("Email không đúng định dạng");
@@ -70,7 +69,6 @@ export default function SignUP() {
       }
       if (msg.length !== 0) {
         setErrorMsgShownToUser(msg);
-        console.log(errorMsgShownToUser);
         setTimeout(() => {
           setErrorMsgShownToUser("");
         }, 6000);
@@ -79,7 +77,6 @@ export default function SignUP() {
           setLoadingSigningUpResponse(true);
           const res = await API.signUp(form);
           setLoadingSigningUpResponse(false);
-          console.log(res.data.message);
           setInfoMsgToUser(res.data.message);
           setShowYesNoModalToUser(true);
         } catch (error) {

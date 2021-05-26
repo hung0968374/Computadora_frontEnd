@@ -34,7 +34,6 @@ export default function BoughtItemRecord() {
     setTokenHasExpired(false);
     history.push("/signIn");
   };
-  console.log("user invoice", userInvoices);
   return (
     <>
       <Header />

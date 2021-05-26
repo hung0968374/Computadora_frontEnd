@@ -12,9 +12,8 @@ export default function BlogSearchComponent() {
     useState(false);
   const [searchPool, setSearchPool] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
-  console.log("se res", searchResult);
-  ////// reformating date
 
+  // console.log("sesarch lat", searchInputAlt);
   //////// get-set item pool result
   useEffect(() => {
     const _fetchAllItemsName = async () => {
@@ -28,7 +27,7 @@ export default function BlogSearchComponent() {
     };
     _fetchAllItemsName();
   }, []);
-  console.log("search res pool blog", searchPool);
+  // console.log("search res pool blog", searchPool);
   /////////handling click outside search area
   useEffect(() => {
     function handleClickOutside(event) {
@@ -52,7 +51,22 @@ export default function BlogSearchComponent() {
   useEffect(() => {
     if (searchPool.length > 0) {
       let searchResult = [];
-      searchPool.map(function (value) {
+      searchPool.map(function (value, index) {
+        var stringToCompare = value.blogTitle
+          .trim()
+          .split(" ")
+          .join("")
+          .toLowerCase();
+        const stringNeedComparing = searchInput
+          .trim()
+          .split(" ")
+          .join("")
+          .toLowerCase();
+        if (stringToCompare.includes(stringNeedComparing)) {
+          searchResult.push(value);
+        }
+      });
+      searchPool.map(function (value, index) {
         var stringToCompare = value.blogTitle
           .trim()
           .split(" ")
@@ -64,17 +78,19 @@ export default function BlogSearchComponent() {
           .join("")
           .toLowerCase();
         let count = 0;
-        for (var i = 0; i < stringNeedComparing.length; i++) {
-          if (stringToCompare.includes(stringNeedComparing[i])) {
-            count++;
-            stringToCompare = stringToCompare.replace(
-              stringNeedComparing[i],
-              ""
-            );
+        if (!stringToCompare.includes(stringNeedComparing)) {
+          for (var i = 0; i < stringNeedComparing.length; i++) {
+            if (stringToCompare.includes(stringNeedComparing[i])) {
+              count++;
+              stringToCompare = stringToCompare.replace(
+                stringNeedComparing[i],
+                ""
+              );
+            }
           }
-        }
-        if (count === stringNeedComparing.length) {
-          searchResult.push(value);
+          if (count === stringNeedComparing.length) {
+            searchResult.push(value);
+          }
         }
       });
       setSearchResult(searchResult);
@@ -120,6 +136,11 @@ export default function BlogSearchComponent() {
                 const reformatDate = new Date(
                   item?.createdAt
                 ).toLocaleDateString("vi", DATE_OPTIONS);
+
+                var searchInputAlt;
+                if (searchInput) searchInputAlt = searchInput;
+                var i = 0;
+                console.log("seach input", searchInputAlt);
                 return (
                   <div
                     className={styles.selectionItem}
@@ -135,7 +156,25 @@ export default function BlogSearchComponent() {
                     </div>
                     <div className={styles.searchTitleArea_timeStamp}>
                       <div className={styles.searchTitleRes}>
-                        {item.blogTitle}
+                        {item?.blogTitle?.split("").map((char) => {
+                          if (searchInputAlt?.toUpperCase()?.includes(char)) {
+                            searchInputAlt = searchInputAlt.replace(char, "");
+                            return <span>{char}</span>;
+                          } else if (searchInputAlt?.includes(char)) {
+                            searchInputAlt = searchInputAlt.replace(char, "");
+                            return <span>{char}</span>;
+                          } else return <>{char}</>;
+                        })}
+                        {/* {item?.blogTitle?.split("").map((char) => {
+                          while (i < searchInputAlt?.length) {
+                            if (searchInputAlt[i] === char) {
+                              i++;
+                              return <span>{char}</span>;
+                            } else {
+                              return <>{char}</>;
+                            }
+                          }
+                        })} */}
                       </div>
                       <div className={styles.searchResTimeStamp}>
                         {reformatDate}

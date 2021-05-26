@@ -139,7 +139,7 @@ const Comment = ({ postId }) => {
             id: data.userIdSentComment,
           },
         };
-        console.log("new comment", newComment);
+        // console.log("new comment", newComment);
 
         //////// day comment moi len tren dau cac comment cu
         setSlicedCommentInParticularPost([
