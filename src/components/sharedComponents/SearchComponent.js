@@ -18,31 +18,50 @@ export default function SearchComponent({ isPc = false }) {
   useEffect(() => {
     if (searchPool.length > 0) {
       let searchResult = [];
-      searchPool.map(function (value) {
-        var stringToCompare = value.title
-          .trim()
+      searchPool.map(function (value, index) {
+        var stringToCompare = value?.title
+          ?.trim()
           .split(" ")
           .join("")
           .split("(")[0]
           .split("-")[0]
           .toLowerCase();
         const stringNeedComparing = searchInput
-          .trim()
+          ?.trim()
+          .split(" ")
+          .join("")
+          .toLowerCase();
+        if (stringToCompare?.includes(stringNeedComparing)) {
+          searchResult.push(value);
+        }
+      });
+      searchPool.map(function (value) {
+        var stringToCompare = value?.title
+          ?.trim()
+          .split(" ")
+          .join("")
+          .split("(")[0]
+          .split("-")[0]
+          .toLowerCase();
+        const stringNeedComparing = searchInput
+          ?.trim()
           .split(" ")
           .join("")
           .toLowerCase();
         let count = 0;
-        for (var i = 0; i < stringNeedComparing.length; i++) {
-          if (stringToCompare.includes(stringNeedComparing[i])) {
-            count++;
-            stringToCompare = stringToCompare.replace(
-              stringNeedComparing[i],
-              ""
-            );
+        if (!stringToCompare?.includes(stringNeedComparing)) {
+          for (var i = 0; i < stringNeedComparing.length; i++) {
+            if (stringToCompare?.includes(stringNeedComparing[i])) {
+              count++;
+              stringToCompare = stringToCompare.replace(
+                stringNeedComparing[i],
+                ""
+              );
+            }
           }
-        }
-        if (count === stringNeedComparing.length) {
-          searchResult.push(value);
+          if (count === stringNeedComparing.length) {
+            searchResult.push(value);
+          }
         }
       });
       setSearchResult(searchResult);
@@ -84,32 +103,6 @@ export default function SearchComponent({ isPc = false }) {
   }, [displaySearchPoolRef]);
   /////////handling click outside search area
 
-  ////////handling dynamic html
-  const _setDynamicHtml = (text) => {
-    let tempString = text.toLowerCase();
-    String.prototype.replaceAt = function (index, replacement) {
-      return (
-        this.substr(0, index) +
-        replacement +
-        this.substr(index - 7 + replacement.length)
-      );
-    };
-    var i = 0;
-    for (var j = 0; j < tempString.length; j++) {
-      if (searchInput[i] === tempString[j]) {
-        const span = "<i></i>";
-        if (!span.includes(tempString[j])) {
-          tempString = tempString.replaceAt(j, `<i>${tempString[j]}</i>`);
-          i++;
-        } else if (span.includes(tempString[j])) {
-          i++;
-        }
-      }
-    }
-    return { __html: tempString };
-  };
-  ////////handling dynamic html
-
   return (
     <div className={styles.container}>
       <div className={styles.mainLogoArea}>
@@ -138,6 +131,9 @@ export default function SearchComponent({ isPc = false }) {
               }`}
             >
               {searchResult.map((item, index) => {
+                var searchInputAlt;
+                if (searchInput) searchInputAlt = searchInput;
+                var i = 0;
                 return (
                   <div
                     className={styles.selectionItem}
@@ -152,8 +148,30 @@ export default function SearchComponent({ isPc = false }) {
                       <div className={styles.searchImgArea}>
                         <img src={item.imgs[0]} alt="" />
                       </div>
-                      <div className={styles.searchTitleArea}>
-                        {item.title.split("(")[0].split("-")[0]}
+                      <div className={styles.titleContainer}>
+                        <div className={styles.searchTitleArea}>
+                          {item.title
+                            .split("(")[0]
+                            .split("-")[0]
+                            .split("")
+                            .map((char) => {
+                              if (
+                                searchInputAlt?.toUpperCase()?.includes(char)
+                              ) {
+                                searchInputAlt = searchInputAlt.replace(
+                                  char,
+                                  ""
+                                );
+                                return <span>{char}</span>;
+                              } else if (searchInputAlt?.includes(char)) {
+                                searchInputAlt = searchInputAlt.replace(
+                                  char,
+                                  ""
+                                );
+                                return <span>{char}</span>;
+                              } else return <>{char}</>;
+                            })}
+                        </div>
                       </div>
                     </div>
                     <div className={styles.searchPriceArea}>

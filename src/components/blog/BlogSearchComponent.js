@@ -140,7 +140,6 @@ export default function BlogSearchComponent() {
                 var searchInputAlt;
                 if (searchInput) searchInputAlt = searchInput;
                 var i = 0;
-                console.log("seach input", searchInputAlt);
                 return (
                   <div
                     className={styles.selectionItem}
@@ -165,16 +164,6 @@ export default function BlogSearchComponent() {
                             return <span>{char}</span>;
                           } else return <>{char}</>;
                         })}
-                        {/* {item?.blogTitle?.split("").map((char) => {
-                          while (i < searchInputAlt?.length) {
-                            if (searchInputAlt[i] === char) {
-                              i++;
-                              return <span>{char}</span>;
-                            } else {
-                              return <>{char}</>;
-                            }
-                          }
-                        })} */}
                       </div>
                       <div className={styles.searchResTimeStamp}>
                         {reformatDate}

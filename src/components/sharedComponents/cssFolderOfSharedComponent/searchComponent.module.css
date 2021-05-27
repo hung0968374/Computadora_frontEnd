@@ -106,15 +106,24 @@
   height: 100%;
   object-fit: contain;
 }
-.searchTitleArea {
+.titleContainer {
   width: 65%;
   height: 100%;
-  font-size: 1.2rem;
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: center;
+}
+.searchTitleArea {
+  width: 100%;
+  height: auto;
+  font-size: 1.2rem;
+  line-height: 20px;
   word-break: break-all;
   padding-left: 5%;
+  text-align: justify;
+}
+.searchTitleArea span {
+  color: red;
 }
 .searchTitleArea i {
   color: red;
