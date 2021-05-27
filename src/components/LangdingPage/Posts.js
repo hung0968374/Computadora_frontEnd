@@ -1,36 +1,41 @@
 import React, { useState } from "react";
-import * as styles from "./posts.module.css";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.min.css";
-import "owl.carousel/dist/assets/owl.theme.default.min.css";
+import "./posts.css";
 
 function Posts() {
   const initialState = [
-    "/images/laptop1.jpg",
-    "/images/laptop2.jpg",
-    "/images/laptop3.jpg",
-    "/images/laptop4.jpg",
+    "https://cdn.tgdd.vn/ValueIcons/1/cao-cap.jpg",
+    "https://cdn.tgdd.vn/ValueIcons/1/do-hoa-(tgdd).jpg",
+    "https://cdn.tgdd.vn/ValueIcons/1/gaming.jpg",
+    "https://cdn.tgdd.vn/ValueIcons/1/mong-nhe.jpg",
   ];
-  const [imagesUrl, setImagesUrl] = useState(initialState);
+  const [imagesUrls] = useState(initialState);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   return (
-    <div className={styles.post}>
-      <div className={styles.image_container}>
-        <div className={styles.hero_image}>
-          <OwlCarousel className="owl-theme" items="1" loop autoplay nav dots>
-            <div className={styles.item}>
-              <img src={imagesUrl[0]} alt="" className={styles.imgs} />
-            </div>
-            <div className="item">
-              <img src={imagesUrl[1]} alt="" className={styles.imgs} />
-            </div>
-            <div className="item">
-              <img src={imagesUrl[2]} alt="" className={styles.imgs} />
-            </div>
-            <div className="item">
-              <img src={imagesUrl[3]} alt="" className={styles.imgs} />
-            </div>
-          </OwlCarousel>
-          <div className={styles.photobg}></div>
+    <div className="posts_post">
+      <div className="posts_image_container">
+        <div className="posts_imgSliderArea">
+          <img
+            src={imagesUrls[selectedIndex]}
+            className="posts_displayImg"
+            key={imagesUrls[selectedIndex]}
+            alt=""
+          />
+        </div>
+        <div className="posts_dotArea">
+          {imagesUrls.map((img, index) => {
+            return (
+              <div
+                className={`posts_dots ${
+                  selectedIndex === index ? "posts_selectedDot" : null
+                }`}
+                onClick={() => {
+                  setSelectedIndex(index);
+                }}
+              >
+                ⬤
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

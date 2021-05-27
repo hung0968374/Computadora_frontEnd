@@ -1,0 +1,202 @@
+.landingPage {
+  height: 100vh;
+  width: 100%;
+  overflow-y: hidden;
+  overflow: hidden;
+}
+.header {
+  opacity: 0;
+}
+.imgContainer {
+  width: 100%;
+  height: 65vh;
+  z-index: 0;
+}
+.imgContainer img {
+  width: 100%;
+  height: 100%;
+  animation: toLeft 0.5s ease;
+}
+.cardsContainer {
+  width: 1056px;
+  height: 320px;
+  margin: auto;
+  margin-top: -160px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.title {
+  width: 434px;
+  margin: 50px auto 75px;
+  text-align: center;
+}
+
+.cards {
+  width: 330px;
+  height: 100%;
+  background-color: rosybrown;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid white;
+}
+
+.cards:nth-child(1) {
+  background-color: #478ac9;
+}
+.cards:nth-child(2) {
+  background-color: #7145e0;
+}
+.cards:nth-child(3) {
+  background-color: #2c37cc;
+}
+.cardContent {
+  width: calc(100% - 40px);
+  height: calc(50% - 20px);
+  display: none;
+  color: white;
+  padding: 10px 20px 0 20px;
+}
+.cards:hover .cardContent {
+  display: block;
+}
+.cardContentTitle {
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 2rem;
+  font-weight: bolder;
+  color: whitesmoke;
+}
+.cardTextContent {
+  text-align: center;
+  font-size: 20px;
+}
+.cards:hover img {
+  height: 35%;
+  background-color: royalblue;
+}
+.cards img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 99999 !important;
+  transition: height 0.5s ease;
+  background-color: royalblue;
+}
+.watchMoreContainer {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0px;
+}
+
+.watchMore {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-style: solid;
+  font-weight: 700;
+  font-family: SF_Pro_Display, system-ui, -apple-system, Segoe UI, Roboto,
+    Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji" !important;
+  padding: 10px 58px 10px 57px;
+  border-color: #eeeeee;
+  color: #111111 !important;
+  background-color: #ffffff;
+  border-width: 0;
+  font-size: 0.875rem;
+  font-style: initial;
+  white-space: nowrap;
+}
+.watchMore:hover {
+  background-color: rgb(226, 224, 224);
+}
+@keyframes toLeft {
+  0% {
+    filter: blur(2px);
+    transform: translateX(15px);
+  }
+  100% {
+    filter: blur(0px);
+    transform: translateX(0px);
+  }
+}
+
+/* snakeBorder */
+.snakeBorder span:nth-child(1) {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  z-index: 9 !important;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #d5dded, #00b7c3);
+  animation: animate1 2s linear infinite;
+}
+@keyframes animate1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.snakeBorder span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to top, #d5dded, #00b7c3);
+  animation: animate2 2s linear infinite;
+  animation-delay: 1s;
+}
+@keyframes animate2 {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+.snakeBorder span:nth-child(3) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to left, #d5dded, #00b7c3);
+  animation: animate3 2s linear infinite;
+}
+@keyframes animate3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.snakeBorder span:nth-child(4) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(to bottom, #d5dded, #00b7c3);
+  animation: animate4 2s linear infinite;
+  animation-delay: 1s;
+}
+@keyframes animate4 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}

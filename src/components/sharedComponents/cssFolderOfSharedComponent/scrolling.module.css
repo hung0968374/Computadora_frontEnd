@@ -1,0 +1,25 @@
+.scrollContainer {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 5%;
+  right: calc(50% - 20px);
+  z-index: 99999 !important;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  animation: fadeOut 1s ease;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

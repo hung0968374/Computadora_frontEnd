@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  background-color: #a1d2f5;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  animation: fadeOut 1s ease;
+}
+.wrapper {
+  width: 72rem;
+  height: 45rem;
+  background-color: #8bc5ef;
+  margin: auto;
+  border-radius: 70px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+}
+.header {
+  display: flex;
+  margin-top: 3%;
+  justify-content: center;
+  text-align: center;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.7rem;
+}
+
+.main {
+  width: 100%;
+  height: 60%;
+  display: flex;
+}
+
+.logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.input_container {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.input_area {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.input_area input {
+  margin-top: 5%;
+  width: 45%;
+  height: 30%;
+  padding: 0 30px 0 30px;
+  font-size: 1.3rem;
+  box-shadow: 10px 10px 8px #888888;
+  border-radius: 5px;
+}
+input:focus {
+  outline: none;
+}
+.passwordContainer {
+  margin-top: 5%;
+  width: calc(45% + 60px);
+  height: 30%;
+  border-radius: 5px;
+  background-color: red;
+}
+.passwordContainer input {
+  width: calc(100% - 60px);
+  height: 100%;
+  margin-top: 0%;
+}
+.iconForPassword {
+  position: relative;
+  bottom: 35px;
+  left: calc(100% - 30px);
+}
+.more_func {
+  width: 70%;
+  margin: auto;
+  margin-top: 5%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.3rem;
+}
+
+.footer {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm {
+  background-color: #05807d;
+  width: 40%;
+  height: 60%;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+  transition: 300ms;
+}
+
+.confirm:hover {
+  transform: translateY(-8px);
+}
+.confirm div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loadingIcon {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  margin-left: 1rem;
+}
+@keyframes fadeOut {
+  0% {
+    background-color: rgb(120, 159, 182);
+  }
+  100% {
+    background-color: #a1d2f5;
+  }
+}

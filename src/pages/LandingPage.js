@@ -1,53 +1,87 @@
-import * as styles from "../components/LangdingPage/App.module.css";
-import React, { useState, useEffect } from "react";
+import * as styles from "./cssFolder/landingPage.module.css";
+import React, { useEffect, useState } from "react";
 import Header from "../components/sharedComponents/Header";
-import Slogan from "../components/LangdingPage/Slogan";
-import Posts from "../components/LangdingPage/Posts";
-import Footer from "../components/LangdingPage/Footer";
-import * as Api from "../api";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  countValue,
-  incrementByAmount,
-} from "../redux/features/counter/counterSlice";
-import { getData } from "../redux/features/post/postSlice";
+import { useHistory, useLocation } from "react-router";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
-  const [allData, setAllData] = useState([]);
-  const [changeStt, setChangeStt] = useState(false);
-  const [testCount, setTestCount] = useState(0);
-  const value = useSelector(countValue);
-  const dispatch = useDispatch();
+  const urls = [
+    "https://cmcdistribution.com.vn/en/wp-content/uploads/2020/12/The-BEST-Wallpapers-For-Your-Gaming-Setup-Wallpaper-Engine.jpg",
+    "https://lumen.thinkpro.vn//backend/uploads/baiviet/2021/4/3/blade14AMDThumb.jpg",
+    // "https://lumen.thinkpro.vn/backend/uploads/editor/v2/nitro5amd.jpg",
+    "https://lumen.thinkpro.vn//backend/uploads/baiviet/2020/12/22/laptopplaycp2077-1thumb.jpg",
+  ];
+  const history = useHistory();
+  const location = useLocation();
+  const [imgIndexDisplaying, setImgIndexDisplaying] = useState(0);
   useEffect(() => {
-    async function getAllData() {
-      let data1 = await (await Api.fetchPosts()).data;
-      console.log(data1);
-      setAllData(data1);
-      dispatch(incrementByAmount(data1));
-      dispatch(getData(data1));
+    if (localStorage.getItem("quantity") === null) {
+      localStorage.setItem("quantity", 0);
     }
-    getAllData();
-  }, [changeStt]);
-  const _changeStt = () => {
-    setChangeStt(!changeStt);
-    setTestCount(testCount + 1);
-  };
-  console.log("test count: " + testCount);
-  console.log("value from redux:");
-  console.log(value);
+    document.title = "Home";
+  }, [location]);
+
   return (
-    <div className={styles.App}>
-      <Header />
-      <div className={styles.slo_auth_post}>
-        <div className={styles.slo_auth}>
-          <Slogan changeStt={_changeStt} />
-        </div>
-        <div className={styles.posts}>
-          <Posts />
-        </div>
+    <section className={styles.landingPage}>
+      <div className={styles.header}>
+        <Header />
       </div>
-      <Footer />
-    </div>
+      <div className={styles.imgContainer} key={imgIndexDisplaying}>
+        <img src={urls[imgIndexDisplaying]} alt="" />
+      </div>
+      <div className={styles.cardsContainer}>
+        {urls.map((url, index) => {
+          return (
+            <div
+              className={`${styles.cards} ${
+                index === imgIndexDisplaying && styles.snakeBorder
+              }`}
+              onMouseEnter={() => setImgIndexDisplaying(index)}
+            >
+              <img src={url} alt="" />
+              <div className={styles.cardContent}>
+                <div className={styles.cardContentTitle}>
+                  {index === 0 && "PC"}
+                  {index === 1 && "Laptop"}
+                  {index === 2 && "Blog"}
+                </div>
+                <div className={styles.cardTextContent}>
+                  {index === 0 &&
+                    "Ghé thăm thế giới PC gaming cùng Computadora"}
+                  {index === 1 &&
+                    "Khám phá thế giới Laptop sắc màu cùng Computadora"}
+                  {index === 2 &&
+                    "Cùng cập nhật những tin tức công nghệ mới nhất với Computadora"}
+                </div>
+              </div>
+              <div className={styles.watchMoreContainer}>
+                {index === 0 && (
+                  <Link to="/pc" className={styles.watchMore}>
+                    Xem thêm
+                  </Link>
+                )}
+                {index === 1 && (
+                  <Link to="/laptop" className={styles.watchMore}>
+                    Xem thêm
+                  </Link>
+                )}
+                {index === 2 && (
+                  <Link to="/blog" className={styles.watchMore}>
+                    Xem thêm
+                  </Link>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.title}>
+        <img
+          src="https://res.cloudinary.com/nonde/image/upload/v1621595390/computadora/logo_nilhsn.png"
+          alt=""
+        />
+      </div>
+    </section>
   );
 }
 

@@ -1,0 +1,19 @@
+.container1 {
+  position: relative;
+  top: 6rem;
+  left: 10px;
+  width: 49rem;
+  height: auto;
+  display: flex;
+  margin: auto;
+}
+
+/* function */
+
+.personalInfo li {
+  list-style: none;
+}
+
+/* end function  */
+
+/* main feature */
