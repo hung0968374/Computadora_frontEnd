@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { GlobalContext } from "../../../pages/ContextApiTest";
+import { GlobalContext } from "../context/GlobalState";
 
 function ComponentA() {
   const countContext = useContext(GlobalContext);
@@ -8,9 +8,14 @@ function ComponentA() {
     <div>
       componentA
       <button
-        onClick={() => countContext.dispatchCount2({ type: "INC", value: 5 })}
+        onClick={() => countContext.dispatchCount({ type: "INC", value: 5 })}
       >
-        dispatch inc count2 by 5
+        dispatch inc count1 by 5
+      </button>
+      <button
+        onClick={() => countContext.dispatchCount({ type: "DEC", value: 5 })}
+      >
+        dispatch des count1 by 5
       </button>
     </div>
   );

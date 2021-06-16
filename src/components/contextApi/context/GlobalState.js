@@ -1,24 +1,21 @@
 import React, { createContext, useReducer } from "react";
-import AppReducer from "./AppReducer";
+import reducer from "./AppReducer";
 
-const initialState = {
-  count: [
-    { count: 11, id: 1 },
-    { count: 12, id: 2 },
-    { count: 13, id: 3 },
-    { count: 14, id: 4 },
-    { count: 15, id: 5 },
-  ],
+export const initialState = {
+  firstCount: 0,
+  secondCount: 0,
 };
 
-export const BlobalContext = createContext(initialState);
+export const GlobalContext = createContext();
 
 ////////// Provider component
 export const GlobalProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
-
+  const [count, dispatchCount] = useReducer(reducer, initialState);
+  const [count2, dispatchCount2] = useReducer(reducer, initialState);
   return (
-    <GlobalContext.Provider value={{ count: state.count }}>
+    <GlobalContext.Provider
+      value={{ count, dispatchCount, count2, dispatchCount2 }}
+    >
       {children}
     </GlobalContext.Provider>
   );
