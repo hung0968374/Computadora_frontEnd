@@ -17,6 +17,7 @@ import ActivateRecoveringAccount from "./pages/ActivateRecoveringAccount";
 import Accessories from "./pages/Accessories";
 import Test from "./pages/Test";
 import BlogDetail from "./pages/BlogDetail";
+import ContextApiTest from "./pages/ContextApiTest";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
               component={ActivateRecoveringAccount}
             />
             <Route path="/test" exact component={Test} />
+            <Route path="/context" exact component={ContextApiTest} />
           </Switch>
         </div>
       </Router>
