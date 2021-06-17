@@ -57,6 +57,8 @@ const Header = () => {
     setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
   }, [location]);
 
+  console.log("location", location);
+
   //////// handle scrolling screen
   useEffect(() => {
     const handleScroll = () => {

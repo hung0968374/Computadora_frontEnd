@@ -18,6 +18,8 @@ import Accessories from "./pages/Accessories";
 import Test from "./pages/Test";
 import BlogDetail from "./pages/BlogDetail";
 import ContextApiTest from "./pages/ContextApiTest";
+import TestBoxsizing from "./pages/TestBoxsizing";
+import StyledComponent from "./pages/StyledComponent";
 
 function App() {
   return (
@@ -52,8 +54,15 @@ function App() {
               exact
               component={ActivateRecoveringAccount}
             />
+
+            {/* testing react function */}
+
             <Route path="/test" exact component={Test} />
-            <Route path="/context" exact component={ContextApiTest} />
+            <Route path="/contextAPI" exact component={ContextApiTest} />
+            <Route path="/boxSizing" exact component={TestBoxsizing} />
+            <Route path="/styledCpn" exact component={StyledComponent} />
+
+            {/* testing react function */}
           </Switch>
         </div>
       </Router>
