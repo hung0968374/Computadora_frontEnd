@@ -38,6 +38,7 @@ const laptopItemSlice = createSlice({
       }
       // console.log("state in redux", current(state));
       state.pages.push(action.payload.page);
+      console.log("state", current(state));
     },
     [fetchLaptopByPage.rejected]: (state, action) => {
       state.error = true;

@@ -20,6 +20,7 @@ import BlogDetail from "./pages/BlogDetail";
 import ContextApiTest from "./pages/ContextApiTest";
 import TestBoxsizing from "./pages/TestBoxsizing";
 import StyledComponent from "./pages/StyledComponent";
+import TestSaga from "./pages/TestSaga";
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
             <Route path="/contextAPI" exact component={ContextApiTest} />
             <Route path="/boxSizing" exact component={TestBoxsizing} />
             <Route path="/styledCpn" exact component={StyledComponent} />
+            <Route path="/saga" exact component={TestSaga} />
 
             {/* testing react function */}
           </Switch>
