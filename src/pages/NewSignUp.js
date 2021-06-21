@@ -52,8 +52,12 @@ function NewSignUp() {
         );
         console.log("data cua dang ky", data.data.message);
         alert(data.data.message);
+        console.log("1");
+        setIsLoading(false);
         history.push("/signIn");
       } catch (error) {
+        setIsLoading(false);
+        console.log(error.response.data);
         alert(error.response.data);
       }
     }
@@ -122,9 +126,15 @@ function NewSignUp() {
           </div>
         </div>
         <div className="input-wrapper">
-          <button className="font_" onClick={HandleSubmitCreatingNewAcoount}>
-            Đăng ký
-          </button>
+          {isLoading === true ? (
+            <div className="testWrapper">
+              <div className="circle_"></div>
+            </div>
+          ) : (
+            <button className="font_" onClick={HandleSubmitCreatingNewAcoount}>
+              Đăng ký
+            </button>
+          )}
         </div>
         <div className="input-wrapper">
           <div className="underline"></div>

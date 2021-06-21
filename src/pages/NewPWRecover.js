@@ -9,6 +9,7 @@ export default function NewPWRecover() {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   //function
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function NewPWRecover() {
       if (!email) alert("Missing email");
       if (username !== "" && password !== "" && email !== "") {
         const InfoUserSendToForgotPassword = { username, password, email };
-        console.log(InfoUserSendToForgotPassword);
+        setLoading(true);
         const data = await axios.post(
           `${BaseUrl}/api/user/pwRecoverSendRequestToBackEnd`,
           InfoUserSendToForgotPassword
@@ -87,9 +88,15 @@ export default function NewPWRecover() {
           </div>
         </div>
         <div className="input-wrapper">
-          <button className="font_" onClick={HandleSubmitForgotPassWord}>
-            Lấy lại tài khoản
-          </button>
+          {loading === true ? (
+            <div className="testWrapper">
+              <div className="circle_"></div>
+            </div>
+          ) : (
+            <button className="font_" onClick={HandleSubmitForgotPassWord}>
+              Lấy lại tài khoản
+            </button>
+          )}
         </div>
         <div className="input-wrapper">
           <div className="underline"></div>

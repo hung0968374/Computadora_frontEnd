@@ -102,7 +102,7 @@ const Header = ({ token }) => {
                     <div className={styles.Acc_Image}>
                       <img
                         className={styles.Acc_Icon}
-                        onClick={ClickToAccountImage}
+                        onMouseEnter={ClickToAccountImage}
                         style={styles.profileImg}
                         src={userInfoGetFromLocalStorage.imageUrl}
                         alt=""
@@ -112,7 +112,7 @@ const Header = ({ token }) => {
                     <div className={styles.Acc_Image}>
                       <img
                         className={styles.Acc_Icon1}
-                        onClick={ClickToAccountImage}
+                        onMouseEnter={ClickToAccountImage}
                         style={styles.profileImg}
                         src="/images/account-icon.svg"
                         alt=""
@@ -122,7 +122,10 @@ const Header = ({ token }) => {
 
                   {userStatus ? (
                     tokenGetFromLocalStorage ? (
-                      <div className={styles.dropdown_content}>
+                      <div
+                        className={styles.dropdown_content}
+                        onMouseLeave={ClickToAccountImage}
+                      >
                         <div className={styles.Content_of_DropDown_Content1}>
                           <img
                             className={styles.icon}
@@ -164,7 +167,10 @@ const Header = ({ token }) => {
                         </div>
                       </div>
                     ) : (
-                      <div className={styles.dropdown_content}>
+                      <div
+                        className={styles.dropdown_content}
+                        onMouseLeave={ClickToAccountImage}
+                      >
                         <div className={styles.Content_of_DropDown_Content1}>
                           <img
                             className={styles.icon}

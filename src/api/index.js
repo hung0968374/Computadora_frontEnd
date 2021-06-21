@@ -7,6 +7,6 @@ import axios from "axios";
 // export const fetchProducts = () => API.get("/products");
 // export const fetchProductById = (id) => API.get(`/products/${id}`);
 
-export const BaseUrl = "http://localhost:5000";
+export const BaseUrl = "https://computadora-quang.herokuapp.com";
 
-// https://data-cptdora.herokuapp.com
+// https://cptdora-data.herokuapp.com/
