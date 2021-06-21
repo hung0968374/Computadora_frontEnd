@@ -4,38 +4,119 @@ import { useEffect } from "react";
 import { useState } from "react";
 import * as styles from "../components/LaptopPage/DetailItem.module.css";
 import Header from "../components/sharedComponents/Header";
-import Footer from "../components/LaptopPage/footer";
+import { BaseUrl } from "../api";
+import Comment from "../components/DetailItem/Comment";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/AddToCart/AddtoCartSlice";
 
 export default function DetailItem({ match }) {
   const [SpecificItemById, setSpecificItemById] = useState([]);
+  const [imgGallery, setImgGallery] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("userToken");
+  const quantity = useSelector((state) => state.AddToCart_.quantity);
+  const dispatch = useDispatch();
+  document.title = "Computadora";
 
-  useEffect(async () => {
+  async function fetchData() {
     const dataFromSpecificId = await axios.get(
-      `http://localhost:5000/products/${match.params.id}`
+      `${BaseUrl}/products/${match.params.id}`
     );
     const { data } = dataFromSpecificId;
-    setSpecificItemById(data);
-  }, []);
-
-  useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    setSpecificItemById(data);
+    setImgGallery(data.imgs);
+  }
+  useEffect(() => {
+    try {
+      setLoading(true);
+      fetchData();
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
-  const BaseUrl = "https://res.cloudinary.com/dsykf3mo9/image/upload/";
+  document.title = `${SpecificItemById.name}`;
 
-  console.log("data", SpecificItemById);
-  console.log(match);
+  // imgs
+  const [selectedImg, setselectedImg] = useState(imgGallery[0]);
+
+  const infoStoredProduct = {
+    name: SpecificItemById.name,
+    card: SpecificItemById.card,
+    chip: SpecificItemById.chip,
+    price: SpecificItemById.price,
+    imgs: SpecificItemById.imgs,
+    quantity: 1,
+  };
+
+  function addCart() {
+    if (!token) alert("Xin mời bạn đăng nhập để thực hiện chức năng này");
+    if (token) {
+      dispatch(addToCart(infoStoredProduct));
+      alert(
+        `Sản phẩm ${SpecificItemById.name} đã được thêm vào giỏ hàng thành công`
+      );
+    }
+  }
+
   return (
     <div>
       <Header />
+      <div className="logo_and_name_">
+        <img
+          className="logo_small"
+          src="/images/laptop.svg"
+          alt="Computadora"
+        />
+        <p>{`Computadora / Laptop / ${SpecificItemById.name}`}</p>
+      </div>
+      <div className={styles.contact_us}>
+        <div className={styles.telephone}>
+          <p>Hotline</p>
+          <h2>096.484.9119</h2>
+        </div>
+        <div className={styles.priceAndBuy}>
+          <p> {SpecificItemById.price} </p>
+          <button onClick={addCart}>Thêm vào giỏ hàng</button>
+          <img className={styles.heart_icon} src="/images/heart.png" alt="" />
+        </div>
+        <div className={styles.livechat}>
+          <img src="/images/messenger.svg" alt="" />
+        </div>
+      </div>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.product_img}>
-            <img
-              className={styles.imgThumbnail}
-              src={BaseUrl + SpecificItemById.imageLink}
-              alt=""
-            />
+            <div className={styles.img_show}>
+              <div className={styles.img_selected}>
+                {!imgGallery[selectedImg] ? (
+                  <img
+                    src={imgGallery[0]}
+                    key={imgGallery[selectedImg]}
+                    alt="productSelected"
+                  />
+                ) : (
+                  <img
+                    src={imgGallery[selectedImg]}
+                    key={imgGallery[selectedImg]}
+                    alt="productSelected"
+                  />
+                )}
+              </div>
+              <div className={styles.block_}> </div>
+              <div className={styles.img_gallery}>
+                {imgGallery.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt="_products"
+                    onClick={() => setselectedImg(index)}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
           <div className={styles.product_details}>
             <h1>{SpecificItemById.name} </h1>
@@ -50,6 +131,10 @@ export default function DetailItem({ match }) {
                   <li>
                     <p className={styles.boldText}>Màn hình:</p>
                     <p>{SpecificItemById.screen}</p>
+                  </li>
+                  <li>
+                    <p className={styles.boldText}>Độ phủ màu: </p>
+                    <p>{SpecificItemById.color}</p>
                   </li>
                   <li>
                     <p className={styles.boldText}>RAM: </p>
@@ -69,7 +154,11 @@ export default function DetailItem({ match }) {
                   </li>
                   <li>
                     <p className={styles.boldText}>Kết nối chính:</p>
-                    <p>1 x USB-C, Thunderbolt 3, 2 x USB-A, 1 x Micro-SD</p>
+                    <p>{SpecificItemById.connection}</p>
+                  </li>
+                  <li>
+                    <p className={styles.boldText}>Cân nặng:</p>
+                    <p>{SpecificItemById.weight}</p>
                   </li>
                   <li>
                     <p className={styles.boldText}> Hệ điều hành: </p>
@@ -90,68 +179,32 @@ export default function DetailItem({ match }) {
                 </div>
               </div>
             </div>
+            <div className={styles.block_}> </div>
+            <div className={styles.gift_}>
+              <h3> Quà tặng khi mua sản phẩm</h3>
+              <div className={styles.gift_product}>
+                <div className={styles.left_}>
+                  <p>Chuột Logitech G102 LIGHTSYNC</p>
+                  <img
+                    src="https://lumen.thinkpro.vn//backend/uploads/product/color_images/2020/9/15/g102-01jpg"
+                    alt=""
+                  />
+                </div>
+                <p className={styles.Or_}>Hoặc</p>
+                <div className={styles.right_}>
+                  <p>Balo Laptop Gaming ReeYee RY1027</p>
+                  <img
+                    src="https://lumen.thinkpro.vn//backend/uploads/product/color_images/2021/1/19/1027-01.jpg"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className={styles.block}> </div>
-        <div className={styles.contact_us}>
-          <div className={styles.telephone}>
-            <p>Hotline</p>
-            <h2>096.484.9119</h2>
-          </div>
-          <div className={styles.priceAndBuy}>
-            <p> {SpecificItemById.price} </p>
-            <button>Thêm vào giỏ hàng</button>
-            <img src="/images/heart.png" alt="" />
-          </div>
-          <div className={styles.livechat}>
-            <img src="/images/messenger.svg" alt="" />
-          </div>
-        </div>
-        <div className={styles.comment}>
-          <div className={styles.admin_comments}>
-            <h2> Đánh giá chi tiết</h2>
-            <div className={styles.first_comment}>
-              <h3>Người dùng nào sẽ phù hợp với {SpecificItemById.name}?</h3>
-              <h6>
-                {SpecificItemById.name} với thiết kế mỏng, siêu nhẹ, thời lượng
-                pin dài cùng độ bền ấn tượng là sản phẩm phù hợp dành cho doanh
-                nhân hay rộng hơn là dân công sở. Bên cạnh đó, mẫu laptop của LG
-                cũng sẽ là lựa chọn của các bạn nữ với màu trắng đẹp mắt, hợp
-                thời trang và đặc tính cơ độ nhờ trọng lượng chưa đến 1kg.
-              </h6>
-            </div>
-            <div className={styles.first_comment}>
-              <h3>Thiết kế sang trọng, siêu gọn nhẹ, độ bền cao</h3>
-              <h6>
-                {SpecificItemById.name} được coi là sản phẩm chủ lực của LG tại
-                thị trường Việt Nam với những thay đổi mạnh mẽ về chất lượng
-                hoàn thiện và khắc phục tất cả các khiếm khuyết từ phiên bản
-                trước. Việc sử dụng chất liệu hợp kim Magie Carbon Nano do LG
-                độc quyền phát triển giúp Gram 14 2020 đạt trọng lượng lý tưởng
-                với chỉ 999g, nhẹ hơn hẳn so với các mẫu Ultrabook 14 inches,
-                thậm chí là cả 13 inches như Dell XPS 13, HP Spectre 13, ASUS
-                ZenBook S13 hay Razer Blade Stealth.
-              </h6>
-            </div>
-          </div>
-          <div className={styles.block}> </div>
-          <div className={styles.guess_comments}>
-            <h2>Bình luận</h2>
-            <h3>Bình luận của bạn</h3>
-            <textarea
-              className={styles.textArea}
-              name=""
-              id=""
-              cols="108"
-              rows="10"
-              placeholder="Để lại bình luận của bạn"
-            ></textarea>
-            <button>Gửi</button>
-          </div>
-        </div>
+        <Comment SpecificItemById={SpecificItemById} />
       </div>
-      <div className={styles.block1}></div>
-      <Footer />
     </div>
   );
 }

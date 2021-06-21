@@ -1,0 +1,160 @@
+.newSignIn_background {
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background-size: 400%;
+  background-position: right;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: bg_animation 15s infinite alternate;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.newSignIn_background h1,
+.newSignIn_background input {
+  margin: 0;
+}
+
+.newSignIn_background h1 {
+  padding-bottom: 3rem;
+}
+.newSignIn_container {
+  background-color: #fff;
+  width: min(90%, 28rem);
+  border-radius: 20px;
+}
+.input-data {
+  position: relative;
+  margin: 2.5rem 1rem;
+}
+
+.input-wrapper input {
+  padding-inline: 1rem;
+  width: 100%;
+  border: none;
+  background-color: #fff;
+  font-size: 1.15rem;
+  border-bottom: 2px solid silver;
+}
+
+.input-wrapper label {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0;
+  color: grey;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.input-data input:focus ~ label,
+.input-data input:valid ~ label {
+  transform: translateY(-30px);
+}
+
+.input-data .input-underline {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+}
+
+.input-data .input-underline::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-color: #4158d0;
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.input-data input:focus ~ .input-underline:before,
+.input-data input:valid ~ .input-underline:before {
+  transform: scaleX(1);
+}
+/* 
+button style */
+
+.input-wrapper button {
+  position: relative;
+  width: 70%;
+  height: 2.5rem;
+  border: 2px solid #3498db;
+  padding: 0 1rem;
+  background: #fff;
+  left: 15%;
+  color: #3498db;
+  font-family: "montserrat";
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.8s;
+}
+
+.font_ {
+  font-size: 1.2rem;
+}
+
+.input-wrapper button:hover {
+  color: #fff;
+  background: #3498db;
+}
+
+/* //Or block */
+
+.underline {
+  margin: 1.5rem auto;
+  width: 70%;
+  height: 3px;
+  background-color: #3498db;
+}
+
+.input-wrapper p {
+  margin: 0;
+  position: absolute;
+  top: 0;
+}
+
+.kep-login-facebook #text {
+  content: "Đăng nhập bằng Facebook";
+}
+
+.split {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.left_split,
+.right_split {
+  text-align: center;
+  background-color: #3498db;
+  width: 50%;
+  padding: 1rem 2rem;
+}
+.split a {
+  color: #fff;
+}
+.left_split {
+  border-bottom-left-radius: 20px;
+  border-right: 2px solid #fff;
+}
+
+.right_split {
+  border-bottom-right-radius: 20px;
+}
+
+@keyframes bg_animation {
+  0% {
+    background-position: right;
+  }
+
+  100% {
+    background-position: left;
+  }
+}

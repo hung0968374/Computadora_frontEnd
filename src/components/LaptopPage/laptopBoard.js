@@ -1,27 +1,67 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./laptopBoard.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { BaseUrl } from "../../api";
+import WaitingScreen from "../../pages/WaitingScreen";
+
 function LaptopBoard() {
-  const imgUrls = [
-    "https://res.cloudinary.com/dsykf3mo9/image/upload/v1619539188/ProductImage/nitro5amd_ehsufz.jpg",
-    "https://res.cloudinary.com/dsykf3mo9/image/upload/v1619539171/ProductImage/Surface_20Pro_206_20Promo_Website_kpru65.jpg",
-    "https://res.cloudinary.com/dsykf3mo9/image/upload/v1619539148/ProductImage/ThinkPad_20X1_20Nano-02_cqyutl.jpg",
-    "https://res.cloudinary.com/dsykf3mo9/image/upload/v1619539132/ProductImage/Acer_20Nitro_205_20Promo_Website_ghwavg.jpg",
-  ];
+  const [blogs, setBlogs] = useState([]);
+  const [randomNumber, setrandomNumber] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const imgUrls = [];
+
+  //function
+
+  function random() {
+    const randomNumberArray = [];
+    for (let i = 0; i < 4; i++) {
+      let randomNumber = Math.floor(Math.random() * 30);
+      randomNumberArray.push(randomNumber);
+    }
+    setrandomNumber(randomNumberArray);
+  }
+
+  useEffect(() => {
+    async function get() {
+      try {
+        const { data } = await axios.get(`${BaseUrl}/blogs`);
+        setBlogs(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    get();
+    random();
+    setLoading(!loading);
+  }, []);
+
+  console.log(blogs);
+  for (const value of randomNumber) {
+    imgUrls.push(blogs[value]?.imgHeadline);
+  }
+
   return (
     <div className="laptopBoard_new_feature">
       <div className="laptopBoard_main_feature">
         <div className="laptopBoard_image_feature">
-          <img
-            src={imgUrls[selectedIndex]}
-            alt=""
-            key={imgUrls[selectedIndex]}
-          />
+          {loading === true ? (
+            <WaitingScreen />
+          ) : (
+            <Link to="">
+              <img
+                src={imgUrls[selectedIndex]}
+                alt=""
+                key={imgUrls[selectedIndex]}
+              />
+            </Link>
+          )}
         </div>
         <div className="laptopBoard_feature_content">
           <div
             className={`laptopBoard_feature_content_list ${
-              selectedIndex == 0 ? "laptopBoard_snakeBorder" : null
+              selectedIndex === 0 ? "laptopBoard_snakeBorder" : null
             }`}
             onClick={() => {
               setSelectedIndex(0);
@@ -32,12 +72,14 @@ function LaptopBoard() {
             <span></span>
             <span></span>
             <div className="laptopBoard_event">
-              Nitro AMD 5 - Định nghĩa laptop Gaming
+              {loading === true
+                ? `Loading...`
+                : blogs[randomNumber[0]]?.headline}
             </div>
           </div>
           <div
             className={`laptopBoard_feature_content_list ${
-              selectedIndex == 1 ? "laptopBoard_snakeBorder" : null
+              selectedIndex === 1 ? "laptopBoard_snakeBorder" : null
             }`}
             onClick={() => {
               setSelectedIndex(1);
@@ -48,12 +90,12 @@ function LaptopBoard() {
             <span></span>
             <span></span>
             <div className="laptopBoard_event">
-              Surface Pro 6 - Tặng ngay hàng hiệu
+              {loading === true ? `...` : blogs[randomNumber[1]]?.headline}
             </div>
           </div>
           <div
             className={`laptopBoard_feature_content_list ${
-              selectedIndex == 2 ? "laptopBoard_snakeBorder" : null
+              selectedIndex === 2 ? "laptopBoard_snakeBorder" : null
             }`}
             onClick={() => {
               setSelectedIndex(2);
@@ -64,12 +106,12 @@ function LaptopBoard() {
             <span></span>
             <span></span>
             <div className="laptopBoard_event">
-              ThinkPad X1 Nano - Bạn đồng hành của doanh nhân
+              {loading === true ? `...` : blogs[randomNumber[2]]?.headline}
             </div>
           </div>
           <div
             className={`laptopBoard_feature_content_list ${
-              selectedIndex == 3 ? "laptopBoard_snakeBorder" : null
+              selectedIndex === 3 ? "laptopBoard_snakeBorder" : null
             }`}
             onClick={() => {
               setSelectedIndex(3);
@@ -80,7 +122,7 @@ function LaptopBoard() {
             <span></span>
             <span></span>
             <div className="laptopBoard_event">
-              Acer nitro 5 - Quà tặng khủng
+              {loading === true ? `...` : blogs[randomNumber[3]]?.headline}
             </div>
           </div>
         </div>
@@ -96,7 +138,10 @@ function LaptopBoard() {
           <div> Made By Đức Quang (a.k.a Roll.I.90 )</div>
         </div>
         <div className="laptopBoard_news">
-          <div> Tất cả tin tức</div>
+          <div>
+            {" "}
+            <Link to="/Blog">Tất cả tin tức</Link>
+          </div>
         </div>
       </div>
     </div>

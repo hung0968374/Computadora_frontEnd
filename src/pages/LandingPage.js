@@ -15,8 +15,6 @@ function LandingPage() {
     setToken(localStorage.getItem("userToken"));
   }, [location]);
 
-  console.log("tken from landing page", localStorage.getItem("userToken"));
-  console.log("userInfo", JSON.parse(localStorage.getItem("userInfo")));
   return (
     <div className={styles.App}>
       <Header token={token} />

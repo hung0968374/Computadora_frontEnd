@@ -1,0 +1,83 @@
+/* spin */
+.testWrapper {
+  width: 100%;
+  height: 10vh;
+  background-color: #fff;
+}
+
+.circle_ {
+  margin: 0px auto;
+  width: 60px;
+  height: 60px;
+  border: 5px solid silver;
+  border-radius: 50%;
+  border-top-color: #3498db;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* three dots */
+.test_container {
+  width: 60px;
+  margin: 70px auto;
+  margin-top: 3rem;
+}
+
+.dot1,
+.dot2,
+.dot3 {
+  width: 15px;
+  height: 15px;
+  margin-left: 1px;
+  background-color: whitesmoke;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.dot1 {
+  background-color: lightcoral;
+  animation: jump-up 0.6s 0.1s linear infinite;
+}
+
+.dot2 {
+  background-color: lightgreen;
+  animation: jump-up 0.6s 0.2s linear infinite;
+}
+
+.dot3 {
+  background-color: lightsalmon;
+  animation: jump-up 0.6s 0.3s linear infinite;
+}
+
+@keyframes jump-up {
+  50% {
+    transform: translate(0, 20px);
+  }
+}
+
+/* grid block */
+.box1,
+.box2,
+.box3,
+.box4 {
+  width: 25px;
+  height: 25px;
+  background-color: #d4d4d4;
+  display: inline-block;
+  animation: pulse 0.6s ease-in infinite alternate;
+}
+.box3,
+.box2 {
+  animation-delay: 0.6s;
+}
+
+@keyframes pulse {
+  100% {
+    opacity: 0;
+  }
+}

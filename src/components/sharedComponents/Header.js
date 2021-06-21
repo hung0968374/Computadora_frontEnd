@@ -1,26 +1,53 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import {
+  addToCart,
+  getItemFromLocalCart,
+  reNewCart,
+} from "../../redux/AddToCart/AddtoCartSlice";
 import * as styles from "./header_style.module.css";
 
 const Header = ({ token }) => {
   // khai bao
   const history = useHistory();
+  const reNewState = {
+    inventory: [],
+    quantity: 0,
+  };
+  const inventoryFromStore = useSelector((state) => state.AddToCart_.inventory);
   const tokenGetFromLocalStorage = localStorage.getItem("userToken");
+  const inventoryFromLocalStorage = JSON.parse(
+    localStorage.getItem("inventory")
+  );
+  const [userStatus, setUserStatus] = useState(false);
+  const dispatch = useDispatch();
+
+  const userInfoGetFromLocalStorage = JSON.parse(
+    localStorage.getItem("userInfo")
+  );
+
+  //function
   const HandleLoggoutEvent = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("inventory");
+    localStorage.removeItem("quantity");
+    dispatch(reNewCart(reNewState));
+    history.push("/landingPage");
   };
-  const [userStatus, setUserStatus] = useState(false);
-
-  //function
   const ClickLogoToReturnToLandingPage = () => {
-    history.push("/");
+    history.push("/landingPage");
   };
   const ClickToAccountImage = () => {
     setUserStatus(!userStatus);
   };
   const link_style = {
     color: "black",
+  };
+
+  window.onstorage = () => {
+    dispatch(getItemFromLocalCart());
   };
 
   return (
@@ -38,36 +65,61 @@ const Header = ({ token }) => {
             </div>
             <ul className={styles.nav_items}>
               <li>
-                <Link style={link_style} to="/pc">
-                  PC{" "}
+                <Link style={link_style} className={styles.boldText_} to="/pc">
+                  PC
                 </Link>
               </li>
               <li className={styles.li_className}>
-                <Link style={link_style} to="/laptop">
+                <Link
+                  style={link_style}
+                  className={styles.boldText_}
+                  to="/laptop"
+                >
                   Laptop
                 </Link>
               </li>
               <li>
-                <Link style={link_style} to="/accessories">
+                <Link
+                  style={link_style}
+                  className={styles.boldText_}
+                  to="/accessories"
+                >
                   Linh kiện
                 </Link>
               </li>
               <li>
-                <Link style={link_style} to="/blog">
-                  Blog{" "}
+                <Link
+                  style={link_style}
+                  className={styles.boldText_}
+                  to="/Blog"
+                >
+                  Blog
                 </Link>
               </li>
               <li>
                 <div className={styles.Account}>
-                  <div className={styles.Acc_Image}>
-                    <img
-                      className={styles.Acc_Icon}
-                      onClick={ClickToAccountImage}
-                      style={styles.profileImg}
-                      src="/images/account-icon.svg"
-                      alt=""
-                    />{" "}
-                  </div>
+                  {tokenGetFromLocalStorage ? (
+                    <div className={styles.Acc_Image}>
+                      <img
+                        className={styles.Acc_Icon}
+                        onClick={ClickToAccountImage}
+                        style={styles.profileImg}
+                        src={userInfoGetFromLocalStorage.imageUrl}
+                        alt=""
+                      />{" "}
+                    </div>
+                  ) : (
+                    <div className={styles.Acc_Image}>
+                      <img
+                        className={styles.Acc_Icon1}
+                        onClick={ClickToAccountImage}
+                        style={styles.profileImg}
+                        src="/images/account-icon.svg"
+                        alt=""
+                      />{" "}
+                    </div>
+                  )}
+
                   {userStatus ? (
                     tokenGetFromLocalStorage ? (
                       <div className={styles.dropdown_content}>
@@ -97,6 +149,17 @@ const Header = ({ token }) => {
                             className={styles.textInDDC}
                           >
                             Thông tin cá nhân
+                          </Link>
+                        </div>
+
+                        <div className={styles.Content_of_DropDown_Content2}>
+                          <img
+                            className={styles.icon}
+                            src="https://image.flaticon.com/icons/png/512/879/879764.png"
+                            alt=""
+                          />
+                          <Link to="/Cart" className={styles.textInDDC}>
+                            Giỏ hàng
                           </Link>
                         </div>
                       </div>

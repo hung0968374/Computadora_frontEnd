@@ -1,8 +1,12 @@
 import axios from "axios";
 
-const API = axios.create({
-  baseURL: "http://localhost:5000",
-});
+// export const API = axios.create({
+//   baseURL: "http://localhost:5000",
+// });
 
-export const fetchPosts = () => API.get("/products");
-export const fetchPostsById = (id) => API.get(`/users/${id}`);
+// export const fetchProducts = () => API.get("/products");
+// export const fetchProductById = (id) => API.get(`/products/${id}`);
+
+export const BaseUrl = "http://localhost:5000";
+
+// https://data-cptdora.herokuapp.com

@@ -18,13 +18,13 @@ export default function footer() {
             <h2 className={styles.h2_footer}> Về chúng tôi</h2>
             <ul className={styles.ul_footer}>
               <li>
-                <Link to="">Lịch sử thành lập</Link>
+                <Link to="/laptop">Lịch sử thành lập</Link>
               </li>
               <li>
-                <Link to="">Giá trị cốt lõi</Link>
+                <Link to="/laptop">Giá trị cốt lõi</Link>
               </li>
               <li>
-                <Link to="">Tầm nhìn, sứ mệnh</Link>
+                <Link to="/laptop">Tầm nhìn, sứ mệnh</Link>
               </li>
             </ul>
           </div>
@@ -32,13 +32,13 @@ export default function footer() {
             <h2 className={styles.h2_footer}> Chính sách</h2>
             <ul className={styles.ul_footer}>
               <li>
-                <Link to="">Bảo hành</Link>
+                <Link to="/laptop">Bảo hành</Link>
               </li>
               <li>
-                <Link to="">Vận chuyển</Link>
+                <Link to="/laptop">Vận chuyển</Link>
               </li>
               <li>
-                <Link to="">Thanh toán</Link>
+                <Link to="/laptop">Thanh toán</Link>
               </li>
             </ul>
           </div>
@@ -47,32 +47,32 @@ export default function footer() {
             <div className={styles.table_1}>
               <ul className={styles.ul_footer}>
                 <li>
-                  <Link to="">Laptop Dell</Link>
+                  <Link to="/laptop">Laptop Dell</Link>
                 </li>
                 <li>
-                  <Link to="">Laptop HP</Link>
+                  <Link to="/laptop">Laptop HP</Link>
                 </li>
                 <li>
-                  <Link to="">Laptop ThinkPad</Link>
+                  <Link to="/laptop">Laptop ThinkPad</Link>
                 </li>
                 <li>
-                  <Link to="">Laptop Lenovo</Link>
+                  <Link to="/laptop">Laptop Lenovo</Link>
                 </li>
               </ul>
             </div>
             <div className={styles.table_2}>
               <ul className={styles.ul_footer}>
                 <li>
-                  <Link to="">Alienware</Link>
+                  <Link to="/laptop">Alienware</Link>
                 </li>
                 <li>
-                  <Link to="">Macbook</Link>
+                  <Link to="/laptop">Macbook</Link>
                 </li>
                 <li>
-                  <Link to="">Laptop Razor</Link>
+                  <Link to="/laptop">Laptop Razor</Link>
                 </li>
                 <li>
-                  <Link to="">Phụ kiện</Link>
+                  <Link to="/laptop">Phụ kiện</Link>
                 </li>
               </ul>
             </div>

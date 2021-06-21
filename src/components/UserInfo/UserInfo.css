@@ -1,5 +1,5 @@
 .container1 {
-  width: 94rem;
+  width: min(100%, 94rem);
   height: 47rem;
   display: flex;
   margin: auto;
@@ -79,6 +79,7 @@
 .acc_img {
   width: 20%;
   height: 20%;
+  border-radius: 50%;
 }
 
 .acc_button {
@@ -114,23 +115,20 @@ input {
 
 .Update_info {
   margin-top: 1.4rem;
-  width: 9rem;
-  height: 2rem;
+  width: 12rem;
+  height: 2.8rem;
   background-color: #06c1d4;
   display: flex;
   cursor: pointer;
-
-  text-align: center;
+  color: whitesmoke;
   justify-content: center;
-  padding-top: 0.9rem;
-
-  border-radius: 20px;
+  align-items: center;
+  border-radius: 15px;
   font-size: 17px;
 }
 
 .Update_info a {
   text-decoration: none;
-  color: #f7f7f7;
 }
 
 .email_input {
@@ -170,7 +168,7 @@ input:focus {
 }
 
 .user_profile .column2 h3:nth-child(1) {
-  margin-top: 1.9rem;
+  margin-top: 1.6rem;
 }
 .ship_address .column2 h3:nth-child(1) {
   margin-top: 1.5rem;

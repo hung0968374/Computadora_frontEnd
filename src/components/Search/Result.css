@@ -1,0 +1,32 @@
+.result_container {
+  margin-top: 2em;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.final_result {
+  width: min(90%, 80rem);
+  margin-inline: auto;
+}
+
+.final_result p {
+  font-size: 18px;
+}
+
+.result_hero {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.result_hero .font_18 {
+  font-size: 18px;
+}
+.result_hero span p {
+  font-size: 13px;
+}
+
+.result_hero a {
+  margin-right: 10px;
+}

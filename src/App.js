@@ -1,45 +1,48 @@
-import LandingPage from "./pages/LandingPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Laptop from "./pages/Laptop";
-import Blog from "./pages/Blog";
 import DetailItem from "./pages/DetailItem";
-import store from "./redux/store";
-import { Provider } from "react-redux";
-import SignUP from "./components/SignUP/SignUP";
-import PWRecover from "./components/PWRecover/PWRecover";
-import ConfirmPage from "./components/confirmAndActivateAcount/ConfirmPage";
-import ActivePage from "./components/confirmAndActivateAcount/ActivePage";
-import UserInfo from "./components/UserInfo/UserInfo";
-import SignIN from "./components/SignIN/SignIN";
-
+import ConfirmPage from "./pages/ConfirmPage";
+import PC from "./pages/PC";
+import loading from "./testLoading/loading";
+import NewLandingPage from "./pages/NewLandingPage";
+import UserInfo from "./pages/UserInfo";
+import ActivePage from "./pages/ActivePage";
+import Cart from "./pages/Cart";
+import "../src/components/LangdingPage/App.module.css";
+import Search from "./pages/Search";
+import Blog from "./pages/Blog";
+import BlogDetails from "./pages/BlogDetails";
+import NewSignIn from "./pages/NewSignIn";
+import NewSignUp from "./pages/NewSignUp";
+import NewPWRecover from "./pages/NewPWRecover";
 function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <div className="App">
-          <Switch>
-            <Route path="/laptop" exact component={Laptop} />
-            <Route path="/" exact component={LandingPage} />
-            <Route path="/blog" exact component={Blog} />
-            <Route path="/laptop/:id" exact component={DetailItem} />
-            <Route path="/signIn" exact component={SignIN} />
-            <Route path="/signUP" exact component={SignUP} />
-            <Route path="/PWRecover" exact component={PWRecover} />
-            <Route
-              path="/confirmPasswordRecover/:token"
-              exact
-              component={ConfirmPage}
-            />
-            <Route
-              path="/activateAccount/:token"
-              exact
-              component={ActivePage}
-            />
-            <Route path="/userInformation" exact component={UserInfo} />
-          </Switch>
-        </div>
-      </Router>
-    </Provider>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/PWRecover" exact component={NewPWRecover} />
+          <Route path="/laptop" exact component={Laptop} />
+          <Route path="/landingPage" exact component={NewLandingPage} />
+          <Route path="/laptop/:id" exact component={DetailItem} />
+          <Route path="/signIn" exact component={NewSignIn} />
+          <Route path="/signUP" exact component={NewSignUp} />
+          <Route path="/Blog/:id" exact component={BlogDetails} />
+          <Route
+            path="/confirmPasswordRecover/:token"
+            exact
+            component={ConfirmPage}
+          />
+          <Route path="/activateAccount/:token" exact component={ActivePage} />
+          <Route path="/userInformation" exact component={UserInfo} />
+          <Route path="/" exact component={PC} />
+          <Route path="/newld" exact component={NewLandingPage} />
+          <Route path="/testLoading" exact component={loading} />
+          <Route path="/Blog" exact component={Blog} />
+          <Route path="/Cart" exact component={Cart} />
+          <Route path="/Search" exact component={Search} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

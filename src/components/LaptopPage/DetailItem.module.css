@@ -1,6 +1,6 @@
 .container {
-  width: 94rem;
-  height: 150vh;
+  width: min(90%, 94rem);
+  height: 100vh;
   margin: auto;
   animation: fadeIn 1s ease;
 }
@@ -19,27 +19,63 @@
 .wrapper {
   width: 80%;
   margin: auto;
-  height: 70vh;
+  height: 60rem;
   display: flex;
 }
 
+/* left */
+
 .product_img {
-  display: flex;
-  flex: 4;
+  width: 40%;
   text-align: center;
   justify-content: center;
 }
-.imgThumbnail {
+.img_show {
   margin-top: 2rem;
-  height: 60%;
-  object-fit: contain;
+  width: 100%;
+  height: 70%;
   position: sticky;
   top: 0;
+}
+.img_selected {
+  height: 60%;
+  width: 100%;
+}
+
+.img_selected img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: toLeft 500ms ease-in;
+  cursor: pointer;
+}
+.img_gallery {
+  margin-top: 10px;
+  height: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.img_gallery img {
+  cursor: pointer;
+  display: flex;
+  width: 15%;
+  height: 15%;
+  object-fit: contain;
+  border: 0.5px solid #cabebe;
+}
+
+/* right */
+.info {
+  width: 100%;
+  min-height: 40%;
+  display: flex;
 }
 
 .info_product li {
   margin-top: 1rem;
-  margin-left: 1rem;
+  margin-left: 1.5rem;
 }
 
 .boldText {
@@ -47,24 +83,18 @@
   margin: 0;
 }
 
-.product_img img {
-  position: sticky;
-  width: 100%;
-  padding: 0;
-}
-
 .product_details {
-  display: flex;
-  flex: 6;
-  flex-direction: column;
+  width: 60%;
   height: 100%;
 }
 
-.info {
-  width: 100%;
-  height: 80%;
+.product_details h1 {
+  margin-left: 1rem;
+}
 
-  display: flex;
+.product_details h3 {
+  margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 .info_product {
@@ -78,7 +108,7 @@
 }
 
 .guarantee {
-  height: 100%;
+  height: 70%;
   display: flex;
   flex: 4;
 }
@@ -114,15 +144,60 @@ h1 {
 }
 
 .info_product p {
+  height: 70%;
   font-size: 16px;
+}
+
+.gift_ {
+  margin-block: 2em;
+  width: 100%;
+  height: 25%;
+}
+
+.gift_product {
+  width: 90%;
+  height: 80%;
+  display: flex;
+  margin: auto;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.left_,
+.right_ {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.left_,
+.right_ p {
+  font-size: 17px;
+}
+
+.Or_ {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  left: 44%;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 /* end wrapper */
 
 /* .admin_comments */
 
+.comment {
+  width: 100%;
+  min-height: 60rem;
+}
+
 .admin_comments {
-  height: 50vh;
+  min-height: 30rem;
   width: 60%;
   margin: auto;
 }
@@ -147,9 +222,10 @@ h6 {
 /* .guess_comments */
 
 .guess_comments {
-  height: 60vh;
+  min-height: 60rem;
   width: 60%;
   margin: auto;
+  display: block;
 }
 
 .guess_comments h2 {
@@ -172,10 +248,10 @@ button {
 
 /* .contact_us */
 .contact_us {
-  margin-top: 2rem;
-  background-color: #fbfbfb;
-  height: 10rem;
-  width: 94rem;
+  background-color: #dcdcdc;
+  height: 10%;
+  bottom: 0;
+  width: min(100%);
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -184,13 +260,14 @@ button {
 }
 
 .contact_us img {
+  margin-bottom: 1%;
   width: 20%;
-  height: 30%;
+  height: 70%;
 }
 
 .telephone {
   margin-left: 9rem;
-  padding-top: 0.7rem;
+  padding-top: 1.5%;
 }
 
 .telephone p {
@@ -202,6 +279,7 @@ button {
 }
 
 .priceAndBuy {
+  margin-top: 1%;
   margin-left: 22rem;
   display: flex;
   text-align: center;
@@ -216,8 +294,17 @@ button {
   font-weight: bold;
 }
 
+.priceAndBuy button {
+  border: none;
+  cursor: pointer;
+}
+.heart_icon {
+  width: 100%;
+  height: 100%;
+}
+
 .priceAndBuy img {
-  padding-top: 13px;
+  padding-top: 1%;
 }
 
 .priceAndBuy button {
@@ -232,12 +319,13 @@ button {
 }
 
 .livechat {
+  margin-top: 0.8%;
   margin-left: 18rem;
 }
 
 .livechat img {
-  width: 110%;
-  height: 30%;
+  width: 100%;
+  height: 70%;
   padding-top: 10px;
 }
 
@@ -249,6 +337,20 @@ button {
   background-color: #dcdcdc;
   margin: auto;
   margin-top: 2rem;
+}
+
+.block_ {
+  width: 100%;
+  height: 1px;
+  background-color: #dcdcdc;
+  margin-top: 2rem;
+}
+
+.block_ {
+  width: 100%;
+  height: 1px;
+  background-color: #dcdcdc;
+  margin-top: 1rem;
 }
 
 /* .guess_comments */
@@ -297,4 +399,17 @@ textarea:focus {
 .block1 {
   width: 100%;
   height: 15rem;
+}
+
+@keyframes toLeft {
+  0% {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0px);
+  }
 }

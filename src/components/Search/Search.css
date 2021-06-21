@@ -1,0 +1,39 @@
+.search_box_ {
+  padding-top: 1rem;
+  width: min(100%, 80rem);
+  height: 5em;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.search_box_ input {
+  height: 3.5rem;
+  width: 22rem;
+  border-radius: 60px;
+  border: none;
+  font-size: 18px;
+  outline: none;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.button_search {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  margin-inline-start: 2rem;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_search img {
+  width: 40%;
+  height: 40%;
+  cursor: pointer;
+  transition: 300ms;
+}

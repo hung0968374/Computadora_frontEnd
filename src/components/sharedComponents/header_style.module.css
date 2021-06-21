@@ -1,12 +1,13 @@
 .header {
-  height: 90px;
+  height: 6rem;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 20px;
+  font-size: 1.625rem;
   background-color: rgb(243 243 243);
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+  margin-inline: auto;
 }
 nav {
   display: flex;
@@ -31,14 +32,17 @@ nav ul {
   margin-left: 20%;
   margin-right: 10%;
 }
+
+.boldText_ {
+  font-size: var(--text-font-size);
+}
 nav ul li {
   margin-left: 11%;
   font-size: 1.4rem;
   opacity: 0.7;
 }
-.logo {
-  position: absolute;
-  width: 5%;
+.logo img {
+  width: 70%;
 }
 
 .nav_items {
@@ -61,23 +65,32 @@ nav ul li {
   position: relative;
 }
 .Acc_Icon {
-  width: 100%;
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
   padding: 0;
   margin-top: 15px;
+  border-radius: 50%;
 }
 
 .dropdown_content {
   display: block;
   position: absolute;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1199;
+  z-index: 1199 !important;
   font-size: 16px;
 }
 
+.dropdown_content img {
+  height: 100%;
+  margin-inline-start: 1rem;
+}
+
 .Acc_Image {
-  width: 30%;
+  width: 100%;
+  object-fit: contain;
   margin-bottom: 0.5rem;
+  cursor: pointer;
 }
 
 .logoCPT {
@@ -90,16 +103,22 @@ nav ul li {
   height: 50%;
 }
 
+.Acc_Icon1 {
+  margin-top: 10px;
+  width: 35%;
+  height: 35%;
+}
+
 /* animation */
 
 .Content_of_DropDown_Content1,
 .Content_of_DropDown_Content2,
 .Content_of_DropDown_Content3 {
   background-color: white;
-  padding-top: 15px;
+  padding-block: 15px;
   display: flex;
-  width: 14rem;
-  height: 2.5rem;
+  width: 16rem;
+  height: 3rem;
   cursor: pointer;
 }
 

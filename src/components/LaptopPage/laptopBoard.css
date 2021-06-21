@@ -1,6 +1,6 @@
 .laptopBoard_new_feature {
-  width: 75rem;
-  height: 25rem;
+  width: min(80%, 75rem);
+  height: min(100%, 30vh);
   border-radius: 5px;
   margin: auto;
   margin-top: 3%;
@@ -11,17 +11,16 @@
 .laptopBoard_main_feature {
   width: 75%;
   height: 100%;
-  background-color: #f3f5f8;
+  background-color: #fff;
 }
 .laptopBoard_image_feature {
   width: 100%;
-  height: 80%;
+  height: 70%;
   background-color: white;
 }
 .laptopBoard_image_feature img {
   width: 100%;
   height: 100%;
-  padding-top: 0rem;
   object-fit: cover;
   animation: toLeft 500ms ease-in;
 }
@@ -119,9 +118,9 @@
 
 .laptopBoard_blog_content {
   width: 100%;
-  height: 21%;
+  height: 5rem;
   background-color: #f3f5f8;
-  margin-bottom: 4%;
+  margin-bottom: 2rem;
   border-top-left-radius: 25px;
   display: flex;
   justify-content: center;
@@ -170,5 +169,21 @@
     opacity: 1;
     filter: blur(0px);
     transform: translateX(0px);
+  }
+}
+
+@media (max-width: 1076px) {
+  .laptopBoard_new_feature {
+    flex-direction: column;
+  }
+
+  .laptopBoard_main_feature {
+    width: 100%;
+  }
+
+  .laptopBoard_blog_feature {
+    width: 100%;
+    margin-left: 0;
+    margin-block: 2rem;
   }
 }
