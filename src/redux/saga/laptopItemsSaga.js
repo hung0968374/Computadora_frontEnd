@@ -1,10 +1,4 @@
-import {
-  takeEvery,
-  takeLatest,
-  put,
-  delay,
-  call,
-} from "@redux-saga/core/effects";
+import { takeLatest, put, call } from "@redux-saga/core/effects";
 import {
   isFetchingLaptopDatasByPage,
   fetchedLaptopDatasByPage,
@@ -15,7 +9,7 @@ export function* handleFetchLaptopItems(action) {
   console.log("action payload", action.payload);
   const laptopItems = yield call(Api.fetchPostByPage, action.payload);
   console.log("laptopItems datas", laptopItems.data);
-  // yield put(fetchedLaptopDatasByPage(laptopItems.data));
+  yield put(fetchedLaptopDatasByPage(laptopItems.data));
 }
 
 export default function* laptopItemsSaga() {

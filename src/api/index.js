@@ -7,3 +7,4 @@ const API = axios.create({
 
 export const fetchPostByPage = (page) =>
   API.get(`/api/posts/genre=laptop/filter?page=${page}&amountPerPage=24`);
+export const signIn = (obj) => API.post("/api/auth/login", obj);

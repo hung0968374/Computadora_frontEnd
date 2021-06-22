@@ -20,7 +20,7 @@ const LaptopSlice = createSlice({
       state.status = "done";
       state.arrayOfLaptopItems = [
         ...state.arrayOfLaptopItems,
-        ...action.payload.data,
+        ...action.payload,
       ];
       state.error = false;
       state.pages.push(action.payload.page);
