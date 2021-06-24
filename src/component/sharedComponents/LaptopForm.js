@@ -1,8 +1,36 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { FormContainer } from "../styledComponents/LaptopFormStyled";
 import { Input } from "../styledComponents/sharedStyle/InputStyled";
+import * as API from "../../api/index";
 
 function LaptopForm() {
+  const [files, setFiles] = useState();
+
+  const submitToServer = async () => {
+    const formData = new FormData();
+    // console.log("files", files);
+
+    for (const file of files) {
+      formData.append("images", file);
+    }
+    formData.append("title", "dsadsadsa");
+    formData.append("processor", "abc");
+    formData.append("screen", "abc");
+    formData.append("ram", "abc");
+    formData.append("graphicCard", "abc");
+    formData.append("pin", "abc");
+    formData.append("weight", "abc");
+    formData.append("operatingSystem", "abc");
+    formData.append("price", "abc");
+    try {
+      const res = await API.sendFormIncludingFilesToServer(formData);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <FormContainer>
       <div className="form-container">
@@ -34,9 +62,14 @@ function LaptopForm() {
           <div>Ảnh</div>
         </div>
         <div className="imgArea">
-          <input type="file" />
+          <input
+            type="file"
+            multiple
+            onChange={(e) => setFiles(e.target.files)}
+          />
         </div>
       </div>
+      <button onClick={submitToServer}>submit</button>
     </FormContainer>
   );
 }

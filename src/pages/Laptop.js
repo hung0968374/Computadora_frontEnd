@@ -72,6 +72,7 @@ export default function Laptop() {
   };
 
   console.log("open info msg", openInfoMsg);
+  console.log("lap item", lapItems);
   return (
     <>
       <Header />
