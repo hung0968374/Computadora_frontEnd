@@ -42,9 +42,16 @@ export const LoginWrapper = styled(CenterEl)`
       box-sizing: border-box;
       padding: 5px 10px;
       border-color: white;
+      position: relative;
       &:focus {
         outline: none;
       }
+    }
+    & i {
+      position: relative;
+      bottom: 42px;
+      left: 100px;
+      z-index: 9;
     }
   }
   & .login_button_container {
@@ -70,6 +77,12 @@ export const LoginWrapper = styled(CenterEl)`
 
       &:hover {
         background-color: ${({ theme }) => theme.grey};
+      }
+
+      & img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
       }
     }
   }

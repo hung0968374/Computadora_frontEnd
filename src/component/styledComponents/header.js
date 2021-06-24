@@ -13,6 +13,15 @@ export const HeaderWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+    & span {
+      font-size: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      &:hover {
+        color: ${({ theme }) => theme.red};
+      }
+    }
   }
   & .header_navContent p {
     font-size: 25px;

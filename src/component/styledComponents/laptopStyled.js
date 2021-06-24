@@ -24,6 +24,20 @@ export const Wrapper = styled.div`
     background-color: white;
     transition: 0.8s;
     position: relative;
+
+    &:hover {
+      border-bottom: none;
+
+      & .laptopItem_onlyRevealWhenHover {
+        height: 100px;
+        overflow: hidden;
+        opacity: 1;
+
+        & * {
+          color: #313131;
+        }
+      }
+    }
   }
 
   & .laptopItem_outerWrapper {
@@ -35,11 +49,12 @@ export const Wrapper = styled.div`
   & .laptopItem_imgArea {
     width: 100%;
     height: 75%;
-  }
-  & .laptopItem_imgArea img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   }
   & .laptopItem_contentArea {
     width: 100%;
@@ -71,71 +86,70 @@ export const Wrapper = styled.div`
     color: red;
     margin-left: 20px;
   }
-  & .laptop_itemContainer:hover {
-    border-bottom: none;
-  }
+
   & .laptopItem_onlyRevealWhenHover {
     box-sizing: border-box;
     width: 100%;
     height: 0px;
     background-color: ${({ theme }) => theme.white};
+    background-color: #d6d4d4;
     position: absolute;
     top: calc(20em - 2px);
     transition: 0.5s ease;
     z-index: 999;
     overflow: hidden;
-    border-left: 1px solid ${({ theme }) => theme.grey};
-    border-right: 1px solid ${({ theme }) => theme.grey};
-    border-bottom: 1px solid ${({ theme }) => theme.grey};
-  }
-  & .laptopItem_onlyRevealWhenHover > * {
-  }
-  & .laptop_itemContainer:hover .laptopItem_onlyRevealWhenHover {
-    height: 100px;
-  }
-  & .laptop_itemContainer:hover {
-  }
-  & .laptop_itemContainer:hover .laptopItem_onlyRevealWhenHover > * {
-  }
-  & .laptopItem_onlyRevealWhenHover div:nth-child(1) {
-    width: 100%;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  & .laptopItem_onlyRevealWhenHover div:nth-child(1) div {
-    width: 75%;
-    height: 75%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    border-radius: 5px;
-    border: 1px solid ${({ theme }) => theme.gray};
-    transition: 0.5s ease;
-  }
-  & .laptopItem_onlyRevealWhenHover div:nth-child(1) div:hover {
-    background-color: ${({ theme }) => theme.green};
-  }
-  & .laptopItem_onlyRevealWhenHover div:nth-child(2) {
-    width: 50%;
-    margin: auto;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    box-sizing: border-box;
-  }
-  & .laptopItem_onlyRevealWhenHover div:nth-child(2) span {
-    border: 1px solid ${({ theme }) => theme.gray};
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: 0.5s ease;
-  }
-  & .laptopItem_onlyRevealWhenHover div:nth-child(2) span:hover {
-    background-color: ${({ theme }) => theme.green};
+    border-left: 0px solid ${({ theme }) => theme.grey};
+    border-right: 0px solid ${({ theme }) => theme.grey};
+    border-bottom: 0px solid ${({ theme }) => theme.grey};
+    opacity: 0.2;
+    & * {
+      color: transparent;
+    }
+    & div:nth-child(1) {
+      width: 100%;
+      height: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & div {
+        width: 75%;
+        height: 75%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        border-radius: 5px;
+        border: 1px solid ${({ theme }) => theme.gray};
+        transition: 0.5s ease;
+
+        &:hover {
+          background-color: ${({ theme }) => theme.green};
+        }
+      }
+    }
+
+    & div:nth-child(2) {
+      width: 50%;
+      margin: auto;
+      height: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      box-sizing: border-box;
+
+      & span {
+        border: 1px solid ${({ theme }) => theme.gray};
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: 0.5s ease;
+
+        &:hover {
+          background-color: ${({ theme }) => theme.green};
+        }
+      }
+    }
   }
 `;
 

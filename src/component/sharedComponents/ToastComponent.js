@@ -3,10 +3,13 @@ import React, { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const ToastInfoMsg = ({ resetHandleVal }) => {
+export const ToastInfoMsg = ({
+  resetHandleVal,
+  msg = "Đã thêm item này vào giỏ hàng!",
+}) => {
   useEffect(() => {
     const notify = () =>
-      toast.info("Đã thêm item này vào giỏ hàng!", {
+      toast.info(msg, {
         onClose: () => resetHandleVal(false),
       });
     notify();
@@ -17,3 +20,4 @@ export const ToastInfoMsg = ({ resetHandleVal }) => {
     </div>
   );
 };
+export const MemoizedToast = React.memo(ToastInfoMsg);

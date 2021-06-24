@@ -11,6 +11,12 @@ const LaptopSlice = createSlice({
   name: "laptopItems",
   initialState,
   reducers: {
+    removeItem: (state, action) => {
+      state.arrayOfLaptopItems = state.arrayOfLaptopItems.filter(
+        (item) => item._id !== action.payload
+      );
+    },
+
     //////////////redux saga
     isFetchingLaptopDatasByPage: (state, action) => {
       state.status = "loading";
@@ -28,8 +34,11 @@ const LaptopSlice = createSlice({
   },
 });
 
-export const { isFetchingLaptopDatasByPage, fetchedLaptopDatasByPage } =
-  LaptopSlice.actions;
+export const {
+  isFetchingLaptopDatasByPage,
+  fetchedLaptopDatasByPage,
+  removeItem,
+} = LaptopSlice.actions;
 export const laptopItemsFromRdx = (state) => state.lapItemsSlice;
 
 export default LaptopSlice.reducer;

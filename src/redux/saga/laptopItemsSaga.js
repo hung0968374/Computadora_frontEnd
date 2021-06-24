@@ -6,14 +6,14 @@ import {
 import * as Api from "../../api/index";
 
 export function* handleFetchLaptopItems(action) {
-  console.log("action payload", action.payload);
+  // console.log("action payload", action.payload);
   const laptopItems = yield call(Api.fetchPostByPage, action.payload);
-  console.log("laptopItems datas", laptopItems.data);
+  // console.log("laptopItems datas", laptopItems.data);
   yield put(fetchedLaptopDatasByPage(laptopItems.data));
 }
 
 export default function* laptopItemsSaga() {
-  console.log("laptopItem saga");
+  // console.log("laptopItem saga");
   yield takeLatest(
     isFetchingLaptopDatasByPage.toString(),
     handleFetchLaptopItems
